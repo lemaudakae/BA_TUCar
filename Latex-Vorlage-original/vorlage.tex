@@ -1,0 +1,132 @@
+%======================================================================================================
+% minimale Vorlage für wissenschaftliche Arbeiten Johannes Pöschmann
+%======================================================================================================
+
+%======================================================================================================
+% DocumentClass
+%======================================================================================================
+\documentclass[
+%	draft,			% Entwurfsmodus: Bilder als Rahmen,
+	11pt,			% KOMA default
+	a4paper,		% DIN A4
+	twoside,		% Zweiseitig (oneside für einseitiges Layout)
+	german,			%
+	headsepline,		% Linie unter der Kopfzeile
+	cleardoublepage=plain,	% Seitenummer auf leeren Seiten
+	openany,		% Kapitelüberschriften auf gerader/ungerader Seite
+	BCOR8mm,		% Bindungskorrektur 	
+	bibliography=totoc,	% Literaturverzeichnis im Inhaltsverzeichnis
+	listof=totoc,		% Abbildungs und Tabellenverzeichnis ins Inhaltsverzeichnis
+	appendixprefix,		% Anhang
+%	abstracton, 		% Abstract/Zusammenfassung
+	automark,		% Kapitelnr. und -überschrift in Kopfzeile
+]{scrreprt}			% siehe <http://www.komascript.de>
+
+%======================================================================================================
+%	Packages
+%======================================================================================================
+\usepackage{selinput}		% Eingabecodierung automatisch ermitteln …
+\SelectInputMappings{		% … siehe <http://ctan.org/pkg/selinput>
+  adieresis={ä},
+  germandbls={ß},
+}
+\usepackage[ngerman]{babel}
+\usepackage[square]{natbib}
+\usepackage[hypertexnames=false]{hyperref}
+\usepackage{scrpage2}				% Kopf- und Fußzeilen flexibel gestalten
+\usepackage[onehalfspacing]{setspace}		% 1.5-facher Zeilenabstand
+
+% unterdrückt die Ausgabe der Unterkapitel im Anhang
+\usepackage{etoolbox}
+\appto\appendix{\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}}
+% reinstate the correct level for list of tables and figures
+\appto\listoffigures{\addtocontents{lof}{\protect\setcounter{tocdepth}{1}}}
+\appto\listoftables{\addtocontents{lot}{\protect\setcounter{tocdepth}{1}}}
+
+%======================================================================================================
+%	Bilder, Links
+%======================================================================================================
+\usepackage{graphicx}
+\graphicspath{{img/}}	% Angabe der Pfade, wo die Grafiken liegen; 
+			% mehrere Pfade sind möglich
+
+%======================================================================================================
+%	Einstellungen
+%======================================================================================================
+\pagestyle{scrheadings}				% Standart  Kopf- und Fußzeile
+\setkomafont{pageheadfoot}{\small\scshape}	% nur Großbuchstaben 
+\setlength{\headheight}{1.1\baselineskip}
+
+%======================================================================================================
+%	Aufbau, Darstellung etc
+%======================================================================================================
+\begin{document}
+
+%------- Variablen, \hypersetup, etc. -----------------------------------------------------------------
+\include{metadaten} 
+
+%------- Deckblatt ------------------------------------------------------------------------------------
+\include{titel} 
+
+%------- Kurzfassung / Abstract -----------------------------------------------------------------------
+%\def\abstractname{Abstract} 	% auskommentieren für Titel "Zusammenfassung" 	
+%\begin{abstract}
+%  Hier Inhalt der Arbeit kurz beschreiben. Nicht unbedingt nötig ...
+%\end{abstract}
+
+%------- Inhaltsverzeichnis ---------------------------------------------------------------------------
+\pagenumbering{roman}
+\pdfbookmark{Inhaltsverzeichnis}{Inhaltsverzeichnis}
+\tableofcontents
+
+%------- Abbildungsverzeichnis ------------------------------------------------------------------------
+\markboth{Abbildungsverzeichnis}{Abbildungsverzeichnis}
+\listoffigures
+
+%------- Tabellenverzeichnis --------------------------------------------------------------------------
+\markboth{Tabellenverzeichnis}{Tabellenverzeichnis}
+\listoftables
+
+%------- Fließtext, Kapitel etc -----------------------------------------------------------------------
+%\newpage
+\cleardoublepage
+\pagenumbering{arabic}		% arabische Zahlen für Fließtext
+\include{anleitung}		% mittels \include{filename} verschiedene Kapitel einhängen
+\include{anforderungen}
+\include{beispiele}
+
+%------- Literaturverzeichnis -------------------------------------------------------------------------
+\newpage
+\manualmark
+\markboth{Literaturverzeichnis}{Literaturverzeichnis}
+\bibliographystyle{plainnat}	% verschiedene Styles möglich, z.B. nur Zahlen oder Autor + Jahr
+\bibliography{literatur}
+
+%------- Anhang ----------------------------------------------------------------------------------------
+\newpage
+\appendix
+\addcontentsline{toc}{chapter}{Anhang} % Zeigt ``Anhang'' in Inhaltsverzeichnis
+\chapter{Daten-CD}	
+\section{Digitale Version der Arbeit (PDF-Format)}
+\section{Quellcode}
+Beispiel Anhang. Hier die Funktionsweise des Quellcodes etc erklären.
+\chapter{Ein weiterer Anhang}
+
+%------- Selbstständigkeitserklärung --------------------------------------------------------------------
+\chapter*{Selbstständigkeitserklärung}
+Hiermit erkläre ich, dass ich die vorliegende Arbeit
+selbstständig angefertigt, nicht anderweitig zu Prüfungszwecken vorgelegt und
+keine anderen als die angegebenen Hilfsmittel verwendet habe. Sämtliche 
+wissentlich verwendete Textausschnitte, Zitate oder Inhalte anderer Verfasser 
+wurden ausdrücklich als solche gekennzeichnet.\bigskip\\
+\dcplace, den \dcdate
+\bigskip\bigskip
+\flushleft
+\newlength\us
+\settowidth{\us}{-\dcauthorfirstname~\dcauthorlastname-}
+\begin{tabular}{p{\us}}\hline
+\centering\footnotesize \dcauthorfirstname~\dcauthorlastname
+\end{tabular}
+
+\end{document}
+
