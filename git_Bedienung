@@ -1,0 +1,13 @@
+mkdir git_BA_TUCar
+cd git_BA_TUCar/
+git config --global user.name "lemaudakae"
+git config --global user.email "leopold.mauersberger@s2015.tu-chemnitz.de"
+git clone https://github.com/lemaudakae/BA_TUCar.git
+cd BA_TUCar/
+
+git add test.txt 
+git commit -m "Test von Unirechner aus"
+git push origin master
+
+sudo apt-get install git-gui 
+git gui 

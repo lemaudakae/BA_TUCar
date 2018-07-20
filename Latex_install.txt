@@ -1,0 +1,4 @@
+-Texworks installieren
+-Biber installieren
+-https://texwelt.de/wissen/fragen/1909/wie-verwende-ich-biber-in-meinem-editor?Seite=1#1953
+-pdflatex biber pdflatex ausführen
