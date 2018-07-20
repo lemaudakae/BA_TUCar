@@ -31,7 +31,8 @@
   germandbls={ß},
 }
 \usepackage[ngerman]{babel}
-\usepackage[square]{natbib}
+\usepackage{csquotes}
+\usepackage[backend=biber, style=authoryear]{biblatex}
 \usepackage[hypertexnames=false]{hyperref}
 \usepackage{scrpage2}				% Kopf- und Fußzeilen flexibel gestalten
 \usepackage[onehalfspacing]{setspace}		% 1.5-facher Zeilenabstand
@@ -56,6 +57,7 @@
 \pagestyle{scrheadings}				% Standart  Kopf- und Fußzeile
 \setkomafont{pageheadfoot}{\small\scshape}	% nur Großbuchstaben 
 \setlength{\headheight}{1.1\baselineskip}
+\addbibresource{literatur.bib}
 
 %======================================================================================================
 %	Aufbau, Darstellung etc
@@ -99,8 +101,7 @@
 \newpage
 \manualmark
 \markboth{Literaturverzeichnis}{Literaturverzeichnis}
-\bibliographystyle{plainnat}	% verschiedene Styles möglich, z.B. nur Zahlen oder Autor + Jahr
-\bibliography{literatur}
+\printbibliography
 
 %------- Anhang ----------------------------------------------------------------------------------------
 \newpage
