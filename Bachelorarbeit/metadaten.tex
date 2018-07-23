@@ -1,0 +1,43 @@
+%       Metadaten
+%======================================================================
+%       $Id$
+%       Matthias Kupfer
+%======================================================================
+
+\newcommand{\dcsubject}{Bachelorarbeit}
+% z.B. (Diplom/Studien/Haus)arbeit, Praktikumsbericht, Studie, Beleg, 
+% (Pro/Haupt/Ober)seminar, Seminar usw.
+\newcommand{\dctitle}{Titel der Arbeit}
+\newcommand{\dcsubtitle}{~} % Untertitel, falls erforderlich
+
+\newcommand{\dcfirstauthorlastname}{Käppler}
+\newcommand{\dcfirstauthorfirstname}{Daniel}
+\newcommand{\dcsecondauthorlastname}{Mauersberger}
+\newcommand{\dcsecondauthorfirstname}{Leopold}
+\newcommand{\dcfirstauthoremail}{daniel.kaeppler@s2015.tu-chemnitz.de}
+\newcommand{\dcsecondauthoremail}{leopold.mauersberger@s2015.tu-chemnitz.de}
+\newcommand{\dcdate}{\today}
+
+\newcommand{\dcplace}{Chemnitz} % Ort, kann an der TU meist so bleiben
+\newcommand{\dcuni}{Technische Universität \dcplace}
+\newcommand{\dcdepart}{Fakultät für Elektrotechnik und Informationstechnik} % Fakultätsangabe
+\newcommand{\dcprof}{Professur Prozessautomatisierung} % Angabe der Professur
+
+\newcommand{\dcpruefer}{Prof. Dr.-Ing. Peter Protzel}% Prüfer der Arbeit
+\newcommand{\dcadvisor}{Dr.-Ing. Sven Lange}% Betreuer der Arbeit
+
+\newcommand{\dckeywords}{Liste,von,Stichworten,die,als,Schlagworte,geeignet,
+sind}
+
+%%======================================================================
+% Einstellungen des Hyperref-Paketes
+\hypersetup{%    
+        pdftitle        = {\dctitle}, %
+        pdfsubject      = {\dcsubject, \dcdate}, %
+        pdfauthor       = {\dcfirstauthorfirstname~\dcfirstauthorlastname, \dcfirstauthoremail; \dcsecondauthorfirstname~\dcsecondauthorlastname, \dcsecondauthoremail}, %
+        pdfkeywords     = {\dckeywords}, %
+        pdfcreator      = {pdfTeX with Hyperref and Thumbpdf}, %
+        pdfproducer     = {LaTeX, hyperref, thumbpdf}, %
+        % weitere PDF-Einstellungen in hyperref.cfg
+}
+%%======================================================================
