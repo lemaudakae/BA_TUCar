@@ -33,6 +33,14 @@
 \usepackage[ngerman]{babel}
 \usepackage{csquotes}
 \usepackage[backend=biber, style=authoryear]{biblatex}
+\usepackage[ngerman]{translator} % für glossaries 
+\usepackage[
+nonumberlist, %keine Seitenzahlen anzeigen
+acronym,      %ein Abkürzungsverzeichnis erstellen
+toc,          %Einträge im Inhaltsverzeichnis
+% automake,
+section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
+] {glossaries}
 \usepackage[hypertexnames=false]{hyperref}
 \usepackage{scrpage2}				% Kopf- und Fußzeilen flexibel gestalten
 \usepackage[onehalfspacing]{setspace}		% 1.5-facher Zeilenabstand
@@ -58,6 +66,14 @@
 \setkomafont{pageheadfoot}{\small\scshape}	% nur Großbuchstaben 
 \setlength{\headheight}{1.1\baselineskip}
 \addbibresource{literatur.bib}
+% eigenes Symbolverzeichnis erstellen
+\newglossary[slg]{symbolslist}{syi}{syg}{Symbolverzeichnis} 
+%\newglossary[idlg]{indizieslist}{idyi}{idyg}{test} 
+% Punkt am ende jeder Beschreibung deaktivieren
+\renewcommand*{\glspostdescription}{}
+\makeglossaries
+\include{symbole} 
+\include{abkuerzungen} 
 
 %======================================================================================================
 %	Aufbau, Darstellung etc
@@ -89,10 +105,16 @@
 \markboth{Tabellenverzeichnis}{Tabellenverzeichnis}
 \listoftables
 
+%------- Abkürzungen, Symbole --------------------------------------------------------------------
+\deftranslation[to=German]{Acronyms}{Abkürzungsverzeichnis}
+\printglossary[type=\acronymtype,style=long] % Abkürzung und Langform
+\printglossary[type=symbolslist,style=long]
+
 %------- Fließtext, Kapitel etc -----------------------------------------------------------------------
 %\newpage
 \cleardoublepage
 \pagenumbering{arabic}		% arabische Zahlen für Fließtext
+\include{glossaries_test}
 \include{anleitung}		% mittels \include{filename} verschiedene Kapitel einhängen
 \include{anforderungen}
 \include{beispiele}
