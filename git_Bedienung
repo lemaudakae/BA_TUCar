@@ -9,5 +9,8 @@ git add test.txt
 git commit -m "Test von Unirechner aus"
 git push origin master
 
+git add -u % Veränderte Dateien zu Staging-Area hinzufügen
+git commit -a / git commit -am "commit message" % Commit aller veränderten Dateien
+
 sudo apt-get install git-gui 
 git gui 
