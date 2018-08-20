@@ -5,12 +5,19 @@ git config --global user.email "leopold.mauersberger@s2015.tu-chemnitz.de"
 git clone https://github.com/lemaudakae/BA_TUCar.git
 cd BA_TUCar/
 
-git add test.txt 
-git commit -m "Test von Unirechner aus"
+git pull % alles updaten
+
+git add test.txt % neu erstellte Datei test.txt hinzufügen
+git add -u % alle Veränderten Dateien zu Staging-Area hinzufügen
+git add all % alle neu erstellten UND nicht archivierten Dateien zu Staging-Area hinzufügen
+
+git commit -m "Test von Unirechner aus" % nur die vorher mit add hinzugefügten Dateien lokal commiten
+git commit -a % Commit aller veränderten Dateien ohne Komentar
+git commit -am "commit message" % Commit aller veränderten Dateien
+
 git push origin master
 
-git add -u % Veränderte Dateien zu Staging-Area hinzufügen
-git commit -a / git commit -am "commit message" % Commit aller veränderten Dateien
+git status % selbsterklärend
 
 sudo apt-get install git-gui 
 git gui 

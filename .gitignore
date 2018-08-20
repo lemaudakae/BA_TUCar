@@ -1,3 +1,10 @@
+## selbst hinzugefügte ignores:
+Bachelorarbeit/*.pdf
+Bachelorarbeit/*.slg
+Bachelorarbeit/*.syg
+Bachelorarbeit/*.syi
+
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
