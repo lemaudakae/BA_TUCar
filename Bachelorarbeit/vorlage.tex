@@ -25,6 +25,7 @@
 %======================================================================================================
 %	Packages
 %======================================================================================================
+\usepackage{import}
 \usepackage{selinput}		% Eingabecodierung automatisch ermitteln …
 \SelectInputMappings{		% … siehe <http://ctan.org/pkg/selinput>
   adieresis={ä},
@@ -118,6 +119,7 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 \include{anleitung}		% mittels \include{filename} verschiedene Kapitel einhängen
 \include{anforderungen}
 \include{beispiele}
+\subimport{chapters/}{chapters}
 
 %------- Literaturverzeichnis -------------------------------------------------------------------------
 \newpage
