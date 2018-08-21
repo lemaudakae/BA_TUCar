@@ -56,9 +56,9 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 %======================================================================================================
 %	Bilder, Links
 %======================================================================================================
+
 \usepackage{graphicx}
 \graphicspath{{img/}}	% Angabe der Pfade, wo die Grafiken liegen; 
-			% mehrere Pfade sind möglich
 
 %======================================================================================================
 %	Einstellungen
@@ -68,13 +68,18 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 \setlength{\headheight}{1.1\baselineskip}
 \addbibresource{literatur.bib}
 % eigenes Symbolverzeichnis erstellen
-\newglossary[slg]{symbolslist}{syi}{syg}{Symbolverzeichnis} 
+\newglossary[slg]{symbolslist}{syi}{syg}{Symbolverzeichnis}
+\newglossary[malg]{mathlist}{mayi}{mayg}{Generelle mathematische Notationen}
+\newglossary[lalg]{latlist}{layi}{layg}{Lateinische Buchstaben}
 %\newglossary[idlg]{indizieslist}{idyi}{idyg}{test} 
 % Punkt am ende jeder Beschreibung deaktivieren
 \renewcommand*{\glspostdescription}{}
 \makeglossaries
-\include{symbole} 
-\include{abkuerzungen} 
+\subimport{glossaries/}{symbole}
+\subimport{glossaries/}{abkuerzungen}
+\subimport{glossaries/}{mathematische_notation}
+\subimport{glossaries/}{lateinische_buchstaben}
+
 
 %======================================================================================================
 %	Aufbau, Darstellung etc
@@ -108,8 +113,11 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 
 %------- Abkürzungen, Symbole --------------------------------------------------------------------
 \deftranslation[to=German]{Acronyms}{Abkürzungsverzeichnis}
+\chapter{Abkürzungs- und Symbolverzeichnis}
 \printglossary[type=\acronymtype,style=long] % Abkürzung und Langform
 \printglossary[type=symbolslist,style=long]
+\printglossary[type=mathlist,style=long]
+\printglossary[type=latlist,style=long]
 
 %------- Fließtext, Kapitel etc -----------------------------------------------------------------------
 %\newpage
