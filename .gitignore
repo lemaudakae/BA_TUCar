@@ -4,6 +4,13 @@ Bachelorarbeit/*.slg
 Bachelorarbeit/*.syg
 Bachelorarbeit/*.syi
 
+Bachelorarbeit/*.lalg
+Bachelorarbeit/*.layg
+Bachelorarbeit/*.layi
+Bachelorarbeit/*.malg
+Bachelorarbeit/*.mayg
+Bachelorarbeit/*.mayi
+
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
