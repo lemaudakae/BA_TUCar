@@ -1,2 +1,10 @@
 \section{RANSAC}
-Section text
+\subsection{Motivation}
+In einem der in dieser Arbeit vorgestellten Ansätz zur Fahrspurverfolgung soll ein Modell, genauer ein Polynom 3. Grades, gefunden werden, welches den Verlauf je einer Fahrbahnmarkierung möglichst gut darstellt.Nachdem auf den Bilddaten einer Kantenextraktion ausgeführt wurde, stehen nun mögliche Kandidaten für Punkte der Fahrspurmarkierung fest. Durch ungünstige Beleuchtungsverhältnisse, verschmutzte Fahrbahen oder andere Störeinflüsse enthalten diese Punktmengen oft Ausreißer, welche bei einer Interpolation durch die Methode der kleinesten Fehlerquadrate zu falschen Modellen führen würden. \gls{acr:ransac} \autocite{fischler1981random} ist ein Algorithmus um solche Ausreißer zu entfernen.
+
+\subsection{Ablauf des Algorithmus}
+In jeder Iteration wählt der Algorithmus zufällig mindestens so viele Punkte aus dem ihm übergebenen Datensatz, wie für die Bildung des Modells notwendig sind. Das Modell auf Basis dieser Punkte wird nun errechnet. Den nächsten Schritt stellt die Ermittlung des Abstandes der übrigen Punkte des Datensatzes vom gefundenen Modell dar. Punkte mit einem Abstand kleiner als ein festgelegter Schwellwert zählen als sogenannte Inlier. Ist das Verhältnis der Anzahl von Inliern zu Outliern besser als in allen vorherigen Iterationen, wird das Modell vorgemerkt. Ist das Verhältnis von Inliern zu Outliern sogar besser als ein festgelegter Schwellwert, bricht der Algorithmus vor erreichen einer maximalen Iterationsanzahl ab, sonst wird er wird bis zum erreichen selbiger wiederholt.
+
+
+
+
