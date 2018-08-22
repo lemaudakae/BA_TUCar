@@ -35,6 +35,7 @@
 \usepackage{csquotes}
 \usepackage[backend=biber, style=authoryear]{biblatex}
 \usepackage[ngerman]{translator} % für glossaries 
+\usepackage[hypertexnames=false]{hyperref}
 \usepackage[
 nonumberlist, %keine Seitenzahlen anzeigen
 acronym,      %ein Abkürzungsverzeichnis erstellen
@@ -42,7 +43,6 @@ toc,          %Einträge im Inhaltsverzeichnis
 % automake,
 section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 ] {glossaries}
-\usepackage[hypertexnames=false]{hyperref}
 \usepackage{scrpage2}				% Kopf- und Fußzeilen flexibel gestalten
 \usepackage[onehalfspacing]{setspace}		% 1.5-facher Zeilenabstand
 
@@ -72,6 +72,7 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 \newglossary[slg]{symbolslist}{syi}{syg}{Symbolverzeichnis}
 \newglossary[malg]{mathlist}{mayi}{mayg}{Generelle mathematische Notationen}
 \newglossary[lalg]{latlist}{layi}{layg}{Lateinische Buchstaben}
+\newglossary[grlg]{grelist}{gryi}{gryg}{Griechische Buchstaben}
 %\newglossary[idlg]{indizieslist}{idyi}{idyg}{test} 
 % Punkt am ende jeder Beschreibung deaktivieren
 \renewcommand*{\glspostdescription}{}
@@ -80,6 +81,7 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 \subimport{glossaries/}{abkuerzungen}
 \subimport{glossaries/}{mathematische_notation}
 \subimport{glossaries/}{lateinische_buchstaben}
+\subimport{glossaries/}{griechische_buchstaben}
 
 
 %======================================================================================================
@@ -119,15 +121,12 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 \printglossary[type=symbolslist,style=long]
 \printglossary[type=mathlist,style=long]
 \printglossary[type=latlist,style=long]
+\printglossary[type=grelist,style=long]
 
 %------- Fließtext, Kapitel etc -----------------------------------------------------------------------
 %\newpage
 \cleardoublepage
 \pagenumbering{arabic}		% arabische Zahlen für Fließtext
-\include{glossaries_test}
-\include{anleitung}		% mittels \include{filename} verschiedene Kapitel einhängen
-\include{anforderungen}
-\include{beispiele}
 %\subimport{chapters/}{chapters}
 \subimport*{chapters/grundlagen/}{grundlagen}
 
