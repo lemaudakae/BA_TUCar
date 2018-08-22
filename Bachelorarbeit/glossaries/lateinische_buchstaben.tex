@@ -1,3 +1,5 @@
+%% ----------- Leopolds Einträge: -------------- %%
+% Kameramodellvariablen
 \newglossaryentry{lat:cameravector}{
 name=\ensuremath{\textbf{c}},
 description={Vom Optischen Zentrum des Objektivs ausgehender Vektor},
@@ -7,4 +9,49 @@ sort=latcameravector, type=latlist
 name=\ensuremath{\textbf{p}},
 description={Punkt auf dem Bildsensor},
 sort=latcamerapoint, type=latlist
+}
+
+% ----------- Daniels Einträge: ------------------ %%
+% Pose (Orientierung)
+\newglossaryentry{lat:Orientierung}{
+name=\ensuremath{\theta},
+description={Orientierung des Roboters als Teil der Pose},
+sort=latOrientierung, type=latlist
+}
+% Transformationsmatrizen
+\newglossaryentry{lat:Punktvektor}{
+name=\ensuremath{\boldsymbol{v}},
+description={Punktvektor},
+sort=latPunktvektor, type=latlist
+}
+\newglossaryentry{lat:Translationsvektor}{
+name=\ensuremath{\boldsymbol{t}},
+description={Translationsvektor},
+sort=latTranslationsvektor, type=latlist
+}
+\newglossaryentry{lat:Rotationsmatrix}{
+name=\ensuremath{\boldsymbol{R_z}},
+description={Rotationsmatrix},
+sort=latRotationsmatrix, type=latlist
+}
+\newglossaryentry{lat:Transformationsmatrix}{
+name=\ensuremath{\boldsymbol{T}},
+description={homogene Transformationsmatrix},
+sort=latTransformationsmatrix, type=latlist
+}
+% Koordinatensysteme
+\newglossaryentry{lat:WeltKOS}{
+name=\ensuremath{\mathcal{W}},
+description={Weltkoordinatensystem},
+sort=latKOSWelt, type=latlist
+}
+\newglossaryentry{lat:RoboterKOS}{
+name=\ensuremath{\mathcal{R}},
+description={Roboterkoordinatensystem},
+sort=latKOSRoboter, type=latlist
+}
+\newglossaryentry{lat:BildKOS}{
+name=\ensuremath{\mathcal{B}},
+description={Bildkoordinatensystem},
+sort=latKOSBild, type=latlist
 }
