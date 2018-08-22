@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="Kameramodell.svg">
+   sodipodi:docname="OCamCalib_Kameramodell.svg">
   <defs
      id="defs4">
     <marker
@@ -212,14 +212,14 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.2204663"
      inkscape:cx="184.77255"
-     inkscape:cy="379.53468"
+     inkscape:cy="477.85776"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      showguides="true"
      inkscape:window-width="1215"
-     inkscape:window-height="1000"
-     inkscape:window-x="1345"
+     inkscape:window-height="776"
+     inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
      fit-margin-top="0"
@@ -240,7 +240,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -361,7 +361,7 @@
            x="94.22628"
            y="324.77145"
            style="font-size:40px" /></flowRegion><flowPara
-         id="flowPara13840">Z</flowPara></flowRoot>    <flowRoot
+         id="flowPara13840">z</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot13842"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -372,7 +372,7 @@
            height="58.993847"
            x="273.66589"
            y="509.94656" /></flowRegion><flowPara
-         id="flowPara13848">X</flowPara></flowRoot>    <flowRoot
+         id="flowPara13848">x</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot13850"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -383,7 +383,7 @@
            height="68.826149"
            x="519.47357"
            y="542.72095" /></flowRegion><flowPara
-         id="flowPara13858">Y</flowPara></flowRoot>    <flowRoot
+         id="flowPara13858">y</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot13862"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -428,5 +428,72 @@
            height="90.948845"
            x="114.71025"
            y="565.66296" /></flowRegion><flowPara
-         id="flowPara13904">p</flowPara></flowRoot>  </g>
+         id="flowPara13904">p</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3404"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(155.50304,274.24639)"><flowRegion
+         id="flowRegion3406"><rect
+           id="rect3408"
+           width="40.14859"
+           height="45.884102"
+           x="376.90512"
+           y="52.073994" /></flowRegion><flowPara
+         id="flowPara3410">c</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3408"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:30px;line-height:125%;letter-spacing:0px;word-spacing:0px;"><flowRegion
+         id="flowRegion3410"><rect
+           id="rect3412"
+           width="116.34898"
+           height="59.813206"
+           x="18.845257"
+           y="475.68259"
+           style="font-size:30px;" /></flowRegion><flowPara
+         id="flowPara3414"></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3418"
+       style="font-style:normal;font-weight:normal;font-size:30.00000268px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       transform="translate(154.68368,292.27229)"><flowRegion
+         id="flowRegion3420"><rect
+           id="rect3422"
+           width="98.323074"
+           height="47.52282"
+           x="19.664616"
+           y="494.52783"
+           style="font-size:30.00000268px;" /></flowRegion><flowPara
+         id="flowPara3424" /></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:30px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="160.41919"
+       y="790.07758"
+       id="text3426"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3428"
+         x="160.41919"
+         y="790.07758">Bildsensor</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3430"
+       style="font-style:normal;font-weight:normal;font-size:30px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(146.49009,280.80126)"><flowRegion
+         id="flowRegion3432"><rect
+           id="rect3434"
+           width="135.19423"
+           height="40.14859"
+           x="286.77563"
+           y="272.48157" /></flowRegion><flowPara
+         id="flowPara3436">Objektiv</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3438"
+       style="font-style:normal;font-weight:normal;font-size:30px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(139.93522,284.0787)"><flowRegion
+         id="flowRegion3440"><rect
+           id="rect3442"
+           width="199.10423"
+           height="36.051796"
+           x="220.40756"
+           y="531.39899" /></flowRegion><flowPara
+         id="flowPara3444">Brennpunkt</flowPara></flowRoot>  </g>
 </svg>

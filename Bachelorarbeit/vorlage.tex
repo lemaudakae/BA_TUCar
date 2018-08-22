@@ -57,6 +57,7 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 %	Bilder, Links
 %======================================================================================================
 
+\usepackage{float}
 \usepackage{graphicx}
 \graphicspath{{img/}}	% Angabe der Pfade, wo die Grafiken liegen; 
 
@@ -127,7 +128,8 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 \include{anleitung}		% mittels \include{filename} verschiedene Kapitel einhängen
 \include{anforderungen}
 \include{beispiele}
-\subimport{chapters/}{chapters}
+%\subimport{chapters/}{chapters}
+\subimport*{chapters/grundlagen/}{grundlagen}
 
 %------- Literaturverzeichnis -------------------------------------------------------------------------
 \newpage

@@ -3,22 +3,23 @@ Da das verwendete Fisheye-Objektiv durch seinen großen Blickwinkel stark verzer
 
 Die OcamCalib-Toolbox behandelt das Kamerasystem als Einheit, d.h. die Kamera und der Fisheyeobjektivaufsatz (alternativ der konvexe Spiegel) werden zusammen durch einen Parametersatz beschrieben.
 
-Das Modell hat das Ziel, den Zusammenhang zwischen einem Punkt auf dem Bildsensor \gls{lat:camerapoint} mit Koordinaten (u,v) und einem vom optischen Zentrum des Objektivs ausgehenden Vektors nicht festgelegter Länge \gls{lat:cameravector} mit Koordinaten (x,y,z) zu finden.
+Das Modell hat das Ziel, den Zusammenhang zwischen einem Punkt auf dem Bildsensor \gls{lat:camerapoint} mit Koordinaten (u,v) und einem vom optischen Zentrum des Objektivs ausgehenden Vektors nicht festgelegter Länge \gls{lat:cameravector} mit Koordinaten (x,y,z) zu finden.\\
 
-\begin{figure}[htb]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.5\textwidth]{OCamCalib_Kameramodell}
   \caption{Das Kameramodell der OCamCalib Toolbox}
   \label{fig:kameramodell}
 \end{figure}
 
+
 \subsection{Annahmen}
-Im verwendeten Modell werden folgende annahmen gemacht:
+Im verwendeten Modell werden folgende annahmen gemacht:\\
 \begin{itemize}
-\item Die verwendete Optik stellt ein zentrales Kamersystem dar, d.h. alle einfallendenden Lichtstrahlen treffen sich in einem Punkt. Dies ist der Koordinatenursprung des Kamerakoordinatensystems XYZ
-\item Studienarbeiten
-\item Diplomarbeiten
-\item Praktikumsberichte
+\item Die verwendete Optik stellt ein zentrales Kamerasystem dar, d.h. alle einfallenden Strahlen, welche sich im Brennpunkt des Objektivs nach der Brechung schneiden (s. grüner Strahlverlauf), schneiden sich auch ungebrochen in einem Punkt (s. blauer Strahlverlauf). Dieser Punkt ist das optische Zentrum des Objektivs und der Koordinatenursprung des Kamerakoordinatensystems xyz.
+\item Die Achse des Bildsensors und des Objektivs sind nahezu identisch (s. unterbrochene graue Linie). Das Modell berücksichtigt nur kleine Abweichungen der Rotationen der Achsen.
+\item Das Objektiv ist rotationssymetrisch zu seiner Achse.
+\item Die Linsenverzerrung wird nicht durch herkömmliche Methoden, sondern durch die Projektionsfunktion f(u,v) berücksichtigt.
 \end{itemize}
 
 Da ein Darlegen des Prozesses zur Ermittlung der Parameter den Rahmen dieser Arbeit sprengen würde, wird darauf verzichtet.
