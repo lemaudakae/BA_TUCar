@@ -10,6 +10,10 @@ Bachelorarbeit/*.layi
 Bachelorarbeit/*.malg
 Bachelorarbeit/*.mayg
 Bachelorarbeit/*.mayi
+Bachelorarbeit/*.grlg
+Bachelorarbeit/*.gryg
+Bachelorarbeit/*.gryi
+
 
 
 ## Core latex/pdflatex auxiliary files:
