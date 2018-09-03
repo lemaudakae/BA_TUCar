@@ -33,7 +33,7 @@ c    	\\
 \end{equation} 		
 
 Die Matrix \gls{lat:Transformationsmatrix}, welche die Punkte \gls{lat:Punktvektor} transformiert, sodass 
-\( \gls{lat:Punktvektor}_{K_2} = \gls{lat:Transformationsmatrix}^{K_2K_1} \times  \gls{lat:Punktvektor}_{K_1}	\) gilt, heißt homogene Transformationsmatrix und wird folgendermaßen aufgestellt:
+\( \gls{lat:Punktvektor}_{K_2} = \gls{lat:Transformationsmatrix}^{K_2K_1} \cdot  \gls{lat:Punktvektor}_{K_1}	\) gilt, heißt homogene Transformationsmatrix und wird folgendermaßen aufgestellt:
 
 % Formel für die Transformationsmatrix T
 \begin{equation}
@@ -56,12 +56,36 @@ Den zu transformierenden Punkten muss dazu noch eine Zeile mit einer \(1\) hinzu
 % Formel für die Hintereinanderausführung der Transformation
 \begin{equation}
 \gls{lat:Transformationsmatrix}^{\gls{lat:WeltKOS} \gls{lat:BildKOS}} = 
-\gls{lat:Transformationsmatrix}^{\gls{lat:WeltKOS} \gls{lat:RoboterKOS}} \times
+\gls{lat:Transformationsmatrix}^{\gls{lat:WeltKOS} \gls{lat:RoboterKOS}} \cdot
 \gls{lat:Transformationsmatrix}^{\gls{lat:RoboterKOS} \gls{lat:BildKOS}}
 \end{equation}
 
 Sind die einzelnen homogenen, aufeinanderfolgenden Transformationsmatrizen einmal aufgestellt, lassen sich durch deren Matrixmultiplikation die noch Fehlenden bilden. Soll in die umgekehrte Richtung transformiert werden, muss die Inverse der Transformationsmatrix genommen werden. Ein Beispiel für die Transformation des Punktes \( \gls{lat:Punktvektor}^{\gls{lat:RoboterKOS}} \) in Weltkoordinaten sieht dann so aus:
 
 % Beispielformel
-
+\begin{equation}
+\gls{lat:Punktvektor}^{\gls{lat:WeltKOS}} =
+\gls{lat:Transformationsmatrix}^{\gls{lat:WeltKOS} \gls{lat:RoboterKOS}} \cdot 
+\gls{lat:Punktvektor}^{\gls{lat:RoboterKOS}} =
+\begin{pmatrix}
+\cos{30^\circ} & -\sin{30^\circ} & {0} & 420 	\\
+\sin{30^\circ} & \cos{30^\circ} & {0} & 170 	\\
+{0} & {0} & {1} & 0 				    	\\
+0 & 0 & 0 & 1 						\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+2 	\\
+1 	\\
+0    	\\
+1    	\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+418,5854 	\\
+168,2683 	\\
+0    	\\
+1    	\\
+\end{pmatrix}
+\end{equation}
 
