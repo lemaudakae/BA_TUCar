@@ -73,15 +73,17 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 \newglossary[malg]{mathlist}{mayi}{mayg}{Generelle mathematische Notationen}
 \newglossary[lalg]{latlist}{layi}{layg}{Lateinische Buchstaben}
 \newglossary[grlg]{grelist}{gryi}{gryg}{Griechische Buchstaben}
-%\newglossary[idlg]{indizieslist}{idyi}{idyg}{test} 
+\newglossary[idlg]{idzlist}{idyi}{idyg}{Indizes}
 % Punkt am ende jeder Beschreibung deaktivieren
 \renewcommand*{\glspostdescription}{}
 \makeglossaries
+\subimport{glossaries/}{glossar}
 \subimport{glossaries/}{symbole}
 \subimport{glossaries/}{abkuerzungen}
 \subimport{glossaries/}{mathematische_notation}
 \subimport{glossaries/}{lateinische_buchstaben}
 \subimport{glossaries/}{griechische_buchstaben}
+\subimport{glossaries/}{indizes}
 
 
 %======================================================================================================
@@ -116,12 +118,15 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 
 %------- Abkürzungen, Symbole --------------------------------------------------------------------
 \deftranslation[to=German]{Acronyms}{Abkürzungsverzeichnis}
-\chapter{Abkürzungs- und Symbolverzeichnis}
+\chapter{Glossar, Abkürzungs- und Symbolverzeichnis}
+\printglossary[style=altlist,title=Glossar]
 \printglossary[type=\acronymtype,style=long] % Abkürzung und Langform
 \printglossary[type=symbolslist,style=long]
 \printglossary[type=mathlist,style=long]
 \printglossary[type=latlist,style=long]
 \printglossary[type=grelist,style=long]
+\printglossary[type=idzlist,style=long]
+
 
 %------- Fließtext, Kapitel etc -----------------------------------------------------------------------
 %\newpage

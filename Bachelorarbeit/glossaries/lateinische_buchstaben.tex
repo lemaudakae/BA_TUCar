@@ -1,14 +1,80 @@
 %% ----------- Leopolds Einträge: -------------- %%
 % Kameramodellvariablen
 \newglossaryentry{lat:cameravector}{
-name=\ensuremath{\textbf{c}},
+name=\ensuremath{\boldsymbol{c}},
 description={Vom Optischen Zentrum des Objektivs ausgehender Vektor},
 sort=latcameravector, type=latlist
 }
 \newglossaryentry{lat:camerapoint}{
-name=\ensuremath{\textbf{p}},
+name=\ensuremath{\boldsymbol{p}},
 description={Punkt auf dem Bildsensor},
 sort=latcamerapoint, type=latlist
+}
+%%% Kalman-Filter
+%% Zustandsraum
+% Vektoren
+\newglossaryentry{lat:statevector}{
+name=\ensuremath{\boldsymbol{x}},
+description={Zustandsvektor},
+sort=latstatevector, type=latlist
+}
+\newglossaryentry{lat:inputvector}{
+name=\ensuremath{\boldsymbol{u}},
+description={Eingangsvariablenvektor},
+sort=latinputvector, type=latlist
+}
+\newglossaryentry{lat:outputvector}{
+name=\ensuremath{\boldsymbol{y}},
+description={Ausgangsvariablenvektor},
+sort=latoutputvector, type=latlist
+}
+\newglossaryentry{lat:processnoisevector}{
+name=\ensuremath{\boldsymbol{z}},
+description={Prozessrauschen/Störgrößenvariablenvektor???},
+sort=latprocessnoisevector, type=latlist
+}
+\newglossaryentry{lat:measnoisevector}{
+name=\ensuremath{\boldsymbol{v}},
+description={Messrauschvariablenvektor???},
+sort=latmeasnoisevector, type=latlist
+}
+% Matritzen
+\newglossaryentry{lat:systemmatrix}{
+name=\ensuremath{\boldsymbol{A}},
+description={Systemmatrix},
+sort=latsystemmatrix, type=latlist
+}
+\newglossaryentry{lat:inputmatrix}{
+name=\ensuremath{\boldsymbol{B}},
+description={Eingangsmatrix},
+sort=latinputmatrix, type=latlist
+}
+\newglossaryentry{lat:outputmatrix}{
+name=\ensuremath{\boldsymbol{C}},
+description={Ausgangsmatrix/Messmatrix},
+sort=latoutputmatrix, type=latlist
+}
+\newglossaryentry{lat:transmissionmatrix}{
+name=\ensuremath{\boldsymbol{D}},
+description={Durchgangsmatrix},
+sort=lattransmissionmatrix, type=latlist
+}
+\newglossaryentry{lat:processnoisematrix}{
+name=\ensuremath{\boldsymbol{G}},
+description={Prozessrauschmatrix/Störgrößenmatrix???},
+sort=latprocessnoisematrix, type=latlist
+}
+
+%%% Allgemeines
+\newglossaryentry{lat:time}{
+name=\ensuremath{t},
+description={Zeit},
+sort=lattime, type=latlist
+}
+\newglossaryentry{lat:iter}{
+name=\ensuremath{k},
+description={Iteration},
+sort=latiter, type=latlist
 }
 
 % ----------- Daniels Einträge: ------------------ %%

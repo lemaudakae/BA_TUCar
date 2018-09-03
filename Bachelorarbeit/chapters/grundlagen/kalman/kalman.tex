@@ -1,2 +1,37 @@
 \section{Kalman-Filter}
+Das Kalman-Filter ist ein bereits 1960 entwickeltes Verfahren zur Zustandsschätzung von zeitdiskreten, linearen Systemen \autocite{kalmanNewApproachLinear1960}. Durch seinen Iterativen Aufbau, welcher alle vorherigen Zustände mit wenig Rechenaufwand berücksichtigen kann ist es besonders interessant für Echtzeitanwendungen. Die Fähigkeit redundante Messungen zu vereinigen macht es sehr attraktiv in vielerlei Hinsicht. Die folgenden Grundlagen stellen eine Kurzfassung von \autocite{marchthalerKalmanFilterEinfuehrungZustandsschaetzung2017} dar.
+
+\subsection{Zustandsraumdarstellung}
+Um ein Kalman-Filter nutzen zu können wird für den betrachteten Prozess ein Modell im Zustandsraum \eqref{eq:statespacerep} benötigt. Selbiges wird meist als kontinierliches Modell hergeleitet und später diskretisiert \eqref{eq:statespacerepdisc}.
+\begin{subequations}
+\label{eq:statespacerep}
+\begin{equation}
+\dot{\gls{lat:statevector}}(\gls{lat:time}) = 
+\gls{lat:systemmatrix} \cdot \gls{lat:statevector}(\gls{lat:time}) +
+\gls{lat:inputmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time}) +
+\gls{lat:processnoisematrix} \cdot \gls{lat:processnoisevector}(\gls{lat:time})
+\end{equation}
+\begin{equation}
+\gls{lat:outputvector} = 
+\gls{lat:outputmatrix} \cdot \gls{lat:statevector}(\gls{lat:time}) +
+\gls{lat:transmissionmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time}) +
+\gls{lat:measnoisevector}(\gls{lat:time})
+\end{equation}  
+\end{subequations}
+\begin{subequations}
+\label{eq:statespacerepdisc}
+\begin{equation}
+\gls{lat:statevector}(\gls{lat:iter}+1) = 
+\gls{lat:systemmatrix}_{\gls{idz:discrete}} \cdot \gls{lat:statevector}(\gls{lat:iter}) +
+\gls{lat:inputmatrix}_{\gls{idz:discrete}} \cdot \gls{lat:inputvector}(\gls{lat:iter}) +
+\gls{lat:processnoisematrix}_{\gls{idz:discrete}} \cdot \gls{lat:processnoisevector}(\gls{lat:iter})
+\end{equation}
+\begin{equation}
+\gls{lat:outputvector} = 
+\gls{lat:outputmatrix}_{\gls{idz:discrete}} \cdot \gls{lat:statevector}(\gls{lat:iter}) + 
+\gls{lat:transmissionmatrix}_{\gls{idz:discrete}} \cdot \gls{lat:inputvector}(\gls{lat:iter}) +
+\gls{lat:measnoisevector}_{\gls{idz:discrete}}(\gls{lat:iter})
+\end{equation}  
+\end{subequations}
+
 Section text
