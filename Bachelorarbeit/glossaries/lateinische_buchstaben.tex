@@ -10,9 +10,9 @@ name=\ensuremath{\boldsymbol{p}},
 description={Punkt auf dem Bildsensor},
 sort=latcamerapoint, type=latlist
 }
-%%% Kalman-Filter
+% Kalman-Filter
 %% Zustandsraum
-% Vektoren
+%%% Vektoren
 \newglossaryentry{lat:statevector}{
 name=\ensuremath{\boldsymbol{x}},
 description={Zustandsvektor},
@@ -30,23 +30,25 @@ sort=latoutputvector, type=latlist
 }
 \newglossaryentry{lat:processnoisevector}{
 name=\ensuremath{\boldsymbol{z}},
-description={Prozessrauschen/Störgrößenvariablenvektor???},
+description={Systemrausch-/Prozessrauschvariablenvektor},
 sort=latprocessnoisevector, type=latlist
 }
 \newglossaryentry{lat:measnoisevector}{
 name=\ensuremath{\boldsymbol{v}},
-description={Messrauschvariablenvektor???},
+description={Messrauschvariablenvektor},
 sort=latmeasnoisevector, type=latlist
 }
-% Matritzen
+%%% Matritzen
 \newglossaryentry{lat:systemmatrix}{
 name=\ensuremath{\boldsymbol{A}},
 description={Systemmatrix},
+plural={Systemmatritzen},
 sort=latsystemmatrix, type=latlist
 }
 \newglossaryentry{lat:inputmatrix}{
 name=\ensuremath{\boldsymbol{B}},
 description={Eingangsmatrix},
+plural={Eingangsmatritzen},
 sort=latinputmatrix, type=latlist
 }
 \newglossaryentry{lat:outputmatrix}{
@@ -61,11 +63,18 @@ sort=lattransmissionmatrix, type=latlist
 }
 \newglossaryentry{lat:processnoisematrix}{
 name=\ensuremath{\boldsymbol{G}},
-description={Prozessrauschmatrix/Störgrößenmatrix???},
+description={Prozess-/Systemrauschmatrix},
 sort=latprocessnoisematrix, type=latlist
 }
+%%%% Beobachtbarkeit
+\newglossaryentry{lat:observabilitymatrix}{
+name=\ensuremath{\boldsymbol{S_B}},
+description={Beobachtbarkeitsmatrix},
+sort=latobservabilitymatrix, type=latlist
+}
+
 %% Filtergleichungen
-% Korrektur
+%%% Korrektur
 \newglossaryentry{lat:innovation}{
 name=\ensuremath{\Delta\boldsymbol{y}},
 description={Innovation},
@@ -91,8 +100,24 @@ name=\ensuremath{\boldsymbol{P}},
 description={Kovarianzmatrix},
 sort=latcovariancematrix, type=latlist
 }
+%% Zustandsvektor
+\newglossaryentry{lat:lateraloffset}{
+name=\ensuremath{y_0},
+description={Lateraler Versatz: Abstand der Fahrspurmitte vom Koordinatenursprung des Fahrspurkoordinatensystems???},
+sort=latlateraloffset, type=latlist
+}
+\newglossaryentry{lat:curvature}{
+name=\ensuremath{c_0},
+description={Fahrspurkrümmung: Änderungsrate des Gierwinkels},
+sort=latlateraloffset, type=latlist
+}
+\newglossaryentry{lat:curvaturechange}{
+name=\ensuremath{c_1},
+description={Änderungsrate der Fahrspurkrümmung},
+sort=latlateraloffset, type=latlist
+}
 
-%%% Allgemeines
+% Allgemeines
 \newglossaryentry{lat:time}{
 name=\ensuremath{t},
 description={Zeit},
@@ -108,6 +133,37 @@ name=\ensuremath{\boldsymbol{I}},
 description={Einheitsmatrix},
 sort=latunitmatrix, type=latlist
 }
+\newglossaryentry{lat:naturalnumber}{
+name=\ensuremath{n},
+description={natürliche Zahl},
+sort=latnaturalnumber, type=latlist
+}
+\newglossaryentry{lat:periodictime}{
+name=\ensuremath{T_S},
+description={Periodendauer der Abtastung},
+sort=latperiodictime, type=latlist
+}
+\newglossaryentry{lat:xcoord}{
+name=\ensuremath{x},
+description={x-Koordinate},
+sort=latxcoord, type=latlist
+}
+\newglossaryentry{lat:ycoord}{
+name=\ensuremath{y},
+description={y-Koordinate},
+sort=latycoord, type=latlist
+}
+
+
+% Koeffizienten
+\newglossaryentry{lat:coeff}{
+name=\ensuremath{a},
+description={Koeffizient},
+sort=latcoeff, type=latlist
+}
+
+
+
 
 % ----------- Daniels Einträge: ------------------ %%
 % Transformationsmatrizen

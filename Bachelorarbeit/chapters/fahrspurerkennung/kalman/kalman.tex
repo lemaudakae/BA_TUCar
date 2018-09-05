@@ -1,2 +1,67 @@
 \section{Kalman-Filter}
-Section text
+\autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009}
+\autocite{risackRobustLaneRecognition}
+
+\subsection{Überblick} \label{ssec:fahrspurerkennung:kalman-filter:ueberblick}
+Auch der folgende Ansatz zur Fahrspurerkennung approximiert den Verlauf der Fahrspur als Polynom 3. Grades. Jedoch wird die nicht mehr jede Fahrspurmarkierung einzeln modelliert, sondern nur noch die Mittellinie, von der aus beliebige Punkte entlang der Senkrechte zu selbiger um die Fahrspurbreite verschoben werden können um die seitlichen Fahrbahnmarkierungen zu erhalten.
+Das in \ref{sec:grundlagen:kalman-filter} eingeführte Kalman-Filter soll verwendet werden um die Lage der Fahrbahnmarkierungen in aufeinanderfolgenden Bildern zu tracken. Final sollen Punkte aus den Verläufen der Straßenmarkierung gesampelt, in die Weltkarte eingetragen und somit für den Regelungsalgorithmus verfügbar gemacht werden.
+
+\subsection{Fahrspurmodell}
+Als Fahrspurmodell soll das in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} vorgeschlagene Modell, welches wiederrum eine Vereinfachung von \autocite{risackRobustLaneRecognition} darstellt, verwendet werden.
+Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt soll die Fahrspur als Polynom 3. Grades \begin{math} \gls(lat:ycoord)(\gls(lat:xcoord)) \end{math} approximiert werden. Um die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} zu vereinfachen und einen sehr anschaulichen \glsdesc{lat:statevector} \gls{lat:statevector} zu erhalten wird für jenen die 0. bis 3. Ableitung des Polynoms an der Stelle \begin{math} \gls{lat:xcoord}=0 \end{math} verwendet. 
+\begin{equation}
+\label{eq:polylane}
+\gls{lat:ycoord}(\gls{lat:xcoord}) =
+\gls{lat:coeff}_0
+\gls{lat:coeff}_1 \cdot \gls{lat:xcoord}
+\gls{lat:coeff}_2 \cdot \gls{lat:xcoord}^2
+\gls{lat:coeff}_3 \cdot \gls{lat:xcoord}^3
+\end{equation}
+\begin{equation}
+\label{eq:statevectorlane}
+\gls{lat:statevector} = 
+\begin{pmatrix}
+\gls{lat:ycoord}(0) \\
+\gls{lat:ycoord}^\prime(0) \\
+\gls{lat:ycoord}^{\prime\prime}(0) \\
+\gls{lat:ycoord}^{\prime\prime\prime}(0) \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+\gls{lat:coeff}_0 \\
+\gls{lat:coeff}_1 \\
+2 \cdot \gls{lat:coeff}_2 \\
+6 \cdot \gls{lat:coeff}_2 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+\gls{lat:latraloffset} \\
+\gls{gre:yawangle} \\
+\gls{lat:curvature} \\
+\gls{lat:curvaturechange} \\
+\end{pmatrix}
+\end{equation}
+ 
+\subsection{Zustandsraumbeschreibung}
+Da die Herleitung der diskreten Zustandsraumbeschreibung zum aufgestellten Fahrspurmodell einfacher ist als der Umweg über eine kontinuierliche Zustandsraumbeschreibung  wird dieser Ansatz nun verfolgt.
+Die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} bildet den momentanen \glsdes{lat:statevector} \gls{lat:statevector}(\gls{lat:iter}) auf den folgenden\glsdes{lat:statevector} \gls{lat:statevector}(\gls{lat:iter}+1) ab, ohne äußere Einflüsse auf das System zu berücksichtigen. Die Lage der Fahrbahnmarkierungen im nächsten Bild soll also auf Basis des aktuellen Bildes vorhergesagt werden.
+
+\subsubsection{Vereinfachungen}
+Der Einfluss des Lenkwinkels wird vernachlässigt, da er bei kurzer \glsdesc{lat:periodictime} \gls{lat:periodictime} und kleiner Größe seiner selbst kaum einfluss auf die Lage der Fahrbahn im Folgebild nimmt. Das Fahrzeug bewegt sich also geradlinig in Richtung der x-Achse des Fahrspurkoordinatensystems. 
+
+Der zurückgelegte Weg \begin{math} \delta \gls{lat:xcoord} \end{math} zwischen zwei Bildaufnahmenpunkten kann direkt aus den Encodern des Fahrzeugs ausgelesen werden. Der Folgezustand  \gls{lat:statevector}(\gls{lat:iter}+1) kann nun wie folgt berechnet werden:
+\begin{equation}
+\label{eq:nextstatemapping}
+\hat{\gls{lat:statevector}}(\gls{lat:iter}+1) =
+\begin{pmatrix}
+\gls{lat:ycoord}_{(\gls{lat:iter})}(\delta \gls{lat:xcoord}) \\
+\gls{lat:ycoord}_{(\gls{lat:iter})}^\prime(\delta \gls{lat:xcoord}) \\
+\gls{lat:ycoord}_{(\gls{lat:iter})}^{\prime\prime}(\delta \gls{lat:xcoord}) \\
+\gls{lat:ycoord}_{(\gls{lat:iter})}^{\prime\prime\prime}(\delta \gls{lat:xcoord}) \\
+\end{pmatrix}
+\end{equation}
+
+In \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} wird beschrieben, dass sich Aufgrund von Nichtlinearität aus \ref{eq:nextstatemapping} keine äquivalente Matrix A aufstellen lässt. Da die 
+
+Je nach Grad der Vereinfachung lassen sich verschiedene \glspl{lat:systemmatrix} \gls{lat:systemmatrix} und \glspl{lat:inputmatrix} \gls{lat:inputmatrix} Aufstellen, deren Performance evaluiert werden kann.
+
