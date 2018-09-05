@@ -8,7 +8,7 @@ Das in \ref{sec:grundlagen:kalman-filter} eingeführte Kalman-Filter soll verwen
 
 \subsection{Fahrspurmodell}
 Als Fahrspurmodell soll das in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} vorgeschlagene Modell, welches wiederrum eine Vereinfachung von \autocite{risackRobustLaneRecognition} darstellt, verwendet werden.
-Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt soll die Fahrspur als Polynom 3. Grades \begin{math} \gls(lat:ycoord)(\gls(lat:xcoord)) \end{math} approximiert werden. Um die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} zu vereinfachen und einen sehr anschaulichen \glsdesc{lat:statevector} \gls{lat:statevector} zu erhalten wird für jenen die 0. bis 3. Ableitung des Polynoms an der Stelle \begin{math} \gls{lat:xcoord}=0 \end{math} verwendet. 
+Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt soll die Fahrspur als Polynom 3. Grades \begin{math} \gls{lat:ycoord}(\gls{lat:xcoord}) \end{math} approximiert werden. Um die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} zu vereinfachen und einen sehr anschaulichen \glsdesc{lat:statevector} \gls{lat:statevector} zu erhalten wird für jenen die 0. bis 3. Ableitung des Polynoms an der Stelle \begin{math} \gls{lat:xcoord}=0 \end{math} verwendet. 
 \begin{equation}
 \label{eq:polylane}
 \gls{lat:ycoord}(\gls{lat:xcoord}) =
@@ -35,7 +35,7 @@ Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt soll d
 \end{pmatrix}
 =
 \begin{pmatrix}
-\gls{lat:latraloffset} \\
+\gls{lat:lateraloffset} \\
 \gls{gre:yawangle} \\
 \gls{lat:curvature} \\
 \gls{lat:curvaturechange} \\
@@ -44,7 +44,7 @@ Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt soll d
  
 \subsection{Zustandsraumbeschreibung}
 Da die Herleitung der diskreten Zustandsraumbeschreibung zum aufgestellten Fahrspurmodell einfacher ist als der Umweg über eine kontinuierliche Zustandsraumbeschreibung  wird dieser Ansatz nun verfolgt.
-Die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} bildet den momentanen \glsdes{lat:statevector} \gls{lat:statevector}(\gls{lat:iter}) auf den folgenden\glsdes{lat:statevector} \gls{lat:statevector}(\gls{lat:iter}+1) ab, ohne äußere Einflüsse auf das System zu berücksichtigen. Die Lage der Fahrbahnmarkierungen im nächsten Bild soll also auf Basis des aktuellen Bildes vorhergesagt werden.
+Die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} bildet den momentanen \glsdesc{lat:statevector} \gls{lat:statevector}(\gls{lat:iter}) auf den folgenden\glsdesc{lat:statevector} \gls{lat:statevector}(\gls{lat:iter}+1) ab, ohne äußere Einflüsse auf das System zu berücksichtigen. Die Lage der Fahrbahnmarkierungen im nächsten Bild soll also auf Basis des aktuellen Bildes vorhergesagt werden.
 
 \subsubsection{Vereinfachungen}
 Der Einfluss des Lenkwinkels wird vernachlässigt, da er bei kurzer \glsdesc{lat:periodictime} \gls{lat:periodictime} und kleiner Größe seiner selbst kaum einfluss auf die Lage der Fahrbahn im Folgebild nimmt. Das Fahrzeug bewegt sich also geradlinig in Richtung der x-Achse des Fahrspurkoordinatensystems. 
