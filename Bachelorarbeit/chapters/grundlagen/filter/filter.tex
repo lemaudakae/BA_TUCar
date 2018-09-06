@@ -14,7 +14,10 @@ f_1(t) \ast f_2(t) = \int \limits_{-\infty}^{+\infty} f_1(u) \cdot f_2(t-u)du
 I^{\ast}(x,y) = \sum_{i=1}^{m} \sum_{j=1}^{n} I(x-i+a, y-j+b) \cdot K(i,j)
 \end{equation}
 
-Ein Faltungsfilter berechnet also den Wert des neuen Pixels aus dem gewichteten Mittelwert der umliegenden Pixel innerhalb des Filterkerns. Je nachdem, nach welcher Funktion gewichtet wird, ergibt sich der Name des Filters und was er in dem Bild bewirkt. In dieser Arbeit wurden das Gauß-Filter zum Glätten und das Laplace-Filter zur Kanten- und letztlich Liniendetektion genutzt.
+Ein Faltungsfilter berechnet also den Wert des neuen Pixels aus dem gewichteten Mittelwert der umliegenden Pixel innerhalb des Filterkerns. Je nachdem, nach welcher Funktion gewichtet wird, ergibt sich der Name des Filters und was er in dem Bild bewirkt. 
+%In dieser Arbeit wurden das Gauß-Filter zum Glätten und das Laplace-Filter zur Kanten- und letztlich Liniendetektion genutzt.
+
+Eine gute Möglichkeit, Rechenzeit mit einem zweidimensionalen Filter einzusparen, ist, ihn so in zwei eindimensionale Operatoren zu zerlegen, dass deren Matrixmultiplikation wieder den ursprünglichen 2D-Filter ergibt. Wenn dies möglich ist, nennt man das Filter \emph{separierbar}. Die Anwendung des zweiten Operators auf das Zwischenergebnis des ersten auf das Bild hat das gleiche Ergebnis zur Folge, aber einen geringeren Rechenaufwand.
 
 \subsection{Gauß-Filter}
 
@@ -37,9 +40,9 @@ Mit dem Zusammenspiel von der Filterkerngröße und der Standartabweichung \( \s
 
 \subsection{Laplace-Filter}
 % welcher starke Veränderungen in den Helligkeitsunterschieden zu benachbarten Pixeln hervorhebt.
+%In der zweiten Ableitung sind Kanten die Nulldurchgänge 
 
-In der zweiten Ableitung sind Kanten die Nulldurchgänge 
-Wenn man in einem Bild Kanten detektieren möchte, fundiert die Lösung des Problems immer auf Ableitungen in der einen oder anderen Form. (In der ersten Ableitung sind Kanten z.B. die Extremstellen.) Ein Filter zur Kantendetektion muss Diskontinuitäten in den Grauwerten hervorheben und konstante Grauwerte unterdrücken. Der Laplace-Filter, bzw. diskreter Laplace-Operator, nutzt dafür die Summe der partiellen zweiten Ableitungen in alle Richtungen. \autocite{jaehneDigitaleBildverarbeitungMit2005}
+Wenn man in einem Bild Kanten detektieren möchte, fundiert die Lösung des Problems immer auf Ableitungen in der einen oder anderen Form. (In der ersten Ableitung sind Kanten z.B. die Extremstellen.) Ein Filter zur Kantendetektion sollte Diskontinuitäten in den Grauwerten hervorheben und konstante Grauwerte unterdrücken. Der Laplace-Filter, bzw. diskrete Laplace-Operator, nutzt dafür die Summe der partiellen zweiten Ableitungen in alle Richtungen. \autocite{jaehneDigitaleBildverarbeitungMit2005}
 
 % Formel für den Laplace-Operator
 \begin{equation}
