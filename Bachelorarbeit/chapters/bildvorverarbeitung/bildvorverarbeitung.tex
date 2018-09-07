@@ -6,10 +6,11 @@ Bevor nach der Aufnahme des Bildes nach Linien gesucht werden kann, muss das Bil
 
 Der goße Vorteil des Fischaugenobjektivs ist es, Bereiche in größerer Entfernung in alle Richtungen  wahrnehmen zu können. Jedoch ist es gerade für die Approximation der Fahrbahnmarkierungen zur Erstellung einer Weltkarte und der Regelung des Autos sinnvoll, dessen Verzerrung zurückzurechnen. Dazu wurde sich in Matlab wie in (REFERENZ AUF GRUNDLAGEN KAMERAMODELL) beschrieben der OcamCalib-Toolbox bedient. Zuvor erfolgt außerdem eine Umwandlung in ein Graustufenbild, da wir die Farbinformation der Rohdaten nicht mit verarbeiten und sowohl die Toolbox als auch die Filter nur mit Schwarz-Weiß-Bildern, also einer Matrix deren Einträge die Helligkeitswerte der Pixel darstellt, arbeiten können. 
 
-\begin{figure}[H] % [htb]
+% Das ver- und entzerrte Bild nebeneinander
+\begin{figure}[ht] % [htb]
   \centering
   \subfloat[][]{\includegraphics[width=0.45\textwidth]{bildvorverarbeitung_fischauge.png}}
-  \quad
+  \qquad
   \subfloat[][]{\includegraphics[width=0.45\textwidth]{bildvorverarbeitung_entzerrt.png}}
 %  \includegraphics[width=0.9\textwidth]{bildvorverarbeitung_entzerren.png}
   \caption{verzerrtes Rohbild (a) und entzerrtes Graustufenbild (b) einer Momentaufnahme im Parcour}
@@ -20,8 +21,15 @@ In~\ref{fig:bildvorverarbeitung_entzerren} ist zu sehen, wie das Bild original (
 
 \section{Filterung}
 
-
-
+% Das gefilterte und binarisierte Bild nebeneinander
+\begin{figure}[hb] % [htb]
+  \centering
+  \subfloat[][]{\includegraphics[width=0.45\textwidth]{bildvorverarbeitung_gefiltert.png}}
+  \qquad
+  \subfloat[][]{\includegraphics[width=0.45\textwidth]{bildvorverarbeitung_binarisiert.png}}
+  \caption{gefiltertes (a) und anschließend binarisiertes Bild (b) einer Momentaufnahme im Parcour}
+\label{fig:bildvorverarbeitung_filtern}
+\end{figure} 
 
 \section{Binarisierung}
 
