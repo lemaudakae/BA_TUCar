@@ -1,4 +1,4 @@
-\section{Filter in der Bildverarbeitung}
+\section{Filter in der Bildverarbeitung} \label{sec:filter}
 
 Das Ziel in der Bildverarbeitung ist meist die Extraktion von Informaionen bzw. die Erkennung von Objekten. In unserem Fall gilt es hauptsächlich herauszufinden, wo sich Linien im Bild befinden, die zur Fahrspur gehören. Hierbei kann das Graustufenbild als Matrix verstanden werden, deren Einträge die Helligkeit der einzelnen Pixel darstellen. Um bestimmte Eigenschaften zu ändern oder Informationen in einem Bild hervorzuheben, werden mathematische Operationen auf die Pixelmatrix angewendet. Diese Verfahren, deren Ergebnisse wieder ein Bild sind, teilen sich in Punktoperationen, Nachbarschaftsoperationen und globale Operationen auf \autocite{jaehneDigitaleBildverarbeitungMit2005}. Da Punktoperationen für jedes Pixel den Farb- oder Helligkeitswert neu berechnen, verwendet man sie typischerweise zur Korrektur von Kontrast, Helligkeit oder Farbraum. Objekte, wie zum Beispiel eine Straßenmarkierung, zeichnen sich meist dadurch aus, dass sich Pixel in Merkmalen von ihren Nachbarpixeln unterscheiden. Bei den Nachbarschaftsoperationen berechnen sich die Werte der Pixel des neuen Bildes aus den Bildpunkten einer kleinen Umgebung um die Punkte. Weil durch eine Nutzung des Nachbarschaftsoperators das Bild verändert wird und Informationen generell verloren gehen, spricht man auch von einem \emph{Filter}. Das von uns verwendete und sehr verbreitete Faltungsfilter verrechnet zur Ergebnisbildung die Helligkeitswerte über einen Filterkern miteinander. Der Filterkern ist hierbei eine quadratische, symetrische Matrix, die mit der Pixelmatrix des Bildes gefaltet wird. Die Faltung zweier Funktionen beschreibt die Gewichtung einer zeitabhängigen Funktion mit einer anderen. Unter dem Faltungsprodukt \( f_1(t) \ast f_2(t) \) zweier Originalfunktionen \(f_1(t) \) und \(f_2(t) \) versteht man allgemein das Integral \autocite{papulaMathematikFuerIngenieure}
 
@@ -25,7 +25,7 @@ Der Filterkern des Gauß-Filters stellt sich aus der diskretisierten Gaußfunkti
 
 % Formel für Gauß-Funktion (Impulsantwort bei zwei Dimensionen)
 \begin{equation}
-h(x,y) = \frac{1}{2\pi\sigma^2} e^{-\frac{x^2+y^2}{2\sigma^2}}
+h(x,y) = \frac{1}{2\pi\sigma^2} \cdot e^{-\frac{x^2+y^2}{2\sigma^2}}
 %\label{eq:gaussfkt}
 \end{equation}
 
