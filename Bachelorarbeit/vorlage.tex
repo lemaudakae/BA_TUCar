@@ -26,8 +26,8 @@
 %	Packages
 %======================================================================================================
 \usepackage{import}
-\usepackage{amsmath} % erweiterte Matheumgebung
-\usepackage{amssymb}
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % erweiterte Matheumgebung
+%\usepackage{mathtools}
 \usepackage{selinput}		% Eingabecodierung automatisch ermitteln …
 \SelectInputMappings{		% … siehe <http://ctan.org/pkg/selinput>
   adieresis={ä},
@@ -143,7 +143,7 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 \subimport*{chapters/grundlagen/}{grundlagen}
 \subimport*{chapters/bildvorverarbeitung/}{bildvorverarbeitung}
 \subimport*{chapters/fahrspurerkennung/}{fahrspurerkennung}
-
+\subimport*{chapters/regelung/}{regelung}
 %------- Literaturverzeichnis -------------------------------------------------------------------------
 \newpage
 \manualmark

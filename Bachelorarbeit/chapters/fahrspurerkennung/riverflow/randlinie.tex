@@ -63,14 +63,14 @@ f_{i_{max}-\text{Linienbreite}/2}  \dots f_{i_{max}}
  \dots  f_{i_{max}+\text{Linienbreite}/2} = 0
  \end{equation}
 Darauffolgend kann nach weiteren \begin{math} s \end{math} überschreitendenden Einträgen in \begin{math} \boldsymbol{f} \end{math} gesucht und wie mit dem ersten \begin{math} \gls{math:max}(\boldsymbol{f})  \end{math} verfahren werden.
-Wird kein ausreichend großes \begin{math} \gls{math:max}(\boldsymbol{f}) mehr gefunden, können den gefundenen Indizes \begin{math} i_{max} \end{math} via \eqref{eq:riverflow:solidline:scanlinediscrete} Koordinaten \begin{math} \boldsymbol{p_{n+1}} \end{math} zugeordnet werden GLEICHUNG.
+Wird kein ausreichend großes \begin{math} \gls{math:max}(\boldsymbol{f}) \end{math} mehr gefunden, können den gefundenen Indizes \begin{math} i_{max} \end{math} via \eqref{eq:riverflow:solidline:scanlinediscrete} Koordinaten \begin{math} \boldsymbol{p_{n+1}} \end{math} zugeordnet werden GLEICHUNG.
 Sind mehrere \begin{math} \boldsymbol{p_{n+1}} \end{math} vorhanden, werden ab diesem Zeitpunkt mehrere Hypothesen einer seitlichen Fahrbahnmarkierung verfolgt.
-Jetzt kann die nächste Iteration des Riverflow-Algorithmus mit der Bildung des folgenden Verschiebungsvektors \boldsymbol{v_{n+1}} starten.
+Jetzt kann die nächste Iteration des Riverflow-Algorithmus mit der Bildung des folgenden Verschiebungsvektors \begin{math} \boldsymbol{v_{n+1}} \end{math} starten.
 
 \subsubsection{Sonderfall 1. und 2. Iteration}
 Da in der 1. und 2. Iteration keine Punkte \begin{math} \boldsymbol{p_{n-1}} \end{math} und \begin{math} \boldsymbol{p_n} \end{math}  vorhanden sind, muss der Verschiebungsvektor \begin{math} \boldsymbol{v} \end{math} anderweitig bestimmt werden. 
 Wurde der Startpunkt wie in \ref{item:solidline:startpoints:dashedline} beschrieben durch ein Mittellinienelement bestimmt, kann dessen Orientierung als Richtung des Verschiebungsvektors genutzt werden.
-In den beiden anderen Fällen \ref{item:solidline:startpoints:hough} und \label{item:solidline:startpoints:fixed} wird eine konstante Verschiebung in Fahrtrichtung des Fahrzeugs genutzt.
+In den beiden anderen Fällen \ref{item:solidline:startpoints:hough} und \ref{item:solidline:startpoints:fixed} wird eine konstante Verschiebung in Fahrtrichtung des Fahrzeugs genutzt.
 
 \subsubsection{Ende des Algorithmus}
 Der Algorithmus wird beendet, sobald:

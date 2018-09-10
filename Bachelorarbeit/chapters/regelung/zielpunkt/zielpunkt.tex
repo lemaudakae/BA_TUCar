@@ -1,2 +1,13 @@
 \section{Zielpunktgewinnung}
-Section text
+Um den Zielpunkt für den implementierten \glqq Pure-Pursuit\grqq -Regler zu erhalten, müssen die nachfolgend beschriebenen Schritte ausgeführt werden.
+
+\subsection{Holen der benötigten Punkte aus der Weltkarte}
+Da im gewählten Fahrspurverfolgungskonzept die Erkennung der Fahrbahnmarkierungen und die Regelung des Fahrzeugs asynchron ablaufen, muss vor jedem Regelzyklus festgestellt werden, welche Punkte zum Steuern des Roboters noch relevant sind. Hierfür wurden einige Regeln festgelegt:
+\begin{enumerate}
+\item 
+Der Abstand \eqref{eq:norm:distpoints} der Pose an welcher die Punkte in die Weltkarte eingetragen wurden zur aktuellen Roboterpose darf einen Grenzwert nicht überschreiten.
+\item
+Der Zeitpunkt, an welchem die Punkte in die Weltkarte eingetragen wurden, muss aktuell genug sein.
+\item
+Die x-Koordinate der in das Roboter-\gls{acr:ks} transformierten Punkte muss in einem bestimmten Intervall liegen.
+\end{enumerate}
