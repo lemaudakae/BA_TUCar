@@ -220,14 +220,14 @@ Die \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} bildet den Systemzustand \
 Wie in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} und \autocite{risackRobustLaneRecognition} werden die \glsdesc{lat:processnoisevariancematrix} \gls{lat:processnoisevariancematrix} und \glsdesc{lat:measnoisevariancematrix} \gls{lat:measnoisevariancematrix} als konstante Diagonalmatritzen gesetzt. Auf die Prädiktion der \glsdesc{lat:covariancematrix} \gls{lat:covariancematrix} wird somit verzichtet.
 
 \subsection{konkrete Implementierung des Kalman-Filters}
-Ist der \glsdesc{lat:statevector} \gls{lat:statevector} einmal wie in \label{sssec:fahrspurerkennung:kalman:fahrspurmodell:initialisierung} beschrieben initialisiert, können die Gleichungen des Kalmanfilters bei Eintreffen eines neuen Bildes wie folgt berechnet werden:
+Ist der \glsdesc{lat:statevector} \gls{lat:statevector} einmal wie in ~\ref{sssec:fahrspurerkennung:kalman:fahrspurmodell:initialisierung} beschrieben initialisiert, können die Gleichungen des Kalmanfilters bei Eintreffen eines neuen Bildes wie folgt berechnet werden:
 \begin{enumerate}
 \item Bildung der \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} mittels der seit dem letzten Bild gefahrenen Distanz \begin{math} \Delta \gls{lat:xcoord} \end{math}
 \item Prädiktion des \glsdesc{lat:statevector} \gls{lat:statevector}, d.h. der Lage der Fahrspurmarkierungen im aktuellen Bild anhand von \eqref{eq:kalmanprediction}
 \item Messung der Lage der Fahrspur wie in \ref{ssec:fahrspurerkennung:kalman:messung}
 erläutert
 \item Bildung der \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} passend zur Messung wie in \label{sssec:fahrspurerkennung:kalman-filter:zustandsraumbeschreibung:outputmatrix} beschrieben
-\item Korrektur des \glsdesc{lat:statevector} \gls{lat:statevector} unter Nutzung von \eqref{eq:kalmancorrection}
+\item Korrektur des \glsdesc{lat:statevector}s \gls{lat:statevector} unter Nutzung von \eqref{eq:kalmancorrection}
 \end{enumerate}
 
 

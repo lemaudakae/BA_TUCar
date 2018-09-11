@@ -1,9 +1,9 @@
-\subsection{Randlinie}
+\subsection{Randlinie} \label{ssec:fahrspurerkennung:riverflow:randlinie}
 \subsubsection{Startpunktgewinnung}
 Um den eigentlichen Riverflow-Algorithmus ausführen zu können wird die ungefähre Lage der seitlichen Fahrbahnmarkierungen in der Nähe des Fahrzeugs benötigt. Zur Ermittlung dieser gibt es 3 Möglichkeiten:
 \begin{enumerate}
 \item \label{item:solidline:startpoints:dashedline}
-Die Bestimmung durch Orientierung und Position des ersten vor dem Fahzeug gelegenen Mittellinienelementes. Hierzu wird der Mittelpunkt des Elementes senkrecht zur Orientierung desselbigen um die Fahrspurbreite nach links/rechts verschoben. BILD
+Die Bestimmung durch Orientierung und Position des ersten vor dem Fahzeug gelegenen Mittellinienelementes. Hierzu wird der Mittelpunkt des Elementes senkrecht zu seiner Orientierung um die Fahrspurbreite nach links/rechts verschoben. BILD
 \item \label{item:solidline:startpoints:hough}
 Eine eindimensionale Hough-Transformation des Bildausschnittes direkt vor dem Fahrzeug wie in REFERENZ beschrieben. BILD
 \item \label{item:solidline:startpoints:fixed}
