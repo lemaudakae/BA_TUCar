@@ -2,10 +2,10 @@
 Um den Zielpunkt für den implementierten \glqq Pure-Pursuit\grqq -Regler zu erhalten, müssen die nachfolgend beschriebenen Schritte ausgeführt werden.
 
 \subsection{Holen der benötigten Punkte aus der Weltkarte}
-Da im gewählten Fahrspurverfolgungskonzept die Erkennung der Fahrbahnmarkierungen und die Regelung des Fahrzeugs asynchron ablaufen, muss vor jedem Regelzyklus festgestellt werden, welche Punkte zum Steuern des Roboters noch relevant sind. Hierfür wurden einige Regeln festgelegt:
+Im gewählten Fahrspurverfolgungskonzept läuft die Erkennung der Fahrbahnmarkierungen und die Regelung des Fahrzeugs asynchron ab, beide Komponenten kommunizieren nur über eine Weltkarte miteinander. Somit muss vor jedem Regelzyklus festgestellt werden, welche Punkte dieser Weltkarte zum Steuern des Roboters noch relevant sind. Hierfür wurden einige Regeln festgelegt:
 \begin{enumerate}
 \item 
-Der Abstand \eqref{eq:norm:distpoints} der Pose an welcher die Punkte in die globale Karte (\gls{acr:ks} \gls{lat:WeltKOS}) eingetragen wurden zur aktuellen Roboterpose  (\gls{acr:ks} \gls{lat:WeltKOS}) darf einen Grenzwert nicht überschreiten.
+Der Abstand (analog \ref{eq:norm:distpoints}) der aktuellen Roboterpose zur Pose an welcher die Punkte in die globale Karte eingetragen wurden, darf einen Grenzwert nicht überschreiten.
 \item
 Der Zeitpunkt, an welchem die Punkte in die Weltkarte eingetragen wurden, muss aktuell genug sein.
 \item
@@ -14,16 +14,18 @@ Die x-Koordinate der in das Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} transformi
 Abschließend werden die nach diesen Kriterien gefilterten Punkte der globalen Karte in Roboterkoordinaten (\gls{acr:ks} \gls{lat:RoboterKOS}) transformiert.
 
 \subsection{Kreissegment-Fit} \label{regelung:zielpunkt:kreissegment-fit}
-Um später alle drei Fahrbahnmarkierungen zur Zielpunktgewinnung in die gewünschte Fahrspur verschieben zu können, muss eine mathematische Repräsentation der Mittellinie und Seitenlinien gefunden werden, welche dies erlaubt. Da in der Weltkarte aus mehreren Bildern erkannte Punkte vorhanden sind soll ein zu allen diesen Frames möglichst gut passender Zielpunkt gefunden werden. Wählt man den Bereich der für die Zielpunktfindung relevanten Fahrbahnmarkierungen nicht zu groß, kann der Verlauf selbiger gut durch Kreisbögen approximiert werden. 
+Um später alle drei Fahrbahnmarkierungen zur Zielpunktgewinnung in die gewünschte Fahrspur verschieben zu können, muss eine mathematische Repräsentation der Mittellinie und Seitenlinien gefunden werden, welche dies erlaubt. Da in der Weltkarte aus mehreren Bildern erkannte Punkte vorhanden sind, soll ein zu allen diesen Frames möglichst gut passender Zielpunkt gefunden werden. Wählt man den Bereich der für die Zielpunktfindung relevanten Fahrbahnmarkierungen nicht zu groß, kann der Verlauf selbiger gut durch Kreisbögen approximiert werden. 
 
 \subsubsection{Kreisfit} 
 Zur Ermittlung des optimalen Kreises durch die gefragten Punkte wurde der Taubin-Kreisfit \autocite{taubinEstimationPlanarCurves1991} in der Implementierung von \autocite{nikolaichernovMATLABCodesFitting} verwendet. 
+
 \subsubsection{Ermittlung zusätzlicher Parameter}
-Neben Mittelpunkt \(\boldsymbol{p_m}\) und Radius \(r\) muss zur vollständigen Paramteterisierung des Kreisbogens Start- und Endwinkel sowie die Drehrichtung des Bogens bekannt sein.
+Neben dem Mittelpunkt \(\boldsymbol{p_m}\) und Radius \(r\) muss zur vollständigen Paramteterisierung des Kreisbogens Start- und Endwinkel sowie die Drehrichtung des Bogens bekannt sein.
 
 \paragraph{Start- und Endwinkel}
-Zur Ermittlung des Startwinkels \( \varphi_s \) wird vom Mittelpunkt des Kreises \(\boldsymbol{p_m}\) zum Punkt  \(\boldsymbol{p_s}\) mit dem geringesten Abstand vom Koordinatenursprung des Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} ein Vektor \(\boldsymbol{v_s}\) aufgespannt. Der gesuchte Winkel ergibt sich als:
+Zur Ermittlung des Startwinkels \( \varphi_s \) wird vom Mittelpunkt des Kreises \(\boldsymbol{p_m}\) zum Punkt  \(\boldsymbol{p_s}\) ein Vektor \(\boldsymbol{v_s}\) aufgespannt.  \(\boldsymbol{p_s}\) stellt den Punkt mit dem geringesten Abstand vom Koordinatenursprung des Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} aus der Koordinatenserie welche zum Kreisfit genutzt wurde dar.  Der gesuchte Startwinkel ergibt sich als:
 \begin{equation}
+\varphi_s =
 \atantwo (\bs{v_{s_y}, v_{s_x}}) = 
 \atantwo (\bs{p_{s_y}-p_{m_y}, p_{s_x}-p_{m_x}})
 \end{equation}
@@ -35,14 +37,14 @@ Desweiteren wird der Punkt \(\boldsymbol{p_{b2}}\) \eqref{eq:regelung:betweenpoi
 \begin{equation} \label{eq:regelung:betweenpoint}
 \bs{p_{b1/2}} = \bs{p_m} + 
 \begin{pmatrix}
-\cos{\varphi_b1/2} \\
-\sin{\varphi_b1/2}
+\cos{\varphi_{b1/2}} \\
+\sin{\varphi_{b1/2}}
 \end{pmatrix}
 \cdot r
 \end{equation}
-Aus den Mittelwerten \( \bar{d_{1/2}} \) \eqref{eq:regelung:betweenpointmeandistances} der Abstände \( d_{1/2_i} = \| \bs{p_{b1/2}} - p_{fit_i}\| \) (analog \ref{eq:norm:distpoints}) der \(n\) zum Kreisfit genutzten Punkte \(\bs{p_{fit_i}}\) zu den Punkten \(\bs{p_{b1}}\) \(\bs{p_{b2}}\) kann nun die Rotationsrichtung bestimmt werden.
+Aus den Mittelwerten \( \bar{d}_{1/2} \) \eqref{eq:regelung:betweenpointmeandistances} der Abstände \( d_{1/2_i} = \| \bs{p_{b1/2}} - \bs{p_{fit_i}}\| \) (analog \ref{eq:norm:distpoints}) der \(n\) zum Kreisfit genutzten Punkte \(\bs{p_{fit_i}}\) zu den Punkten \(\bs{p_{b1}}\) und \(\bs{p_{b2}}\) kann nun die Rotationsrichtung bestimmt werden.
 \begin{equation} \label{eq:regelung:betweenpointmeandistances}
-d_{1/2} = frac{\sum_{i=1}^n d_{1/2_i}}{n} 
+d_{1/2} = \frac{\sum_{i=1}^n d_{1/2_i}}{n} 
 \end{equation}
 \begin{tabular}{ccc}
 & \(d_1<d_2\) & \(d_1\geq d_2\) \\
@@ -57,4 +59,26 @@ Um die drei gefundenen Kreissegmente zur Gewinnung eines Zielpunktes nutzen zu k
 Um aus den drei in die Fahrspur verschobenen Segmenten einen Kreisbogen zu erhalten, werden die in die Fahrspur verschobenen Kreissegmente nun gesampelt. Von jedem Kreissegment werden so viele Punkte abgetastet, wie zur Berechnung seiner Parameter genutzt wurden. Die so entstandene Koordinatenserie bildet die Basis für den Fit des Trajektoriekreisbogens. Hierfür wird dieselbe Prozedur wie in  \ref{regelung:zielpunkt:kreissegment-fit} verwendet.
 
 \subsection{Schnittpunktberechnung}
+Um eine möglichst gleichmäßige Regelung des Lenkwinkels zu ermöglichen, sollte der Zielpunkt \(\bs{p_z}\)  der \glqq \gls{glos:purepursuit}\grqq -Regelung in jeder Fahrsituation den gleichen Abstand vom Ursprung des Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} besitzen (die sogenannte \gls{glos:lookahead-distance}). \(\bs{p_z}\) muss sich also auf dem Kreis mit Mittelpunkt \(\bs{m_0}=\begin{pmatrix}0 \\ 0\end{pmatrix}\) und Radius \( r_0\) gleich der \gls{glos:lookahead-distance} befinden. Da \(\bs{p_z}\) ebenfalls  auf dem Trajektorienkreissegment mit Mittelpunkt \(\bs{m_t}\) und Radius \( r_t\) liegt, reduziert sich die Zielpunktermittlung auf die Schnittpunktberechnung zweier Kreise \autocite{Schnittpunkt2018}:
+\begin{subequations}
+\begin{equation}
+\bs{p_{z1/2}}=\bs{m_0} + \bs{d_1} \pm l \cdot \bs{e_2}
+\end{equation}
+\begin{equation}
+\bs{e_2} = \begin{pmatrix} -\bs{e_{1_y}} \\ \bs{e_{1_x}} \end{pmatrix}
+\end{equation}
+\begin{equation}
+\bs{e_1} = \begin{pmatrix} \bs{e_{1_x}} \\ \bs{e_{1_y}} \end{pmatrix} =
+\frac{\bs{m_t}-\bs{m_0}}{\| \bs{m_t}-\bs{m_0}\|}
+\end{equation}
+\begin{equation}
+\bs{d_1} = \begin{pmatrix} \bs{d_{1_x}} \\ \bs{d_{1_y}} \end{pmatrix} =
+\frac{1}{2} \cdot \left( \frac{\bs{r_t}-\bs{r_0}}{\| \bs{m_t}-\bs{m_0}\|^2}+1 \right)
+\cdot (\bs{m_t}-\bs{m_0})
+\end{equation}
+\begin{equation}
+l = \sqrt[2]{r_0^2-\| \bs{d_0}\|^2} = \sqrt[2]{r_t^2-\| \bs{d_t}\|^2}
+\end{equation}
+\end{subequations}
+Da zwei sich schneidende Kreise zwei Schnittpunkte besitzen, muss nun geprüft werden,  welcher der Schnittpunkte auf dem gültigen Segment des Trajektorienkreises liegt. Dies kann anhand von Start- und Endwinkel sowie der Rotationsrichtung des selbigen geprüft werden und ist im Quelltext REFERENZ genauer nachzulesen.
 
