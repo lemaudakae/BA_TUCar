@@ -1,3 +1,45 @@
 \chapter{Struktur der Software}
-Chapter text
 
+\section{ROS}
+Da der Austauch von Bilddaten und Ansteurbefehlen zwischen Modellfahrzeug und PC via \gls{acr:ros} \autocite{ROSOrgPowering} abläuft, soll kurz darauf eingegangen werden. 
+\begin{quotation}
+\gls{acr:ros} ist eine Sammlung von Werkzeugen, Bibliotheken und Konventionen zur Vereinfachung der Entwicklung komplexen und robusten Roboterverhaltens für eine Vielzahl an Roboterplattformen. \autocite{ROSOrgROS}
+\end{quotation}
+
+\subsection{\glspl{glos:node}}
+\paragraph{Fahrzeug}
+\subparagraph{Kamera-\gls{glos:node}}
+Der Kamera-\gls{glos:node} veröffentlicht die Bilder als Rohdaten-\gls{glos:topic} sowie in komprimierter Form.
+\subparagraph{Fahrzeug-\gls{glos:node}}
+Der Fahrzeug-\gls{glos:node} veröffentlicht:
+\begin{itemize}
+\item Odometriedaten 
+\item Messwerte der IMU
+\item sonstige Information zum Fahrzeug (z.B. Akkuspannung)
+\end{itemize}
+Entgegengenommen werden im Ansteuer-\gls{glos:topic} die gewünschte Geschwindigkeit und der Lenkwinkel.
+\paragraph{PC}
+Auf dem PC wird nur der von MATLAB automatisch initialisierte \gls{glos:node} genutzt. Dieser abboniert das komprimierte Bilddaten-\gls{glos:topic} und veröffentlicht auf das Ansteuer-\gls{glos:topic} des Fahrzeugs.
+
+\section{MATLAB}
+Die im Hauptteil dieser Arbeit beschriebenen Algorithmen zur Fahrspurverfolgung wurden ausschließlich in MATLAB implementiert. Da die grundlegende Softwarestruktur in allen drei Fällen gleich ist, soll diese nun dargelegt werden.
+
+\subsection{Initialisierung}
+Ist das Fahrzeug betriebsbereit, d.h. sind alle \glspl{glos:node} des Fahrzeugs bereit, so kann in Matlab das Programm zu Fahrspurverfolgung aufgerufen werden. Hierfür wird die Initialisierungsroutine gestartet welche:
+\begin{itemize}
+\item die globalen Parameter lädt
+\item die Weltkarte und die Pose initalisiert
+\item den MATLAB-\gls{acr:ros}-Node startet
+\item die \gls{glos:subscriber} des Bilddaten-, Odometrie- und \gls{acr:imu}-Topics anlegt
+\item eine konstante tangentiale Geschwindigkeit des Fahrzeugs vorgibt 
+\end{itemize}
+
+\subsection{\glspl{glos:callback}}
+\paragraph{Odometrie-\gls{glos:callback}}
+Das Fahrzeug veröffentlicht in konfigurierbaren Abständen seine akutellen Odometriedaten. Diese Veröffentlichungszeitpunkte werden als Trigger für einen neuen Regelzyklus genutzt. Innerhalb eines solchen Odometrie-\gls{glos:callback}s werden folgende Schritte durchgeführt:
+\begin{enumerate}
+\item Mithilfe der empfangenen, seit der letzten Odometrie-\gls{glos:message} ermittelten Durchschnittsgeschwindigkeit, der seit der letzten Odometrie-\gls{glos:message} verstrichenen Zeit und der von der \gls{acr:imu} geholten Orientierung kann die Pose aktualisiert und in der Weltkarte vermerkt werden.
+\item Auf Basis der neuen Pose kann mithilfe aller in der Weltkarte vorhandenen Punkte ein neuer Lenkwinkel bestimmt werden.
+\end{enumerate}
+\paragraph{Bild-\gls{glos:callback}}
+Sobald ein neues Bild im zugehörigen \gls{glos:topic} verfügbar ist, wird ein  Algorithmus zur Extraktion von Punkten der Fahrbahnmarkierung gerufen. Dieser trägt selbige in die Weltkarte ein und macht sie so für die Regelung abrufbar.
