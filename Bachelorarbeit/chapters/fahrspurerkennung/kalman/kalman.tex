@@ -1,6 +1,4 @@
 \section{Kalman-Filter}
-\autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009}
-\autocite{risackRobustLaneRecognition}
 
 \subsection{Überblick} \label{ssec:fahrspurerkennung:kalman-filter:ueberblick}
 Auch der folgende Ansatz zur Fahrspurerkennung approximiert den Verlauf der Fahrspur als Polynom 3. Grades. Jedoch wird die nicht mehr jede Fahrspurmarkierung einzeln modelliert, sondern nur noch die Mittellinie, von der aus beliebige Punkte entlang der Senkrechte zu selbiger um die Fahrspurbreite verschoben werden können um die seitlichen Fahrbahnmarkierungen zu erhalten.
@@ -52,7 +50,7 @@ Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt soll d
  
 \subsubsection{Initialisierung} 
 \label{sssec:fahrspurerkennung:kalman:fahrspurmodell:initialisierung}
- Die Initialisierung des Fahrspurmodells erfolgt wie in REFERENZ.
+ Die Initialisierung des Fahrspurmodells erfolgt durch das Finden der Mittellinie auf dem unmaskierten Bild wie in \ref{par:maskenbau:initial} oder mittels des Riverflow-Algorithmus für die mittlere Fahrbahnmarkierung, beschrieben in \ref{ssec:fahrspurerkennung:riverflow:mittellinie}.
  
 \subsection{Messung} \label{ssec:fahrspurerkennung:kalman:messung}
 Um eine ausreichende Performace des Kalmanfilters zu gewährleisten muss die Anzahl der Bildpunkte, welche zur Korrektur des prädizierten Zustands verwendet werden, im Gegensatz zu REFERENZ vermindert werden. Im Gegensatz zu REFERENZ wird in Anlehnung an \autocite{risackRobustLaneRecognition} das Bild ab dem Vorverabeitungsschritt nur in relevanten Bereichen betrachtet.
@@ -219,6 +217,13 @@ Die \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} bildet den Systemzustand \
 \subsection{Kovarianzmatritzen}
 Wie in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} und \autocite{risackRobustLaneRecognition} werden die \glsdesc{lat:processnoisevariancematrix} \gls{lat:processnoisevariancematrix} und \glsdesc{lat:measnoisevariancematrix} \gls{lat:measnoisevariancematrix} als konstante Diagonalmatritzen gesetzt. Auf die Prädiktion der \glsdesc{lat:covariancematrix} \gls{lat:covariancematrix} wird somit verzichtet.
 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.75\textwidth]{kalman_iteration_komplett}
+  \caption{Plot einer Iteration des Kalmanfilters}
+  \label{fig:kalman:iteration_komplett}
+\end{figure}
+
 \subsection{konkrete Implementierung des Kalman-Filters}
 Ist der \glsdesc{lat:statevector} \gls{lat:statevector} einmal wie in ~\ref{sssec:fahrspurerkennung:kalman:fahrspurmodell:initialisierung} beschrieben initialisiert, können die Gleichungen des Kalmanfilters bei Eintreffen eines neuen Bildes wie folgt berechnet werden:
 \begin{enumerate}
@@ -229,5 +234,7 @@ erläutert
 \item Bildung der \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} passend zur Messung wie in \ref{sssec:fahrspurerkennung:kalman-filter:zustandsraumbeschreibung:outputmatrix} beschrieben
 \item Korrektur des \glsdesc{lat:statevector}s \gls{lat:statevector} unter Nutzung von \eqref{eq:kalmancorrection}
 \end{enumerate}
+
+
 
 

@@ -31,6 +31,13 @@ Zur Ermittlung des Startwinkels \( \varphi_s \) wird vom Mittelpunkt des Kreises
 \end{equation}
 Zur Ermittlung des Endwinkels \( \varphi_e \) wird analog unter Nutzung des Punktes mit dem größten Abstand vom Koordinatenursprung des Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} verfahren.
 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.75\textwidth]{regelung_zielpunkt_betweenpoint}
+  \caption{Ermittlung der Rotationsrichtung}
+  \label{fig:regelung:zielpunkt:betweenpoint}
+\end{figure}
+
 \paragraph{Rotationsrichtung}
 Die Methode zur Ermittlung der Rotationsrichtung orientiert sich an \autocite{drauschkeEchtzeitfaehigeStartpunktalgorithmenFuer2016}. Es wird der Punkt \(\boldsymbol{p_{b1}}\) \eqref{eq:regelung:betweenpoint} auf dem Radius des Kreises mit dem Winkel \(  \varphi_{b1} = (\varphi_s + \varphi_e)/2 \) errechnet.
 Desweiteren wird der Punkt \(\boldsymbol{p_{b2}}\) \eqref{eq:regelung:betweenpoint}auf dem Radius des Kreises mit dem Winkel \(  \varphi_{b2} = (\varphi_s + \varphi_e)/2 + \pi \) bestimmt.
@@ -51,6 +58,13 @@ d_{1/2} = \frac{\sum_{i=1}^n d_{1/2_i}}{n}
 \(\varphi_s<\varphi_e\) &  mathematisch positiver Drehsinn & mathematisch negativer Drehsinn \\
 \(\varphi_s\geq \varphi_e\) &  mathematisch negativer Drehsinn & mathematisch positiver Drehsinn
 \end{tabular}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.75\textwidth]{regelung_zielpunkt_prinzip}
+  \caption{Zielpunktgewinnung}
+  \label{fig:regelung:zielpunkt:zielpunktgewinnung}
+\end{figure}
 
 \subsection{Verschiebung der Kreissegmente}
 Um die drei gefundenen Kreissegmente zur Gewinnung eines Zielpunktes nutzen zu können, müssen diese um die halbe bzw. anderthalbe Fahrspurbreite verschoben werden. Hierfür muss je nach Rotationsrichtung des Kreissegments und gewünschter Fahrbahn (links/rechts) der Radius des Kreissegments modifiziert werden. Zur genauen Aufschlüsselung dieser Logik sei der Leser auf den Quellcode verwiesen. REFERENZ

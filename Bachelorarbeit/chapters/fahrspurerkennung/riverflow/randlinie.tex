@@ -5,13 +5,20 @@ Um den eigentlichen Riverflow-Algorithmus ausführen zu können wird die ungefä
 \item \label{item:solidline:startpoints:dashedline}
 Die Bestimmung durch Orientierung und Position des ersten vor dem Fahzeug gelegenen Mittellinienelementes. Hierzu wird der Mittelpunkt des Elementes senkrecht zu seiner Orientierung um die Fahrspurbreite nach links/rechts verschoben. BILD
 \item \label{item:solidline:startpoints:hough}
-Eine eindimensionale Hough-Transformation des Bildausschnittes direkt vor dem Fahrzeug wie in REFERENZ beschrieben. BILD
+Eine eindimensionale Hough-Transformation des Bildausschnittes direkt vor dem Fahrzeug wie in \ref{ssec:grundlagen:hough:vereinfachte} beschrieben. BILD
 \item \label{item:solidline:startpoints:fixed}
 Annahme einer festen Position vor dem Fahrzeug/im Kamerabild.
 \end{enumerate}
 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.5\textwidth]{riverflow_randlinie_prinzip}
+  \caption{Funktionsweise des Riverflow-Algorithmus}
+  \label{fig:riverflow:randlinie:prinzip}
+\end{figure}
+
 \subsubsection{zentraler Algorithmus}
-Durch Nutzung der Eigenschaften \ref{item:riverflow:rule:solidline} und  \ref{item:riverflow:rule:curvature} kann ausgehend von der aktuellen Linienorientierung in einem bestimmten Kegel, dessen Öffnungswinkel durch die maximale Krümmung der Fahrspur definiert ist, der weitere Verlauf der Fahrbahnmarkierung vermutet werden. BILD
+Durch Nutzung der Eigenschaften \ref{item:riverflow:rule:solidline} und  \ref{item:riverflow:rule:curvature} kann ausgehend von der aktuellen Linienorientierung in einem bestimmten Kegel (graue Linien in \ref{fig:riverflow:randlinie:prinzip}), dessen Öffnungswinkel durch die maximale Krümmung der Fahrspur definiert ist, der weitere Verlauf der Fahrbahnmarkierung angenommen werden.
 Algorithmisch genutzt wird dieses Wissen durch die Verwendung der aus \ref{ssec:fahrspurerkennung:kalman:messung} bekannten \glspl{glos:scanline}.
 Zuerst wird ein Verschiebungsvektor \begin{math} \boldsymbol{v_n} \end{math} zwischen vorletztem (\begin{math} \boldsymbol{p_{n-1}} \end{math}) und letztem gefundenen Punkt  (\begin{math} \boldsymbol{p_n} \end{math})  der Fahrbahnmarkierung gebildet \eqref{eq:riverflow:solidline:dispvec}. Ausgehend vom letzten gefundenen Punkt der Linie (\begin{math} \boldsymbol{p_n} \end{math}) wird selbiger nun um den Vektor \begin{math} \boldsymbol{v_n} \end{math} weiterverschoben und bildet den Mittelpunkt  \begin{math} \boldsymbol{m_{n+1}}  \end{math} der nächsten \gls{glos:scanline} \eqref{eq:riverflow:solidline:scanlinemidpoint}.
 \begin{equation}
@@ -78,5 +85,12 @@ Der Algorithmus wird beendet, sobald:
 \item Der Mittelpunkt \begin{math} \boldsymbol{m}  \end{math} der nächsten Scanline außerhalb des Bildbereichs liegt
 \item Auf der aktuellen Scanline keine Maxima größer als der Schwellwert \begin{math} s \end{math} gefunden wurden.
 \end{itemize}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.75\textwidth]{riverflow_randlinien_komplett}
+  \caption{Plot einer eines Riverflow-Durchlaufs für die Randlinien}
+  \label{fig:riverflow:randlinien:plot_komplett}
+\end{figure}
 
 \subsubsection{Sonderfall gestrichelte Randlinien}

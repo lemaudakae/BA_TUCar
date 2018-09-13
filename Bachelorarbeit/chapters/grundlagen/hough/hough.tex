@@ -31,5 +31,6 @@ Damit wird ein zweiter sogenannter Modellraum aufgespannt, in dem die Parameter 
 Praktischerweise wird als Modell für die Gerade eigentlich die hesse'sche Normalform (Steigungswinkel und Abstand zum Koordinatenursprung als Parameter) eingesetzt, da die Beschreibung in Gleichung~\ref{eq:geradengleichung} den großen Nachteil hat, dass der Parameter \( a_1 \) bei vertikalen Geraden ins Unendliche läuft. 
 
 \subsection{vereinfachte Hough-Transformation}
+\label{ssec:grundlagen:hough:vereinfachte}
 % Hier fehlt der Verweis auf BA_Marcel_Unger
 Wir haben in unserer Arbeit in Anlehnung an \autocite{alyRealTimeDetection2008} eine sehr vereinfachte Form der Hough-Transformation zur Anwendung gebracht, welche nur zu einer alternativen Initialisierung eines Startpunktes zum Einsatz kommt. Die angewendete Methode sucht ausschließlich nach vertikalen Linien im Bild. Dazu wird ein Histogramm über die Spaltensummen der Pixelmatrix gebildet. Die Lage der Maxima über einem bestimmten Threshold-Wert geben dann Auskunft über die Position einer näherungsweise vertikal erkannten Gerade.
