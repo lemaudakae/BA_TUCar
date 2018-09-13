@@ -2,12 +2,12 @@
 \newglossaryentry{gre:repos}{
 name=\ensuremath{\lambda},
 description={positive reelle Zahl},
-sort=grerepos, type=grelist
+sort=gre_1_l_lambda, type=grelist
 }
 \newglossaryentry{gre:yawangle}{
 name=\ensuremath{\varphi},
 description={Gierwinkel: Winkel zwischen Abszisse des Fahrspurkoordinatensystems und Tangente an das Fahrspurpolynom bei \begin{math} \gls{lat:xcoord}=0 \end{math}},
-sort=greyawangle, type=grelist
+sort=gre_1_v_phi, type=grelist
 }
 
 % ----------- Daniels Einträge: ------------------ %%
@@ -15,11 +15,23 @@ sort=greyawangle, type=grelist
 \newglossaryentry{gre:orientierung}{
 name=\ensuremath{\theta},
 description={Orientierung des Roboters als Teil der Pose},
-sort=greOrientierung, type=grelist
+sort=gre_1_h_theta, type=grelist
 }
 % Lenkwinkel (Gamma)
 \newglossaryentry{gre:lenkwinkel}{
 name=\ensuremath{\gamma},
 description={Lenkwinkel: mittlere Winkelstellung der Vorderräder des Autos zur \( x_\gls{lat:RoboterKOS} \)-Achse},
-sort=greLenkwinkel, type=grelist
+sort=gre_1_c_gamma, type=grelist
+}
+% Rotationswinkel (Delta)
+\newglossaryentry{gre:rotwinkel}{
+name=\ensuremath{\delta},
+description={Rotationswinkel der Rotationsmatrix \gls{lat:Rotationsmatrix}},
+sort=gre_1_d_delta, type=grelist
+}
+% Laufvariable Faltungsintegral (tau)
+\newglossaryentry{gre:laufvar_faltung}{
+name=\ensuremath{\tau},
+description={Laufvariable für die Faltung},
+sort=gre_1_t_tau, type=grelist
 }

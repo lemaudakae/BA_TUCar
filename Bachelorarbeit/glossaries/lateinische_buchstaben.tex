@@ -1,14 +1,17 @@
+% Methodik der Sortierung: 
+% sort = lat_{1s - Skalar; 2p - Punkt; 3v - Vektor; 4m - Matrix; 5k-Koordinatensystem}_{Name/Symbol_selbst}
+
 %% ----------- Leopolds Einträge: -------------- %%
 % Kameramodellvariablen
 \newglossaryentry{lat:cameravector}{
 name=\ensuremath{\boldsymbol{c}},
 description={Vom Optischen Zentrum des Objektivs ausgehender Vektor},
-sort=latcameravector, type=latlist
+sort=lat_3v_c, type=latlist
 }
 \newglossaryentry{lat:camerapoint}{
 name=\ensuremath{\boldsymbol{p}},
 description={Punkt auf dem Bildsensor},
-sort=latcamerapoint, type=latlist
+sort=lat_2p_p, type=latlist
 }
 % Kalman-Filter
 %% Zustandsraum
@@ -16,61 +19,61 @@ sort=latcamerapoint, type=latlist
 \newglossaryentry{lat:statevector}{
 name=\ensuremath{\boldsymbol{x}},
 description={Zustandsvektor},
-sort=latstatevector, type=latlist
+sort=lat_3v_x, type=latlist
 }
 \newglossaryentry{lat:inputvector}{
 name=\ensuremath{\boldsymbol{u}},
 description={Eingangsvariablenvektor},
-sort=latinputvector, type=latlist
+sort=lat_3v_u, type=latlist
 }
 \newglossaryentry{lat:outputvector}{
 name=\ensuremath{\boldsymbol{y}},
 description={Ausgangsvariablenvektor},
-sort=latoutputvector, type=latlist
+sort=lat_3v_y, type=latlist
 }
 \newglossaryentry{lat:processnoisevector}{
 name=\ensuremath{\boldsymbol{z}},
 description={Systemrausch-/Prozessrauschvariablenvektor},
-sort=latprocessnoisevector, type=latlist
+sort=lat_3v_z, type=latlist
 }
 \newglossaryentry{lat:measnoisevector}{
 name=\ensuremath{\boldsymbol{v}},
 description={Messrauschvariablenvektor},
-sort=latmeasnoisevector, type=latlist
+sort=lat_3v_v, type=latlist
 }
 %%% Matritzen
 \newglossaryentry{lat:systemmatrix}{
 name=\ensuremath{\boldsymbol{A}},
 description={Systemmatrix},
 plural={Systemmatritzen},
-sort=latsystemmatrix, type=latlist
+sort=lat_4m_a, type=latlist
 }
 \newglossaryentry{lat:inputmatrix}{
 name=\ensuremath{\boldsymbol{B}},
 description={Eingangsmatrix},
 plural={Eingangsmatritzen},
-sort=latinputmatrix, type=latlist
+sort=lat_4m_b, type=latlist
 }
 \newglossaryentry{lat:outputmatrix}{
 name=\ensuremath{\boldsymbol{C}},
 description={Ausgangsmatrix/Messmatrix},
-sort=latoutputmatrix, type=latlist
+sort=lat_4m_c, type=latlist
 }
 \newglossaryentry{lat:transmissionmatrix}{
 name=\ensuremath{\boldsymbol{D}},
 description={Durchgangsmatrix},
-sort=lattransmissionmatrix, type=latlist
+sort=lat_4m_d, type=latlist
 }
 \newglossaryentry{lat:processnoisematrix}{
 name=\ensuremath{\boldsymbol{G}},
 description={Prozess-/Systemrauschmatrix},
-sort=latprocessnoisematrix, type=latlist
+sort=lat_4m_g, type=latlist
 }
 %%%% Beobachtbarkeit
 \newglossaryentry{lat:observabilitymatrix}{
 name=\ensuremath{\boldsymbol{S_B}},
 description={Beobachtbarkeitsmatrix},
-sort=latobservabilitymatrix, type=latlist
+sort=lat_4m_s_b, type=latlist
 }
 
 %% Filtergleichungen
@@ -78,91 +81,96 @@ sort=latobservabilitymatrix, type=latlist
 \newglossaryentry{lat:innovation}{
 name=\ensuremath{\Delta\boldsymbol{y}},
 description={Innovation},
-sort=latinnovation, type=latlist
+sort=lat_3v_y_delta, type=latlist
 }
 \newglossaryentry{lat:kalmangain}{
 name=\ensuremath{\boldsymbol{K}},
 description={Kalman-Verstärkungs-Matrix},
-sort=latkalmangain, type=latlist
+sort=lat_4m_k, type=latlist
 }
 \newglossaryentry{lat:processnoisevariancematrix}{
 name=\ensuremath{\boldsymbol{Q}},
 description={Kovarianzmatrix des System-/Prozessrauschens},
-sort=latprocessnoisevariancematrix, type=latlist
+sort=lat_4m_q, type=latlist
 }
 \newglossaryentry{lat:measnoisevariancematrix}{
 name=\ensuremath{\boldsymbol{R}},
 description={Kovarianzmatrix des Messrauschens},
-sort=latmeasnoisevariancematrix, type=latlist
+sort=lat_4m_r, type=latlist
 }
 \newglossaryentry{lat:covariancematrix}{
 name=\ensuremath{\boldsymbol{P}},
 description={Kovarianzmatrix},
-sort=latcovariancematrix, type=latlist
+sort=lat_4m_p, type=latlist
 }
 %% Zustandsvektor
 \newglossaryentry{lat:lateraloffset}{
 name=\ensuremath{y_0},
 description={Lateraler Versatz: Abstand der Fahrspurmitte vom Koordinatenursprung des Fahrspurkoordinatensystems???},
-sort=latlateraloffset, type=latlist
+sort=lat_1s_y_0, type=latlist
 }
 \newglossaryentry{lat:curvature}{
 name=\ensuremath{c_0},
 description={Fahrspurkrümmung: Änderungsrate des Gierwinkels},
-sort=latlateraloffset, type=latlist
+sort=lat_1s_c_0, type=latlist
 }
 \newglossaryentry{lat:curvaturechange}{
 name=\ensuremath{c_1},
 description={Änderungsrate der Fahrspurkrümmung},
-sort=latlateraloffset, type=latlist
+sort=lat_1s_c_1, type=latlist
 }
 
 % Allgemeines
 \newglossaryentry{lat:time}{
 name=\ensuremath{t},
 description={Zeit},
-sort=lattime, type=latlist
+sort=lat_1s_t, type=latlist
 }
 \newglossaryentry{lat:velocity}{
 name=\ensuremath{v},
 description={Geschwindigkeit},
-sort=latvelocity, type=latlist
+sort=lat_1s_v, type=latlist
 }
 \newglossaryentry{lat:iter}{
 name=\ensuremath{k},
 description={Iteration},
-sort=latiter, type=latlist
+sort=lat_1s_k, type=latlist
 }
 \newglossaryentry{lat:unitmatrix}{
 name=\ensuremath{\boldsymbol{I}},
 description={Einheitsmatrix},
-sort=latunitmatrix, type=latlist
+sort=lat_4m_i, type=latlist
 }
 \newglossaryentry{lat:naturalnumber}{
 name=\ensuremath{n},
 description={natürliche Zahl},
-sort=latnaturalnumber, type=latlist
+sort=lat_1s_n, type=latlist
 }
 \newglossaryentry{lat:periodictime}{
 name=\ensuremath{T_S},
 description={Periodendauer der Abtastung},
-sort=latperiodictime, type=latlist
+sort=lat_1s_t_s, type=latlist
 }
 \newglossaryentry{lat:xcoord}{
 name=\ensuremath{x},
 description={x-Koordinate},
-sort=latxcoord, type=latlist
+sort=lat_1s_x, type=latlist
 }
 \newglossaryentry{lat:ycoord}{
 name=\ensuremath{y},
 description={y-Koordinate},
-sort=latycoord, type=latlist
+sort=lat_1s_y, type=latlist
 }
-\newglossaryentry{lat:func}{
-name=\ensuremath{f},
-description={Funktion},
-sort=latfunc, type=latlist
+\newglossaryentry{lat:zcoord}{
+name=\ensuremath{z},
+description={z-Koordinate},
+sort=lat_1s_z, type=latlist
 }
+%	\newglossaryentry{lat:func}{
+%	name=\ensuremath{f},
+%	description={Funktion},
+%	sort=lat_0_f, type=latlist
+%	}
 
 
 
@@ -170,7 +178,7 @@ sort=latfunc, type=latlist
 \newglossaryentry{lat:coeff}{
 name=\ensuremath{a},
 description={Koeffizient},
-sort=latcoeff, type=latlist
+sort=lat_1s_a, type=latlist
 }
 
 
@@ -178,50 +186,88 @@ sort=latcoeff, type=latlist
 
 % ----------- Daniels Einträge: ------------------ %%
 % Transformationsmatrizen
-\newglossaryentry{lat:Punktvektor}{
-name=\ensuremath{\boldsymbol{v}},
-description={Punktvektor},
-sort=latPunktvektor, type=latlist
+\newglossaryentry{lat:ks_punkt}{
+name=\ensuremath{\boldsymbol{q}},
+description={Punkt allgemein in einem Koordinatensystem},
+sort=lat_2p_q, type=latlist
 }
 \newglossaryentry{lat:Translationsvektor}{
 name=\ensuremath{\boldsymbol{t}},
 description={Translationsvektor},
-sort=latTranslationsvektor, type=latlist
+sort=lat_3v_t, type=latlist
 }
 \newglossaryentry{lat:Rotationsmatrix}{
 name=\ensuremath{\boldsymbol{R_z}},
 description={Rotationsmatrix (für die Rotation um die z-Achse)},
-sort=latRotationsmatrix, type=latlist
+sort=lat_4m_r_z, type=latlist
 }
 \newglossaryentry{lat:Transformationsmatrix}{
 name=\ensuremath{\boldsymbol{T}},
 description={homogene Transformationsmatrix},
-sort=latTransformationsmatrix, type=latlist
+sort=lat_4m_t, type=latlist
 }
 % Koordinatensysteme
 \newglossaryentry{lat:WeltKOS}{
 name=\ensuremath{\mathcal{W}},
 description={Weltkoordinatensystem},
-sort=latKOSWelt, type=latlist
+sort=lat_5k_w, type=latlist
 }
 \newglossaryentry{lat:RoboterKOS}{
 name=\ensuremath{\mathcal{R}},
 description={Roboterkoordinatensystem},
-sort=latKOSRoboter, type=latlist
+sort=lat_5k_r, type=latlist
 }
 \newglossaryentry{lat:BildKOS}{
 name=\ensuremath{\mathcal{B}},
 description={Bildkoordinatensystem},
-sort=latKOSBild, type=latlist
+sort=lat_5k_b, type=latlist
 }
 \newglossaryentry{lat:LinienKOS}{
 name=\ensuremath{\mathcal{L}},
 description={Linienkoordinatensystem},
-sort=latKOSLinien, type=latlist
+sort=lat_5k_l, type=latlist
 }
+\newglossaryentry{lat:AllgKOS}{
+name=\ensuremath{\mathcal{K}},
+description={Bezeichnung für ein allgemeines Koordinatensystem},
+sort=lat_5k_k, type=latlist
+}
+
 % Fahrzeug Abmessung Radstand
 \newglossaryentry{lat:radstand}{
 name=\ensuremath{L},
 description={Radstand (mittlerer Abstand zwischen Vorder-und Hinterachse eines Fahrzeugs)},
-sort=latRadstand, type=latlist
+sort=lat_1s_l, type=latlist
+}
+% KS-Komponenten
+\newglossaryentry{lat:x_Komp_t}{
+name=\ensuremath{a_t},
+description={x-Komponente vom Translationsvektor},
+sort=lat_1s_a_t, type=latlist
+}
+\newglossaryentry{lat:y_Komp_t}{
+name=\ensuremath{b_t},
+description={y-Komponente vom Translationsvektor},
+sort=lat_1s_b_t, type=latlist
+}
+\newglossaryentry{lat:z_Komp_t}{
+name=\ensuremath{c_t},
+description={z-Komponente vom Translationsvektor},
+sort=lat_1s_c_t, type=latlist
+}
+% Bildmatrizen
+\newglossaryentry{lat:BildmatrixOriginal}{
+name=\ensuremath{\boldsymbol{M}},
+description={Matrix des originalen Bildes},
+sort=lat_4m_m, type=latlist
+}
+\newglossaryentry{lat:BildmatrixGefiltert}{
+name=\ensuremath{\boldsymbol{M}^{\ast}},
+description={Matrix des gefilterten Bildes},
+sort=lat_4m_m_stern, type=latlist
+}
+\newglossaryentry{lat:Filterkernmatrix}{
+name=\ensuremath{\boldsymbol{F}},
+description={Matrix des Filterkerns eines Faltungsfilters},
+sort=lat_4m_f, type=latlist
 }
