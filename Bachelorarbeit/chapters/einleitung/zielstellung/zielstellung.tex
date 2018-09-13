@@ -1,2 +1,24 @@
-\section{Zielstellung}
-Section text
+\section{Struktur der Arbeit}
+
+\subsubsection{Zielstellung}
+
+Während der Arbeitsplanung in der Vorbereitungszeit wurde festgelegt, welches Resultat unserem Projekt zugedacht ist. Unsere Absicht bestand darin, einen erweiterbaren Fahrspurverfolgungsalgorithmus zu implementieren. Hierdurch verbundene, perspektivische Themen sollen sein:
+
+\begin{itemize}
+\item Entwurf einer geeigneten Teststrecke
+\item Entzerren festgelegter Bildausschnitte einer Omnikamera
+\item Filtern von Bildern
+\item Linienerkennung in einem verarbeiteten Bild und damit verbundene mathematische Approximation der Fahrbahnmarkierungen
+\item aktuelle Pose des Autos in Bezug eines globalen Koordinatensystems bestimmen
+\item Aufbau einer Karte zur Pfadplanung
+\item Trajektorienverfolgung durch Regelung des Lenkwinkels
+\end{itemize}
+
+Damit das Ergebnis der Ausarbeitung kein bloßes, auf das aktuelle Bild reaktives Fahrverhalten ist, stand das Eintragen von Informationen während des Linienerkennungsprozesses in eine Weltkarte von Anfang an fest. Die ganze Arbeit ist mit der Intension entstanden, den Quellcode, die Modellfahrzeuge und die Teststrecke für weitere Projekte nutzen zu können. Ein späterer Ausbau zu einem Praktikumsversuch ist bereits angedacht.
+
+\subsubsection{Aufbau}
+
+Der folgende Inhalt der Ausarbeitung ist ähnlich der Entstehungsreihenfolge aufgebaut. Anfangs finden sich neben der Vorstellung der physikalisch greifbaren Betriebsmittel grundlegende Beschreibungen der genutzten Methoden aus der Bildverarbeitung und Mathematik. Die Verarbeitung der Bilder und die Berechnungen für die Steuerung des Autos führen wir auf einem externen Rechner mit \gls{glos:matlab} durch. Wie die Software dazu aufgebaut ist, wird im anschließenden Kapitel erläutert. Der danach folgende Hauptteil befasst sich mit der Bildverarbeitung und Trajektorienplanung. Da wir uns im Vorfeld nicht auf einen speziellen Algorithmus für die Fahrspurverfolgung festgelegt haben und einen möglichst gut funktionierenden Ansatz finden wollten, stellen wir drei bearbeitete Methoden zur Fahrspurerkennung vor, auch wenn letztlich nur eine Vorgehensweise bis zuletzt implementiert wurde. Nach einer umfassenden Evaluation blicken wir zum Abschluss auf mögliche Aufgaben, die man zukünftig mit dem Modellfahrzeug in dem Straßenverkehrsszenario bewältigen könnte.
+
+
+
