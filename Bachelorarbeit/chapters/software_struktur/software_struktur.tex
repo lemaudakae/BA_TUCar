@@ -1,7 +1,7 @@
 \chapter{Struktur der Software}
 
 \section{ROS}
-Da der Austauch von Bilddaten und Ansteurbefehlen zwischen Modellfahrzeug und PC via \gls{acr:ros} \autocite{ROSOrgPowering} abläuft, soll kurz darauf eingegangen werden. 
+Da der Austausch von Bilddaten und Ansteuerbefehlen zwischen Modellfahrzeug und PC via \gls{acr:ros} \autocite{ROSOrgPowering} abläuft, soll kurz darauf eingegangen werden. 
 \begin{quotation}
 \gls{acr:ros} ist eine Sammlung von Werkzeugen, Bibliotheken und Konventionen zur Vereinfachung der Entwicklung komplexen und robusten Roboterverhaltens für eine Vielzahl an Roboterplattformen. \autocite{ROSOrgROS}
 \end{quotation}
@@ -19,16 +19,16 @@ Der Fahrzeug-\gls{glos:node} veröffentlicht:
 \end{itemize}
 Entgegengenommen werden im Ansteuer-\gls{glos:topic} die gewünschte Geschwindigkeit und der Lenkwinkel.
 \paragraph{PC}
-Auf dem PC wird nur der von MATLAB automatisch initialisierte \gls{glos:node} genutzt. Dieser abboniert das komprimierte Bilddaten-\gls{glos:topic} und veröffentlicht auf das Ansteuer-\gls{glos:topic} des Fahrzeugs.
+Auf dem PC wird nur der von MATLAB automatisch initialisierte \gls{glos:node} genutzt. Dieser abonniert das komprimierte Bilddaten-\gls{glos:topic} und veröffentlicht auf das Ansteuer-\gls{glos:topic} des Fahrzeugs.
 
 \section{MATLAB}
-Die im Hauptteil dieser Arbeit beschriebenen Algorithmen zur Fahrspurverfolgung wurden ausschließlich in MATLAB implementiert. Da die grundlegende Softwarestruktur in allen drei Fällen gleich ist, soll diese nun dargelegt werden.
+Die im Hauptteil dieser Arbeit beschriebenen Algorithmen zur Fahrspurverfolgung wurden ausschließlich in \gls{glos:matlab} implementiert. Da die grundlegende Softwarestruktur in allen drei Fällen gleich ist, soll diese nun dargelegt werden.
 
 \subsection{Initialisierung}
 Ist das Fahrzeug betriebsbereit, d.h. sind alle \glspl{glos:node} des Fahrzeugs bereit, so kann in Matlab das Programm zu Fahrspurverfolgung aufgerufen werden. Hierfür wird die Initialisierungsroutine gestartet welche:
 \begin{itemize}
 \item die globalen Parameter lädt
-\item die Weltkarte und die Pose initalisiert
+\item die Weltkarte und die Pose initialisiert
 \item den MATLAB-\gls{acr:ros}-Node startet
 \item die \gls{glos:subscriber} des Bilddaten-, Odometrie- und \gls{acr:imu}-Topics anlegt
 \item eine konstante tangentiale Geschwindigkeit des Fahrzeugs vorgibt 
