@@ -25,14 +25,16 @@
 %======================================================================================================
 %	Packages
 %======================================================================================================
-\usepackage{import}
-\usepackage{amsmath,amsfonts,amssymb,amsthm} % erweiterte Matheumgebung
-%\usepackage{mathtools}
+\usepackage{morewrites} % mehr \writes
 \usepackage{selinput}		% Eingabecodierung automatisch ermitteln …
 \SelectInputMappings{		% … siehe <http://ctan.org/pkg/selinput>
   adieresis={ä},
   germandbls={ß},
 }
+\usepackage{import}
+\usepackage{scrhack} % Fehlerbehebung Floats KOMA
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % erweiterte Matheumgebung
+%\usepackage{mathtools}
 \usepackage[ngerman]{babel}
 \usepackage{csquotes}
 \usepackage[backend=biber, style=authoryear]{biblatex}
@@ -44,7 +46,7 @@ acronym,      %ein Abkürzungsverzeichnis erstellen
 toc,          %Einträge im Inhaltsverzeichnis
 % automake,
 section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
-] {glossaries}
+]{glossaries}
 \usepackage{scrpage2}				% Kopf- und Fußzeilen flexibel gestalten
 \usepackage[onehalfspacing]{setspace}		% 1.5-facher Zeilenabstand
 
@@ -94,13 +96,12 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 \subimport{glossaries/}{lateinische_buchstaben}
 \subimport{glossaries/}{griechische_buchstaben}
 \subimport{glossaries/}{indizes}
-
+\glsaddallunused % Auch nicht referenzierte Glossary-Einträge ausgeben
 
 %======================================================================================================
 %	Aufbau, Darstellung etc
 %======================================================================================================
 \begin{document}
-
 %------- Variablen, \hypersetup, etc. -----------------------------------------------------------------
 
 
