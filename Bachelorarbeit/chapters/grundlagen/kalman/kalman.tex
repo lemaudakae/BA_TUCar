@@ -6,7 +6,7 @@ Um ein Kalman-Filter nutzen zu können wird für den betrachteten Prozess ein Mo
 \begin{subequations}
 \label{eq:statespacerep}
 \begin{equation}
-\dot{\gls{lat:statevector}}(\gls{lat:time}) = 
+\dt{\gls{lat:statevector}}(\gls{lat:time}) = 
 \gls{lat:systemmatrix} \cdot \gls{lat:statevector}(\gls{lat:time}) +
 \gls{lat:inputmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time}) +
 \gls{lat:processnoisematrix} \cdot \gls{lat:processnoisevector}(\gls{lat:time})
@@ -41,7 +41,7 @@ Ein lineares zeitinvariantes System, im Zustandsraum beschrieben durch
 \begin{subequations}
 \label{eq:statespacerepobservability}
 \begin{equation}
-\dot{\gls{lat:statevector}}(\gls{lat:time}) = 
+\dt{\gls{lat:statevector}}(\gls{lat:time}) = 
 \gls{lat:systemmatrix} \cdot \gls{lat:statevector}(\gls{lat:time}) +
 \gls{lat:inputmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time})
 \end{equation}
@@ -89,30 +89,30 @@ Sobald die Zustandsraumbeschreibung aufgestellt ist, können die folgenden Filte
 \begin{subequations}
 \label{eq:kalmancorrection}
 \begin{equation}
-\hat{\gls{lat:outputvector}}(\gls{lat:iter}) =
-\gls{lat:outputmatrix} \cdot \hat{\gls{lat:statevector}}(\gls{lat:iter}) +
+\prd{\gls{lat:outputvector}}(\gls{lat:iter}) =
+\gls{lat:outputmatrix} \cdot \prd{\gls{lat:statevector}}(\gls{lat:iter}) +
 \gls{lat:transmissionmatrix} \cdot \gls{lat:inputvector}(\gls{lat:iter})
 \end{equation}
 \begin{equation}
 \gls{lat:innovation}(\gls{lat:iter}) =
 \gls{lat:outputvector}(\gls{lat:iter}) -
-\hat{\gls{lat:outputvector}}(\gls{lat:iter})
+\prd{\gls{lat:outputvector}}(\gls{lat:iter})
 \end{equation}
 \begin{equation}
 \gls{lat:kalmangain}(\gls{lat:iter}) =
-\hat{\gls{lat:covariancematrix}}(\gls{lat:iter}) \cdot \gls{lat:outputmatrix}^T
-\cdot (  \gls{lat:outputmatrix} \cdot \hat{\gls{lat:covariancematrix}}(\gls{lat:iter}) \cdot 
-\gls{lat:outputmatrix}^T + \gls{lat:measnoisevariancematrix}(\gls{lat:iter} ))^{-1}
+\prd{\gls{lat:covariancematrix}}(\gls{lat:iter}) \cdot \trp{\gls{lat:outputmatrix}}
+\cdot ( \gls{lat:outputmatrix} \cdot \prd{\gls{lat:covariancematrix}}(\gls{lat:iter}) \cdot 
+\trp{\gls{lat:outputmatrix}} + \ivt{\gls{lat:measnoisevariancematrix}(\gls{lat:iter} ))}
 \end{equation}
 \begin{equation}
-\tilde{\gls{lat:statevector}}(\gls{lat:iter}) =
-\hat{\gls{lat:statevector}}(\gls{lat:iter}) + 
+\crd{\gls{lat:statevector}}(\gls{lat:iter}) =
+\prd{\gls{lat:statevector}}(\gls{lat:iter}) + 
 \gls{lat:kalmangain}(\gls{lat:iter}) \cdot \gls{lat:innovation}(\gls{lat:iter})
 \end{equation}
 \begin{equation}
-\tilde{\gls{lat:covariancematrix}}(\gls{lat:iter}) =
+\crd{\gls{lat:covariancematrix}}(\gls{lat:iter}) =
 ( \gls{lat:unitmatrix} - \gls{lat:kalmangain}(\gls{lat:iter}) \cdot \gls{lat:outputmatrix} )
-\cdot \tilde{\gls{lat:covariancematrix}}(\gls{lat:iter})
+\cdot \crd{\gls{lat:covariancematrix}}(\gls{lat:iter})
 \end{equation}
 \end{subequations}
 
@@ -120,18 +120,18 @@ Sobald die Zustandsraumbeschreibung aufgestellt ist, können die folgenden Filte
 \begin{subequations}
 \label{eq:kalmanprediction}
 \begin{equation}
-\hat{\gls{lat:statevector}}(\gls{lat:iter}+1) =
+\prd{\gls{lat:statevector}}(\gls{lat:iter}+1) =
 \gls{lat:systemmatrix}_{\gls{idz:discrete}} \cdot 
-\tilde{\gls{lat:statevector}}(\gls{lat:iter}) +
+\crd{\gls{lat:statevector}}(\gls{lat:iter}) +
 \gls{lat:inputmatrix}_{\gls{idz:discrete}} \cdot \gls{lat:inputvector}(\gls{lat:iter})
 \end{equation}
 \begin{equation}
-\hat{\gls{lat:covariancematrix}}(\gls{lat:iter}+1) =
+\prd{\gls{lat:covariancematrix}}(\gls{lat:iter}+1) =
 \gls{lat:systemmatrix}_{\gls{idz:discrete}} \cdot
-\tilde{\gls{lat:covariancematrix}}(\gls{lat:iter}) \cdot
-\gls{lat:systemmatrix}_{\gls{idz:discrete}}^T +
+\crd{\gls{lat:covariancematrix}}(\gls{lat:iter}) \cdot
+\trp{\gls{lat:systemmatrix}_{\gls{idz:discrete}}} +
 \gls{lat:processnoisematrix}_{\gls{idz:discrete}} \cdot
 \gls{lat:processnoisevariancematrix}(\gls{lat:iter}) \cdot
-\gls{lat:processnoisematrix}_{\gls{idz:discrete}}^T
+\trp{\gls{lat:processnoisematrix}_{\gls{idz:discrete}}}
 \end{equation}
 \end{subequations}

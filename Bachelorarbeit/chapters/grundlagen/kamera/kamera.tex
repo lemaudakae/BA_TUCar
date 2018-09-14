@@ -15,64 +15,64 @@ Das Modell hat das Ziel, den Zusammenhang zwischen einem Punkt auf dem Bildsenso
 \subsection{Annahmen}
 Im verwendeten Modell werden folgende Annahmen getroffen:
 \begin{enumerate}
-\item Die verwendete Optik stellt ein zentrales Kamerasystem dar, d.h. alle einfallenden Strahlen, welche sich im Brennpunkt des Objektivs nach der Brechung schneiden (s. grüner Strahlverlauf in~\ref{fig:kameramodell}), schneiden sich auch ungebrochen in einem Punkt (s. blauer Strahlverlaufin~\ref{fig:kameramodell}). Dieser Punkt ist das optische Zentrum des Objektivs und der Koordinatenursprung des Kamerakoordinatensystems xyz.
+\item Die verwendete Optik stellt ein zentrales Kamerasystem dar, d.h. alle einfallenden Strahlen, welche sich im Brennpunkt des Objektivs nach der Brechung schneiden (s. grüner Strahlverlauf in~\ref{fig:kameramodell}), schneiden sich auch ungebrochen in einem Punkt (s. blauer Strahlverlaufin~\ref{fig:kameramodell}). Dieser Punkt ist das optische Zentrum des Objektivs und der Koordinatenursprung des Kamerakoordinatensystems \gls{lat:OCKOS}.
 \item \label{item:ocamcalibassm2} Die Achse des Bildsensors und des Objektivs sind nahezu identisch (s. unterbrochene graue Linie in~\ref{fig:kameramodell}). Das Modell berücksichtigt nur kleine Abweichungen der Rotationen der Achsen gegeneinander.
 \item Das Objektiv ist rotationssymetrisch zu seiner Achse(s. unterbrochene graue Linie in~\ref{fig:kameramodell}).
-\item Die Linsenverzerrung wird nicht durch herkömmliche Methoden, sondern durch die Projektionsfunktion f(u,v)~\eqref{eq:ocamcalibuv} berücksichtigt.
+\item Die Linsenverzerrung wird nicht durch herkömmliche Methoden, sondern durch die Projektionsfunktion \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}}~\eqref{eq:ocamcalibuv} berücksichtigt.
 \end{enumerate}
 
 \subsection{Herleitung}
 Da die Objektivachse und die Achse des Bildsensors in erster Näherung gleich sind, lässt sich schreiben:
 \begin{equation}
 \begin{pmatrix}
-x \\ y
+\gls{x}_{\gls{lat:OCKOS}} \\ \gls{y}_{\gls{lat:OCKOS}}
 \end{pmatrix}
 = \gls{gre:repos} \cdot
 \begin{pmatrix}
-u \\ v
+\gls{x}_{\gls{lat:OSKOS}} \\ \gls{y}_{\gls{lat:OSKOS}}
 \end{pmatrix}
 \end{equation}
 Der gesuchte Zusammenhang lautet: 
 \begin{equation}
 \gls{lat:cameravector} =
 \begin{pmatrix}
-x \\ y \\ z
+\gls{x}_{\gls{lat:OCKOS}} \\ \gls{y}_{\gls{lat:OCKOS}} \\ \gls{z}_{\gls{lat:OCKOS}}
 \end{pmatrix}
 =
 \begin{pmatrix}
-\gls{gre:repos} \cdot u \\  \gls{gre:repos} \cdot v \\ f(u,v)
+\gls{gre:repos} \cdot \gls{x}_{\gls{lat:OSKOS}} \\  \gls{gre:repos} \cdot \gls{y}_{\gls{lat:OSKOS}} \\ \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}}
 \end{pmatrix}
 \end{equation}
-Der Faktor  \gls{gre:repos} kann in die Funktion f(u,v) integriert werden:
+Der Faktor  \gls{gre:repos} kann in die Funktion \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}} integriert werden:
 \begin{equation}
 \label{eq:ocamcalibuv}
 \gls{lat:cameravector} =
 \begin{pmatrix}
-x \\ y \\ z
+\gls{x}_{\gls{lat:OCKOS}} \\ \gls{y}_{\gls{lat:OCKOS}} \\ \gls{z}_{\gls{lat:OCKOS}}
 \end{pmatrix}
 =
 \begin{pmatrix}
- u \\  v \\ f(u,v)
+\gls{x}_{\gls{lat:OSKOS}} \\ \gls{y}_{\gls{lat:OSKOS}} \\ \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}}
 \end{pmatrix}
 \end{equation}
-Da da das Objektiv rotationssymetrisch ist, kann f nur vom Abstand eines Punktes vom Mittelpunkt des Bildsensors abhängig gemacht werden:
+Da da das Objektiv rotationssymetrisch ist, kann \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}} nur vom Abstand eines Punktes vom Mittelpunkt des Bildsensors abhängig gemacht werden:
 \begin{equation}
 \label{eq:ocamcalibdist}
-\rho=\sqrt{u^2+v^2}
+\gls{gre:distsensorcenter}=\sqrt{\gls{x}_{\gls{lat:OSKOS}}^2+\gls{y}_{\gls{lat:OSKOS}}^2}
 \end{equation}
 Aus~\eqref{eq:ocamcalibuv}~und~\eqref{eq:ocamcalibdist} ergibt sich: 
 \begin{equation}
 \label{eq:ocamcalibfin}
 \gls{lat:cameravector} =
 \begin{pmatrix}
-x \\ y \\ z
+\gls{x}_{\gls{lat:OCKOS}} \\ \gls{y}_{\gls{lat:OCKOS}} \\ \gls{z}_{\gls{lat:OCKOS}}
 \end{pmatrix}
 =
 \begin{pmatrix}
- u \\  v \\ f(\rho)
+\gls{x}_{\gls{lat:OSKOS}} \\ \gls{y}_{\gls{lat:OSKOS}} \\ \fnf{(\gls{gre:distsensorcenter})}
 \end{pmatrix}
 \end{equation}
-Die Aufgabe der Kalibration besteht nun im Ermitteln der Funktion f($\rho$)~\eqref{eq:ocamcalibrho}, welche in der Toolbox durch ein Polynom 4. Grades approximiert wird:
+Die Aufgabe der Kalibration besteht nun im Ermitteln der Funktion \fnf{(\gls{gre:distsensorcenter})}~\eqref{eq:ocamcalibrho}, welche in der Toolbox durch ein Polynom 4. Grades approximiert wird:
 \begin{equation}
 \label{eq:ocamcalibrho}
  f(\rho) = a_0 + a_1 \rho + a_2 \rho^2 + a_3 \rho^3 + a_4 \rho^4
