@@ -74,10 +74,10 @@ Unter Annahme einer idealen Abtastung des Signals kann das System mithilfe folge
 \label{eq:statespacerepdiscretise}
 \gls{lat:statevector}(\gls{lat:iter}+1) = 
 \underbrace{
-e^{\gls{lat:systemmatrix} \cdot \gls{lat:periodictime}}}_{ 
+\gls{lat:eulnum}^{\gls{lat:systemmatrix} \cdot \gls{lat:periodictime}}}_{ 
 \gls{lat:systemmatrix}_{\gls{idz:discrete}}} \cdot \gls{lat:statevector}(\gls{lat:iter}) + 
 \underbrace{
-e^{\gls{lat:systemmatrix} \cdot \gls{lat:periodictime}} \cdot \gls{lat:inputmatrix}}_{ 
+\gls{lat:eulnum}^{\gls{lat:systemmatrix} \cdot \gls{lat:periodictime}} \cdot \gls{lat:inputmatrix}}_{ 
 \gls{lat:inputmatrix}_{\gls{idz:discrete}}} \cdot \gls{lat:inputvector}(\gls{lat:iter})
 \end{equation}
 Es ergibt sich das Modell aus \eqref{eq:statespacerepdisc}.
