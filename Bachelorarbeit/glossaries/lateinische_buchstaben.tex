@@ -2,17 +2,6 @@
 % sort = lat_{1s - Skalar; 2p - Punkt; 3v - Vektor; 4m - Matrix; 5k-Koordinatensystem}_{Name/Symbol_selbst}
 
 %% ----------- Leopolds Einträge: -------------- %%
-% Kameramodellvariablen
-\newglossaryentry{lat:cameravector}{
-name=\vct{c},
-description={Vom Optischen Zentrum des Objektivs ausgehender Vektor},
-sort=lat_3v_c, type=latlist
-}
-\newglossaryentry{lat:camerapoint}{
-name=\pnt{p},
-description={Punkt auf dem Bildsensor},
-sort=lat_2p_p, type=latlist
-}
 % Kalman-Filter
 %% Zustandsraum
 %%% Vektoren
@@ -177,11 +166,70 @@ sort=lat_1s_e, type=latlist
 %	sort=lat_0_f, type=latlist
 %	}
 
-% Koeffizienten
-\newglossaryentry{lat:coeff}{
-name=\scl{a},
-description={Koeffizient},
-sort=lat_1s_a, type=latlist
+% Kameramodell
+\newglossaryentry{lat:ocv}{ %lat:cameravector
+name=\vct{v_{\gls{lat:OCKOS}}},
+description={Vom optischen Zentrum des Objektivs ausgehender Vektor},
+sort=lat_3v_v_o_c, type=latlist
+}
+\newglossaryentry{lat:osp}{ %lat:camerapoint
+name=\pnt{s_{\gls{lat:OSKOS}}},
+description={Punkt auf dem Bildsensor},
+sort=lat_2p_s_o_s, type=latlist
+}
+\newglossaryentry{lat:ocp}{
+name=\pnt{p_{\gls{lat:OCKOS}}},
+description={Punkt in der zur Rektifizierung erstellten Ebene},
+sort=lat_2p_p_o_s, type=latlist
+}
+%% Polynomkoeffizienten
+\newglossaryentry{lat:copa}{
+name=\scl{a_{op}},
+description={Koeffizient 0. Ordnung des bei der Kamerakalibration ermittelten Polynoms},
+sort=lat_1s_a_o_p, type=latlist
+}
+\newglossaryentry{lat:copb}{
+name=\scl{b_{op}},
+description={Koeffizient 1. Ordnung des bei der Kamerakalibration ermittelten Polynoms},
+sort=lat_1s_b_o_p, type=latlist
+}
+\newglossaryentry{lat:copc}{
+name=\scl{c_{op}},
+description={Koeffizient 2. Ordnung des bei der Kamerakalibration ermittelten Polynoms},
+sort=lat_1s_c_o_p, type=latlist
+}
+\newglossaryentry{lat:copd}{
+name=\scl{d_{op}},
+description={Koeffizient 3. Ordnung des bei der Kamerakalibration ermittelten Polynoms},
+sort=lat_1s_d_o_p, type=latlist
+}
+\newglossaryentry{lat:cope}{
+name=\scl{e_{op}},
+description={Koeffizient 4. Ordnung des bei der Kamerakalibration ermittelten Polynoms},
+sort=lat_1s_e_o_p, type=latlist
+}
+%% affine Transformation
+%%% Koeffizienten
+\newglossaryentry{lat:coac}{
+name=\scl{c_{oa}},
+description={Koeffizient der bei der Kamerakalibration ermittelten affinen Transformation},
+sort=lat_1s_c_o_a, type=latlist
+}
+\newglossaryentry{lat:coad}{
+name=\scl{d_{oa}},
+description={Koeffizient der bei der Kamerakalibration ermittelten affinen Transformation},
+sort=lat_1s_d_o_a, type=latlist
+}
+\newglossaryentry{lat:coae}{
+name=\scl{e_{oa}},
+description={Koeffizient der bei der Kamerakalibration ermittelten affinen Transformation},
+sort=lat_1s_e_o_a, type=latlist
+}
+%%% Verschiebungsvektor Bildmittelpunkt
+\newglossaryentry{lat:voa}{
+name=\vct{c_{\gls{lat:OSKOSR}\_\gls{lat:OSKOS}}},
+description={Verschiebungsvektor des Bildmittelpunktes (Koordinatenursprungs) von \gls{lat:OSKOS} zu \gls{lat:OSKOSR}},
+sort=lat_3v_c_o_a, type=latlist
 }
 
 % ----------- Daniels Einträge: ------------------ %%
@@ -233,14 +281,19 @@ description={Bezeichnung für ein allgemeines Koordinatensystem},
 sort=lat_5k_k, type=latlist
 }
 \newglossaryentry{lat:OCKOS}{
-	name=\ensuremath{\mathcal{OC}},
-	description={Bezeichnung für das Kamera-\gls{acr:ks} der OCamCalib Toolbox},
-	sort=lat_5k_k, type=latlist
+name=\ensuremath{\mathcal{OC}},
+description={Bezeichnung für das Kamera-\gls{acr:ks} der Kamerakalibrations-Toolbox},
+sort=lat_5k_oc, type=latlist
 }
 \newglossaryentry{lat:OSKOS}{
-	name=\ensuremath{\mathcal{OS}},
-	description={Bezeichnung für ein allgemeines Koordinatensystem},
-	sort=lat_5k_k, type=latlist
+name=\ensuremath{\mathcal{OS}},
+description={Bezeichnung für das ideale Bildsensor-\gls{acr:ks} der Kamerakalibrations-Toolbox},
+sort=lat_5k_os, type=latlist
+}
+\newglossaryentry{lat:OSKOSR}{
+name=\ensuremath{\mathcal{OSR}},
+description={Bezeichnung für das reale Bildsensor-\gls{acr:ks} der Kamerakalibrations-Toolbox},
+sort=lat_5k_osr, type=latlist
 }
 
 % Fahrzeug Abmessung Radstand

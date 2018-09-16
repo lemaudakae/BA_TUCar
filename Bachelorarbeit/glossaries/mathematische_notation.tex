@@ -1,26 +1,26 @@
-\newcommand{\scl}[1]{\ensuremath{\expandafter\MakeLowercase\expandafter{#1}}}
-%\newcommand{\scl}[1]{\ensuremath{\boldsymbol{#1}}}
+%\newcommand{\scl}[1]{\ensuremath{\expandafter\MakeLowercase\expandafter{#1}}}
+\newcommand{\scl}[1]{\ensuremath{#1}}
 \newglossaryentry{math:scalar}{
 	name=\scl{x},
 	description={Kleinbuchstaben bezeichnen einen Skalar},
 	sort=mathscalar, type=mathlist
 }
-\newcommand{\pnt}[1]{\ensuremath{\boldsymbol{\expandafter\MakeLowercase\expandafter{#1}}}}
-%\newcommand{\pnt}[1]{\ensuremath{\boldsymbol{#1}}}
+%\newcommand{\pnt}[1]{\ensuremath{\boldsymbol{\expandafter\MakeLowercase\expandafter{#1}}}}
+\newcommand{\pnt}[1]{\ensuremath{\boldsymbol{#1}}}
 \newglossaryentry{math:point}{
 	name=\pnt{x},
 	description={Fettgedruckte Kleinbuchstaben bezeichnen einen Punkt},
 	sort=mathpoint, type=mathlist
 }
-\newcommand{\vct}[1]{\ensuremath{\boldsymbol{\expandafter\MakeLowercase\expandafter{#1}}}}
-%\newcommand{\vct}[1]{\ensuremath{\boldsymbol{#1}}}
+%\newcommand{\vct}[1]{\ensuremath{\boldsymbol{\expandafter\MakeLowercase\expandafter{#1}}}}
+\newcommand{\vct}[1]{\ensuremath{\boldsymbol{#1}}}
 \newglossaryentry{math:vector}{
 name=\vct{x},
 description={Fettgedruckte Kleinbuchstaben bezeichnen einen Vektor},
 sort=mathvector, type=mathlist
 }
-\newcommand{\mtx}[1]{\ensuremath{\boldsymbol{\expandafter\MakeUppercase\expandafter{#1}}}}
-%\newcommand{\mtx}[1]{\ensuremath{\boldsymbol{#1}}}
+%\newcommand{\mtx}[1]{\ensuremath{\boldsymbol{\expandafter\MakeUppercase\expandafter{#1}}}}
+\newcommand{\mtx}[1]{\ensuremath{\boldsymbol{#1}}}
 \newglossaryentry{math:matrix}{
 name=\mtx{x},
 description={Fettgedruckte Großbuchstaben bezeichnen eine Matrix},
@@ -82,7 +82,7 @@ description={Euklidische Norm des Vektors \({\vct{x}=\begin{pmatrix} x \\ y \end
 sort=mathnorm, type=mathlist
 }
 \DeclareMathOperator{\fnfop}{f}
-\newcommand{\fnf}[1]{\ensuremath{\fnfop{#1}}}
+\newcommand{\fnf}[1]{\ensuremath{\fnfop{(#1)}}}
 \newglossaryentry{math:functionf}{
 name=\fnf{\scl{x}},
 description={allgemeine Funktion in Abhängigkeit der Variable \scl{x}},

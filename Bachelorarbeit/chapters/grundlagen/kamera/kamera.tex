@@ -3,7 +3,7 @@ Da das verwendete Fisheye-Objektiv durch seinen großen Blickwinkel stark verzer
 
 Die OcamCalib-Toolbox behandelt das Kamerasystem als Einheit, d.h. die Kamera und der Fisheyeobjektivaufsatz (alternativ der konvexe Spiegel) werden zusammen durch einen Parametersatz beschrieben.
 
-Das Modell hat das Ziel, den Zusammenhang zwischen einem Punkt auf dem Bildsensor \gls{lat:camerapoint} mit Koordinaten (u,v) und einem vom optischen Zentrum des Objektivs ausgehenden Vektors nicht festgelegter Länge \gls{lat:cameravector} mit Koordinaten (x,y,z) zu finden (s.~\eqref{eq:ocamcalibuv}).
+Das Modell hat das Ziel, den Zusammenhang zwischen einem Punkt auf dem Bildsensor \gls{lat:osp} mit Koordinaten \((\gls{x}_{\gls{lat:OSKOS}}, \gls{y}_{\gls{lat:OSKOS}})\) und einem vom optischen Zentrum des Objektivs ausgehenden Vektors nicht festgelegter Länge \gls{lat:ocv} mit Koordinaten \((\gls{x}_{\gls{lat:OCKOS}}, \gls{y}_{\gls{lat:OCKOS}}, \gls{z}_{\gls{lat:OCKOS}})\) zu finden (s.~\eqref{eq:ocamcalibuv}).
 
 \begin{figure}[H]
   \centering
@@ -34,7 +34,7 @@ Da die Objektivachse und die Achse des Bildsensors in erster Näherung gleich si
 \end{equation}
 Der gesuchte Zusammenhang lautet: 
 \begin{equation}
-\gls{lat:cameravector} =
+\gls{lat:ocv} =
 \begin{pmatrix}
 \gls{x}_{\gls{lat:OCKOS}} \\ \gls{y}_{\gls{lat:OCKOS}} \\ \gls{z}_{\gls{lat:OCKOS}}
 \end{pmatrix}
@@ -46,7 +46,7 @@ Der gesuchte Zusammenhang lautet:
 Der Faktor  \gls{gre:repos} kann in die Funktion \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}} integriert werden:
 \begin{equation}
 \label{eq:ocamcalibuv}
-\gls{lat:cameravector} =
+\gls{lat:ocv} =
 \begin{pmatrix}
 \gls{x}_{\gls{lat:OCKOS}} \\ \gls{y}_{\gls{lat:OCKOS}} \\ \gls{z}_{\gls{lat:OCKOS}}
 \end{pmatrix}
@@ -63,7 +63,7 @@ Da da das Objektiv rotationssymetrisch ist, kann \fnf{\gls{x}_{\gls{lat:OSKOS}},
 Aus~\eqref{eq:ocamcalibuv}~und~\eqref{eq:ocamcalibdist} ergibt sich: 
 \begin{equation}
 \label{eq:ocamcalibfin}
-\gls{lat:cameravector} =
+\gls{lat:ocv} =
 \begin{pmatrix}
 \gls{x}_{\gls{lat:OCKOS}} \\ \gls{y}_{\gls{lat:OCKOS}} \\ \gls{z}_{\gls{lat:OCKOS}}
 \end{pmatrix}
@@ -75,9 +75,9 @@ Aus~\eqref{eq:ocamcalibuv}~und~\eqref{eq:ocamcalibdist} ergibt sich:
 Die Aufgabe der Kalibration besteht nun im Ermitteln der Funktion \fnf{(\gls{gre:distsensorcenter})}~\eqref{eq:ocamcalibrho}, welche in der Toolbox durch ein Polynom 4. Grades approximiert wird:
 \begin{equation}
 \label{eq:ocamcalibrho}
- f(\rho) = a_0 + a_1 \rho + a_2 \rho^2 + a_3 \rho^3 + a_4 \rho^4
+ \fnf{\gls{gre:distsensorcenter}} = \gls{lat:copa} + \gls{lat:copb} \gls{gre:distsensorcenter} + \gls{lat:copc} \gls{gre:distsensorcenter}^2 + \gls{lat:copd} \gls{gre:distsensorcenter}^3 + \gls{lat:cope} \gls{gre:distsensorcenter}o^4
 \end{equation}
-Da ein Darlegen des Prozesses zur Ermittlung der Parameter \(a_0 \dots a_4 \)  den Rahmen dieser Arbeit sprengen würde, wird darauf verzichtet.
+Da ein Darlegen des Prozesses zur Ermittlung der Parameter \(\gls{lat:copa} \dots \gls{lat:cope}\)  den Rahmen dieser Arbeit sprengen würde, wird darauf verzichtet.
 
 \subsection{Entzerrung}
 
@@ -88,28 +88,28 @@ Da ein Darlegen des Prozesses zur Ermittlung der Parameter \(a_0 \dots a_4 \)  d
   \label{fig:kameramodell_entzerrung}
 \end{figure}
 
-Mithilfe der gewonnenen Informationen kann die Entzerrung des Bildes nun stattfinden. Zuerst wird eine Ebene parallel zur xy-Ebene des Kamerakoordinatensystems xyz erstellt. Die z-Koordinate ist hierbei wählbar. Diese Ebene wird nun in eine Menge von Punkten diskretisiert. Im entstandenen zweidimensionalen Array kann jedem Element ein Vektor (x,y,z) zugeordnet werden  (z.B. Punkt b in \ref{fig:kameramodell_entzerrung}). Durch Gleichung~\eqref{eq:ocamcalibfin} lassen sich diesem Vektor Koordinaten (u,v) auf dem Kamerasensor zuordnen. Das Pixel mit dem geringsten Abstand zu den gewünschten Koordinaten (u,v) liefert nun den Farbwert für jeden Punkt der Ebene, welche das entzerrte Bild darstellt.
+Mithilfe der gewonnenen Informationen kann die Entzerrung des Bildes nun stattfinden. Zuerst wird eine Ebene parallel zur \(\gls{x}_{\gls{lat:OCKOS}}\gls{y}_{\gls{lat:OCKOS}}\)-Ebene des Kamerakoordinatensystems \gls{lat:OCKOS} erstellt. Die \(\gls{z}_{\gls{lat:OCKOS}\)-Koordinate ist hierbei wählbar. Diese Ebene wird nun in eine Menge von Punkten diskretisiert. Im entstandenen zweidimensionalen Array kann jedem Element ein Vektor \((\gls{x}_{\gls{lat:OCKOS}}, \gls{y}_{\gls{lat:OCKOS}}, \gls{z}_{\gls{lat:OCKOS}})\) zugeordnet werden  (z.B. Punkt \gls{lat:ocp} in \ref{fig:kameramodell_entzerrung}). Durch Gleichung~\eqref{eq:ocamcalibfin} lassen sich diesem Vektor Koordinaten \(\gls{x}_{\gls{lat:OSKOS}}, \gls{y}_{\gls{lat:OSKOS}}\) auf dem Kamerasensor zuordnen. Das Pixel mit dem geringsten Abstand zu den gewünschten Koordinaten \(\gls{x}_{\gls{lat:OSKOS}}, \gls{y}_{\gls{lat:OSKOS}}\) liefert nun den Farbwert für jeden Punkt der Ebene, welche das entzerrte Bild darstellt.
 
 \subsection{Affine Transformation}
-Da Annahme~\ref{item:ocamcalibassm2} in der Realität nie exakt zutrifft  und bei der Digitalisierung des Bildes durch den Kamerasensor mit nichtquadratischen Pixeln zu rechnen ist, muss vor der Nutzung des hergeleiteten Modells eine affine Transformation der realen Koordinaten (u',v') in die idealen Koorinaten (u,v) stattfinden.
+Da Annahme~\ref{item:ocamcalibassm2} in der Realität nie exakt zutrifft und bei der Digitalisierung des Bildes durch den Kamerasensor mit nichtquadratischen Pixeln zu rechnen ist, muss vor der Nutzung des hergeleiteten Modells eine affine Transformation der realen Koordinaten \(\gls{x}_{\gls{lat:OSKOSR}}, \gls{y}_{\gls{lat:OSKOSR}}\) in die idealen Koorinaten \(\gls{x}_{\gls{lat:OSKOS}}, \gls{y}_{\gls{lat:OSKOS}}\) stattfinden.
 \begin{equation}
 \begin{pmatrix}
-u' \\ v' 
+\gls{x}_{\gls{lat:OSKOSR}} \\ \gls{y}_{\gls{lat:OSKOSR}}
 \end{pmatrix}
 =
 \begin{pmatrix}
- c & d \\
- e & 1 
+\gls{lat:coac} & \gls{lat:coad} \\
+\gls{lat:coae} & 1 
 \end{pmatrix}
 \cdot
 \begin{pmatrix}
-u \\ v 
+\gls{x}_{\gls{lat:OSKOS}} \\ \gls{y}_{\gls{lat:OSKOS}}
 \end{pmatrix}
 +
-\begin{pmatrix}
-xc' \\ yc' 
-\end{pmatrix}
+%\begin{pmatrix}
+\gls{lat:voa}
+%\end{pmatrix}
 \end{equation}
- Die Verschiebung des Bildmittelpunktes (xc',yc') sowie die Parameter c,d,e werden im Kalibrationsprozess durch die Toolbox ermittelt.
+ Die Verschiebung des Bildmittelpunktes \gls{lat:voa} sowie die Parameter \gls{lat:coac},\gls{lat:coad},\gls{lat:coae} werden im Kalibrationsprozess durch die Toolbox ermittelt.
 
 
