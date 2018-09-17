@@ -57,9 +57,11 @@ description={Inverse der Matrix \mtx{X}},
 sort=mathinv, type=mathlist
 }
 \newcommand{\der}[1]{\ensuremath{#1^{\prime}}}
+\newcommand{\derII}[1]{\ensuremath{#1^{\prime\prime}}}
+\newcommand{\derIII}[1]{\ensuremath{#1^{\prime\prime\prime}}}
 \newglossaryentry{math:derivative}{
 name=\der{f},
-description={Ableitung der Funktion \ensuremath{f}},
+description={Ableitung der Funktion \fnfop},
 sort=mathderivative, type=mathlist
 }
 \DeclareMathOperator{\maxop}{max}
@@ -88,4 +90,9 @@ name=\fnf{\scl{x}},
 description={allgemeine Funktion in Abhängigkeit der Variable \scl{x}},
 sort=mathfnf, type=mathlist
 }
-
+\newcommand{\derat}[2]{\ensuremath{{#1}^{\prime} |_{#2}}}
+\newglossaryentry{math:derivativeat}{
+	name=\derat{\fnfop}{\gls{x}},
+	description={Ableitung der Funktion \( \fnfop \) an der Stelle \gls{x}},
+	sort=mathderivativeat, type=mathlist
+}

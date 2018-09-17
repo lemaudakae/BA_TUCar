@@ -92,7 +92,29 @@ name=\mtx{P},
 description={Kovarianzmatrix},
 sort=lat_4m_p, type=latlist
 }
-%% Zustandsvektor
+%% Fahrspurverfolgung
+%%% Polynomkoeffizienten
+\newglossaryentry{lat:cfpa}{
+	name=\scl{a_{fp}},
+	description={Koeffizient 0. Ordnung des zur Fahrspurmodellierung genutzten Polynoms},
+	sort=lat_1s_a_f_p, type=latlist
+}
+\newglossaryentry{lat:cfpb}{
+	name=\scl{b_{fp}},
+	description={Koeffizient 1. Ordnung des zur Fahrspurmodellierung genutzten Polynoms},
+	sort=lat_1s_b_f_p, type=latlist
+}
+\newglossaryentry{lat:cfpc}{
+	name=\scl{c_{fp}},
+	description={Koeffizient 2. Ordnung des zur Fahrspurmodellierung genutzten Polynoms},
+	sort=lat_1s_c_f_p, type=latlist
+}
+\newglossaryentry{lat:cfpd}{
+	name=\scl{d_{fp}},
+	description={Koeffizient 3. Ordnung des zur Fahrspurmodellierung genutzten Polynoms},
+	sort=lat_1s_d_f_p, type=latlist
+}
+%%% Zustandsvektor
 \newglossaryentry{lat:lateraloffset}{
 name=\scl{y_0},
 description={Lateraler Versatz: Abstand der Fahrspurmitte vom Koordinatenursprung des Fahrspurkoordinatensystems???},
@@ -107,6 +129,12 @@ sort=lat_1s_c_0, type=latlist
 name=\scl{c_1},
 description={Änderungsrate der Fahrspurkrümmung},
 sort=lat_1s_c_1, type=latlist
+}
+%%%zurückgelegter Weg
+\newglossaryentry{lat:distpic}{
+	name=\scl{\Delta\gls{x}},
+	description={zurückgelegter Weg zwischen zwei Bildaufnahmenpunkten},
+	sort=lat_1s_c_1, type=latlist
 }
 
 % Allgemeines
@@ -231,6 +259,34 @@ name=\vct{c_{\gls{lat:OSKOSR}\_\gls{lat:OSKOS}}},
 description={Verschiebungsvektor des Bildmittelpunktes (Koordinatenursprungs) von \gls{lat:OSKOS} zu \gls{lat:OSKOSR}},
 sort=lat_3v_c_o_a, type=latlist
 }
+%Riverflow
+%%Randlinie
+\newglossaryentry{lat:vvrrp}{
+	name=\vct{v_{rrp\gls{lat:BildKOS}}},
+	description={Verschiebungsvektor zwischen 2 auf der Randline gefundenen Punkten},
+	sort=lat_3v_v_v_r_r_p, type=latlist
+}
+\newglossaryentry{lat:vvrrpx}{
+	name=\scl{\gls{x}_{\gls{lat:vvrrp}}},
+	description={x-Koordinate des Verschiebungsvektors zwischen 2 auf der Randline gefundenen Punkten},
+	sort=lat_1s_v_v_r_r_p_x, type=latlist
+}
+\newglossaryentry{lat:vvrrpy}{
+	name=\scl{\gls{y}_{\gls{lat:vvrrp}}},
+	description={y-Koordinate des Verschiebungsvektors zwischen 2 auf der Randline gefundenen Punkten},
+	sort=lat_1s_v_v_r_r_p_y, type=latlist
+}
+\newglossaryentry{lat:prr}{
+	name=\pnt{p_{rr\gls{lat:BildKOS}}},
+	description={auf der Randline gefundener Punkt},
+	sort=lat_2p_p_r_r, type=latlist
+}
+\newglossaryentry{lat:mrrs}{
+	name=\pnt{m_{rrs\gls{lat:BildKOS}}},
+	description={Mittelpunkt einer Scanline},
+	sort=lat_2p_m_r_r_s, type=latlist
+}
+
 
 % ----------- Daniels Einträge: ------------------ %%
 % Transformationsmatrizen
