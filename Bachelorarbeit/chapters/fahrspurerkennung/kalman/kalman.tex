@@ -6,23 +6,23 @@ Das in \ref{sec:grundlagen:kalman-filter} eingeführte Kalman-Filter soll verwen
 
 \subsection{Fahrspurmodell}
 Als Fahrspurmodell soll das in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} vorgeschlagene Modell, welches wiederrum eine Vereinfachung von \autocite{risackRobustLaneRecognition} darstellt, verwendet werden.
-Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt soll die Fahrspur als Polynom 3. Grades \begin{math} \gls{lat:ycoord}(\gls{lat:xcoord}) \end{math} approximiert werden. Um die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} zu vereinfachen und einen sehr anschaulichen \glsdesc{lat:statevector} \gls{lat:statevector} zu erhalten wird für jenen die 0. bis 3. Ableitung des Polynoms an der Stelle \begin{math} \gls{lat:xcoord}=0 \end{math} verwendet. 
+Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt soll die Fahrspur als Polynom 3. Grades \begin{math} \gls{y}(\gls{x}) \end{math} approximiert werden. Um die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} zu vereinfachen und einen sehr anschaulichen \glsdesc{lat:statevector} \gls{lat:statevector} zu erhalten wird für jenen die 0. bis 3. Ableitung des Polynoms an der Stelle \begin{math} \gls{x}=0 \end{math} verwendet. 
 \begin{equation}
 \label{eq:polylane}
-\gls{lat:ycoord}(\gls{lat:xcoord}) =
+\gls{y}(\gls{x}) =
 \gls{lat:coeff}_0 +
-\gls{lat:coeff}_1 \cdot \gls{lat:xcoord} +
-\gls{lat:coeff}_2 \cdot \gls{lat:xcoord}^2 +
-\gls{lat:coeff}_3 \cdot \gls{lat:xcoord}^3
+\gls{lat:coeff}_1 \cdot \gls{x} +
+\gls{lat:coeff}_2 \cdot \gls{x}^2 +
+\gls{lat:coeff}_3 \cdot \gls{x}^3
 \end{equation}
 \begin{equation}
 \label{eq:statevectorlane}
 \gls{lat:statevector} = 
 \begin{pmatrix}
-\gls{lat:ycoord}(0) \\
-\gls{lat:ycoord}^\prime(0) \\
-\gls{lat:ycoord}^{\prime\prime}(0) \\
-\gls{lat:ycoord}^{\prime\prime\prime}(0) \\
+\gls{y}(0) \\
+\gls{y}^\prime(0) \\
+\gls{y}^{\prime\prime}(0) \\
+\gls{y}^{\prime\prime\prime}(0) \\
 \end{pmatrix}
 =
 \begin{pmatrix}
@@ -41,11 +41,11 @@ Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt soll d
 \end{equation}
 \begin{equation}
 \label{eq:polylanestate}
-\gls{lat:ycoord}(\gls{lat:xcoord}) =
+\gls{y}(\gls{x}) =
 \gls{lat:lateraloffset} +
-\gls{gre:yawangle} \cdot \gls{lat:xcoord} +
-\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{lat:xcoord}^2 +
-\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot \gls{lat:xcoord}^3
+\gls{gre:yawangle} \cdot \gls{x} +
+\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{x}^2 +
+\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot \gls{x}^3
 \end{equation}
  
 \subsubsection{Initialisierung} 
@@ -66,38 +66,38 @@ Die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} bildet den momentanen \gls
 Der Einfluss des Lenkwinkels wird vernachlässigt, da er bei kurzer \glsdesc{lat:periodictime} \gls{lat:periodictime} und kleiner Größe seiner selbst kaum Einfluss auf die Lage der Fahrbahn im Folgebild nimmt. Das Fahrzeug bewegt sich also geradlinig in Richtung der x-Achse des Fahrspurkoordinatensystems. 
 
 \subsubsection{Herleitung der \glsdesc{lat:systemmatrix}}
-Der zurückgelegte Weg \begin{math} \Delta \gls{lat:xcoord} \end{math} zwischen zwei Bildaufnahmenpunkten kann direkt aus den Encodern des Fahrzeugs ausgelesen werden. Der Folgezustand  \gls{lat:statevector}(\gls{lat:iter}+1) kann nun wie folgt berechnet werden:
+Der zurückgelegte Weg \begin{math} \Delta \gls{x} \end{math} zwischen zwei Bildaufnahmenpunkten kann direkt aus den Encodern des Fahrzeugs ausgelesen werden. Der Folgezustand  \gls{lat:statevector}(\gls{lat:iter}+1) kann nun wie folgt berechnet werden:
 \begin{equation}
 \label{eq:nextstatemapping}
 \hat{\gls{lat:statevector}}(\gls{lat:iter}+1) =
 \begin{pmatrix}
-\gls{lat:ycoord}_{\gls{lat:iter}}(\Delta \gls{lat:xcoord}) \\
-\gls{lat:ycoord}_{\gls{lat:iter}}^\prime(\Delta \gls{lat:xcoord}) \\
-\gls{lat:ycoord}_{\gls{lat:iter}}^{\prime\prime}(\Delta \gls{lat:xcoord}) \\
-\gls{lat:ycoord}_{\gls{lat:iter}}^{\prime\prime\prime}(\Delta \gls{lat:xcoord}) \\
+\gls{y}_{\gls{lat:iter}}(\Delta \gls{x}) \\
+\gls{y}_{\gls{lat:iter}}^\prime(\Delta \gls{x}) \\
+\gls{y}_{\gls{lat:iter}}^{\prime\prime}(\Delta \gls{x}) \\
+\gls{y}_{\gls{lat:iter}}^{\prime\prime\prime}(\Delta \gls{x}) \\
 \end{pmatrix}
 \end{equation}
 
-In \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} wird beschrieben, dass sich aufgrund von Nichtlinearität aus \ref{eq:nextstatemapping} keine äquivalente Matrix A aufstellen lässt. Da diese Nichtlinearität jedoch nur in Bezug auf  \begin{math} (\Delta \gls{lat:xcoord})  \end{math} und nicht den \glsdesc{lat:statevector} \gls{lat:statevector} besteht, ist dies trotz dessen möglich. Aus \eqref{eq:polylanestate}, \eqref{eq:nextstatemapping} und der Bewegung des Fahrzeugs entlang der x-Achse des Fahrspurkoordinatansystems um \begin{math} \Delta \gls{lat:xcoord} \end{math} folgt:
+In \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} wird beschrieben, dass sich aufgrund von Nichtlinearität aus \ref{eq:nextstatemapping} keine äquivalente Matrix A aufstellen lässt. Da diese Nichtlinearität jedoch nur in Bezug auf  \begin{math} (\Delta \gls{x})  \end{math} und nicht den \glsdesc{lat:statevector} \gls{lat:statevector} besteht, ist dies trotz dessen möglich. Aus \eqref{eq:polylanestate}, \eqref{eq:nextstatemapping} und der Bewegung des Fahrzeugs entlang der x-Achse des Fahrspurkoordinatansystems um \begin{math} \Delta \gls{x} \end{math} folgt:
 \begin{equation}
 \begin{split}
 \label{eq:nextstatemappingmatrix}
 \hat{\gls{lat:statevector}}(\gls{lat:iter}+1) = &
 \begin{pmatrix}
 \gls{lat:lateraloffset} +
-\gls{gre:yawangle} \cdot \Delta \gls{lat:xcoord} +
-\frac{1}{2} \cdot \gls{lat:curvature} \cdot (\Delta \gls{lat:xcoord})^2 +
-\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot (\Delta \gls{lat:xcoord})^3 \\
-\gls{gre:yawangle} + \gls{lat:curvature} \cdot \Delta \gls{lat:xcoord} +
-\frac{1}{2} \cdot \gls{lat:curvaturechange} \cdot (\Delta \gls{lat:xcoord})^2 \\
-\gls{lat:curvature} + \gls{lat:curvaturechange} \cdot \Delta \gls{lat:xcoord} \\
+\gls{gre:yawangle} \cdot \Delta \gls{x} +
+\frac{1}{2} \cdot \gls{lat:curvature} \cdot (\Delta \gls{x})^2 +
+\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot (\Delta \gls{x})^3 \\
+\gls{gre:yawangle} + \gls{lat:curvature} \cdot \Delta \gls{x} +
+\frac{1}{2} \cdot \gls{lat:curvaturechange} \cdot (\Delta \gls{x})^2 \\
+\gls{lat:curvature} + \gls{lat:curvaturechange} \cdot \Delta \gls{x} \\
 \gls{lat:curvaturechange}
 \end{pmatrix} \\
 & \begin{pmatrix}
-1 &  \Delta \gls{lat:xcoord} & \frac{1}{2} \cdot (\Delta \gls{lat:xcoord})^2 & 
-\frac{1}{6} \cdot (\Delta \gls{lat:xcoord})^3 \\
-0 & 1 &  \Delta \gls{lat:xcoord} & \frac{1}{2} \cdot (\Delta \gls{lat:xcoord})^2 \\
-0 & 0 & 1 &  \Delta \gls{lat:xcoord} \\
+1 &  \Delta \gls{x} & \frac{1}{2} \cdot (\Delta \gls{x})^2 & 
+\frac{1}{6} \cdot (\Delta \gls{x})^3 \\
+0 & 1 &  \Delta \gls{x} & \frac{1}{2} \cdot (\Delta \gls{x})^2 \\
+0 & 0 & 1 &  \Delta \gls{x} \\
 0 & 0 & 0 & 1
 \end{pmatrix}
 \cdot
@@ -118,22 +118,22 @@ In \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} wird besch
 \end{split}
 \end{equation}
 
-Die in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} durch Linearisierung an der Stelle \begin{math} \gls{lat:xcoord}_0 = 0 \end{math} erhaltene Matrix hingegen vereinfacht sich durch \eqref{eq:generallinearization} zu:
+Die in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} durch Linearisierung an der Stelle \begin{math} \gls{x}_0 = 0 \end{math} erhaltene Matrix hingegen vereinfacht sich durch \eqref{eq:generallinearization} zu:
 
 \begin{equation}
 \label{eq:nextstatemappingmatrixlinear}
 \hat{\gls{lat:statevector}}(\gls{lat:iter}+1) =
 \begin{pmatrix}
-\gls{lat:lateraloffset} + \gls{gre:yawangle} \cdot \Delta \gls{lat:xcoord} \\
-\gls{gre:yawangle} + \gls{lat:curvature} \cdot \Delta \gls{lat:xcoord} \\
-\gls{lat:curvature} + \gls{lat:curvaturechange} \cdot \Delta \gls{lat:xcoord} \\
+\gls{lat:lateraloffset} + \gls{gre:yawangle} \cdot \Delta \gls{x} \\
+\gls{gre:yawangle} + \gls{lat:curvature} \cdot \Delta \gls{x} \\
+\gls{lat:curvature} + \gls{lat:curvaturechange} \cdot \Delta \gls{x} \\
 \gls{lat:curvaturechange}
 \end{pmatrix}
 =
 \begin{pmatrix}
-1 &  \Delta \gls{lat:xcoord} & 0 & 0 \\
-0 & 1 &  \Delta \gls{lat:xcoord} & 0 \\
-0 & 0 & 1 &  \Delta \gls{lat:xcoord} \\
+1 &  \Delta \gls{x} & 0 & 0 \\
+0 & 1 &  \Delta \gls{x} & 0 \\
+0 & 0 & 1 &  \Delta \gls{x} \\
 0 & 0 & 0 & 1
 \end{pmatrix}
 \cdot
@@ -156,9 +156,9 @@ Die in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} durch 
 
 \begin{equation}
 \label{eq:generallinearization}
-f(\gls{lat:xcoord}) \approx f(\gls{lat:xcoord}_0) + 
-\frac{df}{d\gls{lat:xcoord}}|_{\gls{lat:xcoord}_0} \cdot
-(\gls{lat:xcoord}-\gls{lat:xcoord}_0)
+f(\gls{x}) \approx f(\gls{x}_0) + 
+\frac{df}{d\gls{x}}|_{\gls{x}_0} \cdot
+(\gls{x}-\gls{x}_0)
 \end{equation}
 
 Da sich die gefahrene Strecke zwischenden Aufnahmepunkten zweier Bildern geringfügig ändern kann, muss die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} vor jedem Prädikationsschritt neu berechnet werden.
@@ -168,42 +168,42 @@ Die \glsdesc{lat:inputmatrix} \gls{lat:inputmatrix} modelliert äußere Einflüs
 
 \subsubsection{\glsdesc{lat:outputmatrix}} 
 \label{sssec:fahrspurerkennung:kalman-filter:zustandsraumbeschreibung:outputmatrix}
-Die \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} bildet den Systemzustand \gls{lat:statevector} auf eine Messung \gls{lat:outputvector} ab. In unserer Implementierung wird  \gls{lat:outputmatrix} passend zu den \gls{lat:xcoord}-Koordinaten der wie in \ref{ssec:fahrspurerkennung:kalman:messung} beschrieben gewonnenen Linienmittelpunkte in jeder Iteration des Kalmanfilters neu berechnet. Aus \ref{eq:polylanestate} ergibt sich:
+Die \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} bildet den Systemzustand \gls{lat:statevector} auf eine Messung \gls{lat:outputvector} ab. In unserer Implementierung wird  \gls{lat:outputmatrix} passend zu den \gls{x}-Koordinaten der wie in \ref{ssec:fahrspurerkennung:kalman:messung} beschrieben gewonnenen Linienmittelpunkte in jeder Iteration des Kalmanfilters neu berechnet. Aus \ref{eq:polylanestate} ergibt sich:
 \begin{equation}
 \gls{lat:outputvector} =
 \begin{pmatrix}
-\gls{lat:ycoord}_1 \\
-\gls{lat:ycoord}_2 \\
+\gls{y}_1 \\
+\gls{y}_2 \\
 \vdots \\
-\gls{lat:ycoord}_{\gls{lat:naturalnumber}}
+\gls{y}_{\gls{lat:naturalnumber}}
 \end{pmatrix}
 =
 \begin{pmatrix}
 \gls{lat:lateraloffset} +
-\gls{gre:yawangle} \cdot \gls{lat:xcoord}_1 +
-\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{lat:xcoord}_1^2 +
-\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot \gls{lat:xcoord}_1^3  \\
+\gls{gre:yawangle} \cdot \gls{x}_1 +
+\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{x}_1^2 +
+\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot \gls{x}_1^3  \\
 \gls{lat:lateraloffset} +
-\gls{gre:yawangle} \cdot \gls{lat:xcoord}_2 +
-\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{lat:xcoord}_2^2 +
-\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot \gls{lat:xcoord}_2^3  \\
+\gls{gre:yawangle} \cdot \gls{x}_2 +
+\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{x}_2^2 +
+\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot \gls{x}_2^3  \\
 \vdots \\
 \gls{lat:lateraloffset} +
-\gls{gre:yawangle} \cdot \gls{lat:xcoord}_{\gls{lat:naturalnumber}} +
-\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{lat:xcoord}_{\gls{lat:naturalnumber}}^2 +
+\gls{gre:yawangle} \cdot \gls{x}_{\gls{lat:naturalnumber}} +
+\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{x}_{\gls{lat:naturalnumber}}^2 +
 \frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot 
-\gls{lat:xcoord}_{\gls{lat:naturalnumber}}^3  
+\gls{x}_{\gls{lat:naturalnumber}}^3  
 \end{pmatrix}
 =
 \begin{pmatrix}
-1 & \gls{lat:xcoord}_1 & \frac{1}{2} \cdot \gls{lat:xcoord}_1^2 &
-\frac{1}{6} \cdot \gls{lat:xcoord}_1^3  \\
-1 & \gls{lat:xcoord}_2 & \frac{1}{2} \cdot \gls{lat:xcoord}_2^2 &
-\frac{1}{6} \cdot \gls{lat:xcoord}_2^3  \\
+1 & \gls{x}_1 & \frac{1}{2} \cdot \gls{x}_1^2 &
+\frac{1}{6} \cdot \gls{x}_1^3  \\
+1 & \gls{x}_2 & \frac{1}{2} \cdot \gls{x}_2^2 &
+\frac{1}{6} \cdot \gls{x}_2^3  \\
 \vdots & \vdots & \vdots & \vdots \\
-1 & \gls{lat:xcoord}_{\gls{lat:naturalnumber}} & 
-\frac{1}{2} \cdot \gls{lat:xcoord}_{\gls{lat:naturalnumber}}^2 &
-\frac{1}{6} \cdot \gls{lat:xcoord}_{\gls{lat:naturalnumber}}^3
+1 & \gls{x}_{\gls{lat:naturalnumber}} & 
+\frac{1}{2} \cdot \gls{x}_{\gls{lat:naturalnumber}}^2 &
+\frac{1}{6} \cdot \gls{x}_{\gls{lat:naturalnumber}}^3
 \end{pmatrix}
 \cdot
 \begin{pmatrix}
@@ -227,7 +227,7 @@ Wie in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} und \a
 \subsection{konkrete Implementierung des Kalman-Filters}
 Ist der \glsdesc{lat:statevector} \gls{lat:statevector} einmal wie in ~\ref{sssec:fahrspurerkennung:kalman:fahrspurmodell:initialisierung} beschrieben initialisiert, können die Gleichungen des Kalmanfilters bei Eintreffen eines neuen Bildes wie folgt berechnet werden:
 \begin{enumerate}
-\item Bildung der \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} mittels der seit dem letzten Bild gefahrenen Distanz \begin{math} \Delta \gls{lat:xcoord} \end{math}
+\item Bildung der \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} mittels der seit dem letzten Bild gefahrenen Distanz \begin{math} \Delta \gls{x} \end{math}
 \item Prädiktion des \glsdesc{lat:statevector} \gls{lat:statevector}, d.h. der Lage der Fahrspurmarkierungen im aktuellen Bild anhand von \eqref{eq:kalmanprediction}
 \item Messung der Lage der Fahrspur wie in \ref{ssec:fahrspurerkennung:kalman:messung}
 erläutert

@@ -36,7 +36,7 @@ Ein nicht zu vernachlässigendes Problem stellt allerdings noch die Initialisier
 Die zwei initialen Masken für die Randlinien werden anschließend aus der approximierten Funktion dritten Grades der Mittellinie gebildet. Dies geschieht aus der gerichteten Verschiebung diskreter Punkte der Approximation. Gleichung~\ref{eq:polynom3} sei eine mathematische Beschreibung der Funktion, die den Linienverlauf approximiert, dann ist Gleichung~\ref{eq:derr_polynom3} die Ableitung, welche den Anstieg an den Stellen \( x \) beschreibt. Der Verschiebungsvektor \( \boldsymbol{r} \) steht dann senkrecht auf \( f \).
 
 \begin{eqnarray}
-f(\gls{lat:xcoord}) & = & ax^3 + bx^2 +cx +d  \label{eq:polynom3} 	\\
+f(\gls{x}) & = & ax^3 + bx^2 +cx +d  \label{eq:polynom3} 	\\
 f’(x) & = & 3ax^2 + 2bx +c \label{eq:derr_polynom3} 							\\
 \boldsymbol{r} & = & \frac{1}{\sqrt{(-f’(x))^2 + 1}} \cdot
 \begin{pmatrix}
