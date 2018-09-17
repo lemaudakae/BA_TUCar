@@ -21,3 +21,7 @@ git status % selbsterklärend
 
 sudo apt-get install git-gui 
 git gui 
+
+-hilfreiche Tools:
+regexxer 	–> zum Suchen und Ersetzen
+meld		–> zum Anschauen der Veränderungen von versionierten Dateien
