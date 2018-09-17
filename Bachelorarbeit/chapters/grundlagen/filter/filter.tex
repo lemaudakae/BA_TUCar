@@ -7,11 +7,11 @@ Das Ziel in der Bildverarbeitung ist meist die Extraktion von Informaionen bzw. 
 f_1(\gls{lat:time}) \ast f_2(\gls{lat:time}) = \int \limits_{-\infty}^{+\infty} f_1(\gls{gre:laufvar_faltung}) \cdot f_2(\gls{lat:time}-\gls{gre:laufvar_faltung})d\gls{gre:laufvar_faltung}
 \end{equation}
 
- Die Bildmatrix und der Filterkern sind aber diskret. Deswegen wird das Integral zu einer Summe. Seien \gls{lat:BildmatrixGefiltert} das gefilterte, \gls{lat:BildmatrixOriginal} das originale Bild, \gls{lat:Filterkernmatrix} der Filterkern, \gls{lat:FilterkernZeilen} und \gls{lat:FilterkernSpalten} dessen Matrixdimensionen und (\gls{lat:FilterkernMitteX},\gls{lat:FilterkernMitteY}) der Mittelpunkt des Filterkerns, dann ergibt sich folgende Berechnungsformel für die diskrete Faltung:
+ Die Bildmatrix und der Filterkern sind aber diskret. Deswegen wird das Integral zu einer Summe. Seien \gls{lat:BildmatrixGefiltert} das gefilterte, \gls{lat:BildmatrixOriginal} das originale Bild, \mtx{F} der Filterkern, \scl{k} und \scl{l} dessen Matrixdimensionen und (\scl{o_x},\scl{o_y}) der Mittelpunkt des Filterkerns, dann ergibt sich folgende Berechnungsformel für die diskrete Faltung:
 
 % Formel diskrete Faltung:
 \begin{equation}
-\gls{lat:BildmatrixGefiltert}(\gls{x},\gls{y}) = \sum_{\gls{lat:LaufvariableI}=1}^{\gls{lat:FilterkernZeilen}} \sum_{\gls{lat:LaufvariableJ}=1}^{\gls{lat:FilterkernSpalten}} \gls{lat:BildmatrixOriginal}(\gls{x}-\gls{lat:LaufvariableI}+\gls{lat:FilterkernMitteX}, \gls{y}-\gls{lat:LaufvariableJ}+\gls{lat:FilterkernMitteY}) \cdot \gls{lat:Filterkernmatrix}(\gls{lat:LaufvariableI},\gls{lat:LaufvariableJ})
+\gls{lat:BildmatrixGefiltert}(\gls{x},\gls{y}) = \sum_{\scl{i}=1}^{\scl{k}} \sum_{\scl{j}=1}^{\scl{l}} \gls{lat:BildmatrixOriginal}(\gls{x}-\scl{i}+\scl{o_x}, \gls{y}-\scl{j}+\scl{o_y}) \cdot \mtx{F}(\scl{i},\scl{j})
 \end{equation}
 
 Ein Faltungsfilter berechnet also den Wert des neuen Pixels aus dem gewichteten Mittelwert der umliegenden Pixel innerhalb des Filterkerns. Je nachdem, nach welcher Funktion gewichtet wird, ergibt sich der Name des Filters und was er in dem Bild bewirkt. 
@@ -21,11 +21,11 @@ Eine gute Möglichkeit, Rechenzeit mit einem zweidimensionalen Filter einzuspare
 
 \subsection{Gauß-Filter}
 
-Der Filterkern des Gauß-Filters stellt sich aus der diskretisierten Normalverteilung auf. Dieses Filter ist ein Tiefpassfilter und wird zur Glättung und zum Weichzeichnen verwendet. Hierbei wird angenommen, dass das Bildrauschen normal verteilt ist. Es kann mit diesem Filter vermindert werden. Die diskrete Impulsantwort in zwei Dimensionen ergibt sich, wenn man die Dichtefunktionen \gls{lat:normalverteilung} beider Richtungen \gls{x} und \gls{y} miteinander multipliziert.
+Der Filterkern des Gauß-Filters stellt sich aus der diskretisierten Normalverteilung auf. Dieses Filter ist ein Tiefpassfilter und wird zur Glättung und zum Weichzeichnen verwendet. Hierbei wird angenommen, dass das Bildrauschen normal verteilt ist. Es kann mit diesem Filter vermindert werden. Die diskrete Impulsantwort in zwei Dimensionen ergibt sich, wenn man die Dichtefunktionen \scl{h} beider Richtungen \gls{x} und \gls{y} miteinander multipliziert.
 
 % Formel für Gauß-Funktion (Impulsantwort bei zwei Dimensionen)
 \begin{equation}
-\gls{lat:normalverteilung}(\gls{x},\gls{y}) = \frac{1}{2 {\gls{gre:pi} \gls{gre:standartabweichung}}^2} \cdot \gls{lat:eulnum}^{-\frac{{\gls{x}}^2+{\gls{y}}^2}{2{\gls{gre:standartabweichung}}^2}}
+\scl{h}(\gls{x},\gls{y}) = \frac{1}{2 {\gls{gre:pi} \gls{gre:standartabweichung}}^2} \cdot \gls{lat:eulnum}^{-\frac{{\gls{x}}^2+{\gls{y}}^2}{2{\gls{gre:standartabweichung}}^2}}
 %\label{eq:gaussfkt}
 \end{equation}
 

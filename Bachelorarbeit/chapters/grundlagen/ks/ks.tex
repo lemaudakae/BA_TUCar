@@ -11,16 +11,16 @@ Um ein Modellauto steuern zu können, werden unter anderem die Informationen üb
 
 Das Weltkoordinatensystem \gls{lat:WeltKOS} bildet die Basis und ist an einem beliebigen Punkt des Szenarios festgemacht. Es dient zur Beschreibung der Pose des mobilen Roboters und der Linienpunkte in der Weltkarte. Damit sich die Pixelkoordinaten des Bildes nicht von der Matrixindizierung unterscheiden, wird das Bildkoordinatensystem \gls{lat:BildKOS} in die linke obere Ecke des entzerrten Fotos gelegt. So zeigt die x-Achse in Richtung der Zeilen und die Spalten laufen mit der y-Koordinate. In der Hinterachse des Autos liegt das Roboterkoordinatensystem \gls{lat:RoboterKOS}, welches in der Lage zum Weltkoordinatensystem die Pose darstellt. Zwischenzeitlich hatten wir zusätzlich ein Linienkoordinatensystem \gls{lat:LinienKOS} festgelegt, welches so in der Bildecke platziert war, dass dessen x-Achse parallel zu der erwarteten Farbahnmarkierung verläuft, wenn das Auto auf einem geraden Abschnitt fährt. Der Grund dafür war die anfängliche Beschreibung der Linie mit einem Polynom dritten Grades und die zuerst ungewisse Orientierung der angebrachten Kamera. Dafür war es wichtig, dass die Fahrspur im \gls{acr:ks} keine Parallele zur Ordinate darstellt, da sie in diesem Fall schlecht durch ein Polynom hätte approximiert werden können. In Abbildung~\ref{fig:fahrspurerkennung_ransac_binarisieren} ist beispielsweise eine alte Kameraeinstellung zu sehen, in welcher das Linienkoordinatensystem zur Anwendung gekommen ist. Außerdem gibt es zwei zum Einsatz gekommene Einheiten. Punkte im Welt- und Roboterkoordinatensystem werden in Millimetern und im Bild- und Linienkoordinatensystem in Pixeln beschrieben. Ein Pixel entspricht ungefähr 3,9 Millimetern.
 
-Um einen Punktvektor \( \gls{lat:ks_punkt}^{\gls{lat:BildKOS}} \) in ein anderes \gls{acr:ks} zu transformieren, bedarf es einer Verschiebung (Translation) in Richtung eines Verschiebungsvektors \gls{lat:Translationsvektor} und einer Drehung \gls{lat:Rotationsmatrix} (Rotation) um eine Achse. Da sich unser Roboter nur in der \(  \gls{x}_{\gls{lat:WeltKOS}} \gls{y}_{\gls{lat:WeltKOS}} \)-Ebene bewegt, wird hier also nur um die \( \gls{z}_{\gls{lat:WeltKOS}} \)-Achse gedreht.  
+Um einen Punktvektor \( \pnt{p}^{\gls{lat:BildKOS}} \) in ein anderes \gls{acr:ks} zu transformieren, bedarf es einer Verschiebung (Translation) in Richtung eines Verschiebungsvektors \gls{lat:Translationsvektor} und einer Drehung \gls{lat:Rotationsmatrix} (Rotation) um eine Achse. Da sich unser Roboter nur in der \(  \gls{x}_{\gls{lat:WeltKOS}} \gls{y}_{\gls{lat:WeltKOS}} \)-Ebene bewegt, wird hier also nur um die \( \gls{z}_{\gls{lat:WeltKOS}} \)-Achse gedreht.  
 Mathematisch lassen sich der Translationsvektor \gls{lat:Translationsvektor} und die Rotationsmatrix \gls{lat:Rotationsmatrix} wie folgt darstellen \autocite{bajdRobotics2010}.
 
 % Formel für den Translationsvektor t
 \begin{equation}
 \gls{lat:Translationsvektor} = 
 \begin{pmatrix}
-\gls{lat:x_Komp_t} 	\\
-\gls{lat:y_Komp_t} 	\\
-\gls{lat:z_Komp_t}     	\\
+\scl{t_x} 	\\
+\scl{t_y} 	\\
+\scl{t_z}     	\\
 \end{pmatrix}
 , \qquad
 % Formel für R = Rot(z,\theta) //(Rotationsmatrix)
@@ -32,8 +32,8 @@ Mathematisch lassen sich der Translationsvektor \gls{lat:Translationsvektor} und
 \end{pmatrix}
 \end{equation} 		
 
-Die Matrix \gls{lat:Transformationsmatrix}, welche die Punkte \gls{lat:ks_punkt} transformiert, sodass 
-\( \gls{lat:ks_punkt}_{\gls{lat:AllgKOS}_2} = \gls{lat:Transformationsmatrix}_{\gls{lat:AllgKOS}_2\gls{lat:AllgKOS}_1} \cdot  \gls{lat:ks_punkt}_{\gls{lat:AllgKOS}_1} \) gilt, heißt homogene Transformationsmatrix und wird folgendermaßen aufgestellt:
+Die Matrix \gls{lat:Transformationsmatrix}, welche die Punkte \pnt{p} transformiert, sodass 
+\( \pnt{p}_{\gls{lat:AllgKOS}_2} = \gls{lat:Transformationsmatrix}_{\gls{lat:AllgKOS}_2\gls{lat:AllgKOS}_1} \cdot  \pnt{p}_{\gls{lat:AllgKOS}_1} \) gilt, heißt homogene Transformationsmatrix und wird folgendermaßen aufgestellt:
 
 % Formel für die Transformationsmatrix T
 \begin{equation}
@@ -44,9 +44,9 @@ Die Matrix \gls{lat:Transformationsmatrix}, welche die Punkte \gls{lat:ks_punkt}
 \end{pmatrix}
 =
 \begin{pmatrix}
-\cos{\gls{gre:rotwinkel}} & -\sin{\gls{gre:rotwinkel}} & {0} & \gls{lat:x_Komp_t} 	\\
-\sin{\gls{gre:rotwinkel}} & \cos{\gls{gre:rotwinkel}} & {0} & \gls{lat:y_Komp_t} 	\\
-{0} & {0} & {1} & \gls{lat:z_Komp_t} 				    	\\
+\cos{\gls{gre:rotwinkel}} & -\sin{\gls{gre:rotwinkel}} & {0} & \scl{t_x} 	\\
+\sin{\gls{gre:rotwinkel}} & \cos{\gls{gre:rotwinkel}} & {0} & \scl{t_y} 	\\
+{0} & {0} & {1} & \scl{t_z} 				    	\\
 0 & 0 & 0 & 1 						\\
 \end{pmatrix}
 \end{equation}
@@ -60,13 +60,13 @@ Den zu transformierenden Punkten muss dazu noch eine Zeile mit einer \(1\) hinzu
 \gls{lat:Transformationsmatrix}_{\gls{lat:RoboterKOS} \gls{lat:BildKOS}}
 \end{equation}
 
-Sind die einzelnen homogenen, aufeinanderfolgenden Transformationsmatrizen einmal aufgestellt, lassen sich durch deren Matrixmultiplikation die noch Fehlenden bilden. Soll in die umgekehrte Richtung transformiert werden, muss die Inverse der Transformationsmatrix genommen werden. Ein Beispiel für die Transformation des Punktes \( \gls{lat:ks_punkt}_{\gls{lat:RoboterKOS}} \) in Weltkoordinaten sieht dann so aus:
+Sind die einzelnen homogenen, aufeinanderfolgenden Transformationsmatrizen einmal aufgestellt, lassen sich durch deren Matrixmultiplikation die noch Fehlenden bilden. Soll in die umgekehrte Richtung transformiert werden, muss die Inverse der Transformationsmatrix genommen werden. Ein Beispiel für die Transformation des Punktes \( \pnt{p}_{\gls{lat:RoboterKOS}} \) in Weltkoordinaten sieht dann so aus:
 
 % Beispielformel
 \begin{equation}
-\gls{lat:ks_punkt}_{\gls{lat:WeltKOS}} =
+\pnt{p}_{\gls{lat:WeltKOS}} =
 \gls{lat:Transformationsmatrix}_{\gls{lat:WeltKOS} \gls{lat:RoboterKOS}} \cdot 
-\gls{lat:ks_punkt}_{\gls{lat:RoboterKOS}} =
+\pnt{p}_{\gls{lat:RoboterKOS}} =
 \begin{pmatrix}
 \cos{30^\circ} & -\sin{30^\circ} & {0} & 420 	\\
 \sin{30^\circ} & \cos{30^\circ} & {0} & 170 	\\
