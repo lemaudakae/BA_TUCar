@@ -10,10 +10,10 @@ Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt soll d
 \begin{equation}
 \label{eq:polylane}
 \gls{y}(\gls{x}) =
-\gls{lat:cfpa} +
-\gls{lat:cfpb} \cdot \gls{x} +
-\gls{lat:cfpc} \cdot \gls{x}^2 +
-\gls{lat:cfpd} \cdot \gls{x}^3
+\scl{a} +
+\scl{b} \cdot \gls{x} +
+\scl{c} \cdot \gls{x}^2 +
+\scl{d} \cdot \gls{x}^3
 \end{equation}
 \begin{equation}
 \label{eq:statevectorlane}
@@ -26,10 +26,10 @@ Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt soll d
 \end{pmatrix}
 =
 \begin{pmatrix}
-\gls{lat:cfpa} \\
-\gls{lat:cfpb} \\
-2 \cdot \gls{lat:cfpc} \\
-6 \cdot \gls{lat:cfpd} \\
+\scl{a} \\
+\scl{b} \\
+2 \cdot \scl{c} \\
+6 \cdot \scl{d} \\
 \end{pmatrix}
 =
 \begin{pmatrix}
@@ -68,44 +68,44 @@ Um auch die Mittelpunkte der äußeren Fahrbahnmarkierungen detektieren zu könn
  
 \subsection{Zustandsraumbeschreibung}
 Da die Herleitung der diskreten Zustandsraumbeschreibung zum aufgestellten Fahrspurmodell einfacher ist als der Umweg über eine kontinuierliche Zustandsraumbeschreibung, wird dieser Ansatz nun verfolgt.
-Die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} bildet den momentanen \glsdesc{lat:statevector} \(\gls{lat:statevector}(\gls{lat:iter})\) auf den folgenden \glsdesc{lat:statevector} \(\gls{lat:statevector}(\gls{lat:iter}+1)\) ab, ohne äußere Einflüsse auf das System zu berücksichtigen. Die Lage der Fahrbahnmarkierungen im nächsten Bild soll also auf Basis des aktuellen Bildes vorhergesagt werden.
+Die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} bildet den momentanen \glsdesc{lat:statevector} \(\gls{lat:statevector}(\scl{k})\) auf den folgenden \glsdesc{lat:statevector} \(\gls{lat:statevector}(\scl{k}+1)\) ab, ohne äußere Einflüsse auf das System zu berücksichtigen. Die Lage der Fahrbahnmarkierungen im nächsten Bild soll also auf Basis des aktuellen Bildes vorhergesagt werden.
 
 \subsubsection{Vereinfachungen}
-Der Einfluss des Lenkwinkels wird vernachlässigt, da er bei kurzer \glsdesc{lat:periodictime} \gls{lat:periodictime} und kleiner Größe seiner selbst kaum Einfluss auf die Lage der Fahrbahn im Folgebild nimmt. Das Fahrzeug bewegt sich also geradlinig in Richtung der x-Achse des Fahrspurkoordinatensystems \gls{lat:LinienKOS}. 
+Der Einfluss des Lenkwinkels wird vernachlässigt, da er bei kurzer \glsdesc{lat:periodictime} \scl{T_s} und kleiner Größe seiner selbst kaum Einfluss auf die Lage der Fahrbahn im Folgebild nimmt. Das Fahrzeug bewegt sich also geradlinig in Richtung der x-Achse des Fahrspurkoordinatensystems \gls{lat:LinienKOS}. 
 
 \subsubsection{Herleitung der \glsdesc{lat:systemmatrix}}
-Der zurückgelegte Weg \begin{math} \gls{lat:distpic}_{\gls{lat:LinienKOS}} \end{math} zwischen zwei Bildaufnahmenpunkten kann direkt aus den Encodern des Fahrzeugs ausgelesen werden. Der Folgezustand  \(\gls{lat:statevector}(\gls{lat:iter}+1)\) wird wie folgt berechnet:
+Der zurückgelegte Weg \begin{math} \scl{Deltagls{x}}_{\gls{lat:LinienKOS}} \end{math} zwischen zwei Bildaufnahmenpunkten kann direkt aus den Encodern des Fahrzeugs ausgelesen werden. Der Folgezustand  \(\gls{lat:statevector}(\scl{k}+1)\) wird wie folgt berechnet:
 \begin{equation}
 \label{eq:nextstatemapping}
-\hat{\gls{lat:statevector}}(\gls{lat:iter}+1) =
+\hat{\gls{lat:statevector}}(\scl{k}+1) =
 \begin{pmatrix}
-\gls{y}_{\gls{lat:LinienKOS}\gls{lat:iter}}(\gls{lat:distpic}_{\gls{lat:LinienKOS}}) \\
-\der{\gls{y}_{\gls{lat:LinienKOS}\gls{lat:iter}}}(\gls{lat:distpic}_{\gls{lat:LinienKOS}}) \\
-\derII{\gls{y}_{\gls{lat:LinienKOS}\gls{lat:iter}}}(\gls{lat:distpic}_{\gls{lat:LinienKOS}}) \\
-\derIII{\gls{y}_{\gls{lat:LinienKOS}\gls{lat:iter}}}(\gls{lat:distpic}_{\gls{lat:LinienKOS}}) \\
+\gls{y}_{\gls{lat:LinienKOS}\scl{k}}(\scl{Deltagls{x}}_{\gls{lat:LinienKOS}}) \\
+\der{\gls{y}_{\gls{lat:LinienKOS}\scl{k}}}(\scl{Deltagls{x}}_{\gls{lat:LinienKOS}}) \\
+\derII{\gls{y}_{\gls{lat:LinienKOS}\scl{k}}}(\scl{Deltagls{x}}_{\gls{lat:LinienKOS}}) \\
+\derIII{\gls{y}_{\gls{lat:LinienKOS}\scl{k}}}(\scl{Deltagls{x}}_{\gls{lat:LinienKOS}}) \\
 \end{pmatrix}
 \end{equation}
 
-In \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} wird beschrieben, dass sich aufgrund von Nichtlinearität aus \ref{eq:nextstatemapping} keine äquivalente Matrix A aufstellen lässt. Da diese Nichtlinearität jedoch nur in Bezug auf  \gls{lat:distpic} und nicht den \glsdesc{lat:statevector} \gls{lat:statevector} besteht, ist dies trotz dessen möglich. Aus \eqref{eq:polylanestate}, \eqref{eq:nextstatemapping} und der Bewegung des Fahrzeugs entlang der x-Achse des Fahrspurkoordinatensystems \gls{lat:LinienKOS} um \gls{lat:distpic} folgt:
+In \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} wird beschrieben, dass sich aufgrund von Nichtlinearität aus \ref{eq:nextstatemapping} keine äquivalente Matrix A aufstellen lässt. Da diese Nichtlinearität jedoch nur in Bezug auf  \scl{Deltagls{x}} und nicht den \glsdesc{lat:statevector} \gls{lat:statevector} besteht, ist dies trotz dessen möglich. Aus \eqref{eq:polylanestate}, \eqref{eq:nextstatemapping} und der Bewegung des Fahrzeugs entlang der x-Achse des Fahrspurkoordinatensystems \gls{lat:LinienKOS} um \scl{Deltagls{x}} folgt:
 \begin{equation}
 \begin{split}
 \label{eq:nextstatemappingmatrix}
-\hat{\gls{lat:statevector}}(\gls{lat:iter}+1) = &
+\hat{\gls{lat:statevector}}(\scl{k}+1) = &
 \begin{pmatrix}
 \gls{lat:lateraloffset} +
-\gls{gre:yawangle} \cdot \gls{lat:distpic} +
-\frac{1}{2} \cdot \gls{lat:curvature} \cdot (\gls{lat:distpic})^2 +
-\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot (\gls{lat:distpic})^3 \\
-\gls{gre:yawangle} + \gls{lat:curvature} \cdot \gls{lat:distpic} +
-\frac{1}{2} \cdot \gls{lat:curvaturechange} \cdot (\gls{lat:distpic})^2 \\
-\gls{lat:curvature} + \gls{lat:curvaturechange} \cdot \gls{lat:distpic} \\
+\gls{gre:yawangle} \cdot \scl{Deltagls{x}} +
+\frac{1}{2} \cdot \gls{lat:curvature} \cdot (\scl{Deltagls{x}})^2 +
+\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot (\scl{Deltagls{x}})^3 \\
+\gls{gre:yawangle} + \gls{lat:curvature} \cdot \scl{Deltagls{x}} +
+\frac{1}{2} \cdot \gls{lat:curvaturechange} \cdot (\scl{Deltagls{x}})^2 \\
+\gls{lat:curvature} + \gls{lat:curvaturechange} \cdot \scl{Deltagls{x}} \\
 \gls{lat:curvaturechange}
 \end{pmatrix} \\
 & \begin{pmatrix}
-1 &  \gls{lat:distpic} & \frac{1}{2} \cdot (\gls{lat:distpic})^2 & 
-\frac{1}{6} \cdot (\gls{lat:distpic})^3 \\
-0 & 1 &  \gls{lat:distpic} & \frac{1}{2} \cdot (\gls{lat:distpic})^2 \\
-0 & 0 & 1 &  \gls{lat:distpic} \\
+1 &  \scl{Deltagls{x}} & \frac{1}{2} \cdot (\scl{Deltagls{x}})^2 & 
+\frac{1}{6} \cdot (\scl{Deltagls{x}})^3 \\
+0 & 1 &  \scl{Deltagls{x}} & \frac{1}{2} \cdot (\scl{Deltagls{x}})^2 \\
+0 & 0 & 1 &  \scl{Deltagls{x}} \\
 0 & 0 & 0 & 1
 \end{pmatrix}
 \cdot
@@ -130,18 +130,18 @@ Die in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} durch 
 
 \begin{equation}
 \label{eq:nextstatemappingmatrixlinear}
-\hat{\gls{lat:statevector}}(\gls{lat:iter}+1) =
+\hat{\gls{lat:statevector}}(\scl{k}+1) =
 \begin{pmatrix}
-\gls{lat:lateraloffset} + \gls{gre:yawangle} \cdot \gls{lat:distpic} \\
-\gls{gre:yawangle} + \gls{lat:curvature} \cdot \gls{lat:distpic}\\
-\gls{lat:curvature} + \gls{lat:curvaturechange} \gls{lat:distpic} \\
+\gls{lat:lateraloffset} + \gls{gre:yawangle} \cdot \scl{Deltagls{x}} \\
+\gls{gre:yawangle} + \gls{lat:curvature} \cdot \scl{Deltagls{x}}\\
+\gls{lat:curvature} + \gls{lat:curvaturechange} \scl{Deltagls{x}} \\
 \gls{lat:curvaturechange}
 \end{pmatrix}
 =
 \begin{pmatrix}
-1 &  \gls{lat:distpic} & 0 & 0 \\
-0 & 1 &  \gls{lat:distpic} & 0 \\
-0 & 0 & 1 &  \gls{lat:distpic} \\
+1 &  \scl{Deltagls{x}} & 0 & 0 \\
+0 & 1 &  \scl{Deltagls{x}} & 0 \\
+0 & 0 & 1 &  \scl{Deltagls{x}} \\
 0 & 0 & 0 & 1
 \end{pmatrix}
 \cdot
@@ -170,7 +170,7 @@ Die in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} durch 
 (\gls{x}-\gls{x}_0)
 \end{equation}
 
-Da sich die gefahrene Strecke \begin{math} \gls{lat:distpic}_{\gls{lat:LinienKOS}} \end{math} zwischenden Aufnahmepunkten zweier Bildern geringfügig ändern kann, muss die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} vor jedem Prädikationsschritt neu berechnet werden.
+Da sich die gefahrene Strecke \begin{math} \scl{Deltagls{x}}_{\gls{lat:LinienKOS}} \end{math} zwischenden Aufnahmepunkten zweier Bildern geringfügig ändern kann, muss die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} vor jedem Prädikationsschritt neu berechnet werden.
 
 \subsubsection{\glsdesc{lat:inputmatrix}}
 Die \glsdesc{lat:inputmatrix} \gls{lat:inputmatrix} modelliert äußere Einflüsse auf die Entwicklung des Systemzustandes \gls{lat:statevector}. Dies könnten z.B. Änderungen des Lenkwinkels sein. Da selbiger jedoch schon bei der Herleitung der \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} vernachlässigt wurde, kann \gls{lat:inputmatrix} bei weiteren Untersuchungen unberücksichtigt bleiben.
@@ -185,7 +185,7 @@ Die \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} bildet den Systemzustand \
 \gls{y}_{\gls{lat:LinienKOS}1} \\
 \gls{y}_{\gls{lat:LinienKOS}2} \\
 \vdots \\
-\gls{y}_{\gls{lat:LinienKOS}\gls{lat:naturalnumber}}
+\gls{y}_{\gls{lat:LinienKOS}\scl{n}}
 \end{pmatrix}
 =
 \begin{pmatrix}
@@ -199,10 +199,10 @@ Die \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} bildet den Systemzustand \
 \frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot \gls{x}_{\gls{lat:LinienKOS}2}^3  \\
 \vdots \\
 \gls{lat:lateraloffset} +
-\gls{gre:yawangle} \cdot \gls{x}_{\gls{lat:LinienKOS}\gls{lat:naturalnumber}} +
-\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{x}_{\gls{lat:LinienKOS}\gls{lat:naturalnumber}}^2 +
+\gls{gre:yawangle} \cdot \gls{x}_{\gls{lat:LinienKOS}\scl{n}} +
+\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{x}_{\gls{lat:LinienKOS}\scl{n}}^2 +
 \frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot 
-\gls{x}_{\gls{lat:LinienKOS}\gls{lat:naturalnumber}}^3  
+\gls{x}_{\gls{lat:LinienKOS}\scl{n}}^3  
 \end{pmatrix} \\
 & =
 \begin{pmatrix}
@@ -211,9 +211,9 @@ Die \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} bildet den Systemzustand \
 1 & \gls{x}_{\gls{lat:LinienKOS}2} & \frac{1}{2} \cdot \gls{x}_{\gls{lat:LinienKOS}2}^2 &
 \frac{1}{6} \cdot \gls{x}_{\gls{lat:LinienKOS}2}^3  \\
 \vdots & \vdots & \vdots & \vdots \\
-1 & \gls{x}_{\gls{lat:LinienKOS}\gls{lat:naturalnumber}} & 
-\frac{1}{2} \cdot \gls{x}_{\gls{lat:LinienKOS}\gls{lat:naturalnumber}}^2 &
-\frac{1}{6} \cdot \gls{x}_{\gls{lat:LinienKOS}\gls{lat:naturalnumber}}^3
+1 & \gls{x}_{\gls{lat:LinienKOS}\scl{n}} & 
+\frac{1}{2} \cdot \gls{x}_{\gls{lat:LinienKOS}\scl{n}}^2 &
+\frac{1}{6} \cdot \gls{x}_{\gls{lat:LinienKOS}\scl{n}}^3
 \end{pmatrix}
 \cdot
 \begin{pmatrix}
@@ -231,7 +231,7 @@ Wie in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} und \a
 \subsection{konkrete Implementierung des Kalman-Filters}
 Ist der \glsdesc{lat:statevector} \gls{lat:statevector} einmal wie in ~\ref{sssec:fahrspurerkennung:kalman:fahrspurmodell:initialisierung} beschrieben initialisiert, können die Gleichungen des Kalmanfilters bei Eintreffen eines neuen Bildes wie folgt berechnet werden:
 \begin{enumerate}
-\item Bildung der \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} mittels der seit dem letzten Bild gefahrenen Distanz \gls{lat:distpic}
+\item Bildung der \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} mittels der seit dem letzten Bild gefahrenen Distanz \scl{Deltagls{x}}
 \item Prädiktion des \glsdesc{lat:statevector} \gls{lat:statevector}, d.h. der Lage der Fahrspurmarkierungen im aktuellen Bild anhand von \eqref{eq:kalmanprediction}
 \item Messung der Lage der Fahrspur wie in \ref{ssec:fahrspurerkennung:kalman:messung}
 erläutert

@@ -93,31 +93,10 @@ description={Kovarianzmatrix},
 sort=lat_4m_p, type=latlist
 }
 %% Fahrspurverfolgung
-%%% Polynomkoeffizienten
-\newglossaryentry{lat:cfpa}{
-	name=\scl{a_{fp}},
-	description={Koeffizient 0. Ordnung des zur Fahrspurmodellierung genutzten Polynoms},
-	sort=lat_1s_a_f_p, type=latlist
-}
-\newglossaryentry{lat:cfpb}{
-	name=\scl{b_{fp}},
-	description={Koeffizient 1. Ordnung des zur Fahrspurmodellierung genutzten Polynoms},
-	sort=lat_1s_b_f_p, type=latlist
-}
-\newglossaryentry{lat:cfpc}{
-	name=\scl{c_{fp}},
-	description={Koeffizient 2. Ordnung des zur Fahrspurmodellierung genutzten Polynoms},
-	sort=lat_1s_c_f_p, type=latlist
-}
-\newglossaryentry{lat:cfpd}{
-	name=\scl{d_{fp}},
-	description={Koeffizient 3. Ordnung des zur Fahrspurmodellierung genutzten Polynoms},
-	sort=lat_1s_d_f_p, type=latlist
-}
 %%% Zustandsvektor
 \newglossaryentry{lat:lateraloffset}{
 name=\scl{y_0},
-description={Lateraler Versatz: Abstand der Fahrspurmitte vom Koordinatenursprung des Fahrspurkoordinatensystems???},
+description={Lateraler Versatz: Abstand der Fahrspurmitte vom Koordinatenursprung des Linienkoordinatensystems \gls{lat:LinienKOS}},
 sort=lat_1s_y_0, type=latlist
 }
 \newglossaryentry{lat:curvature}{
@@ -129,12 +108,6 @@ sort=lat_1s_c_0, type=latlist
 name=\scl{c_1},
 description={Änderungsrate der Fahrspurkrümmung},
 sort=lat_1s_c_1, type=latlist
-}
-%%%zurückgelegter Weg
-\newglossaryentry{lat:distpic}{
-	name=\scl{\Delta\gls{x}},
-	description={zurückgelegter Weg zwischen zwei Bildaufnahmenpunkten},
-	sort=lat_1s_c_1, type=latlist
 }
 
 % Allgemeines
@@ -148,25 +121,10 @@ name=\scl{v},
 description={Geschwindigkeit},
 sort=lat_1s_v, type=latlist
 }
-\newglossaryentry{lat:iter}{
-name=\scl{k},
-description={Iteration},
-sort=lat_1s_k, type=latlist
-}
 \newglossaryentry{lat:unitmatrix}{
 name=\mtx{I},
 description={Einheitsmatrix},
 sort=lat_4m_i, type=latlist
-}
-\newglossaryentry{lat:naturalnumber}{
-name=\scl{n},
-description={natürliche Zahl},
-sort=lat_1s_n, type=latlist
-}
-\newglossaryentry{lat:periodictime}{
-name=\scl{t_s},
-description={Periodendauer der Abtastung},
-sort=lat_1s_t_s, type=latlist
 }
 \newglossaryentry{x}{
 name=\scl{x},
@@ -188,113 +146,9 @@ name=\scl{e},
 description={eulersche Zahl \(e \approx 2,718\)},
 sort=lat_1s_e, type=latlist
 }
-%	\newglossaryentry{lat:func}{
-%	name=\ensuremath{f},
-%	description={Funktion},
-%	sort=lat_0_f, type=latlist
-%	}
-
-% Kameramodell
-\newglossaryentry{lat:ocv}{ %lat:cameravector
-name=\vct{v_{\gls{lat:OCKOS}}},
-description={Vom optischen Zentrum des Objektivs ausgehender Vektor},
-sort=lat_3v_v_o_c, type=latlist
-}
-\newglossaryentry{lat:osp}{ %lat:camerapoint
-name=\pnt{s_{\gls{lat:OSKOS}}},
-description={Punkt auf dem Bildsensor},
-sort=lat_2p_s_o_s, type=latlist
-}
-\newglossaryentry{lat:ocp}{
-name=\pnt{p_{\gls{lat:OCKOS}}},
-description={Punkt in der zur Rektifizierung erstellten Ebene},
-sort=lat_2p_p_o_s, type=latlist
-}
-%% Polynomkoeffizienten
-\newglossaryentry{lat:copa}{
-name=\scl{a_{op}},
-description={Koeffizient 0. Ordnung des bei der Kamerakalibration ermittelten Polynoms},
-sort=lat_1s_a_o_p, type=latlist
-}
-\newglossaryentry{lat:copb}{
-name=\scl{b_{op}},
-description={Koeffizient 1. Ordnung des bei der Kamerakalibration ermittelten Polynoms},
-sort=lat_1s_b_o_p, type=latlist
-}
-\newglossaryentry{lat:copc}{
-name=\scl{c_{op}},
-description={Koeffizient 2. Ordnung des bei der Kamerakalibration ermittelten Polynoms},
-sort=lat_1s_c_o_p, type=latlist
-}
-\newglossaryentry{lat:copd}{
-name=\scl{d_{op}},
-description={Koeffizient 3. Ordnung des bei der Kamerakalibration ermittelten Polynoms},
-sort=lat_1s_d_o_p, type=latlist
-}
-\newglossaryentry{lat:cope}{
-name=\scl{e_{op}},
-description={Koeffizient 4. Ordnung des bei der Kamerakalibration ermittelten Polynoms},
-sort=lat_1s_e_o_p, type=latlist
-}
-%% affine Transformation
-%%% Koeffizienten
-\newglossaryentry{lat:coac}{
-name=\scl{c_{oa}},
-description={Koeffizient der bei der Kamerakalibration ermittelten affinen Transformation},
-sort=lat_1s_c_o_a, type=latlist
-}
-\newglossaryentry{lat:coad}{
-name=\scl{d_{oa}},
-description={Koeffizient der bei der Kamerakalibration ermittelten affinen Transformation},
-sort=lat_1s_d_o_a, type=latlist
-}
-\newglossaryentry{lat:coae}{
-name=\scl{e_{oa}},
-description={Koeffizient der bei der Kamerakalibration ermittelten affinen Transformation},
-sort=lat_1s_e_o_a, type=latlist
-}
-%%% Verschiebungsvektor Bildmittelpunkt
-\newglossaryentry{lat:voa}{
-name=\vct{c_{\gls{lat:OSKOSR}\_\gls{lat:OSKOS}}},
-description={Verschiebungsvektor des Bildmittelpunktes (Koordinatenursprungs) von \gls{lat:OSKOS} zu \gls{lat:OSKOSR}},
-sort=lat_3v_c_o_a, type=latlist
-}
-%Riverflow
-%%Randlinie
-\newglossaryentry{lat:vvrrp}{
-	name=\vct{v_{rrp\gls{lat:BildKOS}}},
-	description={Verschiebungsvektor zwischen 2 auf der Randline gefundenen Punkten},
-	sort=lat_3v_v_v_r_r_p, type=latlist
-}
-\newglossaryentry{lat:vvrrpx}{
-	name=\scl{\gls{x}_{\gls{lat:vvrrp}}},
-	description={x-Koordinate des Verschiebungsvektors zwischen 2 auf der Randline gefundenen Punkten},
-	sort=lat_1s_v_v_r_r_p_x, type=latlist
-}
-\newglossaryentry{lat:vvrrpy}{
-	name=\scl{\gls{y}_{\gls{lat:vvrrp}}},
-	description={y-Koordinate des Verschiebungsvektors zwischen 2 auf der Randline gefundenen Punkten},
-	sort=lat_1s_v_v_r_r_p_y, type=latlist
-}
-\newglossaryentry{lat:prr}{
-	name=\pnt{p_{rr\gls{lat:BildKOS}}},
-	description={auf der Randline gefundener Punkt},
-	sort=lat_2p_p_r_r, type=latlist
-}
-\newglossaryentry{lat:mrrs}{
-	name=\pnt{m_{rrs\gls{lat:BildKOS}}},
-	description={Mittelpunkt einer Scanline},
-	sort=lat_2p_m_r_r_s, type=latlist
-}
-
 
 % ----------- Daniels Einträge: ------------------ %%
 % Transformationsmatrizen
-\newglossaryentry{lat:ks_punkt}{
-name=\pnt{q},
-description={Punkt allgemein in einem Koordinatensystem},
-sort=lat_2p_q, type=latlist
-}
 \newglossaryentry{lat:Translationsvektor}{
 name=\vct{t},
 description={Translationsvektor},
@@ -354,25 +208,9 @@ sort=lat_5k_osr, type=latlist
 
 % Fahrzeug Abmessung Radstand
 \newglossaryentry{lat:radstand}{
-name=\scl{l},
+name=\scl{w},
 description={Radstand (mittlerer Abstand zwischen Vorder-und Hinterachse eines Fahrzeugs)},
 sort=lat_1s_l, type=latlist
-}
-% KS-Komponenten
-\newglossaryentry{lat:x_Komp_t}{
-name=\scl{a_t},
-description={x-Komponente vom Translationsvektor},
-sort=lat_1s_a_t, type=latlist
-}
-\newglossaryentry{lat:y_Komp_t}{
-name=\scl{b_t},
-description={y-Komponente vom Translationsvektor},
-sort=lat_1s_b_t, type=latlist
-}
-\newglossaryentry{lat:z_Komp_t}{
-name=\scl{c_t},
-description={z-Komponente vom Translationsvektor},
-sort=lat_1s_c_t, type=latlist
 }
 % Bildmatrizen
 \newglossaryentry{lat:BildmatrixOriginal}{
@@ -384,46 +222,6 @@ sort=lat_4m_m, type=latlist
 name=\ensuremath{\mtx{M}^{\ast}},
 description={Matrix des gefilterten Bildes},
 sort=lat_4m_m_stern, type=latlist
-}
-\newglossaryentry{lat:Filterkernmatrix}{
-name=\mtx{F},
-description={Matrix des Filterkerns eines Faltungsfilters},
-sort=lat_4m_f, type=latlist
-}
-\newglossaryentry{lat:FilterkernZeilen}{
-	name=\scl{q},
-	description={Zeilen der Faltungsfilterkernmatrix},
-	sort=lat_1s_q, type=latlist
-}
-\newglossaryentry{lat:FilterkernSpalten}{
-	name=\scl{r},
-	description={Spalten der Faltungsfilterkernmatrix},
-	sort=lat_1s_r, type=latlist
-}
-\newglossaryentry{lat:FilterkernMitteX}{
-	name=\scl{x_m},
-	description={x-Komponente der Mittelpunktes des Faltungsfilterkerns},
-	sort=lat_1s_x_m, type=latlist
-}
-\newglossaryentry{lat:FilterkernMitteY}{
-	name=\scl{y_m},
-	description={y-Komponente der Mittelpunktes des Faltungsfilterkerns},
-	sort=lat_1s_y_m, type=latlist
-}
-\newglossaryentry{lat:LaufvariableI}{
-	name=\scl{i},
-	description={Laufvariable},
-	sort=lat_1s_i, type=latlist
-}
-\newglossaryentry{lat:LaufvariableJ}{
-	name=\scl{j},
-	description={Laufvariable},
-	sort=lat_1s_j, type=latlist
-}
-\newglossaryentry{lat:normalverteilung}{
-	name=\scl{h},
-	description={Dichtefunktion der Gauß- oder Normalverteilung},
-	sort=lat_1s_h, type=latlist
 }
 \newglossaryentry{lat:houghAchsenabschnitt}{
 	name=\scl{a_h},
