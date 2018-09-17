@@ -7,11 +7,11 @@ Das Ziel in der Bildverarbeitung ist meist die Extraktion von Informaionen bzw. 
 f_1(\gls{lat:time}) \ast f_2(\gls{lat:time}) = \int \limits_{-\infty}^{+\infty} f_1(\gls{gre:laufvar_faltung}) \cdot f_2(\gls{lat:time}-\gls{gre:laufvar_faltung})d\gls{gre:laufvar_faltung}
 \end{equation}
 
- Die Bildmatrix und der Filterkern sind aber diskret. Deswegen wird das Integral zu einer Summe. Seien \gls{lat:BildmatrixGefiltert} das gefilterte und \gls{lat:BildmatrixOriginal} das originale Bild, \gls{lat:Filterkernmatrix} der Filterkern, \(m\) und \(n\) dessen Matrixdimensionen und \( (a,b) \) der Mittelpunkt des Filterkerns, dann ergibt sich folgende Berechnungsformel für die diskrete Faltung:
+ Die Bildmatrix und der Filterkern sind aber diskret. Deswegen wird das Integral zu einer Summe. Seien \gls{lat:BildmatrixGefiltert} das gefilterte, \gls{lat:BildmatrixOriginal} das originale Bild, \gls{lat:Filterkernmatrix} der Filterkern, \gls{lat:FilterkernZeilen} und \gls{lat:FilterkernSpalten} dessen Matrixdimensionen und (\gls{lat:FilterkernMitteX},\gls{lat:FilterkernMitteY}) der Mittelpunkt des Filterkerns, dann ergibt sich folgende Berechnungsformel für die diskrete Faltung:
 
 % Formel diskrete Faltung:
 \begin{equation}
-\gls{lat:BildmatrixGefiltert}(x,y) = \sum_{i=1}^{m} \sum_{j=1}^{n} \gls{lat:BildmatrixOriginal}(x-i+a, y-j+b) \cdot \gls{lat:Filterkernmatrix}(i,j)
+\gls{lat:BildmatrixGefiltert}(\gls{x},\gls{y}) = \sum_{\gls{lat:LaufvariableI}=1}^{\gls{lat:FilterkernZeilen}} \sum_{\gls{lat:LaufvariableJ}=1}^{\gls{lat:FilterkernSpalten}} \gls{lat:BildmatrixOriginal}(\gls{x}-\gls{lat:LaufvariableI}+\gls{lat:FilterkernMitteX}, \gls{y}-\gls{lat:LaufvariableJ}+\gls{lat:FilterkernMitteY}) \cdot \gls{lat:Filterkernmatrix}(\gls{lat:LaufvariableI},\gls{lat:LaufvariableJ})
 \end{equation}
 
 Ein Faltungsfilter berechnet also den Wert des neuen Pixels aus dem gewichteten Mittelwert der umliegenden Pixel innerhalb des Filterkerns. Je nachdem, nach welcher Funktion gewichtet wird, ergibt sich der Name des Filters und was er in dem Bild bewirkt. 
@@ -21,15 +21,15 @@ Eine gute Möglichkeit, Rechenzeit mit einem zweidimensionalen Filter einzuspare
 
 \subsection{Gauß-Filter}
 
-Der Filterkern des Gauß-Filters stellt sich aus der diskretisierten Gaußfunktion auf. Dieses Filter ist ein Tiefpassfilter und wird zur Glättung und zum Weichzeichnen verwendet. Das Bildrauschen kann mit diesem Filter vermindert werden. Die diskrete Impulsantwort in zwei Dimensionen ergibt sich, wenn man die beiden Richtungen in \( x\) und \( y \) multipliziert.
+Der Filterkern des Gauß-Filters stellt sich aus der diskretisierten Normalverteilung auf. Dieses Filter ist ein Tiefpassfilter und wird zur Glättung und zum Weichzeichnen verwendet. Hierbei wird angenommen, dass das Bildrauschen normal verteilt ist. Es kann mit diesem Filter vermindert werden. Die diskrete Impulsantwort in zwei Dimensionen ergibt sich, wenn man die Dichtefunktionen \gls{lat:normalverteilung} beider Richtungen \gls{x} und \gls{y} miteinander multipliziert.
 
 % Formel für Gauß-Funktion (Impulsantwort bei zwei Dimensionen)
 \begin{equation}
-h(x,y) = \frac{1}{2\pi\sigma^2} \cdot e^{-\frac{x^2+y^2}{2\sigma^2}}
+\gls{lat:normalverteilung}(\gls{x},\gls{y}) = \frac{1}{2 {\gls{gre:pi} \gls{gre:standartabweichung}}^2} \cdot \gls{lat:eulnum}^{-\frac{{\gls{x}}^2+{\gls{y}}^2}{2{\gls{gre:standartabweichung}}^2}}
 %\label{eq:gaussfkt}
 \end{equation}
 
-Mit dem Zusammenspiel von der Filterkerngröße und der Standartabweichung \( \sigma \) lässt sich einstellen, wie stark das Bild verwäscht. Je größer der Kern und \( \sigma \) ist, desto verschwommener ist das Resultat. In Abbildung~\ref{fig:grundlagen_gaussfilter} ist beispielhaft ein \( 15\times15\) - Filterkern mit \( \sigma = 3\) dargestellt.
+Mit dem Zusammenspiel von der Filterkerngröße und der Standartabweichung \gls{gre:standartabweichung} lässt sich einstellen, wie stark das Bild verwischt. Je größer der Kern und \gls{gre:standartabweichung} ist, desto verschwommener ist das Resultat. In Abbildung~\ref{fig:grundlagen_gaussfilter} ist beispielhaft ein \( 15\times15\) - Filterkern mit \( \gls{gre:standartabweichung} = 3\) dargestellt.
 
 \begin{figure}[H] % [htb]
   \centering
@@ -46,13 +46,13 @@ Wenn man in einem Bild Kanten detektieren möchte, fundiert die Lösung des Prob
 
 % Formel für den Laplace-Operator
 \begin{equation}
-\Delta f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2}
+\Delta f = \frac{\partial^2 f}{\partial {\gls{x}}^2} + \frac{\partial^2 f}{\partial {\gls{y}}^2}
 \end{equation}
 
 % Die gesuchten Kanten sind dann die Nulldurchgänge in der zweiten Ableitung, vor und nach denen es unmittelbar Signalspitzen gibt, die höher als das Rauschen sind. 
 Die Nulldurchgänge, vor und nach denen es unmittelbar Signalspitzen gibt, sind dann die gesuchten Kanten. Ein großer Nachteil dieser Filtermethode ist das relativ stark verrauschte Ergebnisbild.
 
-Eine spezielle Form eines diskreten Laplace-Filters ist der \gls{acr:log}, welcher in dieser Arbeit zur Liniendetektion genutzt wurde. Der in Abbildung~\ref{fig:grundlagen_logfilter} beispielhaft dargestellte Filterkern wird durch die Anwendung des Laplace-Operators auf eine Gaußfunktion erstellt. Dieses Filter bewirkt neben der Kantendetektion eine gauß'sche Glättung und mindert so das störende Rauschen.
+Eine spezielle Form eines diskreten Laplace-Filters ist der \gls{acr:log}, welcher in dieser Arbeit zur Liniendetektion genutzt wurde. Der in Abbildung~\ref{fig:grundlagen_logfilter} beispielhaft dargestellte Filterkern wird durch die Anwendung des Laplace-Operators auf eine Gaußfunktion erstellt. Dieses Filter bewirkt neben der Kantendetektion eine gaußsche Glättung und mindert so das störende Rauschen.
 
 \begin{figure}[H] % [htb]
   \centering
