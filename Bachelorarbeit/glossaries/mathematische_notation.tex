@@ -26,9 +26,17 @@ name=\mtx{x},
 description={Fettgedruckte Großbuchstaben bezeichnen eine Matrix},
 sort=mathmatrix, type=mathlist
 }
+%\DeclareMathOperator{\fnfop}{f}
+\newcommand{\fnfop}{\ensuremath{\mathrm{f}}}
+\newcommand{\fnf}[1]{\ensuremath{\fnfop{(#1)}}}
+\newglossaryentry{math:functionf}{
+	name=\fnf{\scl{x}},
+	description={allgemeine Funktion in Abhängigkeit der Variable \scl{x}},
+	sort=mathfnf, type=mathlist
+}
 \newcommand{\dt}[1]{\ensuremath{\dot{#1}}}
 \newglossaryentry{math:dt}{
-name=\dt{\fnfop{}},
+name=\dt{\fnfop},
 description={Ableitung der Funktion \ensuremath{f} nach der Zeit},
 sort=mathdt, type=mathlist
 }
@@ -60,7 +68,7 @@ sort=mathinv, type=mathlist
 \newcommand{\derII}[1]{\ensuremath{#1^{\prime\prime}}}
 \newcommand{\derIII}[1]{\ensuremath{#1^{\prime\prime\prime}}}
 \newglossaryentry{math:derivative}{
-name=\der{\fnfop{}},
+name=\der{\fnfop},
 description={Ableitung der Funktion \fnfop},
 sort=mathderivative, type=mathlist
 }
@@ -83,16 +91,9 @@ name=\nrm{x},
 description={Euklidische Norm des Vektors \({\vct{x}=\begin{pmatrix} x \\ y \end{pmatrix}}\): \(\nrm{\vct{x}} = \sqrt[2]{x^2 + y^2}\)},
 sort=mathnorm, type=mathlist
 }
-\DeclareMathOperator{\fnfop}{f}
-\newcommand{\fnf}[1]{\ensuremath{\fnfop{(#1)}}}
-\newglossaryentry{math:functionf}{
-name=\fnf{\scl{x}},
-description={allgemeine Funktion in Abhängigkeit der Variable \scl{x}},
-sort=mathfnf, type=mathlist
-}
 \newcommand{\derat}[2]{\ensuremath{{#1}^{\prime} |_{#2}}}
 \newglossaryentry{math:derivativeat}{
-	name=\derat{\fnfop{}}{\gls{x}},
+	name=\derat{\fnfop}{\gls{x}},
 	description={Ableitung der Funktion \( \fnfop \) an der Stelle \gls{x}},
 	sort=mathderivativeat, type=mathlist
 }
