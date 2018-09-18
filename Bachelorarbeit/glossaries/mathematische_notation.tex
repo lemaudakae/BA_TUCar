@@ -28,7 +28,7 @@ sort=mathmatrix, type=mathlist
 }
 \newcommand{\dt}[1]{\ensuremath{\dot{#1}}}
 \newglossaryentry{math:dt}{
-name=\dt{f},
+name=\dt{\fnfop{}},
 description={Ableitung der Funktion \ensuremath{f} nach der Zeit},
 sort=mathdt, type=mathlist
 }
@@ -60,7 +60,7 @@ sort=mathinv, type=mathlist
 \newcommand{\derII}[1]{\ensuremath{#1^{\prime\prime}}}
 \newcommand{\derIII}[1]{\ensuremath{#1^{\prime\prime\prime}}}
 \newglossaryentry{math:derivative}{
-name=\der{f},
+name=\der{\fnfop{}},
 description={Ableitung der Funktion \fnfop},
 sort=mathderivative, type=mathlist
 }
@@ -92,7 +92,7 @@ sort=mathfnf, type=mathlist
 }
 \newcommand{\derat}[2]{\ensuremath{{#1}^{\prime} |_{#2}}}
 \newglossaryentry{math:derivativeat}{
-	name=\derat{\fnfop}{\gls{x}},
+	name=\derat{\fnfop{}}{\gls{x}},
 	description={Ableitung der Funktion \( \fnfop \) an der Stelle \gls{x}},
 	sort=mathderivativeat, type=mathlist
 }

@@ -71,7 +71,7 @@ Da die Herleitung der diskreten Zustandsraumbeschreibung zum aufgestellten Fahrs
 Die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} bildet den momentanen \glsdesc{lat:statevector} \(\gls{lat:statevector}(\scl{k})\) auf den folgenden \glsdesc{lat:statevector} \(\gls{lat:statevector}(\scl{k}+1)\) ab, ohne äußere Einflüsse auf das System zu berücksichtigen. Die Lage der Fahrbahnmarkierungen im nächsten Bild soll also auf Basis des aktuellen Bildes vorhergesagt werden.
 
 \subsubsection{Vereinfachungen}
-Der Einfluss des Lenkwinkels wird vernachlässigt, da er bei kurzer \glsdesc{lat:periodictime} \scl{T_s} und kleiner Größe seiner selbst kaum Einfluss auf die Lage der Fahrbahn im Folgebild nimmt. Das Fahrzeug bewegt sich also geradlinig in Richtung der x-Achse des Fahrspurkoordinatensystems \gls{lat:LinienKOS}. 
+Der Einfluss des Lenkwinkels wird vernachlässigt, da er bei kurzer Periodendauer der Abtastung \(\scl{T_s} = \frac{1}{\text{Bildrate}}\)\scl{T_s} und kleiner Größe seiner selbst kaum Einfluss auf die Lage der Fahrbahn im Folgebild nimmt. Das Fahrzeug bewegt sich also geradlinig in Richtung der x-Achse des Fahrspurkoordinatensystems \gls{lat:LinienKOS}. 
 
 \subsubsection{Herleitung der \glsdesc{lat:systemmatrix}}
 Der zurückgelegte Weg \begin{math} \scl{Deltagls{x}}_{\gls{lat:LinienKOS}} \end{math} zwischen zwei Bildaufnahmenpunkten kann direkt aus den Encodern des Fahrzeugs ausgelesen werden. Der Folgezustand  \(\gls{lat:statevector}(\scl{k}+1)\) wird wie folgt berechnet:
