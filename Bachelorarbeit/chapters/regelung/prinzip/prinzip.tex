@@ -1,28 +1,28 @@
 \section{Prinzip}
 
-Die Navigation unseres Modellfahrzeugs im Straßenverkehrsszenario basiert auf einer Weltkarte, in der alle bereits erkannten Punkte, die zu einer Fahrbahnmarkierung gehören, eingetragen werden. Zu Anfang wurde im Kapitel~\ref{sec:ks} beschrieben, dass das Roboterkoordinatensystem \gls{lat:RoboterKOS} die Pose des Autos darstellt. Die Pose ist der Zustandsvektor \( \boldsymbol{z} \) aus Position \( (x,y) \) und Orientierung \gls{gre:orientierung}.
+Die Navigation unseres Modellfahrzeugs im Straßenverkehrsszenario basiert auf einer Weltkarte, in der alle bereits erkannten Punkte, die zu einer Fahrbahnmarkierung gehören, eingetragen werden. Zu Anfang wurde im Kapitel~\ref{sec:ks} beschrieben, dass das Roboterkoordinatensystem \gls{lat:RoboterKOS} die Pose des Autos darstellt. Die Pose ist der Zustandsvektor \gls{lat:statevector} aus Position \( (\gls{x},\gls{y}) \) und Orientierung \gls{gre:orientierung}.
 
 % Formel für Pose (Zustandsvektor)
 \begin{equation}
-\boldsymbol{z} = 
+\gls{lat:statevector} = 
 \begin{pmatrix}
-x(\gls{lat:time}) 	\\
-y(\gls{lat:time})	\\
+\gls{x}(\gls{lat:time}) 	\\
+\gls{y}(\gls{lat:time})	\\
 \gls{gre:orientierung}(\gls{lat:time})    	\\
 \end{pmatrix}
 \end{equation} 
 
- Aus den Informationen der Weltkarte und dem aktuellen Standort des Roboters ist es möglich, eine Trajektorie zu planen, um das Fahrzeug in der Fahrspur zu halten. Daher ist es wichtig, den Zustandsvektor für jeden Regelschritt neu zu bestimmen. Zur Berechnung der neuen Position stehen uns die Wegmessungen \(s\) des Encoders und der Zeitunterschied \(t-t_0\) zur alten Pose zur Verfügung, woraus die Geschwindigkeit \gls{lat:velocity} ermittelt wird. Die Orientierung wird von der eingebauten \gls{acr:imu} gemessen und direkt in die neue Pose eingetragen. Somit ist unser Eingangsvektor \(\boldsymbol{e}\)
+ Aus den Informationen der Weltkarte und dem aktuellen Standort des Roboters ist es möglich, eine Trajektorie zu planen, um das Fahrzeug in der Fahrspur zu halten. Daher ist es wichtig, den Zustandsvektor für jeden Regelschritt neu zu bestimmen. Zur Berechnung der neuen Position stehen uns die Wegmessungen \(s\) des Encoders und der Zeitunterschied \(\gls{lat:time}-{\gls{lat:time}}_0\) in Bezug auf die alte Pose zur Verfügung, woraus die Geschwindigkeit \gls{lat:velocity} ermittelt wird. Die Orientierung wird von der eingebauten \gls{acr:imu} gemessen und direkt in die neue Pose eingetragen. Somit ist unser Eingangsvektor \gls{lat:inputvector}
  
  % Formel für Eingangsvektor
 \begin{equation}
-\boldsymbol{e} = 
+\gls{lat:inputvector} = 
 \begin{pmatrix}
 \gls{lat:velocity}(\gls{lat:time}) 			\\
 \gls{gre:orientierung}(\gls{lat:time})    	\\
 \end{pmatrix}
 , \qquad \text{mit }
-v(t) = \frac{s}{t-t_0}
+\gls{lat:velocity}(\gls{lat:time}) = \frac{s}{\gls{lat:time}-{\gls{lat:time}}_0}
 \end{equation} 
  
 Das Besondere an einer Ackermann-Lenkung ist, dass in einer Kurvenfahrt das innen liegende Vorderrad stärker einlenkt als das Äußere, sodass sich ein gemeinsamer Schnittpunkt mit allen vier Radachsen ergibt (siehe Abb.~\ref{fig:regelung_prinzip_modell}). Dieser Punkt wird auch als \gls{acr:icr} bezeichnet und beschreibt den Mittelpunkt der gefahrenen Kreisbahn. 
@@ -39,10 +39,10 @@ Zur leichteren mathematischen Beschreibung des Fahrzeugs mit Ackermannlenkung wi
 
 % Formel Fahrzeugmodell
 \begin{equation}
-\boldsymbol{\dot{z}} = 
+\dot{\gls{lat:statevector}} = 
 \begin{pmatrix}
-\dot{x}(\gls{lat:time}) 	\\
-\dot{y}(\gls{lat:time})	\\
+\dot{\gls{x}}(\gls{lat:time}) 	\\
+\dot{\gls{y}}(\gls{lat:time})	\\
 \dot{\gls{gre:orientierung}}(\gls{lat:time})    	\\
 \end{pmatrix}
 =
