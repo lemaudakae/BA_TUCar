@@ -20,8 +20,8 @@ Um einen Kreis eindeutig definieren zu können braucht man mindestens drei bekan
 Es lassen sich zwei Hilfsgeraden \( \mathrm{g_1} \) und \( \mathrm{g_2} \) aufstellen. \( \mathrm{g_1}\) verläuft durch die Position des Roboters \pnt{p_0} und den Zielpunkt \gls{lat:zp} und stellt somit die Sehne des Kreisbogens der geplanten Trajektorie dar. Die Mittelsenkrechte dieser Sehne bildet die Gerade \( \mathrm{g_2} \).
 
 \begin{eqnarray}
-\text{Gerade } \mathrm{g_1}: \quad \gls{y} & = & m_{\gls{lat:zp}} \cdot \gls{x} 	\\
-\text{Gerade } \mathrm{g_2}: \quad \gls{y} & = & m_h \cdot \gls{x} + n_h  \label{eq:regelung_lenkwinkel_geradengleichung2}
+\text{Gerade } \mathrm{g_1}: \quad \gls{y} & = & {\gls{lat:anstieg}}_{\gls{lat:zp}} \cdot \gls{x} 	\\
+\text{Gerade } \mathrm{g_2}: \quad \gls{y} & = & {\gls{lat:anstieg}}_h \cdot \gls{x} + {\gls{lat:achsenabschnitt}}_h  \label{eq:regelung_lenkwinkel_geradengleichung2}
 \end{eqnarray}
 
 Für den Schnittpunkt \pnt{h} gilt
@@ -34,14 +34,14 @@ h_y & = & 0.5 \cdot {\gls{lat:zp}}_{\gls{y}}
 und für die Steigungen der Geraden gelten
 
 \begin{eqnarray}
- m_{\gls{lat:zp}} = \frac{\Delta \gls{y}}{\Delta \gls{x}} & = & \frac{{\gls{lat:zp}}_{\gls{y}}}{{\gls{lat:zp}}_{\gls{x}}} 	\\
- m_h = \frac{\Delta \gls{y}}{\Delta \gls{x}} & = & \frac{{\gls{lat:zp}}_{\gls{x}}}{-{\gls{lat:zp}}_{\gls{y}}}
+ {\gls{lat:anstieg}}_{\gls{lat:zp}} = \frac{\Delta \gls{y}}{\Delta \gls{x}} & = & \frac{{\gls{lat:zp}}_{\gls{y}}}{{\gls{lat:zp}}_{\gls{x}}} 	\\
+ {\gls{lat:anstieg}}_h = \frac{\Delta \gls{y}}{\Delta \gls{x}} & = & \frac{{\gls{lat:zp}}_{\gls{x}}}{-{\gls{lat:zp}}_{\gls{y}}}
 \end{eqnarray}
 
-Die \( {\gls{y}}^{\gls{lat:RoboterKOS}} \)-Achse und die Gerade \( \mathrm{g_2} \) stehen jeweils senkrecht auf dem Kreisbogen und müssen sich demzufolge im Kreismittelpunkt \( {\gls{lat:mp}}_{\gls{lat:zp}} \) schneiden. Da \( {\gls{lat:mp}}_{\gls{lat:zp}} \) auf der \( {\gls{y}}^{\gls{lat:RoboterKOS}} \)-Achse liegt ist die \( {\gls{x}}^{\gls{lat:RoboterKOS}} \)-Koordinate mit \glqq 0\grqq{} bereits bekannt. Damit steht der gesuchte Radius \gls{lat:rad} in der \( {\gls{y}}^{\gls{lat:RoboterKOS}} \)-Komponente des Mittelpunktes, was wiederum bedeutet, dass auch \( \gls{lat:rad} = n_h \) gilt. Setzt man mit diesem Wissen den Punkt \pnt{h} in die Geradengleichung von \( \mathrm{g_2} \) (~\ref{eq:regelung_lenkwinkel_geradengleichung2}) ein, erhält man durch Umstellen die Formel~\ref{eq:regelung_lenkwinkel_radius} für den Radius \gls{lat:rad}.
+Die \( {\gls{y}}^{\gls{lat:RoboterKOS}} \)-Achse und die Gerade \( \mathrm{g_2} \) stehen jeweils senkrecht auf dem Kreisbogen und müssen sich demzufolge im Kreismittelpunkt \( {\gls{lat:mp}}_{\gls{lat:zp}} \) schneiden. Da \( {\gls{lat:mp}}_{\gls{lat:zp}} \) auf der \( {\gls{y}}^{\gls{lat:RoboterKOS}} \)-Achse liegt ist die \( {\gls{x}}^{\gls{lat:RoboterKOS}} \)-Koordinate mit \glqq 0\grqq{} bereits bekannt. Damit steht der gesuchte Radius \gls{lat:rad} in der \( {\gls{y}}^{\gls{lat:RoboterKOS}} \)-Komponente des Mittelpunktes, was wiederum bedeutet, dass auch \( \gls{lat:rad} = {\gls{lat:achsenabschnitt}}_h \) gilt. Setzt man mit diesem Wissen den Punkt \pnt{h} in die Geradengleichung von \( \mathrm{g_2} \) (~\ref{eq:regelung_lenkwinkel_geradengleichung2}) ein, erhält man durch Umstellen die Formel~\ref{eq:regelung_lenkwinkel_radius} für den Radius \gls{lat:rad}.
 
 \begin{equation}
-\gls{lat:rad} = n_h = h_y - m_h \cdot h_x = 0,5 \cdot \left( {\gls{lat:zp}}_{\gls{y}} + \frac{{{\gls{lat:zp}}_{\gls{x}}}^2}{{\gls{lat:zp}}_{\gls{y}}} \right)
+\gls{lat:rad} = {\gls{lat:achsenabschnitt}}_h = h_y - {\gls{lat:anstieg}}_h \cdot h_x = 0,5 \cdot \left( {\gls{lat:zp}}_{\gls{y}} + \frac{{{\gls{lat:zp}}_{\gls{x}}}^2}{{\gls{lat:zp}}_{\gls{y}}} \right)
 \label{eq:regelung_lenkwinkel_radius}
 \end{equation}
 
