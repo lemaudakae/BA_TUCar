@@ -1,10 +1,10 @@
-\section{Riverflow}
+\section{Riverflow} \label{sec:fahrspurerkennung:riverflow}
 Der dritte und final genutzte Ansatz zur Fahrspurerkennung nutzt im Gegensatz zu den vorherigen Varianten kein durch wenige Parameter (Polynomkoeffizienten etc.) beschreibbares Modell. Dem Objekt Fahrspur werden hingegen bestimmte Eigenschaften zugesprochen, welche zur Idee des Riverflow-Algorithmus \autocite{limRiverFlowLane2012} und der angeschlossenen Punkteverifikation geführt haben.
 \begin{enumerate}
 \item \label{item:riverflow:rule:solidline}
 Ist eine Fahrbahnmarkierung eine Randlinie, so ist dies eine nicht unterbrochene Markierung bestimmter Breite.
 \item \label{item:riverflow:rule:dashedline}
-Ist eine Fahrbahnmarkierung eine Mittellinie, so besteht diese aus Elementen deren Länge, Breite und Abstand voneinander konstant und bekannt ist.
+Ist eine Fahrbahnmarkierung eine Mittellinie, so besteht diese aus Elementen deren Länge, Breite und Abstand voneinander konstant und bekannt sind.
 \item \label{item:riverflow:rule:curvature}
 Die Krümmung einer Fahrbahnmarkierung darf einen bestimmten Wert nicht überschreiten.
 \item \label{item:riverflow:rule:distance}

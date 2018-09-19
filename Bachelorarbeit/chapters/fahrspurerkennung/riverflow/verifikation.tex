@@ -16,19 +16,18 @@ Eine Hypothese der rechten Fahrbahnmarkierung selektiert.
 \item \label{item:riverflow:verification:l_r:loops:point}
 Ein Punkt der gewählten linken Linienhypothese ausgesucht.
 \end{enumerate}
-Nun kann simultan der Abstand \begin{math} \| \boldsymbol{d} \| \end{math} \eqref{eq:norm:distpoints} 
+Nun kann simultan der Abstand \nrm{\gls{lat:dv}} \eqref{eq:norm:distpoints} 
 zu allen Punkten der gewählten rechten Fahrbahnmarkierungshypothese berechnet werden. 
 \begin{equation}
 \label{eq:norm:distpoints} 
-\| \boldsymbol{d} \| = \| \boldsymbol{p_{links} - p_{rechts}} \|=  
-\sqrt{(p_{links_x}-p_{rechts_x})^2 + (p_{links_y}-p_{rechts_y})^2}
+\nrm{\gls{lat:dv}} = \nrm{\pnt{p_{\text{links}}} - \pnt{p_{\text{rechts}}}} 
 \end{equation}
 Da der nächstgelegene Punkt der rechten Linienhypothese zum gewählten Punkt der linken Fahrbahnmarkierungshypothese gefragt ist, wird nur das kleinste Ergebnis dieser simultanen Berechnung weiter betrachtet.
 
 Die Koordinatenserie der linken Linienhypothese wird vom Anfgangspunkt des Riverflow-Algorithmus bis
 \begin{itemize}
-\item der Endpunkt derselben erreich ist 
-\item der Abstand zur gewählten rechten Fahrbahnmarkierungshypothese einmal übeschritten wurde
+\item der Endpunkt derselben erreicht ist 
+\item der Abstand zur gewählten rechten Fahrbahnmarkierungshypothese einmal überschritten wurde
 \end{itemize}
 nacheinander bearbeitet (siehe \ref{item:riverflow:verification:l_r:loops:point}). Die so anhand einer selektierten rechten Linienhypothese verifizierte linke Koordinatenserie wird zwischengespeichert. 
 Nach Validieren mittels aller rechten Fahrbahnmarkierungshypothesen (siehe \ref{item:riverflow:verification:l_r:loops:right_hypo}) kann nun die längste verifizierte Koordinatenserie der gewählten linken Linienhypothese ermittelt werden.
@@ -39,7 +38,7 @@ Der beschriebene Prozess wird nun für alle linken Fahrbahnmarkierungshypothesen
 \paragraph{lineare Interpolation}
 Da in einem Bild signifikant weniger Mittellinienpunkte (genauer: Mittelpunkte der Mittellinienelemente) als Punkte der seitlichen Fahrbahnmarkierung gefunden werden, müssen zur Validierung der Seitenlinienpunkte durch die mittlere Fahrbahnmarkierung zusätzliche Punkte auf selbiger erzeugt werden. Hierfür wird jeweils der Mittelpunkt der Gerade zwischen zwei Mittellinienpunkten genutzt. Bei \( n \) Mittellinienpunkten entstehen also \( n-1 \) linear interpolierte Punkte.
 \begin{equation}
-\boldsymbol{p_{interpoliert_i}} = (\boldsymbol{p_{real_i}}+\boldsymbol{p_{real_{i+1}}})/2 
+\pnt{p_{\text{interpoliert}i}} = (\pnt{p_{\text{real}i}}+\pnt{p_{\text{real}i+1}})/2 
 \end{equation}
 \paragraph{Algorithmus} Die Prozedur zum Vergleich der Seitenlinien mit der mittleren Fahrbahnmarkierung ist weitgehend identisch mit \ref{sssec:fahrspurerkennung:riverflow:verifikation:seitenlinienvergleich}. Lediglich das Auswählen einer Hypothese der Mittellinie entfällt, da hier in jedem Fall nur ein möglicher Verlauf gefunden wird.
 

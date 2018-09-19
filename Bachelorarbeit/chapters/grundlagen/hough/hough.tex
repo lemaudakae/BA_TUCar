@@ -2,23 +2,23 @@
 
 Leicht parametrierbare geometrische Objekte in einem Binärbild (z.B. nach einer Kantenerkennung) lassen sich mit dem robusten Verfahren der Hough-Transformation finden. Dessen häufigste Anwendung besteht in der Geradenerkennung, weshalb das Prinzip im Folgenden an diesem einfachen Fall erklärt werden soll. Analog lässt sich die Vorgehensweise auf andere parametrische Figuren übertragen, wie zum Beispiel Kreise.
 
-Um gerade Linien mittels Hough-Transformation in einem Bld finden zu können, ist ein Modell der Gerade, also die mathematische Beschreibung des zu findenden Objektes, notwendig. Alle Punkte \( (x_n, y_n)^T \), die auf einer Geraden mit den Parametern \(a_0\) und \(a_1\) liegen, lassen sich nach folgender Gleichung beschreiben \autocite{jaehneDigitaleBildverarbeitungMit2005}:
+Um gerade Linien mittels Hough-Transformation in einem Bild finden zu können, ist ein Modell der Gerade, also die mathematische Beschreibung des zu findenden Objektes, notwendig. Alle Punkte (\gls{x},\gls{y}), die auf einer Geraden mit den Parametern \gls{lat:anstieg} und \gls{lat:achsenabschnitt} liegen, lassen sich nach folgender Gleichung beschreiben \autocite{jaehneDigitaleBildverarbeitungMit2005}:
 
 % Formel für allgemeine Geradengleichung
 \begin{equation}
-y_n = a_1 \cdot x_n +a_0
+\gls{y} = \gls{lat:anstieg} \cdot \gls{x} + \gls{lat:achsenabschnitt}
 \label{eq:geradengleichung}
 \end{equation}
 
-Hierbei geben \(a_0\) den Achsenabschnitt und \(a_1\) den Anstieg der Geraden an. Die Geradengleichung~\ref{eq:geradengleichung} lässt sich auch als Bedingung für die Parameter \(a_0\) und \(a_1\) wie folgt umstellen:
+Hierbei geben \gls{lat:achsenabschnitt} den Achsenabschnitt und \gls{lat:anstieg} den Anstieg der Geraden an. Die Geradengleichung~\ref{eq:geradengleichung} lässt sich aber auch als Bedingung für die Parameter \gls{lat:achsenabschnitt} und \gls{lat:anstieg} wie folgt umstellen:
 
 % Formel für umgestellte Geradengleichung
 \begin{equation}
-a_1 = -\frac{1}{x_n} \cdot a_0 + \frac{y_n}{x_n}
+\gls{lat:anstieg} = -\frac{1}{\gls{x}} \cdot \gls{lat:achsenabschnitt} + \frac{\gls{y}}{\gls{x}}
 %\label{eq:geradengleichung_umgest}
 \end{equation}
 
-Damit wird ein zweiter sogenannter Modellraum aufgespannt, in dem die Parameter zu Definitions- und Wertebereic werden und die Punkte zu Parametern. Der Hough-Algorithmus transformiert jeden Bildpunkt in den Modellraum, welcher dort eine Gerade ergibt. Umgekehrt stellt ein Punkt im Modellraum eine Gerade im Datenraum dar. Wenn viele Pixel auf einer Gerade liegen, wird sich das als häufiger Schnittpunkt im Modellraum bemerkbar machen. Jener Punkt \( (a_0, a_b)^T \) enthält eine solide Abschätzung der Parameter der gesuchten Gerade im Bild.
+Damit wird ein zweiter sogenannter Modellraum aufgespannt, in dem die Parameter \gls{lat:achsenabschnitt} zum Definitions- und Wertebereich definiert werden und die Punkte zu den Parametern zählen. Der Hough-Algorithmus transformiert jeden Bildpunkt in den Modellraum, welcher dort eine Gerade ergibt. Umgekehrt stellt ein Punkt im Modellraum eine Gerade im Datenraum dar. Wenn viele Pixel auf einer Gerade liegen, wird sich das als häufiger Schnittpunkt im Modellraum bemerkbar machen. Jener Punkt (\gls{lat:achsenabschnitt},\gls{lat:anstieg}) enthält eine solide Parameterabschätzung der gesuchten Gerade im Bild.
 
 % Bild (Diagramme) zur Hough-Trafo
 \begin{figure}[H] % [htb]
@@ -28,8 +28,9 @@ Damit wird ein zweiter sogenannter Modellraum aufgespannt, in dem die Parameter 
 %  \label{fig:grundlagen_hough}
 \end{figure} 
 
-Praktischerweise wird als Modell für die Gerade eigentlich die hesse'sche Normalform (Steigungswinkel und Abstand zum Koordinatenursprung als Parameter) eingesetzt, da die Beschreibung in Gleichung~\ref{eq:geradengleichung} den großen Nachteil hat, dass der Parameter \( a_1 \) bei vertikalen Geraden ins Unendliche läuft. 
+Praktischerweise wird als Modell für die Gerade eigentlich die hessesche Normalform (Steigungswinkel und Abstand zum Koordinatenursprung als Parameter) eingesetzt, da die Beschreibung in Gleichung~\ref{eq:geradengleichung} den großen Nachteil hat, dass der Anstiegsparameter \gls{lat:anstieg} bei vertikalen Geraden ins Unendliche läuft. 
 
 \subsection{vereinfachte Hough-Transformation}
+\label{ssec:grundlagen:hough:vereinfachte}
 % Hier fehlt der Verweis auf BA_Marcel_Unger
 Wir haben in unserer Arbeit in Anlehnung an \autocite{alyRealTimeDetection2008} eine sehr vereinfachte Form der Hough-Transformation zur Anwendung gebracht, welche nur zu einer alternativen Initialisierung eines Startpunktes zum Einsatz kommt. Die angewendete Methode sucht ausschließlich nach vertikalen Linien im Bild. Dazu wird ein Histogramm über die Spaltensummen der Pixelmatrix gebildet. Die Lage der Maxima über einem bestimmten Threshold-Wert geben dann Auskunft über die Position einer näherungsweise vertikal erkannten Gerade.

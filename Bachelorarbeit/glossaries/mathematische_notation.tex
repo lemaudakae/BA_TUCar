@@ -1,57 +1,99 @@
+%\newcommand{\scl}[1]{\ensuremath{\expandafter\MakeLowercase\expandafter{#1}}}
+\newcommand{\scl}[1]{\ensuremath{#1}}
+\newglossaryentry{math:scalar}{
+	name=\scl{x},
+	description={Kleinbuchstaben bezeichnen einen Skalar},
+	sort=mathscalar, type=mathlist
+}
+%\newcommand{\pnt}[1]{\ensuremath{\boldsymbol{\expandafter\MakeLowercase\expandafter{#1}}}}
+\newcommand{\pnt}[1]{\ensuremath{\boldsymbol{#1}}}
+\newglossaryentry{math:point}{
+	name=\pnt{x},
+	description={Fettgedruckte Kleinbuchstaben bezeichnen einen Punkt},
+	sort=mathpoint, type=mathlist
+}
+%\newcommand{\vct}[1]{\ensuremath{\boldsymbol{\expandafter\MakeLowercase\expandafter{#1}}}}
+\newcommand{\vct}[1]{\ensuremath{\boldsymbol{#1}}}
 \newglossaryentry{math:vector}{
-name=\ensuremath{\boldsymbol{x}},
+name=\vct{x},
 description={Fettgedruckte Kleinbuchstaben bezeichnen einen Vektor},
 sort=mathvector, type=mathlist
 }
+%\newcommand{\mtx}[1]{\ensuremath{\boldsymbol{\expandafter\MakeUppercase\expandafter{#1}}}}
+\newcommand{\mtx}[1]{\ensuremath{\boldsymbol{#1}}}
 \newglossaryentry{math:matrix}{
-name=\ensuremath{\boldsymbol{X}},
+name=\mtx{x},
 description={Fettgedruckte Großbuchstaben bezeichnen eine Matrix},
 sort=mathmatrix, type=mathlist
 }
+%\DeclareMathOperator{\fnfop}{f}
+\newcommand{\fnfop}{\ensuremath{\mathrm{f}}}
+\newcommand{\fnf}[1]{\ensuremath{\fnfop{(#1)}}}
+\newglossaryentry{math:functionf}{
+	name=\fnf{\scl{x}},
+	description={allgemeine Funktion in Abhängigkeit der Variable \scl{x}},
+	sort=mathfnf, type=mathlist
+}
+\newcommand{\dt}[1]{\ensuremath{\dot{#1}}}
 \newglossaryentry{math:dt}{
-name=\ensuremath{\dot{x}},
-description={Ableitung der Funktion \ensuremath{x} nach der Zeit},
+name=\dt{\fnfop},
+description={Ableitung der Funktion \ensuremath{f} nach der Zeit},
 sort=mathdt, type=mathlist
 }
+\newcommand{\prd}[1]{\ensuremath{\hat{#1}}}
 \newglossaryentry{math:predicted}{
-name=\ensuremath{\tilde{x}},
-description={Eine Tilde über einer Variablen symbolisiert eine prädizierte Größe},
+name=\prd{x},
+description={Ein Circumflex über einer Variablen symbolisiert eine prädizierte Größe},
 sort=mathpredicted, type=mathlist
 }
+\newcommand{\crd}[1]{\ensuremath{\tilde{#1}}}
 \newglossaryentry{math:corrected}{
-name=\ensuremath{\hat{x}},
-description={Ein Circumflex über einer Variablen symbolisiert eine korrigierte Größe},
+name=\crd{x},
+description={Eine Tilde über einer Variablen symbolisiert eine korrigierte Größe},
 sort=mathcorrected, type=mathlist
 }
+\newcommand{\trp}[1]{\ensuremath{{#1}^T}}
 \newglossaryentry{math:trans}{
-name=\ensuremath{\boldsymbol{X}^T},
-description={Transponierte der Matrix \ensuremath{\boldsymbol{X}}},
+name=\trp{\mtx{X}},
+description={Transponierte der Matrix \mtx{X}},
 sort=mathtrans, type=mathlist
 }
+\newcommand{\ivt}[1]{\ensuremath{{#1}^{-1}}}
 \newglossaryentry{math:inv}{
-name=\ensuremath{\boldsymbol{X}^{-1}},
-description={Inverse der Matrix \ensuremath{\boldsymbol{X}}},
+name=\ivt{\mtx{X}},
+description={Inverse der Matrix \mtx{X}},
 sort=mathinv, type=mathlist
 }
+\newcommand{\der}[1]{\ensuremath{#1^{\prime}}}
+\newcommand{\derII}[1]{\ensuremath{#1^{\prime\prime}}}
+\newcommand{\derIII}[1]{\ensuremath{#1^{\prime\prime\prime}}}
 \newglossaryentry{math:derivative}{
-name=\ensuremath{x^{\prime}},
-description={Ableitung der Funktion \ensuremath{x}},
+name=\der{\fnfop},
+description={Ableitung der Funktion \fnfop},
 sort=mathderivative, type=mathlist
 }
+\DeclareMathOperator{\maxop}{max}
+\newcommand{\mxm}[1]{\ensuremath{\maxop(#1)}}
 \newglossaryentry{math:max}{
-name=\ensuremath{max},
-description={Maxima},
+name=\mxm{x},
+description={Maxima von \(x\)},
 sort=mathmax, type=mathlist
 }
+\newcommand{\mean}[1]{\ensuremath{\bar{#1}}}
 \newglossaryentry{math:mean}{
-name=\ensuremath{bar{x}},
-description={Mittelwert der Variable x},
+name=\mean{x},
+description={Mittelwert der Variable \(x\)},
 sort=mathmean, type=mathlist
 }
+\newcommand{\nrm}[1]{\ensuremath{\|#1\|}}
 \newglossaryentry{math:norm}{
-name=\ensuremath{\| \boldsymbol{x}\|},
-description={Euklidische Norm des Vektors \ensuremath{\boldsymbol{x}=\begin{pmatrix} x \\ y \end{pmatrix}}: 
-\ensuremath{\| \boldsymbol{x}\| = \sqrt[2]{x^2 + y^2}}},
+name=\nrm{x},
+description={Euklidische Norm des Vektors \({\vct{x}=\begin{pmatrix} x \\ y \end{pmatrix}}\): \(\nrm{\vct{x}} = \sqrt[2]{x^2 + y^2}\)},
 sort=mathnorm, type=mathlist
 }
-
+\newcommand{\derat}[2]{\ensuremath{{#1}^{\prime} |_{#2}}}
+\newglossaryentry{math:derivativeat}{
+	name=\derat{\fnfop}{\gls{x}},
+	description={Ableitung der Funktion \( \fnfop \) an der Stelle \gls{x}},
+	sort=mathderivativeat, type=mathlist
+}
