@@ -1,9 +1,9 @@
 \section{Kameramodell} \label{sec:kameramodell}
-Da das verwendete Fisheye-Objektiv durch seinen großen Blickwinkel stark verzerrt auf den Kamerasensor abbildet, ist ein spezielles Kameramodell zur Rektifizierung der Bilddaten notwendig. Wir haben uns in dieser Arbeit für die Nutzung einer Matlab-Toolbox entschieden  \autocite{OCamCalibOmnidirectionalCamera, scaramuzzaFlexibleTechniqueAccurate2006, scaramuzzaToolboxEasilyCalibrating2006, scaramuzzaOmnidirectionalVisionCalibration2007, rufliAutomaticDetectionCheckerboards2008}. Das in selbiger verwendete Modell und die Anwendung dessen zur Entzerrung soll nun erläutert werden. 
+Da das verwendete Fisheye-Objektiv durch seinen großen Blickwinkel stark verzerrt auf den Kamerasensor abbildet, ist ein spezielles Kameramodell zur Rektifizierung der Bilddaten notwendig. Wir haben uns in dieser Arbeit für die Nutzung einer Matlab-Toolbox entschieden  \autocite{OCamCalibOmnidirectionalCamera, scaramuzzaFlexibleTechniqueAccurate2006, scaramuzzaToolboxEasilyCalibrating2006, scaramuzzaOmnidirectionalVisionCalibration2007, rufliAutomaticDetectionCheckerboards2008}. Das in dieser verwendete Modell und die Anwendung dessen zur Entzerrung soll nun erläutert werden. 
 
 Die OcamCalib-Toolbox behandelt das Kamerasystem als Einheit, d.h. die Kamera und der Fisheyeobjektivaufsatz (alternativ der konvexe Spiegel) werden zusammen durch einen Parametersatz beschrieben.
 
-Das Modell hat das Ziel, den Zusammenhang zwischen einem Punkt auf dem Bildsensor \pnt{s_{\gls{lat:OSKOS}}} mit Koordinaten \((\gls{x}_{\gls{lat:OSKOS}}, \gls{y}_{\gls{lat:OSKOS}})\) und einem vom optischen Zentrum des Objektivs ausgehenden Vektor nicht festgelegter Länge \vct{v_{\gls{lat:OCKOS}}} mit Koordinaten \((\gls{x}_{\gls{lat:OCKOS}}, \gls{y}_{\gls{lat:OCKOS}}, \gls{z}_{\gls{lat:OCKOS}})\) zu finden (s.~\eqref{eq:ocamcalibuv}).
+Das Modell hat das Ziel, den Zusammenhang zwischen einem Punkt auf dem Bildsensor \pnt{s^{\gls{lat:OSKOS}}} mit Koordinaten \((\scl{s^{\gls{lat:OSKOS}}_{\gls{x}}}, \scl{s^{\gls{lat:OSKOS}}_{\gls{y}}})\) und einem vom optischen Zentrum des Objektivs ausgehenden Vektor nicht festgelegter Länge \vct{v^{\gls{lat:OCKOS}}} mit Koordinaten \((\scl{o^{\gls{lat:OCKOS}}_{\gls{x}}}, \scl{o^{\gls{lat:OCKOS}}_{\gls{y}}}, \scl{o^{\gls{lat:OCKOS}}_{\gls{z}}})\) zu finden (s.~\eqref{eq:ocamcalibuv}).
 
 \begin{figure}[H]
   \centering
@@ -16,63 +16,63 @@ Das Modell hat das Ziel, den Zusammenhang zwischen einem Punkt auf dem Bildsenso
 Im verwendeten Modell werden folgende Annahmen getroffen:
 \begin{enumerate}
 \item Die verwendete Optik stellt ein zentrales Kamerasystem dar, d.h. alle einfallenden Strahlen, welche sich im Brennpunkt des Objektivs nach der Brechung schneiden (s. grüner Strahlverlauf in~\ref{fig:kameramodell}), schneiden sich auch ungebrochen in einem Punkt (s. blauer Strahlverlauf in~\ref{fig:kameramodell}). Dieser Punkt ist das optische Zentrum des Objektivs und der Koordinatenursprung des Kamerakoordinatensystems \gls{lat:OCKOS}.
-\item \label{item:ocamcalibassm2} Die Achse des Bildsensors und des Objektivs sind nahezu identisch (s. unterbrochene graue Linie in~\ref{fig:kameramodell}). Das Modell berücksichtigt nur kleine Abweichungen der Rotationen der Achsen gegeneinander.
+\item \label{item:ocamcalibassm2} Die Achse des Bildsensors und des Objektivs sind nahezu identisch (siehe unterbrochene graue Linie in~\ref{fig:kameramodell}). Das Modell berücksichtigt nur kleine Abweichungen der Rotationen der Achsen gegeneinander.
 \item Das Objektiv ist rotationssymmetrisch zu seiner Achse (s. unterbrochene graue Linie in~\ref{fig:kameramodell}).
-\item Die Linsenverzerrung wird nicht durch herkömmliche Methoden, sondern durch die Projektionsfunktion \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}}~\eqref{eq:ocamcalibuv} berücksichtigt.
+\item Die Linsenverzerrung wird nicht durch herkömmliche Methoden, sondern durch die Projektionsfunktion \fnf{\scl{s^{\gls{lat:OSKOS}}_{\gls{x}}}, \scl{s^{\gls{lat:OSKOS}}_{\gls{y}}}}~\eqref{eq:ocamcalibuv} berücksichtigt.
 \end{enumerate}
 
 \subsection{Herleitung}
 Da die Objektivachse und die Achse des Bildsensors in erster Näherung gleich sind, lässt sich schreiben:
 \begin{equation}
 \begin{pmatrix}
-\gls{x}_{\gls{lat:OCKOS}} \\ \gls{y}_{\gls{lat:OCKOS}}
+\scl{o^{\gls{lat:OCKOS}}_{\gls{x}}} \\ \scl{o^{\gls{lat:OCKOS}}_{\gls{y}}}
 \end{pmatrix}
 = \gls{gre:repos} \cdot
 \begin{pmatrix}
-\gls{x}_{\gls{lat:OSKOS}} \\ \gls{y}_{\gls{lat:OSKOS}}
+\scl{s^{\gls{lat:OSKOS}}_{\gls{x}}} \\ \scl{s^{\gls{lat:OSKOS}}_{\gls{y}}}
 \end{pmatrix}
 \end{equation}
 Der gesuchte Zusammenhang lautet: 
 \begin{equation}
 \vct{v_{\gls{lat:OCKOS}}} =
 \begin{pmatrix}
-\gls{x}_{\gls{lat:OCKOS}} \\ \gls{y}_{\gls{lat:OCKOS}} \\ \gls{z}_{\gls{lat:OCKOS}}
+\scl{o^{\gls{lat:OCKOS}}_{\gls{x}}} \\ \scl{o^{\gls{lat:OCKOS}}_{\gls{y}}} \\ \scl{o^{\gls{lat:OCKOS}}_{\gls{z}}}
 \end{pmatrix}
 =
 \begin{pmatrix}
-\gls{gre:repos} \cdot \gls{x}_{\gls{lat:OSKOS}} \\  \gls{gre:repos} \cdot \gls{y}_{\gls{lat:OSKOS}} \\ \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}}
+\gls{gre:repos} \cdot \scl{s^{\gls{lat:OSKOS}}_{\gls{x}}} \\  \gls{gre:repos} \cdot \scl{s^{\gls{lat:OSKOS}}_{\gls{y}}} \\ \fnf{\scl{s^{\gls{lat:OSKOS}}_{\gls{x}}},\scl{s^{\gls{lat:OSKOS}}_{\gls{y}}}}
 \end{pmatrix}
 \end{equation}
-Der Faktor  \gls{gre:repos} kann in die Funktion \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}} integriert werden:
+Der Faktor  \gls{gre:repos} kann in die Funktion \fnf{\scl{s^{\gls{lat:OSKOS}}_{\gls{x}}},\scl{s^{\gls{lat:OSKOS}}_{\gls{y}}}} integriert werden:
 \begin{equation}
 \label{eq:ocamcalibuv}
 \vct{v_{\gls{lat:OCKOS}}} =
 \begin{pmatrix}
-\gls{x}_{\gls{lat:OCKOS}} \\ \gls{y}_{\gls{lat:OCKOS}} \\ \gls{z}_{\gls{lat:OCKOS}}
+\scl{o^{\gls{lat:OCKOS}}_{\gls{x}}} \\ \scl{o^{\gls{lat:OCKOS}}_{\gls{y}}} \\ \scl{o^{\gls{lat:OCKOS}}_{\gls{z}}}
 \end{pmatrix}
 =
 \begin{pmatrix}
-\gls{x}_{\gls{lat:OSKOS}} \\ \gls{y}_{\gls{lat:OSKOS}} \\ \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}}
+\scl{s^{\gls{lat:OSKOS}}_{\gls{x}}} \\ \scl{s^{\gls{lat:OSKOS}}_{\gls{y}}} \\ \fnf{\scl{s^{\gls{lat:OSKOS}}_{\gls{x}}},\scl{s^{\gls{lat:OSKOS}}_{\gls{y}}}}
 \end{pmatrix}
 \end{equation}
-Da das Objektiv rotationssymetrisch ist, kann \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}} nur vom Abstand eines Punktes vom Mittelpunkt des Bildsensors abhängig gemacht werden:
+Da das Objektiv rotationssymetrisch ist, kann \fnf{\scl{s^{\gls{lat:OSKOS}}_{\gls{x}}},\scl{s^{\gls{lat:OSKOS}}_{\gls{y}}}} nur vom Abstand eines Punktes zum Mittelpunkt des Bildsensors abhängig gemacht werden:
 \begin{equation}
 \label{eq:ocamcalibdist}
-\gls{gre:distsensorcenter}=\sqrt{\gls{x}_{\gls{lat:OSKOS}}^2+\gls{y}_{\gls{lat:OSKOS}}^2}
+\gls{gre:distsensorcenter}=\sqrt{(\scl{s^{\gls{lat:OSKOS}}_{\gls{x}}})^2+(\scl{s^{\gls{lat:OSKOS}}_{\gls{y}}})^2}
 \end{equation}
 Aus~\eqref{eq:ocamcalibuv}~und~\eqref{eq:ocamcalibdist} ergibt sich: 
 \begin{equation}
 \label{eq:ocamcalibfin}
 \vct{v_{\gls{lat:OCKOS}}} =
 \begin{pmatrix}
-\gls{x}_{\gls{lat:OCKOS}} \\ \gls{y}_{\gls{lat:OCKOS}} \\ \gls{z}_{\gls{lat:OCKOS}}
+\scl{o^{\gls{lat:OCKOS}}_{\gls{x}}} \\ \scl{o^{\gls{lat:OCKOS}}_{\gls{y}}} \\ \scl{o^{\gls{lat:OCKOS}}_{\gls{z}}}
 \end{pmatrix}
 =
 \begin{pmatrix}
-\gls{x}_{\gls{lat:OSKOS}} \\ \gls{y}_{\gls{lat:OSKOS}} \\ \fnf{(\gls{gre:distsensorcenter})}
+\scl{s^{\gls{lat:OSKOS}}_{\gls{x}}} \\ \scl{s^{\gls{lat:OSKOS}}_{\gls{y}}} \\ \fnf{\gls{gre:distsensorcenter}}
 \end{pmatrix}
 \end{equation}
-Die Aufgabe der Kalibration besteht nun im Ermitteln der Funktion \fnf{(\gls{gre:distsensorcenter})}~\eqref{eq:ocamcalibrho}, welche in der Toolbox durch ein Polynom 4. Grades approximiert wird:
+Die Aufgabe der Kalibration besteht nun im Ermitteln der Funktion \fnf{\gls{gre:distsensorcenter}}~\eqref{eq:ocamcalibrho}, welche in der Toolbox durch ein Polynom 4. Grades approximiert wird:
 \begin{equation}
 \label{eq:ocamcalibrho}
  \fnf{\gls{gre:distsensorcenter}} = \scl{a} + \scl{b} \gls{gre:distsensorcenter} + \scl{c} \gls{gre:distsensorcenter}^2 + \scl{d} \gls{gre:distsensorcenter}^3 + \scl{e} \gls{gre:distsensorcenter}^4
@@ -88,13 +88,13 @@ Da ein Darlegen des Prozesses zur Ermittlung der Parameter \(\scl{a} \dots \scl{
   \label{fig:kameramodell_entzerrung}
 \end{figure}
 
-Mithilfe der gewonnenen Informationen kann die Entzerrung des Bildes nun stattfinden. Zuerst wird eine Ebene parallel zur \(\gls{x}_{\gls{lat:OCKOS}}\gls{y}_{\gls{lat:OCKOS}}\)-Ebene des Kamerakoordinatensystems \gls{lat:OCKOS} erstellt. Die \(\gls{z}_{\gls{lat:OCKOS}}\)-Koordinate ist hierbei wählbar. Diese Ebene wird nun in eine Menge von Punkten diskretisiert. Im entstandenen zweidimensionalen Array kann jedem Element ein Vektor \((\gls{x}_{\gls{lat:OCKOS}}, \gls{y}_{\gls{lat:OCKOS}}, \gls{z}_{\gls{lat:OCKOS}})\) zugeordnet werden  (z.B. Punkt \pnt{p_{\gls{lat:OCKOS}}} in \ref{fig:kameramodell_entzerrung}). Durch Gleichung~\eqref{eq:ocamcalibfin} lassen sich diesem Vektor Koordinaten \(\gls{x}_{\gls{lat:OSKOS}}, \gls{y}_{\gls{lat:OSKOS}}\) auf dem Kamerasensor zuordnen. Das Pixel mit dem geringsten Abstand zu den gewünschten Koordinaten \(\gls{x}_{\gls{lat:OSKOS}}, \gls{y}_{\gls{lat:OSKOS}}\) liefert nun den Farbwert für jeden Punkt der Ebene, welche das entzerrte Bild darstellt.
+Mithilfe der gewonnenen Informationen kann die Entzerrung des Bildes nun stattfinden. Zuerst wird eine Ebene parallel zur \(\scl{o^{\gls{lat:OCKOS}}_{\gls{x}}}\scl{o^{\gls{lat:OCKOS}}_{\gls{y}}}\)-Ebene des Kamerakoordinatensystems \gls{lat:OCKOS} erstellt. Die \(\scl{o^{\gls{lat:OCKOS}}_{\gls{z}}}\)-Koordinate ist hierbei wählbar. Diese Ebene wird nun in eine Menge von Punkten diskretisiert. Im entstandenen zweidimensionalen Feld kann jedem Element ein Vektor \((\scl{o^{\gls{lat:OCKOS}}_{\gls{x}}}, \scl{o^{\gls{lat:OCKOS}}_{\gls{y}}}, \scl{o^{\gls{lat:OCKOS}}_{\gls{z}}})\) zugeordnet werden  (z.B. Punkt \pnt{p_{\gls{lat:OCKOS}}} in \ref{fig:kameramodell_entzerrung}). Durch Gleichung~\eqref{eq:ocamcalibfin} lassen sich diesem Vektor Koordinaten \((\scl{s^{\gls{lat:OSKOS}}_{\gls{x}}}, \scl{s^{\gls{lat:OSKOS}}_{\gls{y}}})\) auf dem Kamerasensor zuordnen. Das Pixel mit dem geringsten Abstand zu den gewünschten Koordinaten \((\scl{s^{\gls{lat:OSKOS}}_{\gls{x}}}, \scl{s^{\gls{lat:OSKOS}}_{\gls{y}}})\) liefert nun den Farbwert für jeden Punkt der Ebene, welche das entzerrte Bild darstellt.
 
 \subsection{Affine Transformation}
-Da Annahme~\ref{item:ocamcalibassm2} in der Realität nie exakt zutrifft und bei der Digitalisierung des Bildes durch den Kamerasensor mit nichtquadratischen Pixeln zu rechnen ist, muss vor der Nutzung des hergeleiteten Modells eine affine Transformation der realen Koordinaten \(\gls{x}_{\gls{lat:OSKOSR}}, \gls{y}_{\gls{lat:OSKOSR}}\) in die idealen Koorinaten \(\gls{x}_{\gls{lat:OSKOS}}, \gls{y}_{\gls{lat:OSKOS}}\) stattfinden.
+Da Annahme~\ref{item:ocamcalibassm2} in der Realität nie exakt zutrifft und bei der Digitalisierung des Bildes durch den Kamerasensor mit nichtquadratischen Pixeln zu rechnen ist, muss vor der Nutzung des hergeleiteten Modells eine affine Transformation der realen Koordinaten \((\scl{s^{\gls{lat:OSKOSR}}_{\gls{x}}}, \scl{s^{\gls{lat:OSKOSR}}_{\gls{y}}})\) in die idealen Koorinaten \((\scl{s^{\gls{lat:OSKOS}}_{\gls{x}}}, \scl{s^{\gls{lat:OSKOS}}_{\gls{y}}})\) stattfinden.
 \begin{equation}
 \begin{pmatrix}
-\gls{x}_{\gls{lat:OSKOSR}} \\ \gls{y}_{\gls{lat:OSKOSR}}
+\scl{s^{\gls{lat:OSKOSR}}_{\gls{x}}} \\ \scl{s^{\gls{lat:OSKOSR}}_{\gls{y}}}
 \end{pmatrix}
 =
 \begin{pmatrix}
@@ -103,7 +103,7 @@ Da Annahme~\ref{item:ocamcalibassm2} in der Realität nie exakt zutrifft und bei
 \end{pmatrix}
 \cdot
 \begin{pmatrix}
-\gls{x}_{\gls{lat:OSKOS}} \\ \gls{y}_{\gls{lat:OSKOS}}
+\scl{s^{\gls{lat:OSKOS}}_{\gls{x}}} \\ \scl{s^{\gls{lat:OSKOS}}_{\gls{y}}}
 \end{pmatrix}
 +
 %\begin{pmatrix}
