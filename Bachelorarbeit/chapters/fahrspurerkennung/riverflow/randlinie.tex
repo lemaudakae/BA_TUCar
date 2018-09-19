@@ -1,9 +1,9 @@
 \subsection{Randlinie} \label{ssec:fahrspurerkennung:riverflow:randlinie}
 \subsubsection{Startpunktgewinnung}
-Um den eigentlichen Riverflow-Algorithmus ausführen zu können wird die ungefähre Lage der seitlichen Fahrbahnmarkierungen in der Nähe des Fahrzeugs benötigt. Zur Ermittlung dieser gibt es 3 Möglichkeiten:
+Um den eigentlichen Riverflow-Algorithmus ausführen zu können, wird die ungefähre Lage der seitlichen Fahrbahnmarkierungen in der Nähe des Fahrzeugs benötigt. Zur Ermittlung dieser gibt es 3 Möglichkeiten:
 \begin{enumerate}
 \item \label{item:solidline:startpoints:dashedline}
-Die Bestimmung durch Orientierung und Position des ersten vor dem Fahzeug gelegenen Mittellinienelementes. Hierzu wird der Mittelpunkt des Elementes senkrecht zu seiner Orientierung um die Fahrspurbreite nach links/rechts verschoben (siehe \ref{fig:riverflow:randlinien:startpoints:dashedline}).
+Die Bestimmung durch Orientierung und Position des ersten vor dem Fahrzeug gelegenen Mittellinienelementes. Hierzu wird der Mittelpunkt des Elementes senkrecht zu seiner Orientierung um die Fahrspurbreite nach links/rechts verschoben (siehe \ref{fig:riverflow:randlinien:startpoints:dashedline}).
 \item \label{item:solidline:startpoints:hough}
 Eine eindimensionale Hough-Transformation des Bildausschnittes direkt vor dem Fahrzeug wie in \ref{ssec:grundlagen:hough:vereinfachte} beschrieben (siehe \ref{fig:riverflow:randlinien:startpoints:hough}). 
 \item \label{item:solidline:startpoints:fixed}
@@ -63,7 +63,7 @@ Mithilfe des zu \vct{\gls{lat:dv}_n} \eqref{eq:riverflow:solidline:dispvec} senk
 v_{nx}
 \end{pmatrix}
 \end{equation}
-Der Wertebereich des skalaren Faktors \scl{\alpha} gibt hierbei die Ausdehnung der \gls{glos:scanline} um Ihren Mittelpunkt \pnt{m_{n+1}} herum an.
+Der Wertebereich des skalaren Faktors \scl{\alpha} gibt hierbei die Ausdehnung der \gls{glos:scanline} um ihren Mittelpunkt \pnt{m_{n+1}} herum an.
 Da die Filterantwort des Kantendetekors durch den Algorithmus zur Erkennung der Mittellinie schon für das gesamte Bild vorliegt, kann zur Erkennung der seitlichen Fahrbahnmarkierung auf selbige zurückgegriffen werden. Hierfür wird die Scanline in eine diskrete Koordinatenserie überführt \ref{eq:riverflow:solidline:scanlinediscrete}, deren Elemente auf ganzzahlige Werte gerundet werden.
 \begin{equation}
 \label{eq:riverflow:solidline:scanlinediscrete}
@@ -109,4 +109,4 @@ Der Mittelpunkt \begin{math} \vct{m}  \end{math} der nächsten \gls{glos:scanlin
 \end{figure}
 
 \subsubsection{Sonderfall gestrichelte Randlinien}
-Da das bis zu diesem Punkt diskutierte Verfahren zur Erkennung der seitlichen Fahrbahnmarkierungen nur zum Verfolgen durchgängiger Linien konzipiert ist, einmündende Straßen jedoch durch eine unterbrochene Markierung gekennzeichnet sind, findet für diesen Sonderfall eine modifizierte Version der in \ref{ssec:fahrspurerkennung:riverflow:mittellinie} beschriebenen Vorgehensweise Anwendung. Ist Abbruchbedingung \ref{item:fahrspurerkennung:riverflow:randlinie:ende:keinpunkt} des zentralen Algorithmus erreicht, wird ein Suchfenster (siehe \ref{fig:riverflow:randlinien:plot_komplett}) festgelegt. Wurden in diesem Bereich durch die Matlab-Funktion \emph{regionprops} Elemente einer kurzen, unterbrochenen Linie gefunden, werden diese als nächste Punkte der seitlichen Fahrbahnmarkierung vermerkt. Die Bildung des Mittelpunkts \pnt{m} des nächsten Suchfensters läuft wie in \eqref{eq:riverflow:solidline:scanlinemidpoint} beschrieben ab. Analog kann bei Fehlen eines Linienelementes im Suchfenster durch bilden einer \gls{glos:scanline} ein Rücksprung zum Fall einer durchgängigen Randlinie vollzogen werden.
+Da das bis zu diesem Punkt diskutierte Verfahren zur Erkennung der seitlichen Fahrbahnmarkierungen nur zum Verfolgen durchgängiger Linien konzipiert ist, einmündende Straßen jedoch durch eine unterbrochene Markierung gekennzeichnet sind, findet für diesen Sonderfall eine modifizierte Version der in \ref{ssec:fahrspurerkennung:riverflow:mittellinie} beschriebenen Vorgehensweise Anwendung. Ist Abbruchbedingung \ref{item:fahrspurerkennung:riverflow:randlinie:ende:keinpunkt} des zentralen Algorithmus erreicht, wird ein Suchfenster (siehe \ref{fig:riverflow:randlinien:plot_komplett}) festgelegt. Wurden in diesem Bereich durch die Matlab-Funktion \emph{regionprops} Elemente einer kurzen, unterbrochenen Linie gefunden, werden diese als nächste Punkte der seitlichen Fahrbahnmarkierung vermerkt. Die Bildung des Mittelpunkts \pnt{m} des nächsten Suchfensters läuft wie in \eqref{eq:riverflow:solidline:scanlinemidpoint} beschrieben ab. Analog kann bei Fehlen eines Linienelementes im Suchfenster durch Bilden einer \gls{glos:scanline} ein Rücksprung zum Fall einer durchgängigen Randlinie vollzogen werden.

@@ -170,12 +170,12 @@ Die in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} durch 
 (\gls{x}-\gls{x}_0)
 \end{equation}
 
-Da sich die gefahrene Strecke \begin{math} \scl{Deltagls{x}}_{\gls{lat:LinienKOS}} \end{math} zwischen den Aufnahmepunkten zweier Bildern geringfügig ändern kann, muss die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} vor jedem Prädikationsschritt neu berechnet werden.
+Da sich die gefahrene Strecke \begin{math} \scl{Deltagls{x}}_{\gls{lat:LinienKOS}} \end{math} zwischen den Aufnahmepunkten zweier Bilder geringfügig ändern kann, muss die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} vor jedem Prädikationsschritt neu berechnet werden.
 
-\subsubsection{\glsdesc{lat:inputmatrix}}
+\subsubsection{Eingangsmatrix}
 Die \glsdesc{lat:inputmatrix} \gls{lat:inputmatrix} modelliert äußere Einflüsse auf die Entwicklung des Systemzustandes \gls{lat:statevector}. Dies könnten z.B. Änderungen des Lenkwinkels sein. Da selbiger jedoch schon bei der Herleitung der \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} vernachlässigt wurde, kann \gls{lat:inputmatrix} bei weiteren Untersuchungen unberücksichtigt bleiben.
 
-\subsubsection{\glsdesc{lat:outputmatrix}} 
+\subsubsection{Ausgangsmatrix/Messmatrix} 
 \label{sssec:fahrspurerkennung:kalman-filter:zustandsraumbeschreibung:outputmatrix}
 Die \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} bildet den Systemzustand \gls{lat:statevector} auf eine Messung \gls{lat:outputvector} ab. In unserer Implementierung wird  \gls{lat:outputmatrix} passend zu den \gls{x}-Koordinaten der wie in \ref{ssec:fahrspurerkennung:kalman:messung} beschrieben gewonnenen Linienmittelpunkte in jeder Iteration des Kalmanfilters neu berechnet. Aus \ref{eq:polylanestate} ergibt sich:
 \begin{equation}

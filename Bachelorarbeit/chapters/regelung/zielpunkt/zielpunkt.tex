@@ -5,7 +5,7 @@ Um den Zielpunkt für den implementierten \glqq Pure-Pursuit\grqq -Regler zu erh
 Im gewählten Fahrspurverfolgungskonzept läuft die Erkennung der Fahrbahnmarkierungen und die Regelung des Fahrzeugs asynchron ab, beide Komponenten kommunizieren nur über eine Weltkarte miteinander. Somit muss vor jedem Regelzyklus festgestellt werden, welche Punkte dieser Weltkarte zum Steuern des Roboters noch relevant sind. Hierfür wurden einige Regeln festgelegt:
 \begin{enumerate}
 \item 
-Der Abstand (analog \ref{eq:norm:distpoints}) der aktuellen Roboterpose zur Pose an welcher die Punkte in die globale Karte eingetragen wurden, darf einen Grenzwert nicht überschreiten.
+Der Abstand (analog \ref{eq:norm:distpoints}) der aktuellen Roboterpose zur Pose, an welcher die Punkte in die globale Karte eingetragen wurden, darf einen Grenzwert nicht überschreiten.
 \item
 Der Zeitpunkt, an welchem die Punkte in die Weltkarte eingetragen wurden, muss aktuell genug sein.
 \item
@@ -20,10 +20,10 @@ Um später alle drei Fahrbahnmarkierungen zur Zielpunktgewinnung in die gewünsc
 Zur Ermittlung des optimalen Kreises durch die gefragten Punkte wurde der Taubin-Kreisfit \autocite{taubinEstimationPlanarCurves1991} in der Implementierung von \autocite{nikolaichernovMATLABCodesFitting} verwendet. 
 
 \subsubsection{Ermittlung zusätzlicher Parameter}
-Neben dem Mittelpunkt \gls{lat:mp} und Radius \gls{lat:rad} muss zur vollständigen Paramteterisierung des Kreisbogens Start- und Endwinkel sowie die Drehrichtung des Bogens bekannt sein.
+Neben dem Mittelpunkt \gls{lat:mp} und Radius \gls{lat:rad} muss zur vollständigen Parameterisierung des Kreisbogens Start- und Endwinkel sowie die Drehrichtung des Bogens bekannt sein.
 
 \paragraph{Start- und Endwinkel}
-Zur Ermittlung des Startwinkels \( \varphi_s \) wird vom Mittelpunkt des Kreises \gls{lat:mp} zum Punkt \pnt{p_s} ein Vektor \vct{o_s} aufgespannt. \pnt{p_s} stellt den Punkt mit dem geringsten Abstand vom Koordinatenursprung des Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} aus der Koordinatenserie welche zum Kreisfit genutzt wurde dar. Der gesuchte Startwinkel ergibt sich als:
+Zur Ermittlung des Startwinkels \( \varphi_s \) wird vom Mittelpunkt des Kreises \gls{lat:mp} zum Punkt \pnt{p_s} ein Vektor \vct{o_s} aufgespannt. \pnt{p_s} stellt den Punkt mit dem geringsten Abstand vom Koordinatenursprung des Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} aus der Koordinatenserie, welche zum Kreisfit genutzt wurde, dar. Der gesuchte Startwinkel ergibt sich als:
 \begin{equation}
 \varphi_s =
 \atantwo (\scl{o_{sy}, o_{sx}}) = 
