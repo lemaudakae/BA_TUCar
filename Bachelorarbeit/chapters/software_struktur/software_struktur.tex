@@ -21,7 +21,7 @@ Entgegengenommen werden im Ansteuer-\gls{glos:topic} die gewünschte Geschwindig
 \paragraph{PC}
 Auf dem PC wird nur der von \gls{glos:matlab} automatisch initialisierte \gls{glos:node} genutzt. Dieser abonniert das komprimierte Bilddaten-\gls{glos:topic} und veröffentlicht auf das Ansteuer-\gls{glos:topic} des Fahrzeugs.
 
-\section{\gls{glos:matlab}}
+\section{MATLAB}
 Die im Hauptteil dieser Arbeit beschriebenen Algorithmen zur Fahrspurverfolgung wurden ausschließlich in \gls{glos:matlab} implementiert. Da die grundlegende Softwarestruktur in allen drei Fällen gleich ist, soll diese nun dargelegt werden.
 
 \subsection{Initialisierung}
@@ -34,7 +34,7 @@ Ist das Fahrzeug betriebsbereit, d.h. sind alle \glspl{glos:node} des Fahrzeugs 
 \item eine konstante tangentiale Geschwindigkeit des Fahrzeugs vorgibt 
 \end{itemize}
 
-\subsection{\glspl{glos:callback}}
+\subsection{Callbacks}
 \paragraph{Odometrie-\gls{glos:callback}}
 Das Fahrzeug veröffentlicht in konfigurierbaren Abständen seine aktuellen Odometriedaten. Diese Veröffentlichungszeitpunkte werden als Trigger für einen neuen Regelzyklus genutzt. Innerhalb eines solchen Odometrie-\gls{glos:callback}s werden folgende Schritte durchgeführt:
 \begin{enumerate}

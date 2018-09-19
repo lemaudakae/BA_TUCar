@@ -3,7 +3,7 @@ Da das verwendete Fisheye-Objektiv durch seinen großen Blickwinkel stark verzer
 
 Die OcamCalib-Toolbox behandelt das Kamerasystem als Einheit, d.h. die Kamera und der Fisheyeobjektivaufsatz (alternativ der konvexe Spiegel) werden zusammen durch einen Parametersatz beschrieben.
 
-Das Modell hat das Ziel, den Zusammenhang zwischen einem Punkt auf dem Bildsensor \pnt{s_{\gls{lat:OSKOS}}} mit Koordinaten \((\gls{x}_{\gls{lat:OSKOS}}, \gls{y}_{\gls{lat:OSKOS}})\) und einem vom optischen Zentrum des Objektivs ausgehenden Vektors nicht festgelegter Länge \vct{v_{\gls{lat:OCKOS}}} mit Koordinaten \((\gls{x}_{\gls{lat:OCKOS}}, \gls{y}_{\gls{lat:OCKOS}}, \gls{z}_{\gls{lat:OCKOS}})\) zu finden (s.~\eqref{eq:ocamcalibuv}).
+Das Modell hat das Ziel, den Zusammenhang zwischen einem Punkt auf dem Bildsensor \pnt{s_{\gls{lat:OSKOS}}} mit Koordinaten \((\gls{x}_{\gls{lat:OSKOS}}, \gls{y}_{\gls{lat:OSKOS}})\) und einem vom optischen Zentrum des Objektivs ausgehenden Vektor nicht festgelegter Länge \vct{v_{\gls{lat:OCKOS}}} mit Koordinaten \((\gls{x}_{\gls{lat:OCKOS}}, \gls{y}_{\gls{lat:OCKOS}}, \gls{z}_{\gls{lat:OCKOS}})\) zu finden (s.~\eqref{eq:ocamcalibuv}).
 
 \begin{figure}[H]
   \centering
@@ -15,9 +15,9 @@ Das Modell hat das Ziel, den Zusammenhang zwischen einem Punkt auf dem Bildsenso
 \subsection{Annahmen}
 Im verwendeten Modell werden folgende Annahmen getroffen:
 \begin{enumerate}
-\item Die verwendete Optik stellt ein zentrales Kamerasystem dar, d.h. alle einfallenden Strahlen, welche sich im Brennpunkt des Objektivs nach der Brechung schneiden (s. grüner Strahlverlauf in~\ref{fig:kameramodell}), schneiden sich auch ungebrochen in einem Punkt (s. blauer Strahlverlaufin~\ref{fig:kameramodell}). Dieser Punkt ist das optische Zentrum des Objektivs und der Koordinatenursprung des Kamerakoordinatensystems \gls{lat:OCKOS}.
+\item Die verwendete Optik stellt ein zentrales Kamerasystem dar, d.h. alle einfallenden Strahlen, welche sich im Brennpunkt des Objektivs nach der Brechung schneiden (s. grüner Strahlverlauf in~\ref{fig:kameramodell}), schneiden sich auch ungebrochen in einem Punkt (s. blauer Strahlverlauf in~\ref{fig:kameramodell}). Dieser Punkt ist das optische Zentrum des Objektivs und der Koordinatenursprung des Kamerakoordinatensystems \gls{lat:OCKOS}.
 \item \label{item:ocamcalibassm2} Die Achse des Bildsensors und des Objektivs sind nahezu identisch (s. unterbrochene graue Linie in~\ref{fig:kameramodell}). Das Modell berücksichtigt nur kleine Abweichungen der Rotationen der Achsen gegeneinander.
-\item Das Objektiv ist rotationssymetrisch zu seiner Achse(s. unterbrochene graue Linie in~\ref{fig:kameramodell}).
+\item Das Objektiv ist rotationssymmetrisch zu seiner Achse (s. unterbrochene graue Linie in~\ref{fig:kameramodell}).
 \item Die Linsenverzerrung wird nicht durch herkömmliche Methoden, sondern durch die Projektionsfunktion \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}}~\eqref{eq:ocamcalibuv} berücksichtigt.
 \end{enumerate}
 
@@ -55,7 +55,7 @@ Der Faktor  \gls{gre:repos} kann in die Funktion \fnf{\gls{x}_{\gls{lat:OSKOS}},
 \gls{x}_{\gls{lat:OSKOS}} \\ \gls{y}_{\gls{lat:OSKOS}} \\ \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}}
 \end{pmatrix}
 \end{equation}
-Da da das Objektiv rotationssymetrisch ist, kann \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}} nur vom Abstand eines Punktes vom Mittelpunkt des Bildsensors abhängig gemacht werden:
+Da das Objektiv rotationssymetrisch ist, kann \fnf{\gls{x}_{\gls{lat:OSKOS}},\gls{y}_{\gls{lat:OSKOS}}} nur vom Abstand eines Punktes vom Mittelpunkt des Bildsensors abhängig gemacht werden:
 \begin{equation}
 \label{eq:ocamcalibdist}
 \gls{gre:distsensorcenter}=\sqrt{\gls{x}_{\gls{lat:OSKOS}}^2+\gls{y}_{\gls{lat:OSKOS}}^2}

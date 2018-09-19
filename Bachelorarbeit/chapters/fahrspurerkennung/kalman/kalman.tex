@@ -1,12 +1,12 @@
 \section{Kalman-Filter}
 
 \subsection{Überblick} \label{ssec:fahrspurerkennung:kalman-filter:ueberblick}
-Auch der folgende Ansatz zur Fahrspurerkennung approximiert den Verlauf der Fahrspur als Polynom 3. Grades. Jedoch wird die nicht mehr jede Fahrspurmarkierung einzeln modelliert, sondern nur noch die Mittellinie, von der aus beliebige Punkte entlang der Senkrechte zu selbiger um die Fahrspurbreite verschoben werden können um die seitlichen Fahrbahnmarkierungen zu erhalten.
+Auch der folgende Ansatz zur Fahrspurerkennung approximiert den Verlauf der Fahrspur als Polynom 3. Grades. Jedoch wird nicht mehr jede Fahrspurmarkierung einzeln modelliert, sondern nur noch die Mittellinie, von der aus beliebige Punkte entlang der Senkrechte zu selbiger um die Fahrspurbreite verschoben werden können um die seitlichen Fahrbahnmarkierungen zu erhalten.
 Das in \ref{sec:grundlagen:kalman-filter} eingeführte Kalman-Filter soll verwendet werden um die Lage der Fahrbahnmarkierungen in aufeinanderfolgenden Bildern zu tracken. Final sollen Punkte aus den Verläufen der Straßenmarkierung gesampelt, in die Weltkarte eingetragen und somit für den Regelungsalgorithmus verfügbar gemacht werden.
 
 \subsection{Fahrspurmodell}
 Als Fahrspurmodell soll das in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} vorgeschlagene Modell, welches wiederum eine Vereinfachung von \autocite{risackRobustLaneRecognition} darstellt, verwendet werden.
-Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt soll die Fahrspur als Polynom 3. Grades \begin{math} \gls{y}_{\gls{lat:LinienKOS}}(\gls{x}_{\gls{lat:LinienKOS}}) \end{math} approximiert werden. Um die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} zu vereinfachen und einen sehr anschaulichen \glsdesc{lat:statevector} \gls{lat:statevector} zu erhalten wird für jenen die 0. bis 3. Ableitung des Polynoms an der Stelle \begin{math} \gls{x}_{\gls{lat:LinienKOS}}=0 \end{math} verwendet. 
+Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt, soll die Fahrspur als Polynom 3. Grades \begin{math} \gls{y}_{\gls{lat:LinienKOS}}(\gls{x}_{\gls{lat:LinienKOS}}) \end{math} approximiert werden. Um die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} zu vereinfachen und einen sehr anschaulichen \glsdesc{lat:statevector} \gls{lat:statevector} zu erhalten, wird für jenen die 0. bis 3. Ableitung des Polynoms an der Stelle \begin{math} \gls{x}_{\gls{lat:LinienKOS}}=0 \end{math} verwendet. 
 \begin{equation}
 \label{eq:polylane}
 \gls{y}(\gls{x}) =
@@ -60,8 +60,8 @@ Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt soll d
  \end{figure}
  
 \subsection{Messung} \label{ssec:fahrspurerkennung:kalman:messung}
-Um eine ausreichende Performace des Kalmanfilters zu gewährleisten muss die Anzahl der Bildpunkte, welche zur Korrektur des prädizierten Zustands verwendet werden, im Gegensatz zu \ref{sec:maskenbau} vermindert werden. Im Gegensatz zu \ref{sec:maskenbau} wird in Anlehnung an \autocite{risackRobustLaneRecognition} das Bild ab dem Vorverabeitungsschritt nur in relevanten Bereichen betrachtet.
-Hierfür werden Geraden \flq \glspl{glos:scanline} \frq senkrecht zum Polynom des Fahrspurmodells berechnet. Deren Länge sowie Abstand der Startpunkte auf dem Polynom sind als Parameter anzusehen. Nun werden die Helligkeitswerte der Bildpunkte, welche sich unterhalb der Geraden befinden mit dem aus \ref{sec:bildvorverarbeitung:filterung} bekannten Kantendetektor gefiltert. Die Koordinaten der ausreichend großen lokalen Maxima der Filterantwort sind Kandidaten für Mittelpunkte der mittleren Fahrbahnmarkierung.
+Um eine ausreichende Performace des Kalmanfilters zu gewährleisten, muss die Anzahl der Bildpunkte, welche zur Korrektur des prädizierten Zustands verwendet werden, im Gegensatz zu \ref{sec:maskenbau} vermindert werden. Im Gegensatz zu \ref{sec:maskenbau} wird in Anlehnung an \autocite{risackRobustLaneRecognition} das Bild ab dem Vorverabeitungsschritt nur in relevanten Bereichen betrachtet.
+Hierfür werden Geraden \glqq \glspl{glos:scanline}\grqq{} senkrecht zum Polynom des Fahrspurmodells berechnet. Deren Länge sowie Abstand der Startpunkte auf dem Polynom sind als Parameter anzusehen. Nun werden die Helligkeitswerte der Bildpunkte, welche sich unterhalb der Geraden befinden, mit dem aus \ref{sec:bildvorverarbeitung:filterung} bekannten Kantendetektor gefiltert. Die Koordinaten der ausreichend großen lokalen Maxima der Filterantwort sind Kandidaten für Mittelpunkte der mittleren Fahrbahnmarkierung.
 
 \subsubsection{Randlinen}
 Um auch die Mittelpunkte der äußeren Fahrbahnmarkierungen detektieren zu können, werden die \glspl{glos:scanline} der Mittelline um die Fahrspurbreite senkrecht zum Polynom verschoben. Nun kann derselbe Algorithmus wie für die \glspl{glos:scanline} der mittleren Fahrbahnmarkierung ausgeführt werden. Die gefundenen Koordinaten müssen letztendlich wieder um die Fahrspurbreite zur Mittellinie hin verschoben werden um problemlos zur Zustandskorrektur des Kalmanfilters nutzbar zu sein.
@@ -73,7 +73,7 @@ Die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} bildet den momentanen \gls
 \subsubsection{Vereinfachungen}
 Der Einfluss des Lenkwinkels wird vernachlässigt, da er bei kurzer Periodendauer der Abtastung \(\scl{T_s} = \frac{1}{\text{Bildrate}}\)\scl{T_s} und kleiner Größe seiner selbst kaum Einfluss auf die Lage der Fahrbahn im Folgebild nimmt. Das Fahrzeug bewegt sich also geradlinig in Richtung der x-Achse des Fahrspurkoordinatensystems \gls{lat:LinienKOS}. 
 
-\subsubsection{Herleitung der \glsdesc{lat:systemmatrix}}
+\subsubsection{Herleitung der Systemmatrix}
 Der zurückgelegte Weg \begin{math} \scl{Deltagls{x}}_{\gls{lat:LinienKOS}} \end{math} zwischen zwei Bildaufnahmenpunkten kann direkt aus den Encodern des Fahrzeugs ausgelesen werden. Der Folgezustand  \(\gls{lat:statevector}(\scl{k}+1)\) wird wie folgt berechnet:
 \begin{equation}
 \label{eq:nextstatemapping}
@@ -86,7 +86,7 @@ Der zurückgelegte Weg \begin{math} \scl{Deltagls{x}}_{\gls{lat:LinienKOS}} \end
 \end{pmatrix}
 \end{equation}
 
-In \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} wird beschrieben, dass sich aufgrund von Nichtlinearität aus \ref{eq:nextstatemapping} keine äquivalente Matrix A aufstellen lässt. Da diese Nichtlinearität jedoch nur in Bezug auf  \scl{Deltagls{x}} und nicht den \glsdesc{lat:statevector} \gls{lat:statevector} besteht, ist dies trotz dessen möglich. Aus \eqref{eq:polylanestate}, \eqref{eq:nextstatemapping} und der Bewegung des Fahrzeugs entlang der x-Achse des Fahrspurkoordinatensystems \gls{lat:LinienKOS} um \scl{Deltagls{x}} folgt:
+In \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} wird beschrieben, dass sich aufgrund von Nichtlinearität aus \ref{eq:nextstatemapping} keine äquivalente Matrix A aufstellen lässt. Da diese Nichtlinearität jedoch nur in Bezug auf \scl{Deltagls{x}} und nicht den \glsdesc{lat:statevector} \gls{lat:statevector} besteht, ist dies trotz dessen möglich. Aus \eqref{eq:polylanestate}, \eqref{eq:nextstatemapping} und der Bewegung des Fahrzeugs entlang der x-Achse des Fahrspurkoordinatensystems \gls{lat:LinienKOS} um \scl{Deltagls{x}} folgt:
 \begin{equation}
 \begin{split}
 \label{eq:nextstatemappingmatrix}
@@ -170,7 +170,7 @@ Die in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} durch 
 (\gls{x}-\gls{x}_0)
 \end{equation}
 
-Da sich die gefahrene Strecke \begin{math} \scl{Deltagls{x}}_{\gls{lat:LinienKOS}} \end{math} zwischenden Aufnahmepunkten zweier Bildern geringfügig ändern kann, muss die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} vor jedem Prädikationsschritt neu berechnet werden.
+Da sich die gefahrene Strecke \begin{math} \scl{Deltagls{x}}_{\gls{lat:LinienKOS}} \end{math} zwischen den Aufnahmepunkten zweier Bildern geringfügig ändern kann, muss die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} vor jedem Prädikationsschritt neu berechnet werden.
 
 \subsubsection{\glsdesc{lat:inputmatrix}}
 Die \glsdesc{lat:inputmatrix} \gls{lat:inputmatrix} modelliert äußere Einflüsse auf die Entwicklung des Systemzustandes \gls{lat:statevector}. Dies könnten z.B. Änderungen des Lenkwinkels sein. Da selbiger jedoch schon bei der Herleitung der \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} vernachlässigt wurde, kann \gls{lat:inputmatrix} bei weiteren Untersuchungen unberücksichtigt bleiben.
