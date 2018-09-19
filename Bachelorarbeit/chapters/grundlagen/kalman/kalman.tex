@@ -1,5 +1,5 @@
 \section{Kalman-Filter} \label{sec:grundlagen:kalman-filter}
-Das Kalman-Filter ist ein bereits 1960 entwickeltes Verfahren zur Zustandsschätzung von zeitdiskreten, linearen Systemen \autocite{kalmanNewApproachLinear1960}. Durch seinen iterativen Aufbau, welcher alle vorherigen Zustände mit wenig Rechenaufwand berücksichtigen kann, ist es besonders interessant für Echtzeitanwendungen. Die Fähigkeit redundante Messungen zu vereinigen macht es sehr attraktiv in vielerlei Hinsicht. Die folgenden Grundlagen stellen eine Kurzfassung von \autocite{marchthalerKalmanFilterEinfuehrungZustandsschaetzung2017} dar.
+Das Kalman-Filter ist ein bereits 1960 entwickeltes Verfahren zur Zustandsschätzung von zeitdiskreten, linearen Systemen \autocite{kalmanNewApproachLinear1960}. Durch seinen iterativen Aufbau, welcher alle vorherigen Zustände mit wenig Rechenaufwand berücksichtigen kann, ist es besonders interessant für Echtzeitanwendungen. Die Fähigkeit, redundante Messungen zu vereinigen, macht es in vielerlei Hinsicht sehr attraktiv. Die folgenden Grundlagen stellen eine Kurzfassung von \autocite{marchthalerKalmanFilterEinfuehrungZustandsschaetzung2017} dar.
 
 \subsection{Zustandsraumdarstellung}
 Um ein Kalman-Filter nutzen zu können wird für den betrachteten Prozess ein Modell im Zustandsraum benötigt. In \eqref{eq:statespacerep} ist die allgemeine Zustandsraumbeschreibung für zeitinvariante, lineare Systeme aufgeführt. Da das Kalman-Filter für die Verwendung mit zeitdiskreten Systemen konzipiert wurde und im digitalen Bereich Messwerte lediglich abgetastet vorliegen, muss dieses kontinuierliche Modell später diskretisiert werden \eqref{eq:statespacerepdisc}.
@@ -12,7 +12,7 @@ Um ein Kalman-Filter nutzen zu können wird für den betrachteten Prozess ein Mo
 \gls{lat:processnoisematrix} \cdot \gls{lat:processnoisevector}(\gls{lat:time})
 \end{equation}
 \begin{equation}
-\gls{lat:outputvector} = 
+\gls{lat:outputvector}(\gls{lat:time}) = 
 \gls{lat:outputmatrix} \cdot \gls{lat:statevector}(\gls{lat:time}) +
 \gls{lat:transmissionmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time}) +
 \gls{lat:measnoisevector}(\gls{lat:time})
@@ -27,7 +27,7 @@ Um ein Kalman-Filter nutzen zu können wird für den betrachteten Prozess ein Mo
 \gls{lat:processnoisematrix}_{\gls{idz:discrete}} \cdot \gls{lat:processnoisevector}(\scl{k})
 \end{equation}
 \begin{equation}
-\gls{lat:outputvector} = 
+\gls{lat:outputvector}(\scl{k}) = 
 \gls{lat:outputmatrix} \cdot \gls{lat:statevector}(\scl{k}) + 
 \gls{lat:transmissionmatrix} \cdot \gls{lat:inputvector}(\scl{k}) +
 \gls{lat:measnoisevector}(\scl{k})
@@ -46,7 +46,7 @@ Ein lineares zeitinvariantes System, im Zustandsraum beschrieben durch
 \gls{lat:inputmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time})
 \end{equation}
 \begin{equation}
-\gls{lat:outputvector} = 
+\gls{lat:outputvector}(\gls{lat:time}) = 
 \gls{lat:outputmatrix} \cdot \gls{lat:statevector}(\gls{lat:time}) +
 \gls{lat:transmissionmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time})
 \end{equation}  
