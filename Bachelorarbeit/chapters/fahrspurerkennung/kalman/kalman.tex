@@ -5,7 +5,7 @@ Auch der folgende Ansatz zur Fahrspurerkennung approximiert den Verlauf der Fahr
 Das in \ref{sec:grundlagen:kalman-filter} eingeführte Kalman-Filter soll verwendet werden um die Lage der Fahrbahnmarkierungen in aufeinanderfolgenden Bildern zu tracken. Final sollen Punkte aus den Verläufen der Straßenmarkierung gesampelt, in die Weltkarte eingetragen und somit für den Regelungsalgorithmus verfügbar gemacht werden.
 
 \subsection{Fahrspurmodell}
-Als Fahrspurmodell soll das in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} vorgeschlagene Modell, welches wiederrum eine Vereinfachung von \autocite{risackRobustLaneRecognition} darstellt, verwendet werden.
+Als Fahrspurmodell soll das in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} vorgeschlagene Modell, welches wiederum eine Vereinfachung von \autocite{risackRobustLaneRecognition} darstellt, verwendet werden.
 Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt soll die Fahrspur als Polynom 3. Grades \begin{math} \gls{y}_{\gls{lat:LinienKOS}}(\gls{x}_{\gls{lat:LinienKOS}}) \end{math} approximiert werden. Um die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} zu vereinfachen und einen sehr anschaulichen \glsdesc{lat:statevector} \gls{lat:statevector} zu erhalten wird für jenen die 0. bis 3. Ableitung des Polynoms an der Stelle \begin{math} \gls{x}_{\gls{lat:LinienKOS}}=0 \end{math} verwendet. 
 \begin{equation}
 \label{eq:polylane}
