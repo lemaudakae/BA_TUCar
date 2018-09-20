@@ -7,25 +7,27 @@ Da der Austausch von Bilddaten und Ansteuerbefehlen zwischen Modellfahrzeug und 
 \end{quotation}
 
 \subsection{\glspl{glos:node}}
-\paragraph{Fahrzeug}
-\subparagraph{Kamera-\gls{glos:node}}
+Ein \gls{acr:ros}-System besteht aus mehreren Programmen \glqq \glspl{glos:node}\grqq, welche über bestimmte Kommunikationskanäle \glqq \glspl{glos:topic}\grqq\ Datenpakete \glqq \glspl{glos:message}\grqq\ austauschen. Diese Applikationen können Information auf einem \gls{glos:topic} zur Verfügung stellen, sie fungieren als sogenannte \gls{glos:publisher}, oder nutzen, in diesem Fall man nennt sie \gls{glos:subscriber}.
+
+\subsubsection{Fahrzeug}
+\paragraph{Kamera-\gls{glos:node}}
 Der Kamera-\gls{glos:node} veröffentlicht die Bilder als Rohdaten-\gls{glos:topic} sowie in komprimierter Form.
-\subparagraph{Fahrzeug-\gls{glos:node}}
+\paragraph{Fahrzeug-\gls{glos:node}}
 Der Fahrzeug-\gls{glos:node} veröffentlicht:
 \begin{itemize}
 \item Odometriedaten 
 \item Messwerte der \gls{acr:imu}
-\item sonstige Information zum Fahrzeug (z.B. Akkuspannung)
+\item sonstige Informationen zum Fahrzeug (z.B. Akkuspannung)
 \end{itemize}
-Entgegengenommen werden im Ansteuer-\gls{glos:topic} die gewünschte Geschwindigkeit und der Lenkwinkel.
-\paragraph{PC}
+und nimmt im Ansteuer-\gls{glos:topic} die gewünschte Geschwindigkeit und den Lenkwinkel entgegen.
+\subsubsection{PC}
 Auf dem PC wird nur der von \gls{glos:matlab} automatisch initialisierte \gls{glos:node} genutzt. Dieser abonniert das komprimierte Bilddaten-\gls{glos:topic} und veröffentlicht auf das Ansteuer-\gls{glos:topic} des Fahrzeugs.
 
 \section{MATLAB}
 Die im Hauptteil dieser Arbeit beschriebenen Algorithmen zur Fahrspurverfolgung wurden ausschließlich in \gls{glos:matlab} implementiert. Da die grundlegende Softwarestruktur in allen drei Fällen gleich ist, soll diese nun dargelegt werden.
 
 \subsection{Initialisierung}
-Ist das Fahrzeug betriebsbereit, d.h. sind alle \glspl{glos:node} des Fahrzeugs bereit, so kann in \gls{glos:matlab} das Programm zur Fahrspurverfolgung aufgerufen werden. Hierfür wird die Initialisierungsroutine gestartet welche:
+Ist das Fahrzeug betriebsbereit, d.h. werden alle \glspl{glos:node} des Fahrzeugs ausgeführt, so kann in \gls{glos:matlab} das Programm zur Fahrspurverfolgung aufgerufen werden. Hierfür wird die Initialisierungsroutine gestartet welche:
 \begin{itemize}
 \item die globalen Parameter lädt
 \item die Weltkarte und die Pose initialisiert
@@ -36,10 +38,11 @@ Ist das Fahrzeug betriebsbereit, d.h. sind alle \glspl{glos:node} des Fahrzeugs 
 
 \subsection{Callbacks}
 \paragraph{Odometrie-\gls{glos:callback}}
-Das Fahrzeug veröffentlicht in konfigurierbaren Abständen seine aktuellen Odometriedaten. Diese Veröffentlichungszeitpunkte werden als Trigger für einen neuen Regelzyklus genutzt. Innerhalb eines solchen Odometrie-\gls{glos:callback}s werden folgende Schritte durchgeführt:
+Das Fahrzeug veröffentlicht in konfigurierbaren Abständen seine aktuellen Odometriedaten.
+Das Eintreffen eines solchen Datenpaketes in \gls{glos:matlab} führt zum Aufrufen der Odometrie-\gls{glos:callback}-Funktion. Die Hauptaufgabe dieses Programmteils besteht in der Regelung des Fahrzeugs, deren Ablauf im folgenden kurz erläutert wird.
 \begin{enumerate}
-\item Mithilfe der empfangenen, seit der letzten Odometrie-\gls{glos:message} ermittelten Durchschnittsgeschwindigkeit, der seit der letzten Odometrie-\gls{glos:message} verstrichenen Zeit und der von der \gls{acr:imu} geholten Orientierung kann die Pose aktualisiert und in der Weltkarte vermerkt werden.
+\item Mithilfe der empfangenen, seit der letzten Odometrie-\gls{glos:message} verstrichenen Zeit, der in dieser Spanne ermittelten Durchschnittsgeschwindigkeit und der durch die \gls{acr:imu} erhaltenen Orientierung kann die Pose aktualisiert werden.
 \item Auf Basis der neuen Pose kann mithilfe aller in der Weltkarte vorhandenen Punkte ein neuer Lenkwinkel bestimmt werden.
 \end{enumerate}
 \paragraph{Bild-\gls{glos:callback}}
-Sobald ein neues Bild im zugehörigen \gls{glos:topic} verfügbar ist, wird ein  Algorithmus zur Extraktion von Punkten der Fahrbahnmarkierung gerufen. Dieser trägt selbige in die Weltkarte ein und macht sie so für die Regelung abrufbar.
+Sobald ein neues Bild im zugehörigen \gls{glos:topic} verfügbar ist, wird ein Algorithmus zur Extraktion von Punkten der Fahrbahnmarkierung gerufen. Dieser fügt die gefundenen Koordinatenserien in die Weltkarte ein und macht sie so für die Regelung abrufbar.
