@@ -4,17 +4,17 @@ Um den Zielpunkt für den implementierten \glqq Pure-Pursuit\grqq -Regler zu erh
 \subsection{Holen der benötigten Punkte aus der Weltkarte}
 Im gewählten Fahrspurverfolgungskonzept läuft die Erkennung der Fahrbahnmarkierungen und die Regelung des Fahrzeugs asynchron ab, beide Komponenten kommunizieren nur über eine Weltkarte miteinander. Somit muss vor jedem Regelzyklus festgestellt werden, welche Punkte dieser Weltkarte zum Steuern des Roboters noch relevant sind. Hierfür wurden einige Regeln festgelegt:
 \begin{enumerate}
-\item 
-Der Abstand (analog \ref{eq:norm:distpoints}) der aktuellen Roboterpose zur Pose, an welcher die Punkte in die globale Karte eingetragen wurden, darf einen Grenzwert nicht überschreiten.
 \item
 Der Zeitpunkt, an welchem die Punkte in die Weltkarte eingetragen wurden, muss aktuell genug sein.
-\item
+\item \label{item:regelung:zielpunkt:holen:regeln:abstand}
+Der Abstand (analog \ref{eq:norm:distpoints}) der aktuellen Roboterpose zur Pose, an welcher die Punkte in die globale Karte eingetragen wurden, darf einen Grenzwert nicht überschreiten.
+\item \label{item:regelung:zielpunkt:holen:regeln:xcoord}
 Die x-Koordinate der in das Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} transformierten Punkte muss in einem bestimmten Intervall liegen.
 \end{enumerate}
-Abschließend werden die nach diesen Kriterien gefilterten Punkte der globalen Karte in Roboterkoordinaten (\gls{acr:ks} \gls{lat:RoboterKOS}) transformiert.
+Um die Punkte nach Kategorie \ref{item:regelung:zielpunkt:holen:regeln:xcoord} filtern zu können und später zur Regelung zu nutzen, werden sie nach Schritt \ref{item:regelung:zielpunkt:holen:regeln:abstand} vom Welt-\gls{acr:ks} \gls{lat:WeltKOS} in Roboterkoordinaten (\gls{acr:ks} \gls{lat:RoboterKOS}) transformiert.
 
 \subsection{Kreissegment-Fit} \label{regelung:zielpunkt:kreissegment-fit}
-Um später alle drei Fahrbahnmarkierungen zur Zielpunktgewinnung in die gewünschte Fahrspur verschieben zu können, muss eine mathematische Repräsentation der Mittellinie und Seitenlinien gefunden werden, welche dies erlaubt. Da in der Weltkarte aus mehreren Bildern erkannte Punkte vorhanden sind, soll ein zu allen diesen Frames möglichst gut passender Zielpunkt gefunden werden. Wählt man den Bereich der für die Zielpunktfindung relevanten Fahrbahnmarkierungen nicht zu groß, kann der Verlauf selbiger gut durch Kreisbögen approximiert werden. 
+Um später alle drei Fahrbahnmarkierungen zur Zielpunktgewinnung in die gewünschte Fahrspur verschieben zu können, muss eine mathematische Repräsentation der Mittellinie und Seitenlinien gefunden werden, welche dies erlaubt. Da in der Weltkarte aus mehreren Bildern erkannte Punkte vorhanden sind, soll ein zu allen diesen Frames möglichst gut passender Zielpunkt gefunden werden. Wählt man den Bereich der für die Zielpunktfindung relevanten Fahrbahnmarkierungen nicht zu groß, kann deren Verlauf gut durch Kreisbögen approximiert werden. 
 
 \subsubsection{Kreisfit} 
 Zur Ermittlung des optimalen Kreises durch die gefragten Punkte wurde der Taubin-Kreisfit \autocite{taubinEstimationPlanarCurves1991} in der Implementierung von \autocite{nikolaichernovMATLABCodesFitting} verwendet. 
@@ -95,5 +95,5 @@ Um eine möglichst gleichmäßige Regelung des Lenkwinkels zu ermöglichen, soll
 l = \sqrt[2]{\gls{lat:rad}_0^2-\nrm{\vct{d_0}}^2} = \sqrt[2]{\gls{lat:rad}_t^2-\nrm{\vct{d_t}}^2}
 \end{equation}
 \end{subequations}
-Da zwei sich schneidende Kreise zwei Schnittpunkte besitzen, muss nun geprüft werden,  welcher der Schnittpunkte auf dem gültigen Segment des Trajektorienkreises liegt. Dies kann anhand von Start- und Endwinkel sowie der Rotationsrichtung des selbigen geprüft werden und ist im Quelltext REFERENZ genauer nachzulesen.
+Da zwei sich schneidende Kreise zwei Schnittpunkte besitzen, muss nun geprüft werden,  welcher der Schnittpunkte auf dem gültigen Segment des Trajektorienkreises liegt. Dies kann anhand von Start- und Endwinkel sowie dessen Rotationsrichtung ermittelt werden und ist im Quelltext REFERENZ genauer nachzulesen.
 

@@ -1,5 +1,5 @@
 \subsection{Verifikation der seitlichen Fahrbahnmarkierung}
-Nachdem für Mittel- und Seitenlinie repräsentative Punkte aus dem Bild extrahiert wurden, gilt es die Sinnhaftigkeit selbiger zu überprüfen. Somit können:
+Nachdem für Mittel- und Seitenlinie repräsentative Punkte aus dem Bild extrahiert wurden, gilt es deren Sinnhaftigkeit zu überprüfen. Somit können:
 \begin{enumerate}
 \item Falsch erkannte Fahrbahnmarkierungen eliminiert werden.
 \item Bei Vorhandensein mehrerer Hypothesen für die Seitenlinien die Besten ausgewählt werden.
@@ -16,11 +16,11 @@ Eine Hypothese der rechten Fahrbahnmarkierung selektiert.
 \item \label{item:riverflow:verification:l_r:loops:point}
 Ein Punkt der gewählten linken Linienhypothese ausgesucht.
 \end{enumerate}
-Nun kann simultan der Abstand \nrm{\gls{lat:dv}} \eqref{eq:norm:distpoints} 
+Nun kann simultan der Abstand \nrm{\gls{lat:av}} \eqref{eq:norm:distpoints} 
 zu allen Punkten der gewählten rechten Fahrbahnmarkierungshypothese berechnet werden. 
 \begin{equation}
 \label{eq:norm:distpoints} 
-\nrm{\gls{lat:dv}} = \nrm{\pnt{p_{\text{links}}} - \pnt{p_{\text{rechts}}}} 
+\nrm{\gls{lat:av}} = \nrm{\pnt{p_{\text{links}}} - \pnt{p_{\text{rechts}}}} 
 \end{equation}
 Da der nächstgelegene Punkt der rechten Linienhypothese zum gewählten Punkt der linken Fahrbahnmarkierungshypothese gefragt ist, wird nur das kleinste Ergebnis dieser simultanen Berechnung weiter betrachtet.
 
