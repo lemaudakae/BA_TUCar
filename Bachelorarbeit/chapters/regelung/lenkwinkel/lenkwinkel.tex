@@ -1,6 +1,6 @@
 \section{Berechnung des Lenkwinkels}
 
-Bekannt sind jetzt also der anzusteuernde Zielpunkt, die Pose des Roboters sowie dessen Radstand \gls{lat:radstand}. Anschließend soll der Zusammenhang zwischen Lenkwinkel und Zielpunkt hergeleitet werden. 
+Bekannt sind momentan der anzusteuernde Zielpunkt, die Pose des Roboters sowie dessen Radstand \gls{lat:radstand}. Anschließend soll der Zusammenhang zwischen Lenkwinkel und Zielpunkt hergeleitet werden. 
 Aus der in Abb.~\ref{fig:regelung_prinzip_modell} dargestellten Geometrie lässt sich folgender Zusammenhang ablesen:
 
 \begin{equation}
@@ -8,7 +8,7 @@ Aus der in Abb.~\ref{fig:regelung_prinzip_modell} dargestellten Geometrie lässt
 \label{eq:regelung_lenkwinkel_lenkwinkeltan}
 \end{equation}
 
-Um einen Kreis eindeutig definieren zu können braucht man mindestens drei bekannte Parameter. Der noch unbekannte Radius \({\gls{lat:rad}}_1 = \gls{lat:rad}\) lässt sich aus dem Zielpunkt, der Position und der Orientierung des Autos ausrechnen. Abbildung~\ref{fig:regelung_lenkwinkel_radius} zeigt eine anschauliche Möglichkeit zur Herleitung der gesuchten Beziehung. 
+Um einen Kreis eindeutig definieren zu können, benötigt man mindestens drei bekannte Parameter. Der noch unbekannte Radius \({\gls{lat:rad}}_1 = \gls{lat:rad}\) (siehe Abb.~\ref{fig:regelung_prinzip_modell}) lässt sich aus dem Zielpunkt, der Position und der Orientierung des Autos bestimmen. Abbildung~\ref{fig:regelung_lenkwinkel_radius} zeigt eine anschauliche Möglichkeit zur Herleitung der gesuchten Beziehung. 
 
 \begin{figure}[H] % [htb]
   \centering
@@ -17,7 +17,7 @@ Um einen Kreis eindeutig definieren zu können braucht man mindestens drei bekan
   \label{fig:regelung_lenkwinkel_radius}
 \end{figure}
 
-Es lassen sich zwei Hilfsgeraden \( \mathrm{g_1} \) und \( \mathrm{g_2} \) aufstellen. \( \mathrm{g_1}\) verläuft durch die Position des Roboters \pnt{p_0} und den Zielpunkt \gls{lat:zp} und stellt somit die Sehne des Kreisbogens der geplanten Trajektorie dar. Die Mittelsenkrechte dieser Sehne bildet die Gerade \( \mathrm{g_2} \).
+Es lassen sich zwei Hilfsgeraden \( \mathrm{g_1} \) und \( \mathrm{g_2} \) aufstellen. \( \mathrm{g_1}\) verläuft durch die Position des Roboters \pnt{p_0} sowie den Zielpunkt \gls{lat:zp} und stellt somit die Sehne des Kreisbogens der geplanten Trajektorie dar. Die Mittelsenkrechte dieser Sehne bildet die Gerade \( \mathrm{g_2} \).
 
 \begin{eqnarray}
 \text{Gerade } \mathrm{g_1}: \quad \gls{y} & = & {\gls{lat:anstieg}}_{\gls{lat:zp}} \cdot \gls{x} 	\\

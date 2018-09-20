@@ -10,7 +10,7 @@ Um gerade Linien mittels Hough-Transformation in einem Bild finden zu können, i
 \label{eq:geradengleichung}
 \end{equation}
 
-Hierbei geben \gls{lat:achsenabschnitt} den Achsenabschnitt und \gls{lat:anstieg} den Anstieg der Geraden an. Die Geradengleichung~\ref{eq:geradengleichung} lässt sich aber auch als Bedingung für die Parameter \gls{lat:achsenabschnitt} und \gls{lat:anstieg} wie folgt umstellen:
+Hierbei geben \gls{lat:achsenabschnitt} den Achsenabschnitt und \gls{lat:anstieg} den Anstieg der Geraden an. Die Geradengleichung~\ref{eq:geradengleichung} lässt sich nun so umstellen, dass der Anstieg \gls{lat:anstieg} in Abhängigkeit vom Achsenabschnitt \gls{lat:achsenabschnitt}  dargestellt wird:
 
 % Formel für umgestellte Geradengleichung
 \begin{equation}
@@ -18,7 +18,7 @@ Hierbei geben \gls{lat:achsenabschnitt} den Achsenabschnitt und \gls{lat:anstieg
 %\label{eq:geradengleichung_umgest}
 \end{equation}
 
-Damit wird ein zweiter sogenannter Modellraum aufgespannt, in dem die Parameter \gls{lat:achsenabschnitt} zum Definitions- und Wertebereich definiert werden und die Punkte zu den Parametern zählen. Der Hough-Algorithmus transformiert jeden Bildpunkt in den Modellraum, welcher dort eine Gerade ergibt. Umgekehrt stellt ein Punkt im Modellraum eine Gerade im Datenraum dar. Wenn viele Pixel auf einer Gerade liegen, wird sich das als häufiger Schnittpunkt im Modellraum bemerkbar machen. Jener Punkt (\gls{lat:achsenabschnitt},\gls{lat:anstieg}) enthält eine solide Parameterabschätzung der gesuchten Gerade im Bild.
+Damit wird ein zweiter sogenannter Modellraum aufgespannt, indem \gls{lat:achsenabschnitt} und \gls{lat:anstieg} zum Definitions- und Wertebereich gesetzt werden und die Punkte zu den Parametern zählen. Der Hough-Algorithmus transformiert jeden Bildpunkt in den Modellraum, welcher dort eine Gerade repräsentiert. Umgekehrt stellt ein Punkt im Modellraum eine Gerade im Datenraum dar. Viele im Bild auf einer gesuchten Gerade liegenden Pixel machen sich dann als häufiger Schnittpunkt im Modellraum bemerkbar. Jener Punkt (\gls{lat:achsenabschnitt},\gls{lat:anstieg}) enthält eine solide Parameterabschätzung der gesuchten Gerade im Bild.
 
 % Bild (Diagramme) zur Hough-Trafo
 \begin{figure}[H] % [htb]
@@ -28,9 +28,11 @@ Damit wird ein zweiter sogenannter Modellraum aufgespannt, in dem die Parameter 
 %  \label{fig:grundlagen_hough}
 \end{figure} 
 
-Praktischerweise wird als Modell für die Gerade eigentlich die hessesche Normalform (Steigungswinkel und Abstand zum Koordinatenursprung als Parameter) eingesetzt, da die Beschreibung in Gleichung~\ref{eq:geradengleichung} den großen Nachteil hat, dass der Anstiegsparameter \gls{lat:anstieg} bei vertikalen Geraden ins Unendliche läuft. 
+Praktischerweise wird als Modell für die Gerade die hessesche Normalform (Steigungswinkel und Abstand zum Koordinatenursprung als Parameter) eingesetzt, da die Beschreibung in Gleichung~\ref{eq:geradengleichung} den großen Nachteil hat, dass der Anstiegsparameter \gls{lat:anstieg} bei vertikalen Geraden ins Unendliche läuft. 
 
 \subsection{vereinfachte Hough-Transformation}
 \label{ssec:grundlagen:hough:vereinfachte}
 % Hier fehlt der Verweis auf BA_Marcel_Unger
-Wir haben in unserer Arbeit in Anlehnung an \autocite{alyRealTimeDetection2008} eine sehr vereinfachte Form der Hough-Transformation zur Anwendung gebracht, welche nur zu einer alternativen Initialisierung eines Startpunktes zum Einsatz kommt. Die angewendete Methode sucht ausschließlich nach vertikalen Linien im Bild. Dazu wird ein Histogramm über die Spaltensummen der Pixelmatrix gebildet. Die Lage der Maxima über einem bestimmten Threshold-Wert geben dann Auskunft über die Position einer näherungsweise vertikal erkannten Gerade.
+Wir haben in unserer Arbeit in Anlehnung an \autocite{alyRealTimeDetection2008} eine sehr vereinfachte Form der Hough-Transformation zur Anwendung gebracht, welche lediglich zur Findung vertikaler Linien taugt. Dazu wird ein Histogramm über die Spaltensummen der Pixelmatrix gebildet. Nach der Glättung mittels Gauß-Filter geben die Lage der Maxima über einem bestimmten Schwellwert anschließend Auskunft über die Position einer näherungsweise vertikal erkannten Gerade.
+
+% einer alternativen Initialisierung eines Startpunktes zum Einsatz kommt.
