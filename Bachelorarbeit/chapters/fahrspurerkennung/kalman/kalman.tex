@@ -61,10 +61,10 @@ Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt, soll 
  
 \subsection{Messung} \label{ssec:fahrspurerkennung:kalman:messung}
 Um eine ausreichende Geschwindigkeit des Kalmanfilters zu gewährleisten, muss die Anzahl der Bildpunkte, welche zur Korrektur des prädizierten Zustands verwendet werden, im Gegensatz zu \ref{sec:maskenbau} vermindert werden. Es wird in Anlehnung an \autocite{risackRobustLaneRecognition} das Bild ab dem Vorverarbeitungsschritt nur in relevanten Bereichen betrachtet.
-Hierfür werden Geraden \glqq \glspl{glos:scanline}\grqq{} senkrecht zum Polynom des Fahrspurmodells berechnet. Deren Länge sowie Abstand der Startpunkte auf dem Polynom sind als Parameter anzusehen. Nun werden die Helligkeitswerte der Bildpunkte, durch welche die Gerade verläuft, mit dem aus \ref{sec:bildvorverarbeitung:filterung} bekannten Kantendetektor gefiltert. Die Koordinaten der ausreichend großen lokalen Maxima der Filterantwort sind Kandidaten für zentral in der mehrere Pixel breiten mittleren Fahrbahnmarkierung gelegenen Punkte.
+Hierfür werden Geraden \glqq Scanlines\grqq{} senkrecht zum Polynom des Fahrspurmodells berechnet. Deren Länge sowie Abstand der Startpunkte auf dem Polynom sind als Parameter anzusehen. Nun werden die Helligkeitswerte der Bildpunkte, durch welche die Gerade verläuft, mit dem aus \ref{sec:bildvorverarbeitung:filterung} bekannten Kantendetektor gefiltert. Die Koordinaten der ausreichend großen lokalen Maxima der Filterantwort sind Kandidaten für zentral in der mehrere Pixel breiten mittleren Fahrbahnmarkierung gelegenen Punkte.
 
 \subsubsection{Randlinen}
-Um auch die zentral in der äußeren Fahrbahnmarkierung liegenden Punkte detektieren zu können, werden die \glspl{glos:scanline} der Mittelline um die Fahrspurbreite senkrecht zum Polynom verschoben. Nun kann derselbe Algorithmus wie für die \glspl{glos:scanline} der mittleren Fahrbahnmarkierung ausgeführt werden. Die gefundenen Koordinaten müssen letztendlich wieder um die Fahrspurbreite zur Mittellinie hin verschoben werden um problemlos zur Zustandskorrektur des Kalmanfilters nutzbar zu sein.
+Um auch die zentral in der äußeren Fahrbahnmarkierung liegenden Punkte detektieren zu können, werden die Scanlines der Mittelline um die Fahrspurbreite senkrecht zum Polynom verschoben. Nun kann derselbe Algorithmus wie für die Scanlines der mittleren Fahrbahnmarkierung ausgeführt werden. Die gefundenen Koordinaten müssen letztendlich wieder um die Fahrspurbreite zur Mittellinie hin verschoben werden um problemlos zur Zustandskorrektur des Kalmanfilters nutzbar zu sein.
  
 \subsection{Zustandsraumbeschreibung}
 Da die Herleitung der diskreten Zustandsraumbeschreibung zum aufgestellten Fahrspurmodell einfacher ist als der Umweg über eine Kontinuierliche, wird dieser Ansatz nun verfolgt.
@@ -226,7 +226,7 @@ Die \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} bildet den Systemzustand \
 \end{equation} 
 
 \subsection{Kovarianzmatritzen}
-Wie in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} und \autocite{risackRobustLaneRecognition} werden die \glsdesc{lat:processnoisevariancematrix} \gls{lat:processnoisevariancematrix} und \glsdesc{lat:measnoisevariancematrix} \gls{lat:measnoisevariancematrix} als konstante Diagonalmatritzen gesetzt. Auf die Prädiktion der \glsdesc{lat:covariancematrix} \gls{lat:covariancematrix} wird somit verzichtet.
+Wie in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} und \autocite{risackRobustLaneRecognition} werden die Kovarianzmatrix des System-/Prozessrauschens \mtx{Q} und die Kovarianzmatrix des Messrauschens \mtx{R} als konstante Diagonalmatritzen gesetzt. Auf die Prädiktion der Kovarianzmatrix \mtx{P} wird somit verzichtet.
 
 \subsection{konkrete Implementierung des Kalman-Filters}
 Ist der \glsdesc{lat:statevector} \gls{lat:statevector} einmal wie in ~\ref{sssec:fahrspurerkennung:kalman:fahrspurmodell:initialisierung} beschrieben initialisiert, können die Gleichungen des Kalmanfilters bei Eintreffen eines neuen Bildes wie folgt berechnet werden:

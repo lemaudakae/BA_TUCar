@@ -8,10 +8,10 @@ Der Kalmanfilter zum Fahrspurverfolgung wurde implementiert, um einige Schwäche
 \end{itemize}
 
 \subsection{Vorteile}
-Durch den Einsatz der \gls{glos:scanline}s anstatt einer Verwendung des \gls{acr:ransac}-Algorithmus im Zusammenhang mit Maskierung der entsprechenden Bildausschnitte läuft die Bildverarbeitung ca. um Faktor 5 schneller ab.
+Durch den Einsatz der Scanlines anstatt einer Verwendung des \gls{acr:ransac}-Algorithmus im Zusammenhang mit Maskierung der entsprechenden Bildausschnitte läuft die Bildverarbeitung ca. um Faktor 5 schneller ab.
 
 \subsection{Probleme}
-Die Vorhersage des Folgezustands durch das Zustandsraummodell \eqref{eq:nextstatemappingmatrix} sind oft so schlecht, dass \gls{glos:scanline}s Punkte einer falschen Fahrbahnmarkierung erkennen. Somit \glqq wandert \grqq das im Zustandsvektor \gls{lat:statevector} repräsentierte Polynom durch die fehlerhafte Korrektur von der Mittellinie, welche es repräsentieren soll, zu einer der Randlinen und schließlich völlig abseits der Fahrbahn (siehe Abbildung \ref{fig:evaluation:kalman:weggezogen}).
+Die Vorhersage des Folgezustands durch das Zustandsraummodell \eqref{eq:nextstatemappingmatrix} sind oft so schlecht, dass Scanlines Punkte einer falschen Fahrbahnmarkierung erkennen. Somit \glqq wandert \grqq das im Zustandsvektor \gls{lat:statevector} repräsentierte Polynom durch die fehlerhafte Korrektur von der Mittellinie, welche es repräsentieren soll, zu einer der Randlinen und schließlich völlig abseits der Fahrbahn (siehe Abbildung \ref{fig:evaluation:kalman:weggezogen}).
 
 \begin{figure}[ht] % [htb]
 	\centering

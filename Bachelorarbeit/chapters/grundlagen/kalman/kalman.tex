@@ -9,13 +9,13 @@ Um ein Kalman-Filter nutzen zu können wird für den betrachteten Prozess ein Mo
 \dt{\gls{lat:statevector}}(\gls{lat:time}) = 
 \gls{lat:systemmatrix} \cdot \gls{lat:statevector}(\gls{lat:time}) +
 \gls{lat:inputmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time}) +
-\gls{lat:processnoisematrix} \cdot \gls{lat:processnoisevector}(\gls{lat:time})
+%\gls{lat:processnoisematrix} \cdot \gls{lat:processnoisevector}(\gls{lat:time})
 \end{equation}
 \begin{equation}
 \gls{lat:outputvector}(\gls{lat:time}) = 
 \gls{lat:outputmatrix} \cdot \gls{lat:statevector}(\gls{lat:time}) +
 \gls{lat:transmissionmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time}) +
-\gls{lat:measnoisevector}(\gls{lat:time})
+%\gls{lat:measnoisevector}(\gls{lat:time})
 \end{equation}  
 \end{subequations}
 \begin{subequations}
@@ -24,63 +24,63 @@ Um ein Kalman-Filter nutzen zu können wird für den betrachteten Prozess ein Mo
 \gls{lat:statevector}(\scl{k}+1) = 
 \gls{lat:systemmatrix}_{\gls{idz:discrete}} \cdot \gls{lat:statevector}(\scl{k}) +
 \gls{lat:inputmatrix}_{\gls{idz:discrete}} \cdot \gls{lat:inputvector}(\scl{k}) +
-\gls{lat:processnoisematrix}_{\gls{idz:discrete}} \cdot \gls{lat:processnoisevector}(\scl{k})
+%\gls{lat:processnoisematrix}_{\gls{idz:discrete}} \cdot \gls{lat:processnoisevector}(\scl{k})
 \end{equation}
 \begin{equation}
 \gls{lat:outputvector}(\scl{k}) = 
 \gls{lat:outputmatrix} \cdot \gls{lat:statevector}(\scl{k}) + 
 \gls{lat:transmissionmatrix} \cdot \gls{lat:inputvector}(\scl{k}) +
-\gls{lat:measnoisevector}(\scl{k})
+%\gls{lat:measnoisevector}(\scl{k})
 \end{equation}  
 \end{subequations}
 
-\subsubsection{Beobachtbarkeit}
-Da bei Nutzung eines Kalmanfilters von dem \glsdesc{lat:outputvector} \gls{lat:outputvector}(\gls{lat:time}) und dem \glsdesc{lat:inputvector} \gls{lat:inputvector}(\gls{lat:time}) auf den nicht direkt messbaren \glsdesc{lat:statevector} \gls{lat:statevector}(\gls{lat:time}) geschlossen werden muss, ist es notwendig die Beobachtberkeit des Systems \eqref{eq:statespacerepobservability} sicherzustellen.
-\begin{quote} 
-Ein lineares zeitinvariantes System, im Zustandsraum beschrieben durch
-\begin{subequations}
-\label{eq:statespacerepobservability}
-\begin{equation}
-\dt{\gls{lat:statevector}}(\gls{lat:time}) = 
-\gls{lat:systemmatrix} \cdot \gls{lat:statevector}(\gls{lat:time}) +
-\gls{lat:inputmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time})
-\end{equation}
-\begin{equation}
-\gls{lat:outputvector}(\gls{lat:time}) = 
-\gls{lat:outputmatrix} \cdot \gls{lat:statevector}(\gls{lat:time}) +
-\gls{lat:transmissionmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time})
-\end{equation}  
-\end{subequations}
-heißt vollständig beobachtbar, wenn es möglich ist, innerhalb eines endlichen Intervalls \begin{math} [ \gls{lat:time}_0 , \gls{lat:time}_1 ] \end{math}, aus Kenntnis der Eingangsgrößen \gls{lat:inputvector}(\gls{lat:time}) und der Ausgangsgrößen \gls{lat:outputvector}(\gls{lat:time}) jeden Anfangszustand des Zustandsvektors \begin{math} \gls{lat:statevector}(\gls{lat:time}_0) \end{math} zu bestimmen.
-\autocite{marchthalerKalmanFilterEinfuehrungZustandsschaetzung2017}
-\end{quote}
-Der Nachweis erfolgt mithilfe der Beobachtbarkeitsmatrix \gls{lat:observabilitymatrix}.
-\begin{equation}
-\label{eq:observabilitymatrix}
-\gls{lat:observabilitymatrix} =
-\begin{pmatrix}
-\gls{lat:outputmatrix} \\ 
-\gls{lat:outputmatrix} \cdot \gls{lat:systemmatrix} \\
-\gls{lat:outputmatrix} \cdot \gls{lat:systemmatrix}^2 \\
-\vdots \\
-\gls{lat:outputmatrix} \cdot \gls{lat:systemmatrix}^{\scl{n}-1}
-\end{pmatrix}
-\end{equation}
-Deren Rang muss gleich der Ordnung \scl{n} des Systems \eqref{eq:statespacerepobservability} sein.
-
-\subsubsection{Diskretisierung}
-Unter Annahme einer idealen Abtastung des Signals kann das System mithilfe folgender Gleichung \eqref{eq:statespacerepdiscretise} diskretisiert werden \autocite{marchthalerKalmanFilterEinfuehrungZustandsschaetzung2017}: 
-\begin{equation}
-\label{eq:statespacerepdiscretise}
-\gls{lat:statevector}(\scl{k}+1) = 
-\underbrace{
-\gls{lat:eulnum}^{\gls{lat:systemmatrix} \cdot \scl{T_s}}}_{ 
-\gls{lat:systemmatrix}_{\gls{idz:discrete}}} \cdot \gls{lat:statevector}(\scl{k}) + 
-\underbrace{
-\gls{lat:eulnum}^{\gls{lat:systemmatrix} \cdot \scl{T_s}} \cdot \gls{lat:inputmatrix}}_{ 
-\gls{lat:inputmatrix}_{\gls{idz:discrete}}} \cdot \gls{lat:inputvector}(\scl{k})
-\end{equation}
-Es ergibt sich das Modell aus \eqref{eq:statespacerepdisc}.
+%\subsubsection{Beobachtbarkeit}
+%Da bei Nutzung eines Kalmanfilters von dem \glsdesc{lat:outputvector} \gls{lat:outputvector}(\gls{lat:time}) und dem \glsdesc{lat:inputvector} \gls{lat:inputvector}(\gls{lat:time}) auf den nicht direkt messbaren \glsdesc{lat:statevector} \gls{lat:statevector}(\gls{lat:time}) geschlossen werden muss, ist es notwendig die Beobachtberkeit des Systems \eqref{eq:statespacerepobservability} sicherzustellen.
+%\begin{quote} 
+%Ein lineares zeitinvariantes System, im Zustandsraum beschrieben durch
+%\begin{subequations}
+%\label{eq:statespacerepobservability}
+%\begin{equation}
+%\dt{\gls{lat:statevector}}(\gls{lat:time}) = 
+%\gls{lat:systemmatrix} \cdot \gls{lat:statevector}(\gls{lat:time}) +
+%\gls{lat:inputmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time})
+%\end{equation}
+%\begin{equation}
+%\gls{lat:outputvector}(\gls{lat:time}) = 
+%\gls{lat:outputmatrix} \cdot \gls{lat:statevector}(\gls{lat:time}) +
+%\gls{lat:transmissionmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time})
+%\end{equation}  
+%\end{subequations}
+%heißt vollständig beobachtbar, wenn es möglich ist, innerhalb eines endlichen Intervalls \begin{math} [ \gls{lat:time}_0 , \gls{lat:time}_1 ] \end{math}, aus Kenntnis der Eingangsgrößen \gls{lat:inputvector}(\gls{lat:time}) und der Ausgangsgrößen \gls{lat:outputvector}(\gls{lat:time}) jeden Anfangszustand des Zustandsvektors \begin{math} \gls{lat:statevector}(\gls{lat:time}_0) \end{math} zu bestimmen.
+%\autocite{marchthalerKalmanFilterEinfuehrungZustandsschaetzung2017}
+%\end{quote}
+%Der Nachweis erfolgt mithilfe der Beobachtbarkeitsmatrix \gls{lat:observabilitymatrix}.
+%\begin{equation}
+%\label{eq:observabilitymatrix}
+%\gls{lat:observabilitymatrix} =
+%\begin{pmatrix}
+%\gls{lat:outputmatrix} \\ 
+%\gls{lat:outputmatrix} \cdot \gls{lat:systemmatrix} \\
+%\gls{lat:outputmatrix} \cdot \gls{lat:systemmatrix}^2 \\
+%\vdots \\
+%\gls{lat:outputmatrix} \cdot \gls{lat:systemmatrix}^{\scl{n}-1}
+%\end{pmatrix}
+%\end{equation}
+%Deren Rang muss gleich der Ordnung \scl{n} des Systems \eqref{eq:statespacerepobservability} sein.
+%
+%\subsubsection{Diskretisierung}
+%Unter Annahme einer idealen Abtastung des Signals kann das System mithilfe folgender Gleichung \eqref{eq:statespacerepdiscretise} diskretisiert werden \autocite{marchthalerKalmanFilterEinfuehrungZustandsschaetzung2017}: 
+%\begin{equation}
+%\label{eq:statespacerepdiscretise}
+%\gls{lat:statevector}(\scl{k}+1) = 
+%\underbrace{
+%\gls{lat:eulnum}^{\gls{lat:systemmatrix} \cdot \scl{T_s}}}_{ 
+%\gls{lat:systemmatrix}_{\gls{idz:discrete}}} \cdot \gls{lat:statevector}(\scl{k}) + 
+%\underbrace{
+%\gls{lat:eulnum}^{\gls{lat:systemmatrix} \cdot \scl{T_s}} \cdot \gls{lat:inputmatrix}}_{ 
+%\gls{lat:inputmatrix}_{\gls{idz:discrete}}} \cdot \gls{lat:inputvector}(\scl{k})
+%\end{equation}
+%Es ergibt sich das Modell aus \eqref{eq:statespacerepdisc}.
 
 \subsection{Filtergleichungen}
 Sobald die Zustandsraumbeschreibung aufgestellt ist, können die folgenden Filtergleichungen angewandt werden:
@@ -94,25 +94,25 @@ Sobald die Zustandsraumbeschreibung aufgestellt ist, können die folgenden Filte
 \gls{lat:transmissionmatrix} \cdot \gls{lat:inputvector}(\scl{k})
 \end{equation}
 \begin{equation}
-\gls{lat:innovation}(\scl{k}) =
+\Delta\mtx{y}(\scl{k}) =
 \gls{lat:outputvector}(\scl{k}) -
 \prd{\gls{lat:outputvector}}(\scl{k})
 \end{equation}
 \begin{equation}
-\gls{lat:kalmangain}(\scl{k}) =
-\prd{\gls{lat:covariancematrix}}(\scl{k}) \cdot \trp{\gls{lat:outputmatrix}}
-\cdot ( \gls{lat:outputmatrix} \cdot \prd{\gls{lat:covariancematrix}}(\scl{k}) \cdot 
-\trp{\gls{lat:outputmatrix}} + \ivt{\gls{lat:measnoisevariancematrix}(\scl{k} ))}
+\mtx{K}(\scl{k}) =
+\prd{\mtx{P}}(\scl{k}) \cdot \trp{\gls{lat:outputmatrix}}
+\cdot ( \gls{lat:outputmatrix} \cdot \prd{\mtx{P}}(\scl{k}) \cdot 
+\trp{\gls{lat:outputmatrix}} + \ivt{\mtx{R}(\scl{k} ))}
 \end{equation}
 \begin{equation}
 \crd{\gls{lat:statevector}}(\scl{k}) =
 \prd{\gls{lat:statevector}}(\scl{k}) + 
-\gls{lat:kalmangain}(\scl{k}) \cdot \gls{lat:innovation}(\scl{k})
+\mtx{K}(\scl{k}) \cdot \Delta\mtx{y}(\scl{k})
 \end{equation}
 \begin{equation}
-\crd{\gls{lat:covariancematrix}}(\scl{k}) =
-( \gls{lat:unitmatrix} - \gls{lat:kalmangain}(\scl{k}) \cdot \gls{lat:outputmatrix} )
-\cdot \crd{\gls{lat:covariancematrix}}(\scl{k})
+\crd{\mtx{P}}(\scl{k}) =
+( \gls{lat:unitmatrix} - \mtx{K}(\scl{k}) \cdot \gls{lat:outputmatrix} )
+\cdot \crd{\mtx{P}}(\scl{k})
 \end{equation}
 \end{subequations}
 
@@ -126,12 +126,12 @@ Sobald die Zustandsraumbeschreibung aufgestellt ist, können die folgenden Filte
 \gls{lat:inputmatrix}_{\gls{idz:discrete}} \cdot \gls{lat:inputvector}(\scl{k})
 \end{equation}
 \begin{equation}
-\prd{\gls{lat:covariancematrix}}(\scl{k}+1) =
+\prd{\mtx{P}}(\scl{k}+1) =
 \gls{lat:systemmatrix}_{\gls{idz:discrete}} \cdot
-\crd{\gls{lat:covariancematrix}}(\scl{k}) \cdot
+\crd{\mtx{P}}(\scl{k}) \cdot
 \trp{\gls{lat:systemmatrix}_{\gls{idz:discrete}}} +
-\gls{lat:processnoisematrix}_{\gls{idz:discrete}} \cdot
-\gls{lat:processnoisevariancematrix}(\scl{k}) \cdot
-\trp{\gls{lat:processnoisematrix}_{\gls{idz:discrete}}}
+\mtx{Q}_{\gls{idz:discrete}} \cdot
+\mtx{Q}(\scl{k}) \cdot
+\trp{\mtx{Q}_{\gls{idz:discrete}}}
 \end{equation}
 \end{subequations}

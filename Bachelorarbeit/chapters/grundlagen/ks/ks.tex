@@ -26,10 +26,10 @@ Mathematisch lassen sich der Translationsvektor \gls{lat:Translationsvektor} und
 \end{pmatrix}
 , \qquad
 % Formel für R = Rot(z,\theta) //(Rotationsmatrix)
-\gls{lat:Rotationsmatrix} = Rot(\vec{z},\gls{gre:rotwinkel}) = 
+\gls{lat:Rotationsmatrix} = Rot(\vec{z},\scl{\delta}) = 
 \begin{pmatrix}
-\cos{\gls{gre:rotwinkel}} & -\sin{\gls{gre:rotwinkel}} & {0} 	\\
-\sin{\gls{gre:rotwinkel}} & \cos{\gls{gre:rotwinkel}} & {0} 	\\
+\cos{\scl{\delta}} & -\sin{\scl{\delta}} & {0} 	\\
+\sin{\scl{\delta}} & \cos{\scl{\delta}} & {0} 	\\
 {0} & {0} & {1} 				    	\\
 \end{pmatrix}
 \end{equation} 		
@@ -48,15 +48,15 @@ Die Matrix \gls{lat:Transformationsmatrix}, welche die Punkte \pnt{p} transformi
 \end{pmatrix}
 =
 \begin{pmatrix}
-\cos{\gls{gre:rotwinkel}} & -\sin{\gls{gre:rotwinkel}} & {0} & \scl{t_x} 	\\
-\sin{\gls{gre:rotwinkel}} & \cos{\gls{gre:rotwinkel}} & {0} & \scl{t_y} 	\\
+\cos{\scl{\delta}} & -\sin{\scl{\delta}} & {0} & \scl{t_x} 	\\
+\sin{\scl{\delta}} & \cos{\scl{\delta}} & {0} & \scl{t_y} 	\\
 {0} & {0} & {1} & \scl{t_z} 				    	\\
 0 & 0 & 0 & 1 						\\
 \end{pmatrix}
 \end{equation}
 
 %Den zu transformierenden Punkten muss dazu noch eine Zeile mit einer \(1\) hinzugefügt werden, damit die Dimensionen für die Multiplikation zueinander passen. 
-Sind beispielsweise die Weltkoordinaten von Punkten im Roboterkoordinatensystem gesucht, so stellen \gls{lat:Translationsvektor} die Position und \( \gls{gre:rotwinkel} = \gls{gre:orientierung} \) die Orientierung des Modellfahrzeugs dar. Außerdem gilt: 
+Sind beispielsweise die Weltkoordinaten von Punkten im Roboterkoordinatensystem gesucht, so stellen \gls{lat:Translationsvektor} die Position und \( \scl{\delta} = \gls{gre:orientierung} \) die Orientierung des Modellfahrzeugs dar. Außerdem gilt: 
 
 % Formel für die Hintereinanderausführung der Transformation
 \begin{equation}

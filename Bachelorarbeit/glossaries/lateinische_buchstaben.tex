@@ -20,16 +20,16 @@ name=\vct{y},
 description={Ausgangsvariablenvektor},
 sort=lat_3v_y, type=latlist
 }
-\newglossaryentry{lat:processnoisevector}{
-name=\vct{z},
-description={Systemrausch-/Prozessrauschvariablenvektor},
-sort=lat_3v_z, type=latlist
-}
-\newglossaryentry{lat:measnoisevector}{
-name=\vct{v},
-description={Messrauschvariablenvektor},
-sort=lat_3v_v, type=latlist
-}
+%\newglossaryentry{lat:processnoisevector}{
+%name=\vct{z},
+%description={Systemrausch-/Prozessrauschvariablenvektor},
+%sort=lat_3v_z, type=latlist
+%}
+%\newglossaryentry{lat:measnoisevector}{
+%name=\vct{v},
+%description={Messrauschvariablenvektor},
+%sort=lat_3v_v, type=latlist
+%}
 %%% Matritzen
 \newglossaryentry{lat:systemmatrix}{
 name=\mtx{A},
@@ -53,50 +53,50 @@ name=\mtx{D},
 description={Durchgangsmatrix},
 sort=lat_4m_d, type=latlist
 }
-\newglossaryentry{lat:processnoisematrix}{
-name=\mtx{G},
-description={Prozess-/Systemrauschmatrix},
-sort=lat_4m_g, type=latlist
-}
-%%%% Beobachtbarkeit
-\newglossaryentry{lat:observabilitymatrix}{
-name=\mtx{S_B},
-description={Beobachtbarkeitsmatrix},
-sort=lat_4m_s_b, type=latlist
-}
+%\newglossaryentry{lat:processnoisematrix}{
+%name=\mtx{G},
+%description={Prozess-/Systemrauschmatrix},
+%sort=lat_4m_g, type=latlist
+%}
+%%%%% Beobachtbarkeit
+%\newglossaryentry{lat:observabilitymatrix}{
+%name=\mtx{S_B},
+%description={Beobachtbarkeitsmatrix},
+%sort=lat_4m_s_b, type=latlist
+%}
 
 %% Filtergleichungen
 %%% Korrektur
-\newglossaryentry{lat:innovation}{
-name=\ensuremath{\Delta\mtx{y}},
-description={Innovation},
-sort=lat_3v_y_delta, type=latlist
-}
-\newglossaryentry{lat:kalmangain}{
-name=\mtx{K},
-description={Kalman-Verstärkungs-Matrix},
-sort=lat_4m_k, type=latlist
-}
-\newglossaryentry{lat:processnoisevariancematrix}{
-name=\mtx{Q},
-description={Kovarianzmatrix des System-/Prozessrauschens},
-sort=lat_4m_q, type=latlist
-}
-\newglossaryentry{lat:measnoisevariancematrix}{
-name=\mtx{R},
-description={Kovarianzmatrix des Messrauschens},
-sort=lat_4m_r, type=latlist
-}
-\newglossaryentry{lat:covariancematrix}{
-name=\mtx{P},
-description={Kovarianzmatrix},
-sort=lat_4m_p, type=latlist
-}
+%\newglossaryentry{lat:innovation}{
+%name=\ensuremath{\Delta\mtx{y}},
+%description={Innovation},
+%sort=lat_3v_y_delta, type=latlist
+%}
+%\newglossaryentry{lat:kalmangain}{
+%name=\mtx{K},
+%description={Kalman-Verstärkungs-Matrix},
+%sort=lat_4m_k, type=latlist
+%}
+%\newglossaryentry{lat:processnoisevariancematrix}{
+%name=\mtx{Q},
+%description={Kovarianzmatrix des System-/Prozessrauschens},
+%sort=lat_4m_q, type=latlist
+%}
+%\newglossaryentry{lat:measnoisevariancematrix}{
+%name=\mtx{R},
+%description={Kovarianzmatrix des Messrauschens},
+%sort=lat_4m_r, type=latlist
+%}
+%\newglossaryentry{lat:covariancematrix}{
+%name=\mtx{P},
+%description={Kovarianzmatrix},
+%sort=lat_4m_p, type=latlist
+%}
 %% Fahrspurverfolgung
 %%% Zustandsvektor
 \newglossaryentry{lat:lateraloffset}{
-name=\scl{y_0},
-description={Lateraler Versatz: Abstand der Fahrspurmitte vom Koordinatenursprung des Linienkoordinatensystems \gls{lat:LinienKOS}},
+name=\scl{y_{off}},
+description={Lateraler Versatz: Abstand der Fahrspurmitte vom Koordinatenursprung des Linien-\gls{acr:ks} \gls{lat:LinienKOS}},
 sort=lat_1s_y_0, type=latlist
 }
 \newglossaryentry{lat:curvature}{
@@ -197,12 +197,12 @@ description={Weltkoordinatensystem},
 sort=lat_5k_w, type=latlist
 }
 \newglossaryentry{lat:RoboterKOS}{
-name=\ensuremath{\mathcal{R}},
+name=\ensuremath{\mathcal{B}},
 description={Roboterkoordinatensystem},
 sort=lat_5k_r, type=latlist
 }
 \newglossaryentry{lat:BildKOS}{
-name=\ensuremath{\mathcal{B}},
+name=\ensuremath{\mathcal{I}},
 description={Bildkoordinatensystem},
 sort=lat_5k_b, type=latlist
 }
@@ -237,17 +237,6 @@ sort=lat_5k_osr, type=latlist
 name=\scl{w},
 description={Radstand (mittlerer Abstand zwischen Vorder-und Hinterachse eines Fahrzeugs)},
 sort=lat_1s_l, type=latlist
-}
-% Bildmatrizen
-\newglossaryentry{lat:BildmatrixOriginal}{
-name=\mtx{M},
-description={Matrix des originalen Bildes},
-sort=lat_4m_m, type=latlist
-}
-\newglossaryentry{lat:BildmatrixGefiltert}{
-name=\ensuremath{\mtx{M}^{\ast}},
-description={Matrix des gefilterten Bildes},
-sort=lat_4m_m_stern, type=latlist
 }
 % Geraden
 \newglossaryentry{lat:achsenabschnitt}{
