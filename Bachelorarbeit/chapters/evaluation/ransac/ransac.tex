@@ -12,20 +12,20 @@ Ein mathematisches Modell hinter der Linienerkennung bietet einige Vorteile:
 
 \subsection{Probleme}
 Trotz der vielen Vorzüge bringt gerade \gls{acr:ransac} das Problem mit sich, dass in einem Bildausschnitt nur ein Markierungsverlauf gefunden wird. Daher müssen in einer Aufnahme drei sinnvoll gewählte Bereiche feststehen, in welchen je ein \gls{acr:ransac}-Algorithmus ausgeführt werden kann. 
-Das größte Problem, welches letztlich zum Ausschluss der \gls{acr:ransac}-Methode geführt hat, ist die zuverlässige Bestimmung dieser \gls{acr:roi}. Wie auch schon in Abb.~\ref{fig:fahrspurerkennung_ransac_ransac} Bild (a) zu sehen war, approximiert das Polynom den Linienverlauf am Bildrand deutlich schlechter. Entgegen der Erwartung sind die Extrapolationseigenschaften von Polynomen zum Maskenbau ungeeignet. Die Funktion steigt am Bildrand meist stärker als die zu erkennende Kurve. Dies führt zu falsch vorhergesagten \glspl{roi}, welche beispielhaft in Abb.~\ref dargestellt sind.
+Das größte Problem, welches letztlich zum Ausschluss der \gls{acr:ransac}-Methode geführt hat, ist die zuverlässige Bestimmung dieser \gls{acr:roi}. Wie auch schon in Abb.~\ref{fig:fahrspurerkennung_ransac_ransac} Bild (a) zu sehen war, approximiert das Polynom den Linienverlauf am Bildrand deutlich schlechter. Entgegen der Erwartung sind die Extrapolationseigenschaften von Polynomen zum Maskenbau ungeeignet. Die Funktion steigt am Bildrand meist stärker als die zu erkennende Kurve. Dies führt zu falsch vorhergesagten \glspl{acr:roi}, welche beispielhaft in Abb.~\ref dargestellt sind.
 
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[width=0.3\textwidth]{evaluation_ransac_imgMaskLeft.png}}
+	\subfloat[][]{\includegraphics[width=0.31\textwidth]{evaluation_ransac_imgMaskLeft.png}}
 	\quad
-	\subfloat[][]{\includegraphics[width=0.3\textwidth]{evaluation_ransac_imgMaskMiddle.png}}
+	\subfloat[][]{\includegraphics[width=0.31\textwidth]{evaluation_ransac_imgMaskMiddle.png}}
 	\quad
-	\subfloat[][]{\includegraphics[width=0.3\textwidth]{evaluation_ransac_imgMaskRight.png}}
+	\subfloat[][]{\includegraphics[width=0.31\textwidth]{evaluation_ransac_imgMaskRight.png}}
 	\caption{Fehlerhaft erzeugte Masken der linken (a), mittleren (b) und rechten (c) Fahrbahnmarkierungen während eines Testlaufes}
 	\label{fig:fahrspurerkennung_ransac_ransac}
 \end{figure} 
 
-Das Polynom hat keine Chance, die Fahrbahnmarkierung richtig abzubilden, da dies der maskierte Bereich nicht zulässt. Jene fehlerhaften \glspl{roi} entstehen durch veraltete oder zuvor falsch erkannte, in die Weltkarte eingetragene Punkte. Abbildung~\ref{evaluation_ransac_weltkarte} zeigt das Ergebnis eines Programmtests. Dieser wurde mit Hilfe einer Aufnahme (mittels rosbag\footnote{Rosbag ist eine Reihe von Tools zum Aufnehmen und Wiedergeben von ROS-Topics (wiki.ros.org/rosbag)}) durchgeführt, welche händisch durch manuelle Steuerung des Fahrzeugs entstanden ist. Im dargestellten Plot der Weltkarte ist die anfänglich relativ gute Funktionstüchtigkeit des Algorithmus zu erkennen, welche jedoch ab der ersten Kreuzung verloren geht.
+Das Polynom hat keine Chance, die Fahrbahnmarkierung richtig abzubilden, da dies der maskierte Bereich nicht zulässt. Jene fehlerhaften \glspl{acr:roi} entstehen durch veraltete oder zuvor falsch erkannte, in die Weltkarte eingetragene Punkte. Abbildung~\ref{evaluation_ransac_weltkarte} zeigt das Ergebnis eines Programmtests. Dieser wurde mit Hilfe einer Aufnahme (mittels rosbag\footnote{Rosbag ist eine Reihe von Tools zum Aufnehmen und Wiedergeben von ROS-Topics (wiki.ros.org/rosbag)}) durchgeführt, welche händisch durch manuelle Steuerung des Fahrzeugs entstanden ist. Im dargestellten Plot der Weltkarte ist die anfänglich relativ gute Funktionstüchtigkeit des Algorithmus zu erkennen, welche jedoch ab der ersten Kreuzung verloren geht.
 
 % Bild/Plot der eingetragenen Punkte in der Weltkarte nach ein paar Sekunden
 \begin{figure}[H] % [htb]
@@ -36,12 +36,13 @@ Das Polynom hat keine Chance, die Fahrbahnmarkierung richtig abzubilden, da dies
 \end{figure} 
 
 Wenn in einem zuletzt untersuchten Bild keine Linienpunkte gefunden wurden, muss die Maske des übernächsten Bildes aus den zuletzt eingetragenen Punkten erstellt werden. Diese Punkte können ungünstigerweise weit von der jetzigen Position entfernt liegen, sodass stark extrapoliert werden muss. In dieser Entfernung zu den Stützstellen bildet das die Maske beschreibende Polynom den wirklichen Linienverlauf ungenügend ab und der \gls{acr:ransac} kann erneut keine richtigen Punkte finden. Somit ist die Voraussetzung gegeben, dass der Algorithmus im nächsten Foto erneut fehlschlägt, da falsche Punkte in der Karte zu noch stärkeren Abweichungen der Masken gegenüber der eigentlichen Markierung führen. Es entwickelt sich eine Kettenreaktion, die ein \glqq Sich-Wieder-Fangen\grqq{} des Algorithmus sehr unwahrscheinlich macht. 
-Hinzu kommt, dass selbst bei ideal ausgewählten \glspl{roi} die mathematische Beschreibung nicht jedem beliebigen Kurvenverlauf exakt folgen kann. 
+Hinzu kommt, dass selbst bei ideal ausgewählten \glspl{acr:roi} die mathematische Beschreibung nicht jedem beliebigen Kurvenverlauf exakt folgen kann. 
 
 
 \subsection{Lösungsmöglichkeiten}
 
 Zugegebenerweise könnte der \gls{acr:ransac} mit Maskierungen zu einem stabilen Verfahren ausgebaut werden, wenn man eine Möglichkeit findet, die Bestimmung der \gls{acr:roi} zuverlässiger zu gestalten. Die Riverflow-Methode bot allerdings die vielversprechende Aussicht auf eine robuste Funktionsweise ohne aufwändige Anpassungen. 
+
 Beispielsweise wäre es denkbar, die maximale Krümmung des kubischen Polynoms zu beschränken, um so ein Abdriften der Masken an Kreuzungen zu unterbinden. Da ein Polynom jedoch stets ins Unendliche läuft, wäre eine andere mathematische Beschreibung möglicherweise sinnvoller gewesen. Wenigstens die Masken könnten aus zusammengesetzten Kreisen oder Splines hervorgehen. Außerdem könnte man die Maskenbreite von der Entfernung bekannter Stützstellen abhängig machen, sodass in unbekannten Bereichen auf größerer Fläche gesucht werden kann. Zusätzlich wäre es möglich, die Masken durch die bekannte Fahrspurbreite voneinander abhängig zu machen, um ein Überlappen oder Vertauschen von linker und rechter Linie zu verhindern.
 
 Falls im Rahmen weiterer Projekte der Riverflow-Algorithmus an seine Grenzen kommen sollte, ließe sich also unser erster Ansatz ebenfalls zum lauffähigen Programm erweitern. Unsere weitere Idee zur Verbesserung der Prädiktion einer Linie wird im nun folgenden Abschnitt zum Kalman ausgewertet.
