@@ -211,15 +211,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.61023315"
-     inkscape:cx="514.1382"
-     inkscape:cy="422.89695"
+     inkscape:cx="504.30589"
+     inkscape:cy="304.90926"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      showguides="true"
      inkscape:window-width="1215"
-     inkscape:window-height="776"
-     inkscape:window-x="65"
+     inkscape:window-height="1000"
+     inkscape:window-x="1345"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
      fit-margin-top="0"
@@ -240,7 +240,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -423,7 +423,7 @@
            height="90.948845"
            x="114.71025"
            y="565.66296" /></flowRegion><flowPara
-         id="flowPara13904">p</flowPara></flowRoot>    <flowRoot
+         id="flowPara4330">s</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3404"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -434,7 +434,7 @@
            height="45.884102"
            x="376.90512"
            y="52.073994" /></flowRegion><flowPara
-         id="flowPara5172">b</flowPara></flowRoot>    <flowRoot
+         id="flowPara5172">i</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3408"
        style="font-style:normal;font-weight:normal;font-size:30px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><flowRegion
@@ -519,5 +519,29 @@
            height="40.14859"
            x="286.77563"
            y="272.48157" /></flowRegion><flowPara
-         id="flowPara3436-9">erstellte Ebene</flowPara></flowRoot>  </g>
+         id="flowPara3436-9">erstellte Ebene</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4308"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(232.08943,297.99622)"><flowRegion
+         id="flowRegion4310"><rect
+           id="rect4312"
+           width="47.52282"
+           height="61.451923"
+           x="65.548714"
+           y="142.20348" /></flowRegion><flowPara
+         id="flowPara4314"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium'">C</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4316"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:40px;line-height:125%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(193.60202,280.72919)"><flowRegion
+         id="flowRegion4318"><rect
+           id="rect4320"
+           width="39.329231"
+           height="52.438972"
+           x="108.15538"
+           y="367.52719"
+           style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium'" /></flowRegion><flowPara
+         id="flowPara4324">S</flowPara></flowRoot>  </g>
 </svg>
