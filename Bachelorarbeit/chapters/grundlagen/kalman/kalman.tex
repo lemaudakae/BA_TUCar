@@ -8,13 +8,13 @@ Um ein Kalman-Filter nutzen zu können wird für den betrachteten Prozess ein Mo
 \begin{equation}
 \dt{\gls{lat:statevector}}(\gls{lat:time}) = 
 \gls{lat:systemmatrix} \cdot \gls{lat:statevector}(\gls{lat:time}) +
-\gls{lat:inputmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time}) +
+\gls{lat:inputmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time}) % +
 %\gls{lat:processnoisematrix} \cdot \gls{lat:processnoisevector}(\gls{lat:time})
 \end{equation}
 \begin{equation}
 \gls{lat:outputvector}(\gls{lat:time}) = 
 \gls{lat:outputmatrix} \cdot \gls{lat:statevector}(\gls{lat:time}) +
-\gls{lat:transmissionmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time}) +
+\gls{lat:transmissionmatrix} \cdot \gls{lat:inputvector}(\gls{lat:time}) % +
 %\gls{lat:measnoisevector}(\gls{lat:time})
 \end{equation}  
 \end{subequations}
@@ -23,13 +23,13 @@ Um ein Kalman-Filter nutzen zu können wird für den betrachteten Prozess ein Mo
 \begin{equation}
 \gls{lat:statevector}(\scl{k}+1) = 
 \gls{lat:systemmatrix}_{\gls{idz:discrete}} \cdot \gls{lat:statevector}(\scl{k}) +
-\gls{lat:inputmatrix}_{\gls{idz:discrete}} \cdot \gls{lat:inputvector}(\scl{k}) +
+\gls{lat:inputmatrix}_{\gls{idz:discrete}} \cdot \gls{lat:inputvector}(\scl{k}) % +
 %\gls{lat:processnoisematrix}_{\gls{idz:discrete}} \cdot \gls{lat:processnoisevector}(\scl{k})
 \end{equation}
 \begin{equation}
 \gls{lat:outputvector}(\scl{k}) = 
 \gls{lat:outputmatrix} \cdot \gls{lat:statevector}(\scl{k}) + 
-\gls{lat:transmissionmatrix} \cdot \gls{lat:inputvector}(\scl{k}) +
+\gls{lat:transmissionmatrix} \cdot \gls{lat:inputvector}(\scl{k}) % +
 %\gls{lat:measnoisevector}(\scl{k})
 \end{equation}  
 \end{subequations}
@@ -129,9 +129,9 @@ Sobald die Zustandsraumbeschreibung aufgestellt ist, können die folgenden Filte
 \prd{\mtx{P}}(\scl{k}+1) =
 \gls{lat:systemmatrix}_{\gls{idz:discrete}} \cdot
 \crd{\mtx{P}}(\scl{k}) \cdot
-\trp{\gls{lat:systemmatrix}_{\gls{idz:discrete}}} +
-\mtx{Q}_{\gls{idz:discrete}} \cdot
-\mtx{Q}(\scl{k}) \cdot
-\trp{\mtx{Q}_{\gls{idz:discrete}}}
+\trp{\gls{lat:systemmatrix}_{\gls{idz:discrete}}} % +
+%\mtx{Q}_{\gls{idz:discrete}} \cdot
+%\mtx{Q}(\scl{k}) \cdot
+%\trp{\mtx{Q}_{\gls{idz:discrete}}}
 \end{equation}
 \end{subequations}

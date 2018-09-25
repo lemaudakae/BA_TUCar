@@ -1,13 +1,20 @@
 \chapter{Struktur der Software}
 
 \section{ROS}
-Da der Austausch von Bilddaten und Ansteuerbefehlen zwischen Modellfahrzeug und PC via \gls{acr:ros} \autocite{ROSOrgPowering} abläuft, soll kurz darauf eingegangen werden. 
+Da der Austausch von Bilddaten und Ansteuerbefehlen zwischen Modellfahrzeug und PC via \gls{acr:ros}\footnote{http://www.ros.org/} abläuft, soll kurz darauf eingegangen werden. 
 \begin{quotation}
-\gls{acr:ros} ist eine Sammlung von Werkzeugen, Bibliotheken und Konventionen zur Vereinfachung der Entwicklung komplexen und robusten Roboterverhaltens für eine Vielzahl an Roboterplattformen. \autocite{ROSOrgROS}
+\gls{acr:ros} ist eine Sammlung von Werkzeugen, Bibliotheken und Konventionen zur Vereinfachung der Entwicklung komplexen und robusten Roboterverhaltens für eine Vielzahl an Roboterplattformen.\footnote{Übernommen aus dem Englischen von http://www.ros.org/about-ros/ am 11. September 2018}
 \end{quotation}
 
 \subsection{Nodes}
-Ein \gls{acr:ros}-System besteht aus mehreren Programmen \glqq Nodes\grqq, welche über bestimmte Kommunikationskanäle \glqq Topics\grqq\ Datenpakete \glqq Messages\grqq\ austauschen. Diese Applikationen können Information auf einem Topic zur Verfügung stellen, sie fungieren als sogenannte Publisher, oder nutzen, in diesem Fall man nennt sie Subscriber.
+Ein \gls{acr:ros}-System besteht aus mehreren Programmen \glqq Nodes\grqq, welche über bestimmte Kommunikationskanäle \glqq Topics\grqq\ Datenpakete \glqq Messages\grqq\ austauschen. Diese Applikationen können Information auf einem Topic zur Verfügung stellen, sie fungieren als sogenannte Publisher, oder nutzen, in diesem Fall man nennt sie Subscriber. Ein Schema zum Aufbau des konkreten \gls{acr:ros}-Systems findet sich in Abb. \ref{fig:software_struktur:ros}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Software_Struktur_ROS}
+	\caption{Struktur des \gls{acr:ros}-Systems}
+	\label{fig:software_struktur:ros}
+\end{figure}
 
 \subsubsection{Fahrzeug}
 \paragraph{Kamera-Node}
@@ -24,7 +31,14 @@ und nimmt im Ansteuer-Topic die gewünschte Geschwindigkeit und den Lenkwinkel e
 Auf dem PC wird nur der von MATLAB automatisch initialisierte Node genutzt. Dieser abonniert das komprimierte Bilddaten-Topic und veröffentlicht auf das Ansteuer-Topic des Fahrzeugs.
 
 \section{MATLAB}
-Die im Hauptteil dieser Arbeit beschriebenen Algorithmen zur Fahrspurverfolgung wurden ausschließlich in MATLAB implementiert. \textbf{MAT}rix \textbf{LAB}oratory ist ein kommerzielles Programm und eine Programmiersprache für numerische Rechnungen und grafische Darstellungen, dessen Grundbausteine Matrizen sind. Diese Eigenschaften, weitreichende Debugging-Funktionalitäten und die einfache Erweiterbarkeit durch sogenannte Toolboxen machen es sehr attraktiv zum Einsatz im Rahmen der Bildverarbeitung\&Evaluation. Da die grundlegende Softwarestruktur in allen drei Lösungsansätzen zur Fahrspurverfolgung gleich ist, soll diese nun dargelegt werden.
+Die im Hauptteil dieser Arbeit beschriebenen Algorithmen zur Fahrspurverfolgung wurden ausschließlich in MATLAB implementiert. \textbf{MAT}rix \textbf{LAB}oratory ist ein kommerzielles Programm und eine Programmiersprache für numerische Rechnungen und grafische Darstellungen, dessen Grundbausteine Matrizen sind. Diese Eigenschaften, weitreichende Debugging-Funktionalitäten und die einfache Erweiterbarkeit durch sogenannte Toolboxen machen es sehr attraktiv zum Einsatz im Rahmen der Bildverarbeitung\&Evaluation. Da die grundlegende Softwarestruktur in allen drei Lösungsansätzen zur Fahrspurverfolgung gleich ist, soll diese nun dargelegt werden. Eine schematische Darstellung ist in Abb. \ref{fig:software_struktur:matlab} gegeben.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Software_Struktur_ROS}
+	\caption{Struktur des MATLAB-Softwareteils}
+	\label{fig:software_struktur:matlab}
+\end{figure}
 
 \subsection{Initialisierung}
 Ist das Fahrzeug betriebsbereit, d.h. werden alle Nodes des Fahrzeugs ausgeführt, so kann in MATLAB das Programm zur Fahrspurverfolgung aufgerufen werden. Hierfür wird die Initialisierungsroutine gestartet welche:
