@@ -103,6 +103,9 @@ Der Algorithmus wird beendet, sobald:
 Der Mittelpunkt \begin{math} \vct{m}  \end{math} der nächsten Scanline außerhalb des Bildbereichs liegt
 \item \label{item:fahrspurerkennung:riverflow:randlinie:ende:keinpunkt}
 Auf der aktuellen Scanline keine Maxima größer als der Schwellwert \scl{s} gefunden wurden.
+\item 
+Die betragsmäßige Orientierungsänderung \(\btr{\scl{\Delta \phi}} = \btr{\atantwo{\scl{r_{n+1 y}, r_{n+1 x}}} - \atantwo{\scl{r_{n y}, r_{n x}}}}\) der zwei Vektoren \(\vct{r_{n+1}}=\vct{p_{n+1}}-\vct{p_{n}}\) sowie \(\vct{r_{n}}=\vct{p_{n}}-\vct{p_{n-1}}\) zwischen den letzten zwei gespeicherten und dem gerade gefundenen Punkt einen Grenzwert nicht überschreitet. Da der Straßenverlauf im gegebenen Szenario niemals abknickt, wäre dies ein sicheres Zeichen einer Fehlerkennung. Diese Abbruchbedingung ließe sich auch durch Die Länge der Scanlines einstellen, indem somit der Öffnungswinkel des Suchkegels (s. Abb. \ref{fig:riverflow:randlinie:prinzip}) reduziert wird und Punkte, die zu einem Abknicken der erkannten Fahrbahnmarkierung führen, gar nicht erst erkannt werden. 
+Die Prüfung der Orientierungsänderung wird jedoch beim in Abschnitt \ref{sssec:fahrspurerkennung:riverflow:randlinie:gestrichelt} beschriebenen Sonderfall der Extraktion des Punktes \vct{p_{n+1}} notwendig.
 \end{enumerate}
 
 \begin{figure}[H]
@@ -113,4 +116,5 @@ Auf der aktuellen Scanline keine Maxima größer als der Schwellwert \scl{s} gef
 \end{figure}
 
 \subsubsection{Sonderfall gestrichelte Randlinien}
+\label{sssec:fahrspurerkennung:riverflow:randlinie:gestrichelt}
 Da das bis zu diesem Punkt diskutierte Verfahren zur Erkennung der seitlichen Fahrbahnmarkierungen nur zum Verfolgen durchgängiger Linien konzipiert ist, einmündende Straßen jedoch durch eine unterbrochene Markierung gekennzeichnet sind, findet für diesen Sonderfall eine modifizierte Version der in \ref{ssec:fahrspurerkennung:riverflow:mittellinie} beschriebenen Vorgehensweise Anwendung. Ist Abbruchbedingung \ref{item:fahrspurerkennung:riverflow:randlinie:ende:keinpunkt} des zentralen Algorithmus erreicht, wird ein Suchfenster (siehe \ref{fig:riverflow:randlinien:plot_komplett}) festgelegt. Wurden in diesem Bereich durch die Matlab-Funktion \emph{regionprops} Elemente einer kurzen, unterbrochenen Linie gefunden, werden diese als nächste Punkte der seitlichen Fahrbahnmarkierung vermerkt. Die Bildung des Mittelpunkts \pnt{m} des nächsten Suchfensters läuft wie in \eqref{eq:riverflow:solidline:scanlinemidpoint} beschrieben ab. Analog kann bei Fehlen eines Linienelementes im Suchfenster durch Bilden einer Scanline ein Rücksprung zum Fall einer durchgängigen Randlinie vollzogen werden.

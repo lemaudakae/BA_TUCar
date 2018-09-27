@@ -96,9 +96,22 @@ name=\nrm{\vct{x}},
 description={Euklidische Norm des Vektors \({\vct{x}=\begin{pmatrix} x_x \\ x_y \end{pmatrix}}\): \(\nrm{\vct{x}} = \sqrt[2]{x_x^2 + x_y^2}\)},
 sort=mathnorm, type=mathlist
 }
+\newcommand{\btr}[1]{\ensuremath{|#1|}}
+\newglossaryentry{math:btr}{
+	name=\btr{\scl{x}},
+	description={Betrag von \scl{x}},
+	sort=mathbtr, type=mathlist
+}
 \newcommand{\derat}[2]{\ensuremath{{#1}^{\prime} |_{#2}}}
 \newglossaryentry{math:derivativeat}{
 	name=\derat{\fnfop}{\gls{x}},
 	description={Ableitung der Funktion \( \fnfop \) an der Stelle \gls{x}},
 	sort=mathderivativeat, type=mathlist
+}
+\DeclareMathOperator{\atantwoop}{atan2}
+\newcommand{\atantwo}[1]{\ensuremath{\atantwoop(#1)}}
+\newglossaryentry{math:atan2}{
+	name=\atantwo{\gls{y},\gls{x}},
+	description={erweiterte Umkehrfunktion des Tangens \(\tan(\alpha)=\frac{\gls{y}}{\gls{x}} \rightarrow \atantwo{\gls{y},\gls{x}} = \alpha\)   mit Wertebereich \(\alpha = 0 \dots 360^{\circ}\)},
+	sort=mathatantwo, type=mathlist
 }
