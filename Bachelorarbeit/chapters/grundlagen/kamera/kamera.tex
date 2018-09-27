@@ -1,14 +1,14 @@
 \section{Kameramodell \dcsecondauthorshort} \label{sec:kameramodell}
 Da das verwendete Fisheye-Objektiv durch seinen großen Blickwinkel stark verzerrt auf den Kamerasensor abbildet, ist ein spezielles Kameramodell zur Rektifizierung der Bilddaten notwendig. Wir haben uns in dieser Arbeit für die Nutzung einer Matlab-Toolbox\footnote{https://sites.google.com/site/scarabotix/ocamcalib-toolbox} entschieden  \autocite{scaramuzzaFlexibleTechniqueAccurate2006, scaramuzzaToolboxEasilyCalibrating2006, scaramuzzaOmnidirectionalVisionCalibration2007, rufliAutomaticDetectionCheckerboards2008}. Das in dieser verwendete Modell und die Anwendung dessen zur Entzerrung soll nun erläutert werden. 
 
-Die OcamCalib-Toolbox behandelt das Kamerasystem als Einheit, d.h. die Kamera und der Fisheyeobjektivaufsatz (alternativ der konvexe Spiegel) werden zusammen durch einen Parametersatz beschrieben.
+Die \glsfirst{acr:ocamcalib}-Toolbox behandelt das Kamerasystem als Einheit, d.h. die Kamera und der Fisheyeobjektivaufsatz (alternativ der konvexe Spiegel) werden zusammen durch einen Parametersatz beschrieben.
 
 Wie üblich, werden zu Beginn das Sensorkoordinatensystem \gls{lat:OSKOS} im zweidimensionalen Raum und das Kamerakoordinatensystem \gls{lat:CamKOS} in der dreidimensionalen Welt definiert. Das Modell hat das Ziel, den Zusammenhang zwischen einem Punkt auf dem Bildsensor \pnt{s^{\gls{lat:OSKOS}}} mit Koordinaten \((\scl{u}, \scl{v})\) und einem vom optischen Zentrum des Objektivs ausgehenden Vektor nicht festgelegter Länge \vct{p^{\gls{lat:CamKOS}}} mit Koordinaten \((\scl{p^{\gls{lat:CamKOS}}_{\gls{x}}}, \scl{p^{\gls{lat:CamKOS}}_{\gls{y}}}, \scl{p^{\gls{lat:CamKOS}}_{\gls{z}}})\) zu finden (s.~\eqref{eq:ocamcalibuv} und Abb.~\ref{fig:kameramodell}).
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.5\textwidth]{OCamCalib_Kameramodell}
-  \caption{Das Kameramodell der OCamCalib Toolbox}
+  \caption{Das Kameramodell der \gls{acr:ocamcalib}-Toolbox}
   \label{fig:kameramodell}
 \end{figure}
 
@@ -86,7 +86,7 @@ Da ein Darlegen des Prozesses zur Ermittlung der Parameter \(\scl{a_0} \dots \sc
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.75\textwidth]{OCamCalib_Kameramodell_Ebene}
-  \caption{Entzerrung mit dem Kameramodell der OCamCalib Toolbox}
+  \caption{Entzerrung mit dem Kameramodell der \gls{acr:ocamcalib}-Toolbox}
   \label{fig:kameramodell:entzerrung}
 \end{figure}
 

@@ -22,9 +22,9 @@ Um ein Kalman-Filter nutzen zu können wird für den betrachteten Prozess ein Mo
 \label{eq:statespacerepdisc}
 \begin{equation}
 \gls{lat:statevector}(\scl{k}+1) = 
-\gls{lat:systemmatrix}_{\gls{idz:discrete}} \cdot \gls{lat:statevector}(\scl{k}) +
-\gls{lat:inputmatrix}_{\gls{idz:discrete}} \cdot \gls{lat:inputvector}(\scl{k}) % +
-%\gls{lat:processnoisematrix}_{\gls{idz:discrete}} \cdot \gls{lat:processnoisevector}(\scl{k})
+\gls{lat:systemmatrix}_{d} \cdot \gls{lat:statevector}(\scl{k}) +
+\gls{lat:inputmatrix}_{d} \cdot \gls{lat:inputvector}(\scl{k}) % +
+%\gls{lat:processnoisematrix}_{d} \cdot \gls{lat:processnoisevector}(\scl{k})
 \end{equation}
 \begin{equation}
 \gls{lat:outputvector}(\scl{k}) = 
@@ -33,6 +33,8 @@ Um ein Kalman-Filter nutzen zu können wird für den betrachteten Prozess ein Mo
 %\gls{lat:measnoisevector}(\scl{k})
 \end{equation}  
 \end{subequations}
+Auf den Indize \(d\) für die diskrete \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix}
+sowie \glsdesc{lat:inputmatrix} \gls{lat:inputmatrix} wird im Folgenden verzichtet, da alle konsekutiven Systembeschreibungen diskreter Natur sind.
 
 %\subsubsection{Beobachtbarkeit}
 %Da bei Nutzung eines Kalmanfilters von dem \glsdesc{lat:outputvector} \gls{lat:outputvector}(\gls{lat:time}) und dem \glsdesc{lat:inputvector} \gls{lat:inputvector}(\gls{lat:time}) auf den nicht direkt messbaren \glsdesc{lat:statevector} \gls{lat:statevector}(\gls{lat:time}) geschlossen werden muss, ist es notwendig die Beobachtberkeit des Systems \eqref{eq:statespacerepobservability} sicherzustellen.
@@ -75,10 +77,10 @@ Um ein Kalman-Filter nutzen zu können wird für den betrachteten Prozess ein Mo
 %\gls{lat:statevector}(\scl{k}+1) = 
 %\underbrace{
 %\gls{lat:eulnum}^{\gls{lat:systemmatrix} \cdot \scl{T_s}}}_{ 
-%\gls{lat:systemmatrix}_{\gls{idz:discrete}}} \cdot \gls{lat:statevector}(\scl{k}) + 
+%\gls{lat:systemmatrix}_{d}} \cdot \gls{lat:statevector}(\scl{k}) + 
 %\underbrace{
 %\gls{lat:eulnum}^{\gls{lat:systemmatrix} \cdot \scl{T_s}} \cdot \gls{lat:inputmatrix}}_{ 
-%\gls{lat:inputmatrix}_{\gls{idz:discrete}}} \cdot \gls{lat:inputvector}(\scl{k})
+%\gls{lat:inputmatrix}_{d}} \cdot \gls{lat:inputvector}(\scl{k})
 %\end{equation}
 %Es ergibt sich das Modell aus \eqref{eq:statespacerepdisc}.
 
@@ -121,17 +123,17 @@ Sobald die Zustandsraumbeschreibung aufgestellt ist, können die folgenden Filte
 \label{eq:kalmanprediction}
 \begin{equation}
 \prd{\gls{lat:statevector}}(\scl{k}+1) =
-\gls{lat:systemmatrix}_{\gls{idz:discrete}} \cdot 
+\gls{lat:systemmatrix} \cdot 
 \crd{\gls{lat:statevector}}(\scl{k}) +
-\gls{lat:inputmatrix}_{\gls{idz:discrete}} \cdot \gls{lat:inputvector}(\scl{k})
+\gls{lat:inputmatrix} \cdot \gls{lat:inputvector}(\scl{k})
 \end{equation}
 \begin{equation}
 \prd{\mtx{P}}(\scl{k}+1) =
-\gls{lat:systemmatrix}_{\gls{idz:discrete}} \cdot
+\gls{lat:systemmatrix} \cdot
 \crd{\mtx{P}}(\scl{k}) \cdot
-\trp{\gls{lat:systemmatrix}_{\gls{idz:discrete}}} % +
-%\mtx{Q}_{\gls{idz:discrete}} \cdot
+\trp{\gls{lat:systemmatrix}} % +
+%\mtx{Q} \cdot
 %\mtx{Q}(\scl{k}) \cdot
-%\trp{\mtx{Q}_{\gls{idz:discrete}}}
+%\trp{\mtx{Q}}
 \end{equation}
 \end{subequations}
