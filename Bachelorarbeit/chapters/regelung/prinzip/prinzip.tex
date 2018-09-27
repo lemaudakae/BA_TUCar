@@ -1,4 +1,4 @@
-\section{Prinzip}
+\section{Prinzip \dcfirstauthorshort}
 
 Die Navigation unseres Modellfahrzeugs im Straßenverkehrsszenario basiert auf einer Weltkarte, in der alle bereits erkannten Punkte, die zu einer Fahrbahnmarkierung gehören, eingetragen werden. Zu Anfang wurde im Kapitel~\ref{sec:ks} beschrieben, dass die Lage des Roboterkoordinatensystems \gls{lat:RoboterKOS} im Vergleich zum Weltkoordinatensystem \gls{lat:WeltKOS} die Pose des Autos darstellt. Die Pose ist der Zustandsvektor \gls{lat:statevector} aus Position \( (\gls{x},\gls{y}) \) und Orientierung \gls{gre:orientierung}.
 
@@ -10,6 +10,7 @@ Die Navigation unseres Modellfahrzeugs im Straßenverkehrsszenario basiert auf e
 \gls{y}(\gls{lat:time})	\\
 \gls{gre:orientierung}(\gls{lat:time})    	\\
 \end{pmatrix}
+\label{eq:regelung_prinzip_pose}
 \end{equation} 
 
  Aus den Informationen der Weltkarte und der aktuellen räumlichen Lage des Roboters ist es möglich, eine Trajektorie zu planen, um das Fahrzeug in der Fahrspur zu halten. Daher ist es wichtig, den Zustandsvektor für jeden Regelschritt neu zu bestimmen. Zur Berechnung der neuen Position stehen uns die Wegmessungen \(s\) des Encoders und der Zeitunterschied \(\gls{lat:time}-{\gls{lat:time}}_0\) in Bezug auf die alte Pose zur Verfügung, woraus die Geschwindigkeit \gls{lat:velocity} ermittelt wird. Die Orientierung, gemessen von der eingebauten \gls{acr:imu}, wird direkt in die neue Pose eingetragen. Somit ist unser Eingangsvektor \gls{lat:inputvector}

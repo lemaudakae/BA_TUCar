@@ -1,8 +1,8 @@
-\section{Struktur der Arbeit}
+\section{Hintergrund und Ziel \dcfirstauthorshort}
 
-\subsubsection{Zielstellung}
+Der Anstoß dieses Projektes ist die Idee, in Zukunft einen weiteren Praktikumsversuch aufzubauen. An der Professur Prozessautomatisierung der TU Chemnitz besteht bereits ein Projektpraktikum, in dem mit eigens dafür entwickelten Robotern ein schachbrettartiges Labyrinth autonom durchfahren werden muss. Diese \glqq TUCbots\grqq{} besitzen allerlei Sensoren wie Encoder, Infrarot-Abstandsdetektoren und Anschlagsschalter, jedoch keine Kamera. Das Ziel ist nun, einen weiterführenden, neuen Praktikumsaufbau zu schaffen, in dem sich ein Modellfahrzeug mit Ackermannlenkung einzig mithilfe einer omnidirektionalen Kamera zurecht finden soll. 
 
-Während der Arbeitsplanung in der Vorbereitungszeit wurde festgelegt, welches Resultat unserem Projekt zugedacht ist. Unsere Absicht bestand darin, einen erweiterbaren Fahrspurverfolgungsalgorithmus zu implementieren. Hierdurch verbundene, perspektivische Themen sollen sein:
+Mit diesem Hintergrund bestand unsere Absicht darin, einen Fahrspurverfolgungsalgorithmus zu implementieren, welcher durch mögliche spätere Aufgabenstellungen für das Praktikum erweiterbar sein sollte. Dementsprechend mit dieser Arbeit verbundene Ziele sind folgend genannt:
 
 \begin{itemize}
 \item Entwurf einer geeigneten Teststrecke
@@ -14,11 +14,6 @@ Während der Arbeitsplanung in der Vorbereitungszeit wurde festgelegt, welches R
 \item Trajektorienverfolgung durch Regelung des Lenkwinkels
 \end{itemize}
 
-Damit das Ergebnis der Ausarbeitung kein bloßes, auf das aktuelle Bild reaktives Fahrverhalten ist, stand das Eintragen von Informationen während des Linienerkennungsprozesses in eine Weltkarte von Anfang an fest. Die ganze Arbeit ist mit der Intention entstanden, den Quellcode, die Modellfahrzeuge und die Teststrecke für weitere Projekte nutzen zu können. Ein späterer Ausbau zu einem Praktikumsversuch ist bereits angedacht.
+Damit das Ergebnis der Ausarbeitung kein bloßes, auf das aktuelle Bild reaktives Fahrverhalten ist, stand das Eintragen von Informationen in eine Weltkarte während des Linienerkennungsprozesses von Anfang an fest. 
 
-\subsubsection{Aufbau}
-
-Der folgende Inhalt der Ausarbeitung ist ähnlich der Entstehungsreihenfolge aufgebaut. Anfangs finden sich neben der Vorstellung der physikalisch greifbaren Betriebsmittel grundlegende Beschreibungen der genutzten Methoden der Bildverarbeitung und Mathematik. Die Verarbeitung der Bilder und die Berechnungen für die Steuerung des Autos führen wir auf einem externen Rechner mit MATLAB durch. Wie die Software dazu aufgebaut ist, wird im anschließenden Kapitel erläutert. Der danach folgende Hauptteil befasst sich mit der Bildverarbeitung und Trajektorienplanung. Da wir uns im Vorfeld nicht auf einen speziellen Algorithmus für die Fahrspurverfolgung festgelegt haben und einen möglichst gut funktionierenden Ansatz finden wollten, stellen wir drei bearbeitete Methoden zur Fahrspurerkennung vor, auch wenn letztlich nur eine Vorgehensweise lauffähig implementiert wurde. Nach einer umfassenden Evaluation blicken wir zum Abschluss auf mögliche Aufgaben, die man zukünftig mit dem Modellfahrzeug in dem Straßenverkehrsszenario bewältigen könnte.
-
-
-
+Die initiale, hauptsächliche Inspirationsquelle zur Themenwahl des vorliegenden Projektes stellten jedoch schon vorhandene, unter studentischen Teilnehmern ausgetragene Turniere mit breitem Aufgabenspektrum im Bereich führerloser Automobile dar, über die im folgenden Abschnitt berichtet werden soll.

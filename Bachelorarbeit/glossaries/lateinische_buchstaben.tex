@@ -181,9 +181,14 @@ description={Translationsvektor},
 sort=lat_3v_t, type=latlist
 }
 \newglossaryentry{lat:Rotationsmatrix}{
-name=\mtx{R_z},
-description={Rotationsmatrix (für die Rotation um die z-Achse)},
-sort=lat_4m_r_z, type=latlist
+name=\mtx{R},
+description={Rotationsmatrix},
+sort=lat_4m_r, type=latlist
+}
+\newglossaryentry{lat:Skalierungsmatrix}{
+	name=\mtx{S},
+	description={Skalierungsmatrix},
+	sort=lat_4m_s, type=latlist
 }
 \newglossaryentry{lat:Transformationsmatrix}{
 name=\mtx{T},
@@ -198,12 +203,12 @@ sort=lat_5k_w, type=latlist
 }
 \newglossaryentry{lat:RoboterKOS}{
 name=\ensuremath{\mathcal{B}},
-description={Roboterkoordinatensystem},
+description={Roboter-/Bodykoordinatensystem},
 sort=lat_5k_r, type=latlist
 }
 \newglossaryentry{lat:BildKOS}{
 name=\ensuremath{\mathcal{I}},
-description={Bildkoordinatensystem},
+description={Bild-/Imagekoordinatensystem},
 sort=lat_5k_b, type=latlist
 }
 \newglossaryentry{lat:LinienKOS}{
@@ -211,24 +216,19 @@ name=\ensuremath{\mathcal{L}},
 description={Linienkoordinatensystem},
 sort=lat_5k_l, type=latlist
 }
-%\newglossaryentry{lat:AllgKOS}{
-%name=\ensuremath{\mathcal{K}},
-%description={Bezeichnung für ein allgemeines Koordinatensystem},
-%sort=lat_5k_k, type=latlist
-%}
-\newglossaryentry{lat:OCKOS}{
-name=\ensuremath{\mathcal{OC}},
-description={Bezeichnung für das Kamera-\gls{acr:ks} der Kamerakalibrations-Toolbox},
+\newglossaryentry{lat:CamKOS}{ %lat:OCKOS
+name=\ensuremath{\mathcal{C}},
+description={Kamera-\gls{acr:ks}},
 sort=lat_5k_oc, type=latlist
 }
 \newglossaryentry{lat:OSKOS}{
-name=\ensuremath{\mathcal{OS}},
-description={Bezeichnung für das ideale Bildsensor-\gls{acr:ks} der Kamerakalibrations-Toolbox},
+name=\ensuremath{\mathcal{S}},
+description={ideales Bildsensor-\gls{acr:ks} der \gls{acr:ocamcalib}-Toolbox},
 sort=lat_5k_os, type=latlist
 }
 \newglossaryentry{lat:OSKOSR}{
-name=\ensuremath{\mathcal{OSR}},
-description={Bezeichnung für das reale Bildsensor-\gls{acr:ks} der Kamerakalibrations-Toolbox},
+name=\ensuremath{\mathcal{S'}},
+description={reales Bildsensor-\gls{acr:ks} der \gls{acr:ocamcalib}-Toolbox},
 sort=lat_5k_osr, type=latlist
 }
 

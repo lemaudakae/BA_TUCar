@@ -1,4 +1,4 @@
-\section{Zielpunktgewinnung}
+\section{Zielpunktgewinnung \dcsecondauthorshort}
 Um den Zielpunkt für den implementierten \glqq Pure-Pursuit\grqq -Regler zu erhalten, müssen die nachfolgend beschriebenen Schritte ausgeführt werden.
 
 \subsection{Holen der benötigten Punkte aus der Weltkarte}
@@ -26,8 +26,8 @@ Neben dem Mittelpunkt \gls{lat:mp} und Radius \gls{lat:rad} muss zur vollständi
 Zur Ermittlung des Startwinkels \( \varphi_s \) wird vom Mittelpunkt des Kreises \gls{lat:mp} zum Punkt \pnt{p_s} ein Vektor \vct{o_s} aufgespannt. \pnt{p_s} stellt den Punkt mit dem geringsten Abstand vom Koordinatenursprung des Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} aus der Koordinatenserie, welche zum Kreisfit genutzt wurde, dar. Der gesuchte Startwinkel ergibt sich als:
 \begin{equation}
 \varphi_s =
-\atantwo (\scl{o_{sy}, o_{sx}}) = 
-\atantwo (\bs{p_{sy}-m_{y}, p_{sx}-m_{x}})
+\atantwo{\scl{o_{sy}, o_{sx}}} = 
+\atantwo{\scl{p_{sy}-m_{y}, p_{sx}-m_{x}}}
 \end{equation}
 Zur Ermittlung des Endwinkels \( \varphi_e \) wird analog unter Nutzung des Punktes mit dem größten Abstand vom Koordinatenursprung des Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} verfahren.
 
