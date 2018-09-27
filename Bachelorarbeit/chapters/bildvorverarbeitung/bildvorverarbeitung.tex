@@ -1,7 +1,6 @@
 \chapter{Bildvorverarbeitung \dcfirstauthorshort}
 \label{cha:bildvorverarbeitung}
-
-Bevor nach der Aufnahme des Bildes nach Linien gesucht werden kann, muss das Bild entzerrt, gefiltert und binarisiert werden. 
+Ein Bild ist eine Matrix aus Punkten, denen ein Farbwert zugeordnet wird. In der Bildverarbeitung gilt es in diesen farbigen Punkten enthaltene Informationen zu extrahieren. Der einzige uns zur Verfügung stehende Sensor ist neben den Radencodern und der \gls{acr:imu} die in Vogelperspektive montierte Fischaugenkamera. Ziel nach der Aufnahme des Bildes ist es, Auskunft über die Position von Fahrspurmarkierungen zu erhalten, damit weitere Algorithmen (in Kapitel~\ref{cha:fahrspurerkennung} beschrieben) daraus die für die Regelung relevanten Punkte detektieren können. Letztlich werden die Pixel gesucht, welche einer Linie zugehörig sind. Der menschliche Betrachter des Bildes erkennt die Linie sofort. Für die automatisierte Extraktion von Markierungspunkten bedarf es jedoch einer dem Rechner verständlichen Definition, wann ein Pixel einer Linie zugehörig ist. Dafür werden Linienpunkte durch die folgend beschriebenen Bildvorverarbeitungsschritte hervorgehoben, damit das Kriterium für den Rechner lautet: Alle die Pixel sind Fahrbahnmarkierungspunkte, welche heller als ein bestimmter Schwellwert sind.
 
 \section{Bildentzerrung}
 
