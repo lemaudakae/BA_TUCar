@@ -1,6 +1,13 @@
-\chapter{Ansätze zur Fahrspurerkennung}
+\chapter{Ansätze zur Fahrspurerkennung \dcsecondauthorshort}
 \label{cha:fahrspurerkennung}
-Chapter text
+Ein zentrales Ziel dieser Arbeit stellt die Erkennung von Fahrspuren in einem Kamerabild dar. Mithilfe der Im vorherigen Kapitel beschriebenen Bildvorverarbeitung wurde bereits eine Extraktion der für die folgenden Algorithmen notwendigen Eingangsinformationen vorgenommen. Die grundsätzliche Aufgabe der Konzepte zur Fahrbahndetektion besteht in einer weiteren Reduktion und Sortierung dieser vorverarbeiteten Daten zu einem mathematischen Modell der Straße. Die Komplexität dieses Modells variiert in der Literatur sehr stark \autocite{naroteReviewRecentAdvances2018}, bestimmte, simple Repräsentationen wurden jedoch von Anfang an ausgeschlossen, da sie dem vorgegebenen Szenario nicht gerecht werden. 
+
+Die deutliche Krümmung der Kurven unserer Teststrecke lässt eine Annäherung des Straßenverlaufs durch eine Gerade nicht zu. Ein komplexeres Modell (mehr als zwei Parameter) schließt die oft verwendete, fehlerresistente Hough-Transformation (s. Abschnitt \ref{sec:grundlagen:hough}) weitgehend aus, da ein mehr als zweidimensionaler Modellraum zu rechenaufwendig für eine Echtzeitanwendung ist. 
+
+Da auch eine Änderung der Krümmung (S-Kurve) des zu approximierenden Fahrspurverlaufs abgebildet werden soll, kann auch das oft verwendete Polynom zweiten Grades den Anforderungen nicht genügen. 
+
+Die ersten zwei im Folgenden beschriebenen Verfahren bedienen sich deshalb eines Polynoms 3. Grades zur Modellierung der Fahrbahn bzw. deren Markierungen. Der final genutzte 
+
 \subimport{ransac/}{ransac}
 \subimport{kalman/}{kalman}
 \subimport{riverflow/}{riverflow}

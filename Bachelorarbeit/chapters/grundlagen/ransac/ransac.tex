@@ -1,4 +1,4 @@
-\section{RANSAC}
+\section{RANSAC \dcsecondauthorshort}
 \subsection{Motivation}
 In einem der in dieser Arbeit vorgestellten Ansätze zur Fahrspurverfolgung soll ein Modell, genauer ein Polynom 3. Grades, gefunden werden, welches den Verlauf einer Fahrbahnmarkierung möglichst exakt darstellt. Nachdem auf den Bilddaten eine Kantenextraktion ausgeführt wurde, stehen nun mögliche Kandidaten für Punkte der Fahrspurmarkierung fest. Durch ungünstige Beleuchtungsverhältnisse, verschmutzte Fahrbahnen oder andere Störeinflüsse enthalten diese Punktmengen oft Ausreißer, welche bei einer Regression durch die Methode der kleinsten Fehlerquadrate für falsche Modelle sorgen würden. \gls{acr:ransac} \autocite{fischler1981random} ist ein Algorithmus um solche Ausreißer zu entfernen.
 
