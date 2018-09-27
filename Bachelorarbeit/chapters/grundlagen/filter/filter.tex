@@ -70,7 +70,7 @@ Dieses Filter ist ein Tiefpassfilter und wird zur Glättung und zum Weichzeichne
 
 Mit dem Zusammenspiel von der Filterkerngröße und der Standartabweichung \gls{gre:standartabweichung} lässt sich einstellen, wie stark das Bild verwischt. Je größer der Kern und \gls{gre:standartabweichung} sind, desto verschwommener ist das Resultat. In Abbildung~\ref{fig:grundlagen_gaussfilter} ist beispielhaft ein \( 15\times15\) - Filterkern mit \( \gls{gre:standartabweichung} = 3\) dargestellt.
 
-\begin{figure}[H] % [htb]
+\begin{figure}[h] % [htb]
   \centering
   \includegraphics[width=0.9\textwidth]{grundlagen_gaussfilter.png}
   \caption{3D-Plot der Matrix eines \( 15\times15\) - Gauß-Filters}
@@ -93,7 +93,7 @@ Die Nulldurchgänge, vor und nach denen es unmittelbar Signalspitzen gibt, sind 
 
 Eine spezielle Form eines diskreten Laplace-Filters ist der \gls{acr:log}, welcher in dieser Arbeit zur Liniendetektion genutzt wurde. Der in Abbildung~\ref{fig:grundlagen_logfilter} beispielhaft dargestellte Filterkern wird durch die Anwendung des Laplace-Operators auf eine Gaußfunktion erstellt. Dieses Filter bewirkt neben der Kantendetektion eine gaußsche Glättung und mindert so das störende Rauschen.
 
-\begin{figure}[H] % [htb]
+\begin{figure}[h] % [htb]
   \centering
   \includegraphics[width=0.9\textwidth]{grundlagen_logfilter.png}
   \caption{3D-Plot der Matrix eines \( 23\times23\) - \gls{acr:log}-Filters}

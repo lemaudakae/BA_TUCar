@@ -1,11 +1,39 @@
 \section{Strecke \dcfirstauthorshort}
 
-\begin{figure}[H] % [htb]
+\begin{figure}[h] % [htb]
   \centering
   \includegraphics[width=1\textwidth]{strassenszenario.pdf}
   \caption{Die Teststrecke mit Kreuzungen, Einbahnstraßen und Parkplätzen}
   \label{fig:strassenszenario}
 \end{figure}
+Das Straßenverkehrsszenario ist ein Rundkurs, der von sich selbst und weiteren Verbindungsstraßen gekreuzt wird. Er ist dem echten Straßenverkehr ansatzweise nachempfunden.
+Ein vorrangiges Ziel in der Entwurfsphase war, eine vielfältige, wiederverwend- und erweiterbare Testumgebung zu schaffen, welche später im angedachten Praktikumsversuch Anwendung finden kann. Eine gute Orientierung dafür bot hierbei der Carolo-Cup (siehe~\ref{sssec:carolo_cup}). Auf extra eingezeichnete Hinweise wie Schilder oder Pfeile wurde bewusst verzichtet, damit der Parcours vielfältig einsetzbar bleibt.
 
-Das in Abbildung~\ref{fig:strassenszenario} dargestellte Straßenverkehrsszenario ist unter mehreren Maßgaben entworfen und auf zwei 4x2 Meter große PVC-Werbeplanen gedruckt worden. Diese Planen sind relativ robust und können jederzeit aufgerollt und aneinandergelegt werden. Die Breite einer Fahrbahn haben wir anhand des Autos auf 20 cm festgelegt. Damit das Modellfahrzeug ordnungsgemäß durch das Verkehrssystem navigiert werden kann, durfte der Radius der Kurven nicht zu klein sein, da das Auto einen maximalen Lenkwinkel von circa 30\(^\circ\) besitzt. Die Radien der Kurven sind etwa doppelt so groß wie der kleinste mit dem Fahrzeug fahrbare Radius, damit in der Kurve noch geregelt und korrigiert werden kann. Weitläufiger konnten die Kurven leider nicht gemacht werden, da das Platzangebot im Labor nicht ausreichend groß gewesen ist.
-Die Zeichnung ist unter dem Gesichtspunkt der Weiterverwendung entstanden. Es ist angedacht, perspektivisch die Fahrbahnumgebung auch für ein Praktikum zu nutzen, in dem viele Aufgabenstellungen denkbar sind. Auch wenn bei weitem nicht alles Ziel unserer Arbeit ist, sollte für das Fahrzeug auf dieser Strecke neben einer normalen Fahrspurverfolgung auch Überholen, Abbiegen, Vorfahrt gewähren, Erkennen einer Einbahnstraße und Einparken in Parktaschen verschiedener Ausführung implementiert werden können. Die Parkplätze sind ebenfalls auf speziell dieses Auto angepasst. Gegenüber eines einfachen Rundkurses ist hier die Herausforderung, eine robuste Fahrspurerkennung zu entwickeln, durch Zusätze wie Querstraßen, Kreuzungen und Parkplätze etwas größer. Da der Platz sehr begrenzt ist, wurde darauf geachtet, möglichst viel der zur Verfügung gestellten Fläche mit Straße zu versehen. Zur optischen Hervorhebung der Fahrbahn und der für das Auge visuellen Ansprechbarkeit ist der Untergrund mit einem hellen Grün bedruckt.
+\subsubsection{Randbedingungen}
+
+Das Straßenverkehrsszenario ist unter folgenden Maßgaben entworfen worden:
+
+\begin{itemize}
+	\item Das Platzangebot im Labor ist leider stark begrenzt, was auch der Grund für die Wahl des eher kleinen 1:18-Fahrzeugmodells ist. Für die Straßenlandschaft wurde nach längeren Überlegungen eine Abmessung von \(4 \times 4\) Metern vorgegeben.
+	
+	\item Unter dem Gesichtspunkt der perspektivischen Weiterverwendung in einem Praktikumsversuch ist es wünschenswert, den Untergrund möglichst robust und flexibel zu gestalten.
+	
+	\item Die Parameter Straßenbreite und Parkplatzgrößen sollten natürlich dem Auto angepasst sein. 
+	
+	\item Damit das Modellfahrzeug ordnungsgemäß durch das Verkehrssystem navigiert werden kann, darf der Radius der Kurven nicht zu klein sein, da das Auto einen maximalen Lenkwinkel von circa 30\(^\circ\) besitzt. 
+	
+	\item Auf dieser Strecke sollen zukünftig neben einer normalen Fahrspurverfolgung auch Überholen, Abbiegen, Vorfahrt gewähren, Erkennen einer Einbahnstraße und Einparken in Parktaschen verschiedener Ausführung implementiert werden können. Auch wenn bei weitem nicht alles Ziel unserer Arbeit ist, kann man sich diese Operationen als mögliche Aufgaben für den späteren Praktikumsaufbau vorstellen. Somit steht fest, dass sowohl breite Straßen mit Mittellinienstrichen als auch schmale Einbahnstraßen, Kreuzungen und Längs- und Querparkplätze vorgesehen sind.
+	
+	\item Der einzige Umfeld-Sensor des Autos ist dessen Kamera. Daher ist ein starker Kontrast der Fahrbahnmarkierungen zum Hintergrund erwünscht
+\end{itemize}
+
+Gegenüber eines einfachen Rundkurses soll hier durch Zusätze wie Querstraßen, Kreuzungen und Parkplätze die Herausforderung etwas erhöht werden, eine robuste Fahrspurerkennung zu entwickeln. 
+
+\subsubsection{Gestaltung}
+
+Da der Platz sehr begrenzt ist, wurde darauf geachtet, möglichst viel der zur Verfügung gestellten Fläche mit Straße zu versehen. Zur optischen Hervorhebung der Fahrbahn und der für das Auge visuellen Ansprechbarkeit ist der Untergrund mit einem hellen Grün bedruckt. Die aus den zuvor genannten Bedingungen entstandene Gestaltung der Teststrecke ist in Abbildung~\ref{fig:strassenszenario} gezeigt. Das Straßenverkehrsszenario ist auf zwei \(4 \times 2\) Meter große, robuste PVC-Werbeplanen gedruckt worden. Diese Planen können jederzeit aufgerollt und aneinandergelegt werden.
+
+Die Breite einer Fahrbahn wurde anhand des Modellfahrzeugs auf 20 cm festgelegt. Auch die Parkplätze sind auf speziell dieses Auto angepasst und verfügen im Maßstab über straßenverkehrsähnliche Dimensionen.
+
+Der relativ stark beschränkte Lenkwinkel und der Umstand des Platzmangels im Labor ließen nicht übermäßig viele Möglichkeiten in der Kurvenkrümmung offen. Daher besitzen alle Kurven nahezu gleiche Radien. Zur Bestimmung des minimalen Radius ließen wir testweise das Fahrzeug seine engst mögliche Kurve fahren und legten deren doppelten Radius als Grenzwert für die Teststrecke fest. Diese Deklaration ist notwendig, damit der Roboter auch in der engsten Kurve zur Korrektur noch stärker einlenken kann.
+
