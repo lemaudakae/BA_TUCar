@@ -12,7 +12,7 @@ Ein mathematisches Modell hinter der Linienerkennung bietet einige Vorteile:
 
 \subsection{Probleme}
 Trotz der vielen Vorzüge bringt gerade \gls{acr:ransac} das Problem mit sich, dass in einem Bildausschnitt nur ein Markierungsverlauf gefunden wird. Daher müssen in einer Aufnahme drei sinnvoll gewählte Bereiche feststehen, in welchen je ein \gls{acr:ransac}-Algorithmus ausgeführt werden kann. 
-Das größte Problem, welches letztlich zum Ausschluss der \gls{acr:ransac}-Methode geführt hat, ist die zuverlässige Bestimmung dieser \gls{acr:roi}. Wie auch schon in Abb.~\ref{fig:fahrspurerkennung_ransac_ransac} Bild (a) zu sehen war, approximiert das Polynom den Linienverlauf am Bildrand deutlich schlechter. Entgegen der Erwartung sind die Extrapolationseigenschaften von Polynomen zum Maskenbau ungeeignet. Die Funktion steigt am Bildrand meist stärker als die zu erkennende Kurve. Dies führt zu falsch vorhergesagten \glspl{acr:roi}, welche beispielhaft in Abb.~\ref dargestellt sind.
+Das größte Problem, welches letztlich zum Ausschluss der \gls{acr:ransac}-Methode geführt hat, ist die zuverlässige Bestimmung dieser \gls{acr:roi}. Wie auch bereits in Abb.~\ref{fig:fahrspurerkennung_ransac_masken} zu sehen war, approximiert das Polynom den Linienverlauf am Bildrand deutlich schlechter. Entgegen der Erwartung sind die Extrapolationseigenschaften von Polynomen zum Maskenbau ungeeignet. Die Funktion steigt am Bildrand meist stärker als die zu erkennende Kurve. Dies führt zu falsch vorhergesagten \glspl{acr:roi}, welche beispielhaft in Abb.~\ref dargestellt sind.
 
 \begin{figure}[H]
 	\centering
@@ -22,7 +22,7 @@ Das größte Problem, welches letztlich zum Ausschluss der \gls{acr:ransac}-Meth
 	\quad
 	\subfloat[][]{\includegraphics[width=0.31\textwidth]{evaluation_ransac_imgMaskRight.png}}
 	\caption{Fehlerhaft erzeugte Masken der linken (a), mittleren (b) und rechten (c) Fahrbahnmarkierungen während eines Testlaufes}
-	\label{fig:fahrspurerkennung_ransac_ransac}
+	\label{fig:evaluation_ransac_ransac}
 \end{figure} 
 
 Das Polynom hat keine Chance, die Fahrbahnmarkierung richtig abzubilden, da dies der maskierte Bereich nicht zulässt. Jene fehlerhaften \glspl{acr:roi} entstehen durch veraltete oder zuvor falsch erkannte, in die Weltkarte eingetragene Punkte. Abbildung~\ref{evaluation_ransac_weltkarte} zeigt das Ergebnis eines Programmtests. Dieser wurde mit Hilfe einer Aufnahme (mittels rosbag\footnote{Rosbag ist eine Reihe von Tools zum Aufnehmen und Wiedergeben von ROS-Topics (wiki.ros.org/rosbag)}) durchgeführt, welche händisch durch manuelle Steuerung des Fahrzeugs entstanden ist. Im dargestellten Plot der Weltkarte ist die anfänglich relativ gute Funktionstüchtigkeit des Algorithmus zu erkennen, welche jedoch ab der ersten Kreuzung verloren geht.
