@@ -784,6 +784,36 @@
          transform="scale(0.2,0.2)"
          inkscape:connector-curvature="0" />
     </marker>
+    <marker
+       inkscape:stockid="TriangleOutS"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker8169-3-2-2"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path8171-67-93-4"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill:#ff1100;fill-opacity:1;fill-rule:evenodd;stroke:#ff1100;stroke-width:1pt;stroke-opacity:1"
+         transform="scale(0.2,0.2)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutS"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker7937-5-1-4"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path7939-35-9-4"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill:#0011ff;fill-opacity:1;fill-rule:evenodd;stroke:#0011ff;stroke-width:1pt;stroke-opacity:1"
+         transform="scale(0.2,0.2)"
+         inkscape:connector-curvature="0" />
+    </marker>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -792,16 +822,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.044194174"
-     inkscape:cx="5269.4635"
-     inkscape:cy="4173.6784"
+     inkscape:zoom="0.056568542"
+     inkscape:cx="5663.6938"
+     inkscape:cy="5420.584"
      inkscape:document-units="cm"
      inkscape:current-layer="layer1"
      showgrid="true"
      units="cm"
      inkscape:window-width="1215"
      inkscape:window-height="1000"
-     inkscape:window-x="65"
+     inkscape:window-x="1345"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
      inkscape:object-paths="false">
@@ -821,7 +851,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1327,8 +1357,8 @@
            y="12493.143" /></flowRegion><flowPara
          id="flowPara5709-4"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:499.99993896px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#0011ff;fill-opacity:1">y<flowSpan
-   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999166%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:sub"
-   id="flowSpan3580">B</flowSpan></flowPara></flowRoot>    <flowRoot
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:super"
+   id="flowSpan3580">I</flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot5703-7-31"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -1342,12 +1372,12 @@
            ry="0" /></flowRegion><flowPara
          id="flowPara5709-3-0"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:499.99993896px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ff1100;fill-opacity:1">x<flowSpan
-   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999166%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:sub"
-   id="flowSpan3578">B</flowSpan></flowPara></flowRoot>    <flowRoot
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:super"
+   id="flowSpan3578">I</flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot5703-5"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       transform="matrix(0.64513052,-0.76407239,0.76407239,0.64513052,-12746.182,2986.1002)"><flowRegion
+       transform="matrix(0.64513052,-0.76407239,0.76407239,0.64513052,-12648.955,2818.1623)"><flowRegion
          id="flowRegion5705-04"><rect
            id="rect5707-87"
            width="752.13397"
@@ -1356,12 +1386,12 @@
            y="12493.143" /></flowRegion><flowPara
          id="flowPara5709-1"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:499.99993896px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#0011ff;fill-opacity:1">y<flowSpan
-   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999984%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:sub"
-   id="flowSpan3692">R</flowSpan></flowPara></flowRoot>    <flowRoot
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:super"
+   id="flowSpan3692">B</flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot5703-7-7"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       transform="matrix(0.64374573,-0.76523947,0.76523947,0.64374573,-13287.833,986.85182)"><flowRegion
+       transform="matrix(0.64374573,-0.76523947,0.76523947,0.64374573,-12757.502,297.42271)"><flowRegion
          id="flowRegion5705-0-2"><rect
            id="rect5707-9-7"
            width="819.6358"
@@ -1370,12 +1400,12 @@
            y="12493.143" /></flowRegion><flowPara
          id="flowPara5709-3-2"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:499.99993896px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ff1100;fill-opacity:1">x<flowSpan
-   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999166%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:sub"
-   id="flowSpan3694">R</flowSpan></flowPara></flowRoot>    <flowRoot
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:super"
+   id="flowSpan3694">B</flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot5703-9"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       transform="matrix(0.91640069,0.40026212,-0.40026212,0.91640069,-8974.4919,-19960.889)"><flowRegion
+       transform="matrix(0.91640069,0.40026212,-0.40026212,0.91640069,-9239.6569,-20009.503)"><flowRegion
          id="flowRegion5705-1"><rect
            id="rect5707-7"
            width="1099.6769"
@@ -1384,12 +1414,12 @@
            y="12493.143" /></flowRegion><flowPara
          id="flowPara5709-7"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:499.99993896px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#0011ff;fill-opacity:1">y<flowSpan
-   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999166%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:sub"
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:super"
    id="flowSpan3582">W </flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot5703-7-1"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       transform="matrix(0.48106958,-0.87668242,0.87668242,0.48106958,-16551.062,6944.4438)"><flowRegion
+       transform="matrix(0.48106958,-0.87668242,0.87668242,0.48106958,-16427.318,6917.9273)"><flowRegion
          id="flowRegion5705-0-1"><rect
            id="rect5707-9-5"
            width="1236.1365"
@@ -1398,7 +1428,7 @@
            y="12493.143" /></flowRegion><flowPara
          id="flowPara5709-3-9"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:499.99993896px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ff1100;fill-opacity:1">x<flowSpan
-   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999166%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:sub"
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:super"
    id="flowSpan3707">W </flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot3552"
@@ -1463,57 +1493,6 @@
          style="fill:#800080;fill-opacity:1;stroke:none;stroke-width:28.34645653;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:53.14960861;stroke-opacity:1" />
     </g>
     <g
-       transform="matrix(-0.76050189,-0.64933572,0.64933572,-0.76050189,11564.768,2619.0897)"
-       id="g5112-4">
-      <path
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path4448-2-78"
-         d="m 3418.765,5367.8408 1771.653,0"
-         style="fill:none;fill-rule:evenodd;stroke:#ff1100;stroke-width:106.29920197;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker8169-3-2)" />
-      <path
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path5447-91-4"
-         d="m 3418.765,5367.8408 0,-1771.6533"
-         style="fill:none;fill-rule:evenodd;stroke:#0011ff;stroke-width:106.29920197;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker7937-5-1)" />
-      <rect
-         y="5314.6914"
-         x="3365.6155"
-         height="106.2992"
-         width="106.2992"
-         id="rect5681-2-5"
-         style="fill:#800080;fill-opacity:1;stroke:none;stroke-width:28.34645653;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:53.14960861;stroke-opacity:1" />
-    </g>
-    <flowRoot
-       xml:space="preserve"
-       id="flowRoot5703-9-0"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       transform="matrix(0.61692086,-0.78702519,0.78702519,0.61692086,-8372.3547,2559.6419)"><flowRegion
-         id="flowRegion5705-1-3"><rect
-           id="rect5707-7-6"
-           width="1099.6769"
-           height="875.00012"
-           x="16614.182"
-           y="12493.143" /></flowRegion><flowPara
-         id="flowPara5709-7-1"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:499.99993896px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#0011ff;fill-opacity:1">y<flowSpan
-   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999166%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:sub"
-   id="flowSpan3582-0">L </flowSpan></flowPara></flowRoot>    <flowRoot
-       xml:space="preserve"
-       id="flowRoot5703-7-1-6"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       transform="matrix(0.62323458,-0.78203495,0.78203495,0.62323458,-8682.7697,402.03062)"><flowRegion
-         id="flowRegion5705-0-1-3"><rect
-           id="rect5707-9-5-2"
-           width="1236.1365"
-           height="979.93555"
-           x="16614.182"
-           y="12493.143" /></flowRegion><flowPara
-         id="flowPara5709-3-9-0"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:499.99993896px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ff1100;fill-opacity:1">x<flowSpan
-   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999166%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:sub"
-   id="flowSpan3707-6">L </flowSpan></flowPara></flowRoot>    <g
        transform="matrix(-0.75485352,-0.65589341,0.65589341,-0.75485352,7773.8468,3155.295)"
        id="g5112-7">
       <path
@@ -1536,5 +1515,124 @@
          id="rect5681-2-6"
          style="fill:#800080;fill-opacity:1;stroke:none;stroke-width:28.34645653;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:53.14960861;stroke-opacity:1" />
     </g>
-  </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3593"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#800080;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(-464.03882,-7761.7119)"><flowRegion
+         id="flowRegion3595"><rect
+           id="rect3597"
+           width="1241.8563"
+           height="857.367"
+           x="2169.9338"
+           y="7753.4136"
+           style="fill:#800080;fill-opacity:1" /></flowRegion><flowPara
+         id="flowPara3599"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:375px;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';fill:#800080;fill-opacity:1"><flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:375px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Medium';fill:#800080;fill-opacity:1"
+   id="flowSpan3605">{</flowSpan>W <flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:375px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Medium';fill:#800080;fill-opacity:1"
+   id="flowSpan3603">}</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3593-5"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#800080;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(1511.2488,-10839.618)"><flowRegion
+         id="flowRegion3595-6"><rect
+           id="rect3597-1"
+           width="1241.8563"
+           height="857.367"
+           x="2169.9338"
+           y="7753.4136"
+           style="fill:#800080;fill-opacity:1" /></flowRegion><flowPara
+         id="flowPara3599-1"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:375px;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';fill:#800080;fill-opacity:1"><flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:375px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Medium';fill:#800080;fill-opacity:1"
+   id="flowSpan3605-4">{</flowSpan>I <flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:375px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Medium';fill:#800080;fill-opacity:1"
+   id="flowSpan3603-3">}</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3593-7"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#800080;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(6577.2336,-10834.365)"><flowRegion
+         id="flowRegion3595-2"><rect
+           id="rect3597-7"
+           width="1241.8563"
+           height="857.367"
+           x="2169.9338"
+           y="7753.4136"
+           style="fill:#800080;fill-opacity:1" /></flowRegion><flowPara
+         id="flowPara3599-3"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:375px;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';fill:#800080;fill-opacity:1"><flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:375px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Medium';fill:#800080;fill-opacity:1"
+   id="flowSpan3605-3">{</flowSpan>B <flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:375px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Medium';fill:#800080;fill-opacity:1"
+   id="flowSpan3603-9">}</flowSpan></flowPara></flowRoot>    <g
+       transform="matrix(-0.7542463,-0.65659159,0.65659159,-0.7542463,7521.602,2940.2045)"
+       id="g5112-4-9">
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4448-2-78-9"
+         d="m 3418.765,5367.8408 1771.653,0"
+         style="fill:none;fill-rule:evenodd;stroke:#ff1100;stroke-width:106.29920197;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker8169-3-2-2)" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path5447-91-4-3"
+         d="m 3418.765,5367.8408 0,-1771.6533"
+         style="fill:none;fill-rule:evenodd;stroke:#0011ff;stroke-width:106.29920197;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker7937-5-1-4)" />
+      <rect
+         y="5314.6914"
+         x="3365.6155"
+         height="106.2992"
+         width="106.2992"
+         id="rect5681-2-5-8"
+         style="fill:#800080;fill-opacity:1;stroke:none;stroke-width:28.34645653;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:53.14960861;stroke-opacity:1" />
+    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5703-5-3"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="matrix(0.64513052,-0.76407239,0.76407239,0.64513052,-13720.723,2254.7203)"><flowRegion
+         id="flowRegion5705-04-2"><rect
+           id="rect5707-87-9"
+           width="752.13397"
+           height="822.40125"
+           x="16614.182"
+           y="12493.143" /></flowRegion><flowPara
+         id="flowPara5709-1-5"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:499.99993896px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#0011ff;fill-opacity:1">y<flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:super"
+   id="flowSpan3692-4">C</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5703-7-7-3"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="matrix(0.64374573,-0.76523947,0.76523947,0.64374573,-13476.659,-325.63698)"><flowRegion
+         id="flowRegion5705-0-2-9"><rect
+           id="rect5707-9-7-4"
+           width="819.6358"
+           height="705.39197"
+           x="16614.182"
+           y="12493.143" /></flowRegion><flowPara
+         id="flowPara5709-3-2-9"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:499.99993896px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ff1100;fill-opacity:1">x<flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:64.99999762%;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';baseline-shift:super"
+   id="flowSpan3694-5">C</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3593-7-5"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#800080;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(5153.8826,-11126.046)"><flowRegion
+         id="flowRegion3595-2-7"><rect
+           id="rect3597-7-3"
+           width="1241.8563"
+           height="857.367"
+           x="2169.9338"
+           y="7753.4136"
+           style="fill:#800080;fill-opacity:1" /></flowRegion><flowPara
+         id="flowPara3599-3-9"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:375px;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus Medium';fill:#800080;fill-opacity:1"><flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:375px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Medium';fill:#800080;fill-opacity:1"
+   id="flowSpan3605-3-0">{</flowSpan>C <flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:375px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Medium';fill:#800080;fill-opacity:1"
+   id="flowSpan3603-9-7">}</flowSpan></flowPara></flowRoot>  </g>
 </svg>

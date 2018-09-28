@@ -1,6 +1,15 @@
 \chapter{Bildvorverarbeitung \dcfirstauthorshort}
 \label{cha:bildvorverarbeitung}
-Ein Bild ist eine Matrix aus Punkten, denen ein Farbwert zugeordnet wird. In der Bildverarbeitung gilt es in diesen farbigen Punkten enthaltene Informationen zu extrahieren. Der einzige uns zur Verfügung stehende Sensor ist neben den Radencodern und der \gls{acr:imu} die in Vogelperspektive montierte Fischaugenkamera. Ziel nach der Aufnahme des Bildes ist es, Auskunft über die Position von Fahrspurmarkierungen zu erhalten, damit weitere Algorithmen (in Kapitel~\ref{cha:fahrspurerkennung} beschrieben) daraus die für die Regelung relevanten Punkte detektieren können. Letztlich werden die Pixel gesucht, welche einer Linie zugehörig sind. Der menschliche Betrachter des Bildes erkennt die Linie sofort. Für die automatisierte Extraktion von Markierungspunkten bedarf es jedoch einer dem Rechner verständlichen Definition, wann ein Pixel einer Linie zugehörig ist. Dafür werden Linienpunkte durch die folgend beschriebenen Bildvorverarbeitungsschritte hervorgehoben, damit das Kriterium für den Rechner lautet: Alle die Pixel sind Fahrbahnmarkierungspunkte, welche heller als ein bestimmter Schwellwert sind.
+
+% Überblick
+\begin{figure}[ht] % [htb]
+	\centering
+	\includegraphics[width=1\textwidth]{bildvorverarbeitung_ueberblick.pdf}
+	\caption{Schritte in der Bildvorverarbeitung}
+	\label{fig:bildvorverarbeitung_ueberblick}
+\end{figure} 
+
+Ein Bild ist eine Matrix aus Punkten, denen ein Farbwert zugeordnet wird. In der Bildverarbeitung gilt es in diesen farbigen Punkten enthaltene Informationen zu extrahieren. Der einzige uns zur Verfügung stehende Sensor ist neben den Radencodern und der \gls{acr:imu} die in Vogelperspektive montierte Fischaugenkamera. Ziel nach der Aufnahme des Bildes ist es, Auskunft über die Position von Fahrspurmarkierungen zu erhalten, damit weitere Algorithmen (in Kapitel~\ref{cha:fahrspurerkennung} beschrieben) daraus die für die Regelung relevanten Punkte detektieren können. Letztlich werden die Pixel gesucht, welche einer Linie zugehörig sind. Der menschliche Betrachter des Bildes erkennt die Linie sofort. Für die automatisierte Extraktion von Markierungspunkten bedarf es jedoch einer dem Rechner verständlichen Definition, wann ein Pixel einer Linie zugehörig ist. Dafür werden Linienpunkte durch die folgend beschriebenen Bildvorverarbeitungsschritte hervorgehoben, damit das Kriterium für den Rechner lautet: Alle Pixel, welche heller als ein bestimmter Schwellwert sind, gehören zu den Fahrbahnmarkierungspunkten. Zum Überblick sind die Verarbeitungsstufen vom Rohbild bis zum Endergebnis in Abbildung~\ref{fig:bildvorverarbeitung_ueberblick} dargestellt.
 
 \section{Bildentzerrung}
 
@@ -28,7 +37,7 @@ Um wertvolle Rechenzeit bei der aufwändigen Filterung einzusparen, werden das B
 
 
 % Das gefilterte und binarisierte Bild nebeneinander
-\begin{figure}[H] % [htb]
+\begin{figure}[hb] % [htb]
   \centering
   \subfloat[][]{\includegraphics[width=0.45\textwidth]{bildvorverarbeitung_gefiltert.png}}
   \qquad
