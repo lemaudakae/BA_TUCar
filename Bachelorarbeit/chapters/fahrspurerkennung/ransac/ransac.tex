@@ -36,8 +36,8 @@ Zur Gewinnung der entsprechenden \gls{acr:roi} werden eine bestimmte Anzahl der 
 
 Ein nicht zu vernachlässigendes Problem stellt allerdings noch die Initialisierung dar. Wie gewinnt man die Masken, wenn bisher keine Linienpunkte in die Karte eingetragen worden sind? Die einfachste und am Anfang auch implementierte Möglichkeit bietet die aus Parameterwerten vorgeschriebene Maske einer Gerade, in der Annahme, das Auto starte immer auf einem geraden Abschnitt. Da so die Robustheit aber schlecht gewährleistet ist, wurde dies schnell wieder verworfen und eine bessere Möglichkeit gefunden. Die gestrichelte Mittellinie besitzt im ganzen Bild Alleinstellungsmerkmale, die sich durch ein darauf angepasstes weiteres Faltungsfilter nutzen lassen. Den in Abbildung~\ref{fig:fahrspurerkennung_ransac_midfilter} gezeigten Filterkern haben wir \glqq Ringfilter\grqq{} genannt (Idee entnommen aus \autocite{drauschkeEchtzeitfaehigeStartpunktalgorithmenFuer2016}). Er ist aus einem Innen- und Außenkreis entworfen, sodass der Radius des inneren Kreises mindestens so groß wie die Länge eines Mittellinienstriches im Bild und der Außenkreisradius maximal so groß wie der kürzeste Abstand zwischen zwei Mittellinienstrichen ist. Was als Filterergebnis beispielhaft herauskommt, ist in (c) der Abbildung~\ref{fig:fahrspurerkennung_ransac_binarisieren} zu erkennen. Das Filter bewirkt, dass im Ergebnisbild genau dann ein Pixel mit \glqq 1\grqq{} beschrieben wird, wenn der Filterring um dieses Pixel mindestens einen Punkt im binarisierten Bild schneidet. Es entstehen abgegrenzte Bereiche mit einer \glqq 0\grqq{} als Filterantwort genau dann, wenn Mittellinienstriche innerhalb des \glqq Ringfilters\grqq{} liegen und kein weiteres Pixel auf dem Ring um diese Striche gefunden wird. Die Negation des Filterergebnisses als Maske auf das binarisierte Bild gelegt erzeugt eine Grafik, die allein Pixel aus Punktgruppen enthält, die eine festgelegte Maximallänge und einen Mindestabstand zu anderen Punkten besitzen. Darauf kann nun der \gls{acr:ransac}-Algorithmus angewendet werden. Dass hier der Einsatz von \gls{acr:ransac} sinnvoll und notwendig ist, erkennt man in (d) der Abbildung~\ref{fig:fahrspurerkennung_ransac_binarisieren} im unteren Teil des Bildes an der hellen Pixelgruppe, welche nicht zur mittleren Fahrbahnmarkierung gehört.
 
-% Bilder der drei Masken für linke, mittlere und rechte Linie
-\begin{figure}[H]
+% Bilder der drei Masken über binarisiertem Bild incl. Fit für linke, mittlere und rechte Linie
+\begin{figure}[hbt]
 	\centering
 	\subfloat[][]{\includegraphics[width=0.3\textwidth]{fahrspurerkennung_ransac_imgMaskLeft.png}}
 	\quad
@@ -76,26 +76,17 @@ Die Normierung von \gls{lat:dv} multipliziert mit der bekannten Fahrspurbreite \
 
 Durch die so verschobenen Stützpunkte der erwarteten Lage der Randlinien werden ein neuer Fit und eine anschließende Dilatation vorgenommen, um die initialen Randmasken zu erzeugen. Um auszuschließen, dass man zur mittleren Strichlinie zugehörige Bildpunkte einer Randlinie zuordnet, wird zusätzlich eine elementweise UND-Operation mit der negierten Mittellinienmaske durchgeführt. Die verhinderte Überschneidung der Masken ist auch in Abbildung~\ref{fig:fahrspurerkennung_ransac_masken} zu erkennen.
 
-% Bilder der drei Ausführungen des RANSAC für linke, mittlere und rechte Linie
-\begin{figure}[H]
-  \centering
-  \subfloat[][]{\includegraphics[width=0.3\textwidth]{fahrspurerkennung_ransac_imgRansacLeft.png}}
-  \quad
-  \subfloat[][]{\includegraphics[width=0.3\textwidth]{fahrspurerkennung_ransac_imgRansacMiddle.png}}
-  \quad
-  \subfloat[][]{\includegraphics[width=0.3\textwidth]{fahrspurerkennung_ransac_imgRansacRight.png}}
-  \caption{Approximation der linken (a), mittleren (b) und rechten (c) Fahrbahnmarkierungen durch eine Funktion dritten Grades mittels \gls{acr:ransac}}
-\label{fig:fahrspurerkennung_ransac_ransac}
-\end{figure} 
+%% Bilder der drei Ausführungen des RANSAC für linke, mittlere und rechte Linie
+%\begin{figure}[H]
+%  \centering
+%  \subfloat[][]{\includegraphics[width=0.3\textwidth]{fahrspurerkennung_ransac_imgRansacLeft.png}}
+%  \quad
+%  \subfloat[][]{\includegraphics[width=0.3\textwidth]{fahrspurerkennung_ransac_imgRansacMiddle.png}}
+%  \quad
+%  \subfloat[][]{\includegraphics[width=0.3\textwidth]{fahrspurerkennung_ransac_imgRansacRight.png}}
+%  \caption{Approximation der linken (a), mittleren (b) und rechten (c) Fahrbahnmarkierungen durch eine Funktion dritten Grades mittels \gls{acr:ransac}}
+%\label{fig:fahrspurerkennung_ransac_ransac}
+%\end{figure} 
 
 \paragraph{\gls{acr:ransac} und Weltkarte} 
-Wie in Abbildung~\ref{fig:fahrspurerkennung_ransac_ransac} zu sehen, approximiert der \gls{acr:ransac}-Algorithmus den Verlauf der Fahrbahnlinien relativ gut. Die eingezeichnete grüne Funktion beschreibt das Ergebnis des Fits eines Polynoms dritten Grades durch die Inlier (siehe Abschnitt \ref{ssec:grunglagen:ransac:ablauf}). In einem bestimmten Abstand werden auf dem Polynom potentielle Kartenpunkte diskretisiert. Später tragen wir in die Karte nur die Punkte ein, welche sowohl auf der Funktion liegen als auch mit weißen Pixeln des maskierten Bildes übereinstimmen. So verhindern wir, Punkte an unpassenden Stellen in die Weltkarte einzutragen. Sie sind im Plot als Kreuze dargestellt. 
-
-% Bild/Plot der eingetragenen Punkte in der Weltkarte
-\begin{figure}[H] % [htb]
-  \centering
-  \includegraphics[width=0.9\textwidth]{fahrspurerkennung_ransac_plotWorldMap.png}
-  \caption{Plot der eingetragenen Punkte in die Weltkarte}
-\label{fig:fahrspurerkennung_ransac_karte}
-\end{figure} 
-
+Wie in Abbildung~\ref{fig:fahrspurerkennung_ransac_masken} zu sehen, approximiert der \gls{acr:ransac}-Algorithmus den Verlauf der Fahrbahnlinien relativ gut. Die eingezeichnete grüne Funktion beschreibt das Ergebnis des Fits eines Polynoms dritten Grades durch die Inlier (siehe Abschnitt \ref{ssec:grunglagen:ransac:ablauf}). In einem bestimmten Abstand werden auf dem Polynom potentielle Kartenpunkte diskretisiert. Später tragen wir in die Karte nur die Punkte ein, welche sowohl auf der Funktion liegen als auch mit weißen Pixeln des maskierten Bildes übereinstimmen. So verhindern wir, Punkte an unpassenden Stellen in die Weltkarte einzutragen. 
