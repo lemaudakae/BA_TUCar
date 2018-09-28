@@ -22,10 +22,12 @@ Hierbei geben \gls{lat:achsenabschnitt} den Achsenabschnitt und \gls{lat:anstieg
 Damit wird ein zweiter sogenannter Modellraum aufgespannt, indem \gls{lat:achsenabschnitt} und \gls{lat:anstieg} zum Definitions- und Wertebereich gesetzt werden und die Punkte zu den Parametern zählen. Der Hough-Algorithmus transformiert jeden Bildpunkt in den Modellraum, welcher dort eine Gerade repräsentiert. Umgekehrt stellt ein Punkt im Modellraum eine Gerade im Datenraum dar. Viele im Bild auf einer gesuchten Gerade liegenden Pixel machen sich dann als häufiger Schnittpunkt im Modellraum bemerkbar. Jener Punkt (\gls{lat:achsenabschnitt},\gls{lat:anstieg}) enthält eine solide Parameterabschätzung der gesuchten Gerade im Bild.
 
 % Bild (Diagramme) zur Hough-Trafo
-\begin{figure}[H] % [htb]
-  \centering
-  \includegraphics[width=1\textwidth]{grundlagen_hough.png}
-  \caption{Houghtransformation von Geraden: Punkte aus dem Datenraum (\textbf{a}) werden auf den Modellraum (\textbf{b}) abgebildet.}
+\begin{figure}[h] % [htb]
+  \centering  
+  \subfloat[][]{\includegraphics[width=0.45\textwidth]{grundlagen_hough_datenraum.png}}
+  \qquad
+  \subfloat[][]{\includegraphics[width=0.45\textwidth]{grundlagen_hough_modellraum.png}}  
+  \caption{Houghtransformation von Geraden: Punkte aus dem Datenraum (a) werden auf den Modellraum (b) abgebildet.}
 %  \label{fig:grundlagen_hough}
 \end{figure} 
 
