@@ -22,6 +22,11 @@ Wichtige, noch anzupassende Parameter stellen dar:
 \item Die Entfernung des Zielpunktes der Regelung vom Fahrzeug
 \end{itemize}
 
+Den Ausganspunkt für die folgenden Optimierungen bildet eine Geschwindigkeit von \(0.1 \frac{m}{s}\). Die Frequenz, mit welcher die Bilder verarbeitet werden wurde auf \(1 Hz\) festgelegt, da die Extraktion der Linienpunkte eines Testbildes ca. \(0,5 s\) benötigt. Die Frequenz der Regelung wurde initial auf \(20 Hz\) festgelegt, da der Rechenaufwand für einen Regelungszyklus sehr gering ist. Eine noch höhere Regelfrequenz verspricht keinen Performancegewinn und läge schon nahe der maximalen Ansteuerfrequenz des Lenkservos sowie der Abtastrate der \gls{acr:imu}.
+
+
+
+
 \subsubsection{Leistungsfähigkeit bei unterschiedlichen Geschwindigkeiten}
 In diesem Abschnitt soll untersucht werden, ob eine Reduzierung der Geschwindigkeit positive Auswirkungen auf die Zuverlässigkeit von Bildverarbeitung und Regelung besitzt.
 

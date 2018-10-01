@@ -7,10 +7,10 @@ Das in \ref{sec:grundlagen:kalman-filter} eingeführte Kalman-Filter soll verwen
 
 \subsection{Fahrspurmodell}
 Als Repräsentation der Fahrspur im Zustandsraum soll das in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} vorgeschlagene Modell, welches wiederum eine Vereinfachung von \autocite{risackRobustLaneRecognition} darstellt, verwendet werden.
-Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt, soll die Fahrspur als Polynom 3. Grades \begin{math} \gls{y}_{\gls{lat:LinienKOS}}(\gls{x}_{\gls{lat:LinienKOS}}) \end{math} approximiert werden. Um die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} zu vereinfachen und einen sehr anschaulichen \glsdesc{lat:statevector} \gls{lat:statevector} zu erhalten, wird für jenen die 0. bis 3. Ableitung des Polynoms an der Stelle \begin{math} \gls{x}_{\gls{lat:LinienKOS}}=0 \end{math} verwendet. 
+Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt, soll die Fahrspur als Polynom 3. Grades \begin{math} \gls{y}^{\gls{lat:LinienKOS}}(\gls{x}^{\gls{lat:LinienKOS}}) \end{math} approximiert werden. Um die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} zu vereinfachen und einen sehr anschaulichen \glsdesc{lat:statevector} \gls{lat:statevector} zu erhalten, wird für jenen die 0. bis 3. Ableitung des Polynoms an der Stelle \begin{math} \gls{x}^{\gls{lat:LinienKOS}}=0 \end{math} verwendet. 
 \begin{equation}
 \label{eq:polylane}
-\gls{y}(\gls{x}) =
+\fnf{\gls{x}} = \gls{y}(\gls{x}) =
 \scl{a} +
 \scl{b} \cdot \gls{x} +
 \scl{c} \cdot \gls{x}^2 +
@@ -20,10 +20,10 @@ Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt, soll 
 \label{eq:statevectorlane}
 \gls{lat:statevector} = 
 \begin{pmatrix}
-\gls{y}_{\gls{lat:LinienKOS}}(0) \\
-\der{\gls{y}_{\gls{lat:LinienKOS}}}(0) \\
-\derII{\gls{y}_{\gls{lat:LinienKOS}}}(0) \\
-\derIII{\gls{y}_{\gls{lat:LinienKOS}}}(0) \\
+\gls{y}^{\gls{lat:LinienKOS}}(0) \\
+\der{\gls{y}^{\gls{lat:LinienKOS}}}(0) \\
+\derII{\gls{y}^{\gls{lat:LinienKOS}}}(0) \\
+\derIII{\gls{y}^{\gls{lat:LinienKOS}}}(0) \\
 \end{pmatrix}
 =
 \begin{pmatrix}
@@ -42,11 +42,11 @@ Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt, soll 
 \end{equation}
 \begin{equation}
 \label{eq:polylanestate}
-\gls{y}_{\gls{lat:LinienKOS}}(\gls{x}_{\gls{lat:LinienKOS}}) =
+\gls{y}^{\gls{lat:LinienKOS}}(\gls{x}^{\gls{lat:LinienKOS}}) =
 \gls{lat:lateraloffset} +
-\gls{gre:yawangle} \cdot \gls{x}_{\gls{lat:LinienKOS}} +
-\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{x}_{\gls{lat:LinienKOS}}^2 +
-\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot \gls{x}_{\gls{lat:LinienKOS}}^3
+\gls{gre:yawangle} \cdot \gls{x}^{\gls{lat:LinienKOS}} +
+\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{x}^{\gls{lat:LinienKOS}}^2 +
+\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot \gls{x}^{\gls{lat:LinienKOS}}^3
 \end{equation}
  
 \subsubsection{Initialisierung} 
@@ -62,7 +62,50 @@ Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt, soll 
  
 \subsection{Messung} \label{ssec:fahrspurerkennung:kalman:messung}
 Um eine ausreichende Geschwindigkeit des Kalmanfilters zu gewährleisten, muss die Anzahl der Bildpunkte, welche zur Korrektur des prädizierten Zustands verwendet werden, im Gegensatz zu \ref{sec:maskenbau} vermindert werden. Es wird in Anlehnung an \autocite{risackRobustLaneRecognition} das Bild ab dem Vorverarbeitungsschritt nur in relevanten Bereichen betrachtet.
-Hierfür werden Geraden \glqq Scanlines\grqq{} senkrecht zum Polynom des Fahrspurmodells berechnet. Deren Länge sowie Abstand der Startpunkte auf dem Polynom sind als Parameter anzusehen. Nun werden die Helligkeitswerte der Bildpunkte, durch welche die Gerade verläuft, mit dem aus \ref{sec:bildvorverarbeitung:filterung} bekannten Kantendetektor gefiltert. Die Koordinaten der ausreichend großen lokalen Maxima der Filterantwort sind Kandidaten für zentral in der mehrere Pixel breiten mittleren Fahrbahnmarkierung gelegenen Punkte.
+Hierfür werden Geraden \glqq Scanlines\grqq{} senkrecht zum Polynom des Fahrspurmodells berechnet (gelbe Linien in Abb. \ref{fig:kalman:iteration_komplett}). Mathematisch lässt sich dies, basierend auf den Definitionsgleichungen \eqref{eq:polylane} und \eqref{eq:statevectorlane} des Polynoms und Zustandsvektors sowie den Formeln \eqref{eq:derr_polynom3} und \eqref{eq:maske_verschiebungsvektor} zur Berechnung des zum Polynom senkrechten, normierten Vektors \gls{lat:dv}, wie folgt ausdrücken:
+\begin{subequations}
+\begin{equation}
+\vct{m}(x) =
+\begin{pmatrix}
+{\gls{x}} 	\\
+{\fnf{\gls{x}}}	\\
+\end{pmatrix}
+\end{equation}
+\begin{equation}
+\label{eq:kalman:scanlinecontinous}
+\vct{s}(x,\alpha) =
+\vct{m}(x)
+  + \alpha \cdot \vct{d}(x)
+\qquad \alpha \in \mathbb{R}
+\end{equation}
+\end{subequations}
+
+Deren Länge (Wertebereich von \(\alpha\)) sowie Abstand der Startpunkte/Mittelpunkte \vct{m}(x) auf dem Polynom sind als Parameter anzusehen, welche Einfluss auf die \gls{acr:roi} zum Erkennen der Mittellinie sowie die Anzahl der Messwerte haben.
+
+Um mit der konstruierten Scanline Bildpunkte adressieren zu können, wird diese in eine diskrete Koordinatenserie überführt \ref{eq:kalman:scanlinediscrete}:
+\begin{equation}
+\label{eq:kalman:scanlinediscrete}
+\vct{s}(x,\alpha) =
+\vct{m}(x)
+  + \alpha \cdot \vct{d}(x)
+\qquad \alpha \in \mathbb{Z}
+\end{equation}
+Anschließend müssen deren Elemente vom Linienkoordinatensystem \gls{lat:LinienKOS} ins \gls{lat:BildKOS} transformiert und auf ganzzahlige Werte gerundet werden.
+Die durch die Koordinatenserie adressierten Pixel des entzerrten Bildes können nun zur weiteren Verarbeitung in einen Zeilenvektor \vct{l} geschrieben werden. 
+ \begin{equation}
+ \vct{l} =
+ \begin{pmatrix}
+ \scl{l_1} & \scl{l_2} & \dots & \scl{l_i} & \dots & \scl{l_n}
+ \end{pmatrix}
+ \end{equation}
+ 
+Nun wird \vct{l} mit dem aus \ref{sec:bildvorverarbeitung:filterung} bekannten Kantendetektor gefiltert. Von der entstandenen Filterantwort \vct{f} wird das Maximum \mxm{\vct{f}} ermittelt. Ist \mxm{\vct{f}} größer als ein bestimmter Schwellwert, wird der Index \begin{math} i_{max} \end{math} des Maxima in \vct{f} vorgemerkt. Um eine Linie nicht wiederholt zu finden, muss die in \vct{f} verbleibende, durch dieselbe Markierung verursachte Filterantwort entfernt  werden.
+\begin{equation}
+\scl{l_{i_{max}-\text{Linienbreite}/2}} \dots \scl{l_{i_{max}}} 
+ \dots  \scl{l_{i_{max}+\text{Linienbreite}/2}} = 0
+ \end{equation}
+Darauffolgend kann nach weiteren den festgelegten Grenzwert überschreitenden Einträgen in \vct{f} gesucht und wie mit dem ersten \mxm{\vct{f}} verfahren werden.
+Wird kein ausreichend großes \mxm{\vct{f}} mehr gefunden, können den gefundenen Indizes \begin{math} i_{max} \end{math} via \eqref{eq:kalman:scanlinediscrete} und einer Rücktransformation vom Bildkoordinatensystem \gls{lat:BildKOS} Punkte \vct{p} im Linienkoordinatensystem \gls{lat:LinienKOS} zugeordnet werden, welche zur Korrektur des Systemzustands \gls{lat:statevector} genutzt werden können.
 
 \subsubsection{Randlinen}
 Um auch die zentral in der äußeren Fahrbahnmarkierung liegenden Punkte detektieren zu können, werden die Scanlines der Mittelline um die Fahrspurbreite senkrecht zum Polynom verschoben. Nun kann derselbe Algorithmus wie für die Scanlines der mittleren Fahrbahnmarkierung ausgeführt werden. Die gefundenen Koordinaten müssen letztendlich wieder um die Fahrspurbreite zur Mittellinie hin verschoben werden um problemlos zur Zustandskorrektur des Kalmanfilters nutzbar zu sein.
@@ -80,10 +123,10 @@ Der zurückgelegte Weg \begin{math} \scl{\Delta\gls{x}}_{\gls{lat:LinienKOS}} \e
 \label{eq:nextstatemapping}
 \hat{\gls{lat:statevector}}(\scl{k}+1) =
 \begin{pmatrix}
-\gls{y}_{\gls{lat:LinienKOS}\scl{k}}(\scl{\Delta\gls{x}}_{\gls{lat:LinienKOS}}) \\
-\der{\gls{y}_{\gls{lat:LinienKOS}\scl{k}}}(\scl{\Delta\gls{x}}_{\gls{lat:LinienKOS}}) \\
-\derII{\gls{y}_{\gls{lat:LinienKOS}\scl{k}}}(\scl{\Delta\gls{x}}_{\gls{lat:LinienKOS}}) \\
-\derIII{\gls{y}_{\gls{lat:LinienKOS}\scl{k}}}(\scl{\Delta\gls{x}}_{\gls{lat:LinienKOS}}) \\
+\gls{y}^{\gls{lat:LinienKOS}\scl{k}}(\scl{\Delta\gls{x}}_{\gls{lat:LinienKOS}}) \\
+\der{\gls{y}^{\gls{lat:LinienKOS}\scl{k}}}(\scl{\Delta\gls{x}}_{\gls{lat:LinienKOS}}) \\
+\derII{\gls{y}^{\gls{lat:LinienKOS}\scl{k}}}(\scl{\Delta\gls{x}}_{\gls{lat:LinienKOS}}) \\
+\derIII{\gls{y}^{\gls{lat:LinienKOS}\scl{k}}}(\scl{\Delta\gls{x}}_{\gls{lat:LinienKOS}}) \\
 \end{pmatrix}
 \end{equation}
 
@@ -127,7 +170,7 @@ In \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} wird besch
 \end{split}
 \end{equation}
 
-Die in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} durch Linearisierung an der Stelle \begin{math} \gls{x}_{\gls{lat:LinienKOS}0} = 0 \end{math} erhaltene Matrix hingegen vereinfacht sich durch \eqref{eq:generallinearization} zu:
+Die in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} durch Linearisierung an der Stelle \begin{math} \gls{x}^{\gls{lat:LinienKOS}0} = 0 \end{math} erhaltene Matrix hingegen vereinfacht sich durch \eqref{eq:generallinearization} zu:
 
 \begin{equation}
 \label{eq:nextstatemappingmatrixlinear}
@@ -165,10 +208,10 @@ Die in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} durch 
 
 \begin{equation}
 \label{eq:generallinearization}
-\fnf{\gls{x}_{\gls{lat:LinienKOS}}} \approx \fnf{\gls{x}_{\gls{lat:LinienKOS}0}} + 
+\fnf{\gls{x}^{\gls{lat:LinienKOS}}} \approx \fnf{\gls{x}^{\gls{lat:LinienKOS}0}} + 
 %\frac{df}{d\gls{x}}|_{\gls{x}_0} \cdot
-\derat{\fnfop}{\gls{x}_{\gls{lat:LinienKOS}0}} \cdot
-(\gls{x}-\gls{x}_0)
+\derat{\fnfop}{\gls{x}^{\gls{lat:LinienKOS}0}} \cdot
+(\gls{x}-\gls{x}^0)
 \end{equation}
 
 Da sich die gefahrene Strecke \begin{math} \scl{\Delta\gls{x}}_{\gls{lat:LinienKOS}} \end{math} zwischen den Aufnahmepunkten zweier Bilder geringfügig ändern kann, muss die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} vor jedem Prädikationsschritt neu berechnet werden.
@@ -183,38 +226,38 @@ Die \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} bildet den Systemzustand \
 \begin{split}
 \gls{lat:outputvector} & =
 \begin{pmatrix}
-\gls{y}_{\gls{lat:LinienKOS}1} \\
-\gls{y}_{\gls{lat:LinienKOS}2} \\
+\gls{y}^{\gls{lat:LinienKOS}}_1 \\
+\gls{y}^{\gls{lat:LinienKOS}}_2 \\
 \vdots \\
-\gls{y}_{\gls{lat:LinienKOS}\scl{n}}
+\gls{y}^{\gls{lat:LinienKOS}\scl{n}}
 \end{pmatrix}
 =
 \begin{pmatrix}
 \gls{lat:lateraloffset} +
-\gls{gre:yawangle} \cdot \gls{x}_{\gls{lat:LinienKOS}1} +
-\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{x}_{\gls{lat:LinienKOS}1}^2 +
-\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot \gls{x}_{\gls{lat:LinienKOS}1}^3  \\
+\gls{gre:yawangle} \cdot \gls{x}^{\gls{lat:LinienKOS}1} +
+\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{x}^{\gls{lat:LinienKOS}1}^2 +
+\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot \gls{x}^{\gls{lat:LinienKOS}1}^3  \\
 \gls{lat:lateraloffset} +
-\gls{gre:yawangle} \cdot \gls{x}_{\gls{lat:LinienKOS}2} +
-\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{x}_{\gls{lat:LinienKOS}2}^2 +
-\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot \gls{x}_{\gls{lat:LinienKOS}2}^3  \\
+\gls{gre:yawangle} \cdot \gls{x}^{\gls{lat:LinienKOS}2} +
+\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{x}^{\gls{lat:LinienKOS}2}^2 +
+\frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot \gls{x}^{\gls{lat:LinienKOS}2}^3  \\
 \vdots \\
 \gls{lat:lateraloffset} +
-\gls{gre:yawangle} \cdot \gls{x}_{\gls{lat:LinienKOS}\scl{n}} +
-\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{x}_{\gls{lat:LinienKOS}\scl{n}}^2 +
+\gls{gre:yawangle} \cdot \gls{x}^{\gls{lat:LinienKOS}\scl{n}} +
+\frac{1}{2} \cdot \gls{lat:curvature} \cdot \gls{x}^{\gls{lat:LinienKOS}\scl{n}}^2 +
 \frac{1}{6} \cdot \gls{lat:curvaturechange} \cdot 
-\gls{x}_{\gls{lat:LinienKOS}\scl{n}}^3  
+\gls{x}^{\gls{lat:LinienKOS}\scl{n}}^3  
 \end{pmatrix} \\
 & =
 \begin{pmatrix}
-1 & \gls{x}_{\gls{lat:LinienKOS}1} & \frac{1}{2} \cdot \gls{x}_{\gls{lat:LinienKOS}1}^2 &
-\frac{1}{6} \cdot \gls{x}_{\gls{lat:LinienKOS}1}^3  \\
-1 & \gls{x}_{\gls{lat:LinienKOS}2} & \frac{1}{2} \cdot \gls{x}_{\gls{lat:LinienKOS}2}^2 &
-\frac{1}{6} \cdot \gls{x}_{\gls{lat:LinienKOS}2}^3  \\
+1 & \gls{x}^{\gls{lat:LinienKOS}1} & \frac{1}{2} \cdot \gls{x}^{\gls{lat:LinienKOS}1}^2 &
+\frac{1}{6} \cdot \gls{x}^{\gls{lat:LinienKOS}1}^3  \\
+1 & \gls{x}^{\gls{lat:LinienKOS}2} & \frac{1}{2} \cdot \gls{x}^{\gls{lat:LinienKOS}2}^2 &
+\frac{1}{6} \cdot \gls{x}^{\gls{lat:LinienKOS}2}^3  \\
 \vdots & \vdots & \vdots & \vdots \\
-1 & \gls{x}_{\gls{lat:LinienKOS}\scl{n}} & 
-\frac{1}{2} \cdot \gls{x}_{\gls{lat:LinienKOS}\scl{n}}^2 &
-\frac{1}{6} \cdot \gls{x}_{\gls{lat:LinienKOS}\scl{n}}^3
+1 & \gls{x}^{\gls{lat:LinienKOS}\scl{n}} & 
+\frac{1}{2} \cdot \gls{x}^{\gls{lat:LinienKOS}\scl{n}}^2 &
+\frac{1}{6} \cdot \gls{x}^{\gls{lat:LinienKOS}\scl{n}}^3
 \end{pmatrix}
 \cdot
 \begin{pmatrix}

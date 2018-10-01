@@ -67,28 +67,31 @@ d_{nx}
 \end{pmatrix}
 \end{equation}
 Der Wertebereich des skalaren Faktors \scl{\alpha} gibt hierbei die Ausdehnung der Scanline um ihren Mittelpunkt \pnt{m_{n+1}} herum an.
-Da die Filterantwort des Kantendetektors für das gesamte Bild bereits vorliegt um die Mittellinie detektieren zu können, kann auch zur Erkennung der seitlichen Fahrbahnmarkierung auf diese zurückgegriffen werden. Hierfür wird die Scanline in eine diskrete Koordinatenserie überführt \ref{eq:riverflow:solidline:scanlinediscrete}, deren Elemente auf ganzzahlige Werte gerundet werden.
-\begin{equation}
-\label{eq:riverflow:solidline:scanlinediscrete}
-\pnt{s_{{n+1}_d}} =
-\pnt{m_{n+1}}  + z \cdot \vct{l_{n+1}} 
-\qquad z \in \mathbb{Z}
-\end{equation}
-Die durch die Koordinatenserie adressierten Pixel der Filterantwort können nun zur weiteren Verarbeitung in einen Zeilenvektor geschrieben werden. 
- \begin{equation}
- \vct{f} =
- \begin{pmatrix}
- \scl{f_1} & \scl{f_2} & \dots & \scl{f_i} & \dots & \scl{f_n}
- \end{pmatrix}
- \end{equation}
-Nun wird \mxm{\vct{f}} ermittelt. Ist \mxm{\vct{f}} größer als ein bestimmter Schwellwert \scl{s}, wird der Index \begin{math} i_{max} \end{math} des Maxima in \vct{f} vorgemerkt. Um eine Linie nicht wiederholt zu finden, muss die in \vct{f} verbleibende, durch dieselbe Markierung verursachte Filterantwort entfernt  werden.
-\begin{equation}
-\scl{f_{i_{max}-\text{Linienbreite}/2}} \dots \scl{f_{i_{max}}} 
- \dots  \scl{f_{i_{max}+\text{Linienbreite}/2}} = 0
- \end{equation}
-Darauffolgend kann nach weiteren \scl{s} überschreitenden Einträgen in \vct{f} gesucht und wie mit dem ersten \mxm{\vct{f}} verfahren werden.
-Wird kein ausreichend großes \mxm{\vct{f}} mehr gefunden, können den gefundenen Indizes \begin{math} i_{max} \end{math} via \eqref{eq:riverflow:solidline:scanlinediscrete} Koordinaten \pnt{p_{n+1}} zugeordnet werden.
-Sind mehrere \pnt{p_{n+1}} vorhanden, so werden ab diesem Zeitpunkt multiple Hypothesen einer seitlichen Fahrbahnmarkierung verfolgt.
+Da die Filterantwort des Kantendetektors für das gesamte Bild bereits vorliegt um die Mittellinie detektieren zu können, kann auch zur Erkennung der seitlichen Fahrbahnmarkierung auf diese zurückgegriffen werden. Bei der nun folgenden, in Abschnitt \ref{ssec:fahrspurerkennung:kalman:messung} ausführlich beschriebenen Extraktion von zentral auf der Fahrbahnmarkierung liegenden Punkten entfällt also die Notwendigkeit der Filterung. Da der Riverflow-Algorithmus sich im Bildkoordinatensystem \gls{lat:BildKOS} bewegt, ist auch die in Passage \ref{ssec:fahrspurerkennung:kalman:messung} notwendige Hin- und Rücktransformation vom bzw. zum Linienkoordinatensystem \gls{lat:LinienKOS} nicht notwendig. In allen anderen Punkten gleicht der Weg von der aufgestellten Scanline \vct(s) zu den darauf ermittelten, zentral in der Fahrbahnmarkierung liegenden Koordinaten \vct{p} dem in Abschnitt \ref{ssec:fahrspurerkennung:kalman:messung} dargelegten.
+
+%Hierfür wird die Scanline in eine diskrete Koordinatenserie überführt \ref{eq:riverflow:solidline:scanlinediscrete}, deren Elemente auf ganzzahlige Werte gerundet werden.
+%\begin{equation}
+%\label{eq:riverflow:solidline:scanlinediscrete}
+%\pnt{s_{{n+1}_d}} =
+%\pnt{m_{n+1}}  + z \cdot \vct{l_{n+1}} 
+%\qquad z \in \mathbb{Z}
+%\end{equation}
+%Die durch die Koordinatenserie adressierten Pixel der Filterantwort können nun zur weiteren Verarbeitung in einen Zeilenvektor geschrieben werden. 
+% \begin{equation}
+% \vct{f} =
+% \begin{pmatrix}
+% \scl{f_1} & \scl{f_2} & \dots & \scl{f_i} & \dots & \scl{f_n}
+% \end{pmatrix}
+% \end{equation}
+%Nun wird \mxm{\vct{f}} ermittelt. Ist \mxm{\vct{f}} größer als ein bestimmter Schwellwert \scl{s}, wird der Index \begin{math} i_{max} \end{math} des Maxima in \vct{f} vorgemerkt. Um eine Linie nicht wiederholt zu finden, muss die in \vct{f} verbleibende, durch dieselbe Markierung verursachte Filterantwort entfernt  werden.
+%\begin{equation}
+%\scl{f_{i_{max}-\text{Linienbreite}/2}} \dots \scl{f_{i_{max}}} 
+% \dots  \scl{f_{i_{max}+\text{Linienbreite}/2}} = 0
+% \end{equation}
+%Darauffolgend kann nach weiteren \scl{s} überschreitenden Einträgen in \vct{f} gesucht und wie mit dem ersten \mxm{\vct{f}} verfahren werden.
+%Wird kein ausreichend großes \mxm{\vct{f}} mehr gefunden, können den gefundenen Indizes \begin{math} i_{max} \end{math} via \eqref{eq:riverflow:solidline:scanlinediscrete} Koordinaten \pnt{p_{n+1}} zugeordnet werden.
+
+Sind mehrere auf der Scanline \vct{s_{n+1}} gefundene Punkte  \pnt{p_{n+1}} vorhanden, so werden ab diesem Zeitpunkt multiple Hypothesen einer seitlichen Fahrbahnmarkierung verfolgt.
 Jetzt kann die nächste Iteration des Riverflow-Algorithmus mit der Bildung des folgenden Verschiebungsvektors \vct{\gls{lat:dv}_{n+1}} starten.
 
 \subsubsection{Sonderfall 1. und 2. Iteration}
