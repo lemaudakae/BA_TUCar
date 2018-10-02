@@ -35,8 +35,8 @@ Die Verfahren \ref{item:solidline:startpoints:hough} oder \ref{item:solidline:st
 
 \subsubsection{zentraler Algorithmus}
 Die Idee zum im folgenden Abschnitt dargelegten Ansatz zur Verfolgung durchgängiger Fahrbahnmarkierungen entstand auf Basis von \autocite{drauschkeEchtzeitfaehigeStartpunktalgorithmenFuer2016} sowie \autocite{limRiverFlowLane2012}.
-Durch Nutzung der Eigenschaften \ref{item:riverflow:rule:solidline} und  \ref{item:riverflow:rule:curvature} kann ausgehend von der aktuellen Linienorientierung in einem bestimmten Kegel (graue Linien in \ref{fig:riverflow:randlinie:prinzip}), dessen Öffnungswinkel durch die maximale Krümmung der Fahrspur definiert ist, der weitere Verlauf der Fahrbahnmarkierung angenommen werden.
-Algorithmisch genutzt wird dieses Wissen durch die Verwendung der aus \ref{ssec:fahrspurerkennung:kalman:messung} bekannten Scanlines.
+Durch Nutzung der Eigenschaften \ref{item:riverflow:rule:solidline} und  \ref{item:riverflow:rule:curvature} kann ausgehend von der aktuellen Linienorientierung in einem bestimmten Kegel (graue Linien in Abb.~\ref{fig:riverflow:randlinie:prinzip}), dessen Öffnungswinkel durch die maximale Krümmung der Fahrspur definiert ist, der weitere Verlauf der Fahrbahnmarkierung angenommen werden.
+Algorithmisch genutzt wird dieses Wissen durch die Verwendung der aus Abschnitt \ref{ssec:fahrspurerkennung:kalman:messung} bekannten Scanlines.
 Ausgehend vom letzten gefundenen Punkt der Linie \pnt{p_{n}} wird selbiger um den Vektor \vct{\gls{lat:dv}_n} weiterverschoben und bildet den Mittelpunkt  \pnt{m_{n+1}} der nächsten Scanline \eqref{eq:riverflow:solidline:scanlinemidpoint}. Der Verschiebungsvektor \vct{\gls{lat:dv}_n} wird auf Basis des vorletzten (\pnt{p_{n-1}}) und letzten gefundenen Punktes (\pnt{p_{n}}) der Fahrbahnmarkierung gebildet \eqref{eq:riverflow:solidline:dispvec}. Er stellt den normierten, mit der gewünschten Verschiebungslänge \scl{l_v} multiplizierten Vektor zwischen (\pnt{p_{n-1}}) und (\pnt{p_{n}}) dar.
 \begin{equation}
 \label{eq:riverflow:solidline:dispvec}
@@ -66,8 +66,9 @@ Mithilfe des zu \vct{\gls{lat:dv}_n} \eqref{eq:riverflow:solidline:dispvec} senk
 d_{nx}
 \end{pmatrix}
 \end{equation}
-Der Wertebereich des skalaren Faktors \scl{\alpha} gibt hierbei die Ausdehnung der Scanline um ihren Mittelpunkt \pnt{m_{n+1}} herum an.
-Da die Filterantwort des Kantendetektors für das gesamte Bild bereits vorliegt um die Mittellinie detektieren zu können, kann auch zur Erkennung der seitlichen Fahrbahnmarkierung auf diese zurückgegriffen werden. Bei der nun folgenden, in Abschnitt \ref{ssec:fahrspurerkennung:kalman:messung} ausführlich beschriebenen Extraktion von zentral auf der Fahrbahnmarkierung liegenden Punkten entfällt also die Notwendigkeit der Filterung. Da der Riverflow-Algorithmus sich im Bildkoordinatensystem \gls{lat:BildKOS} bewegt, ist auch die in Passage \ref{ssec:fahrspurerkennung:kalman:messung} notwendige Hin- und Rücktransformation vom bzw. zum Linienkoordinatensystem \gls{lat:LinienKOS} nicht notwendig. In allen anderen Punkten gleicht der Weg von der aufgestellten Scanline \vct(s) zu den darauf ermittelten, zentral in der Fahrbahnmarkierung liegenden Koordinaten \vct{p} dem in Abschnitt \ref{ssec:fahrspurerkennung:kalman:messung} dargelegten.
+Der Wertebereich des skalaren Faktors \scl{\alpha} gibt hierbei die Ausdehnung der Scanline um ihren Startpunkt/Mittelpunkt \pnt{m_{n+1}} herum an.
+
+Da die Filterantwort des Kantendetektors für das gesamte Bild bereits vorliegt, um die Mittellinie detektieren zu können, kann auch zur Erkennung der seitlichen Fahrbahnmarkierung auf diese zurückgegriffen werden. Bei der nun folgenden, in Abschnitt \ref{ssec:fahrspurerkennung:kalman:messung} ausführlich beschriebenen Extraktion von zentral auf der Fahrbahnmarkierung liegenden Punkten, entfällt also die Notwendigkeit der Filterung. Da der Riverflow-Algorithmus sich im Bildkoordinatensystem \gls{lat:BildKOS} bewegt, ist auch die in Passage \ref{ssec:fahrspurerkennung:kalman:messung} notwendige Hin- und Rücktransformation vom bzw. zum Linienkoordinatensystem \gls{lat:LinienKOS} nicht notwendig. In allen anderen Punkten gleicht der Weg von der aufgestellten Scanline \vct{s} zu den darauf ermittelten, zentral in der Fahrbahnmarkierung liegenden Koordinaten \vct{p} dem in Abschnitt \ref{ssec:fahrspurerkennung:kalman:messung} dargelegten.
 
 %Hierfür wird die Scanline in eine diskrete Koordinatenserie überführt \ref{eq:riverflow:solidline:scanlinediscrete}, deren Elemente auf ganzzahlige Werte gerundet werden.
 %\begin{equation}
@@ -92,7 +93,7 @@ Da die Filterantwort des Kantendetektors für das gesamte Bild bereits vorliegt 
 %Wird kein ausreichend großes \mxm{\vct{f}} mehr gefunden, können den gefundenen Indizes \begin{math} i_{max} \end{math} via \eqref{eq:riverflow:solidline:scanlinediscrete} Koordinaten \pnt{p_{n+1}} zugeordnet werden.
 
 Sind mehrere auf der Scanline \vct{s_{n+1}} gefundene Punkte  \pnt{p_{n+1}} vorhanden, so werden ab diesem Zeitpunkt multiple Hypothesen einer seitlichen Fahrbahnmarkierung verfolgt.
-Jetzt kann die nächste Iteration des Riverflow-Algorithmus mit der Bildung des folgenden Verschiebungsvektors \vct{\gls{lat:dv}_{n+1}} starten.
+Jetzt kann die nächste Iteration des Riverflow-Algorithmus mit der Bildung des folgenden Verschiebungsvektors bzw. der folgenden Verschiebungsvektoren \vct{\gls{lat:dv}_{n+1}} starten.
 
 \subsubsection{Sonderfall 1. und 2. Iteration}
 Da in der 1. und 2. Iteration keine Punkte \pnt{p_{n-1}} und \pnt{p_n} vorhanden sind, muss der Verschiebungsvektor \gls{lat:dv} anderweitig bestimmt werden. 
