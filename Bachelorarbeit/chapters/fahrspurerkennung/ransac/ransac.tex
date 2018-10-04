@@ -50,6 +50,7 @@ Ein nicht zu vernachlässigendes Problem stellt allerdings noch die Initialisier
 
 Die zwei initialen Masken für die Randlinien werden anschließend aus der approximierten Funktion dritten Grades der Mittellinie gebildet. Dies geschieht aus der gerichteten Verschiebung diskreter Punkte der Approximation. Gleichung~\ref{eq:polynom3} sei eine mathematische Beschreibung der Funktion, die den Linienverlauf approximiert, dann ist Gleichung~\ref{eq:derr_polynom3} die Ableitung, welche den Anstieg an den Stellen \gls{x} beschreibt. Der Verschiebungsvektor \gls{lat:dv} steht dann senkrecht auf \( \mathrm{f} \).
 
+\begin{subequations}
 \begin{eqnarray}
 \mathrm{f}(\gls{x}) & = & a{\gls{x}}^3 + b{\gls{x}}^2 +c{\gls{x}} +d  \label{eq:polynom3} 	\\
 \mathrm{f}’(\gls{x}) & = & 3a{\gls{x}}^2 + 2b\gls{x} +c \label{eq:derr_polynom3} 							\\
@@ -71,6 +72,7 @@ Die zwei initialen Masken für die Randlinien werden anschließend aus der appro
 \pm b_F \cdot \gls{lat:dv}  
 \label{eq:maske_randpunkte}
 \end{eqnarray}
+\end{subequations}
 
 Die Normierung von \gls{lat:dv} multipliziert mit der bekannten Fahrspurbreite \( b_F \) addiert auf den Mittellinienpunkt \( (\gls{x},\gls{y}) \) ergibt einen Stützpunkt \( ({\gls{x}}_s,{\gls{y}}_s) \) der linken (\( + \)) bzw. der rechten (\( - \)) Randlinie (Gleichungen~\ref{eq:maske_verschiebungsvektor} und~\ref{eq:maske_randpunkte}).
 
