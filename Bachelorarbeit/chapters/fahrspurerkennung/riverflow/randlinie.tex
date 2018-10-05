@@ -3,9 +3,9 @@
 Um den eigentlichen Riverflow-Algorithmus ausführen zu können, wird die ungefähre Lage der seitlichen Fahrbahnmarkierungen in der Nähe des Fahrzeugs benötigt. Zur Ermittlung dieser gibt es 3 Möglichkeiten:
 \begin{enumerate}
 \item \label{item:solidline:startpoints:dashedline}
-Die Bestimmung durch Orientierung und Position des ersten vor dem Fahrzeug gelegenen Mittellinienelementes. Hierzu wird der Mittelpunkt des Elementes senkrecht zu seiner Orientierung um die Fahrspurbreite nach links/rechts verschoben (siehe \ref{fig:riverflow:randlinien:startpoints:dashedline}).
+Die Bestimmung durch Orientierung und Position des ersten vor dem Fahrzeug gelegenen Mittellinienelementes. Hierzu wird der Mittelpunkt des Elementes senkrecht zu seiner Orientierung um die Fahrspurbreite nach links/rechts verschoben (siehe Abb.~\ref{fig:riverflow:randlinien:startpoints:dashedline}).
 \item \label{item:solidline:startpoints:hough}
-Eine eindimensionale Hough-Transformation des Bildausschnittes direkt vor dem Fahrzeug wie in \ref{ssec:grundlagen:hough:vereinfachte} beschrieben (siehe \ref{fig:riverflow:randlinien:startpoints:hough}). 
+Eine eindimensionale Hough-Transformation des Bildausschnittes direkt vor dem Fahrzeug wie in Abschnitt~\ref{ssec:grundlagen:hough:vereinfachte} beschrieben (siehe Abb.~\ref{fig:riverflow:randlinien:startpoints:hough}). 
 \item \label{item:solidline:startpoints:fixed}
 Annahme einer festen Position vor dem Fahrzeug/im Kamerabild.
 \end{enumerate}
@@ -36,7 +36,7 @@ Die Verfahren \ref{item:solidline:startpoints:hough} oder \ref{item:solidline:st
 \subsubsection{zentraler Algorithmus}
 Die Idee zum im folgenden Abschnitt dargelegten Ansatz zur Verfolgung durchgängiger Fahrbahnmarkierungen entstand auf Basis von \autocite{drauschkeEchtzeitfaehigeStartpunktalgorithmenFuer2016} sowie \autocite{limRiverFlowLane2012}.
 Durch Nutzung der Eigenschaften \ref{item:riverflow:rule:solidline} und  \ref{item:riverflow:rule:curvature} kann ausgehend von der aktuellen Linienorientierung in einem bestimmten Kegel (graue Linien in Abb.~\ref{fig:riverflow:randlinie:prinzip}), dessen Öffnungswinkel durch die maximale Krümmung der Fahrspur definiert ist, der weitere Verlauf der Fahrbahnmarkierung angenommen werden.
-Algorithmisch genutzt wird dieses Wissen durch die Verwendung der aus Abschnitt \ref{ssec:fahrspurerkennung:kalman:messung} bekannten Scanlines.
+Algorithmisch genutzt wird dieses Wissen durch die Verwendung der aus Abschnitt~\ref{ssec:fahrspurerkennung:kalman:messung} bekannten Scanlines.
 Ausgehend vom letzten gefundenen Punkt der Linie \pnt{p_{n}} wird selbiger um den Vektor \vct{\gls{lat:dv}_n} weiterverschoben und bildet den Mittelpunkt  \pnt{m_{n+1}} der nächsten Scanline \eqref{eq:riverflow:solidline:scanlinemidpoint}. Der Verschiebungsvektor \vct{\gls{lat:dv}_n} wird auf Basis des vorletzten (\pnt{p_{n-1}}) und letzten gefundenen Punktes (\pnt{p_{n}}) der Fahrbahnmarkierung gebildet \eqref{eq:riverflow:solidline:dispvec}. Er stellt den normierten, mit der gewünschten Verschiebungslänge \scl{l_v} multiplizierten Vektor zwischen (\pnt{p_{n-1}}) und (\pnt{p_{n}}) dar.
 \begin{equation}
 \label{eq:riverflow:solidline:dispvec}
@@ -68,7 +68,7 @@ d_{nx}
 \end{equation}
 Der Wertebereich des skalaren Faktors \scl{\alpha} gibt hierbei die Ausdehnung der Scanline um ihren Startpunkt/Mittelpunkt \pnt{m_{n+1}} herum an.
 
-Da die Filterantwort des Kantendetektors für das gesamte Bild bereits vorliegt, um die Mittellinie detektieren zu können, kann auch zur Erkennung der seitlichen Fahrbahnmarkierung auf diese zurückgegriffen werden. Bei der nun folgenden, in Abschnitt \ref{ssec:fahrspurerkennung:kalman:messung} ausführlich beschriebenen Extraktion von zentral auf der Fahrbahnmarkierung liegenden Punkten, entfällt also die Notwendigkeit der Filterung. Da der Riverflow-Algorithmus sich im Bildkoordinatensystem \gls{lat:BildKOS} bewegt, ist auch die in Passage \ref{ssec:fahrspurerkennung:kalman:messung} notwendige Hin- und Rücktransformation vom bzw. zum Linienkoordinatensystem \gls{lat:LinienKOS} nicht notwendig. In allen anderen Punkten gleicht der Weg von der aufgestellten Scanline \vct{s} zu den darauf ermittelten, zentral in der Fahrbahnmarkierung liegenden Koordinaten \vct{p} dem in Abschnitt \ref{ssec:fahrspurerkennung:kalman:messung} dargelegten.
+Da die Filterantwort des Kantendetektors für das gesamte Bild bereits vorliegt, um die Mittellinie detektieren zu können, kann auch zur Erkennung der seitlichen Fahrbahnmarkierung auf diese zurückgegriffen werden. Bei der nun folgenden, in Abschnitt~\ref{ssec:fahrspurerkennung:kalman:messung} ausführlich beschriebenen Extraktion von zentral auf der Fahrbahnmarkierung liegenden Punkten, entfällt also die Notwendigkeit der Filterung. Da der Riverflow-Algorithmus sich im Bildkoordinatensystem \gls{lat:BildKOS} bewegt, ist auch die in Passage~\ref{ssec:fahrspurerkennung:kalman:messung} notwendige Hin- und Rücktransformation vom bzw. zum Linienkoordinatensystem \gls{lat:LinienKOS} nicht notwendig. In allen anderen Punkten gleicht der Weg von der aufgestellten Scanline \vct{s} zu den darauf ermittelten, zentral in der Fahrbahnmarkierung liegenden Koordinaten \vct{p} dem in Abschnitt~\ref{ssec:fahrspurerkennung:kalman:messung} dargelegten.
 
 %Hierfür wird die Scanline in eine diskrete Koordinatenserie überführt \ref{eq:riverflow:solidline:scanlinediscrete}, deren Elemente auf ganzzahlige Werte gerundet werden.
 %\begin{equation}
@@ -97,8 +97,8 @@ Jetzt kann die nächste Iteration des Riverflow-Algorithmus mit der Bildung des 
 
 \subsubsection{Sonderfall 1. und 2. Iteration}
 Da in der 1. und 2. Iteration keine Punkte \pnt{p_{n-1}} und \pnt{p_n} vorhanden sind, muss der Verschiebungsvektor \gls{lat:dv} anderweitig bestimmt werden. 
-Wurde der Startpunkt wie in \ref{item:solidline:startpoints:dashedline} beschrieben durch ein Mittellinienelement bestimmt, kann dessen Orientierung als Richtung des Verschiebungsvektors genutzt werden.
-In den beiden anderen Fällen \ref{item:solidline:startpoints:hough} und \ref{item:solidline:startpoints:fixed} wird eine konstante Verschiebung in Fahrtrichtung des Fahrzeugs genutzt.
+Wurde der Startpunkt wie in Methode~\ref{item:solidline:startpoints:dashedline} beschrieben durch ein Mittellinienelement bestimmt, kann dessen Orientierung als Richtung des Verschiebungsvektors genutzt werden.
+Bei den Verfahren \ref{item:solidline:startpoints:hough} und \ref{item:solidline:startpoints:fixed} wird eine konstante Verschiebung in Fahrtrichtung des Fahrzeugs genutzt.
 
 \subsubsection{Ende des Algorithmus} 
 Der Algorithmus wird beendet, sobald:
@@ -108,8 +108,8 @@ Der Mittelpunkt \begin{math} \vct{m}  \end{math} der nächsten Scanline außerha
 \item \label{item:fahrspurerkennung:riverflow:randlinie:ende:keinpunkt}
 Auf der aktuellen Scanline keine Maxima größer als der Schwellwert \scl{s} gefunden wurden.
 \item 
-Die betragsmäßige Orientierungsänderung \(\btr{\scl{\Delta \phi}} = \btr{\atantwo{\scl{r_{n+1 y}, r_{n+1 x}}} \linebreak - \atantwo{\scl{r_{n y}, r_{n x}}}}\) der zwei Vektoren \(\vct{r_{n+1}}=\vct{p_{n+1}}-\vct{p_{n}}\) sowie \(\vct{r_{n}}=\vct{p_{n}}-\vct{p_{n-1}}\) zwischen den letzten zwei gespeicherten und dem gerade gefundenen Punkt einen Grenzwert nicht überschreitet (s. Abb. \ref{fig:riverflow:randlinie:prinzip}). Da der Straßenverlauf im gegebenen Szenario niemals abknickt, wäre dies ein sicheres Zeichen einer Fehlerkennung. Diese Abbruchbedingung ließe sich auch durch Die Länge der Scanlines einstellen, indem somit der Öffnungswinkel des Suchkegels (graue Linien in Abb. \ref{fig:riverflow:randlinie:prinzip}) reduziert wird und Punkte, die zu einem Abknicken der erkannten Fahrbahnmarkierung führen, gar nicht erst erkannt werden. 
-Die Prüfung der Orientierungsänderung wird jedoch beim in Abschnitt \ref{sssec:fahrspurerkennung:riverflow:randlinie:gestrichelt} beschriebenen Sonderfall der Extraktion des Punktes \vct{p_{n+1}} notwendig.
+Die betragsmäßige Orientierungsänderung \(\btr{\scl{\Delta \phi}} = \btr{\atantwo{\scl{r_{n+1 y}, r_{n+1 x}}} \linebreak - \atantwo{\scl{r_{n y}, r_{n x}}}}\) der zwei Vektoren \(\vct{r_{n+1}}=\vct{p_{n+1}}-\vct{p_{n}}\) sowie \(\vct{r_{n}}=\vct{p_{n}}-\vct{p_{n-1}}\) zwischen den letzten zwei gespeicherten und dem gerade gefundenen Punkt einen Grenzwert nicht überschreitet (s. Abb.~\ref{fig:riverflow:randlinie:prinzip}). Da der Straßenverlauf im gegebenen Szenario niemals abknickt, wäre dies ein sicheres Zeichen einer Fehlerkennung. Diese Abbruchbedingung ließe sich auch durch Die Länge der Scanlines einstellen, indem somit der Öffnungswinkel des Suchkegels (graue Linien in Abb.~\ref{fig:riverflow:randlinie:prinzip}) reduziert wird und Punkte, die zu einem Abknicken der erkannten Fahrbahnmarkierung führen, gar nicht erst erkannt werden. 
+Die Prüfung der Orientierungsänderung wird jedoch beim in Abschnitt~\ref{sssec:fahrspurerkennung:riverflow:randlinie:gestrichelt} beschriebenen Sonderfall der Extraktion des Punktes \vct{p_{n+1}} notwendig.
 \end{enumerate}
 
 \begin{figure}[H]
@@ -121,4 +121,4 @@ Die Prüfung der Orientierungsänderung wird jedoch beim in Abschnitt \ref{sssec
 
 \subsubsection{Sonderfall gestrichelte Randlinien}
 \label{sssec:fahrspurerkennung:riverflow:randlinie:gestrichelt}
-Da das bis zu diesem Punkt diskutierte Verfahren zur Erkennung der seitlichen Fahrbahnmarkierungen nur zum Verfolgen durchgängiger Linien konzipiert ist, einmündende Straßen jedoch durch eine unterbrochene Markierung gekennzeichnet sind, findet für diesen Sonderfall eine modifizierte Version der in \ref{ssec:fahrspurerkennung:riverflow:mittellinie} beschriebenen Vorgehensweise Anwendung. Ist Abbruchbedingung \ref{item:fahrspurerkennung:riverflow:randlinie:ende:keinpunkt} des zentralen Algorithmus erreicht, wird ein Suchfenster (siehe \ref{fig:riverflow:randlinien:plot_komplett}) festgelegt. Wurden in diesem Bereich durch die Matlab-Funktion \emph{regionprops} Elemente einer kurzen, unterbrochenen Linie gefunden, werden diese als nächste Punkte der seitlichen Fahrbahnmarkierung vermerkt. Die Bildung des Mittelpunkts \pnt{m} des nächsten Suchfensters läuft wie in \eqref{eq:riverflow:solidline:scanlinemidpoint} beschrieben ab. Analog kann bei Fehlen eines Linienelementes im Suchfenster durch Bilden einer Scanline ein Rücksprung zum Fall einer durchgängigen Randlinie vollzogen werden.
+Da das bis zu diesem Punkt diskutierte Verfahren zur Erkennung der seitlichen Fahrbahnmarkierungen nur zum Verfolgen durchgängiger Linien konzipiert ist, einmündende Straßen jedoch durch eine unterbrochene Markierung gekennzeichnet sind, findet für diesen Sonderfall eine modifizierte Version der in Passage~\ref{ssec:fahrspurerkennung:riverflow:mittellinie} beschriebenen Vorgehensweise Anwendung. Ist Abbruchbedingung \ref{item:fahrspurerkennung:riverflow:randlinie:ende:keinpunkt} des zentralen Algorithmus erreicht, wird ein Suchfenster (siehe Abb.~\ref{fig:riverflow:randlinien:plot_komplett}) festgelegt. Wurden in diesem Bereich durch die Matlab-Funktion \emph{regionprops} Elemente einer kurzen, unterbrochenen Linie gefunden, werden diese als nächste Punkte der seitlichen Fahrbahnmarkierung vermerkt. Die Bildung des Mittelpunkts \pnt{m} des nächsten Suchfensters läuft wie in \eqref{eq:riverflow:solidline:scanlinemidpoint} beschrieben ab. Analog kann bei Fehlen eines Linienelementes im Suchfenster durch Bilden einer Scanline ein Rücksprung zum Fall einer durchgängigen Randlinie vollzogen werden.

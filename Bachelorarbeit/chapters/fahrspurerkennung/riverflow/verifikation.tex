@@ -29,8 +29,8 @@ Die Koordinatenserie der linken Linienhypothese wird vom Anfgangspunkt des River
 \item der Endpunkt derselben erreicht ist 
 \item der Abstand zur gewählten rechten Fahrbahnmarkierungshypothese einmal überschritten wurde
 \end{itemize}
-nacheinander bearbeitet (siehe \ref{item:riverflow:verification:l_r:loops:point}). Die so anhand einer selektierten rechten Linienhypothese verifizierte linke Koordinatenserie wird zwischengespeichert. 
-Nach Validieren mittels aller rechten Fahrbahnmarkierungshypothesen (siehe \ref{item:riverflow:verification:l_r:loops:right_hypo}) kann nun die längste verifizierte Koordinatenserie der gewählten linken Linienhypothese ermittelt werden.
+nacheinander bearbeitet (siehe Schleife~\ref{item:riverflow:verification:l_r:loops:point}). Die so anhand einer selektierten rechten Linienhypothese verifizierte linke Koordinatenserie wird zwischengespeichert. 
+Nach Validieren mittels aller rechten Fahrbahnmarkierungshypothesen (siehe Schleife~\ref{item:riverflow:verification:l_r:loops:right_hypo}) kann nun die längste verifizierte Koordinatenserie der gewählten linken Linienhypothese ermittelt werden.
 
 Der beschriebene Prozess wird nun für alle linken Fahrbahnmarkierungshypothesen ausgeführt. Die linke Linienhypothese mit der größten Anzahl Punkte wird als mithilfe der rechten Fahrbahnmarkierung validierte linke Linie betrachtet. Der prinzipiell gleiche Algorithmus wird für die Verifikation der rechten Fahrbahnmarkierung anhand der linken Linie genutzt.
 
@@ -40,7 +40,7 @@ Da in einem Bild signifikant weniger Mittellinienpunkte (genauer: Mittelpunkte d
 \begin{equation}
 \pnt{p_{\text{interpoliert}i}} = (\pnt{p_{\text{real}i}}+\pnt{p_{\text{real}i+1}})/2 
 \end{equation}
-\paragraph{Algorithmus} Die Prozedur zum Vergleich der Seitenlinien mit der mittleren Fahrbahnmarkierung ist weitgehend identisch mit \ref{sssec:fahrspurerkennung:riverflow:verifikation:seitenlinienvergleich}. Lediglich das Auswählen einer Hypothese der Mittellinie entfällt, da hier in jedem Fall nur ein möglicher Verlauf gefunden wird.
+\paragraph{Algorithmus} Die Prozedur zum Vergleich der Seitenlinien mit der mittleren Fahrbahnmarkierung ist weitgehend identisch mit Abschnitt~\ref{sssec:fahrspurerkennung:riverflow:verifikation:seitenlinienvergleich}. Lediglich das Auswählen einer Hypothese der Mittellinie entfällt, da hier in jedem Fall nur ein möglicher Verlauf gefunden wird.
 
 \subsubsection{Zusammenführung der Verifikationsmethoden}
 Lieferte die Überprüfung der seitlichen Fahrbahnmarkierungen aneinander die längere Koordinatenserie, so wird diese weiter verwendet. Andernfalls wird die Menge der an der mittleren Linie validierten Punkte genutzt.

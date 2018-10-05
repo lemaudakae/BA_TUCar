@@ -3,11 +3,11 @@
 
 \subsection{Überblick} \label{ssec:fahrspurerkennung:kalman-filter:ueberblick}
 Auch der folgende Ansatz zur Fahrspurerkennung approximiert den Verlauf der Fahrspur als Polynom 3. Grades. Jedoch wird nicht mehr jede Fahrspurmarkierung einzeln, sondern nur noch die Mittellinie modelliert. Um die seitlichen Fahrbahnmarkierungen zu erhalten, können beliebige Punkte des Polynoms senkrecht zu dessen Verlauf um die Fahrspurbreite verschoben werden.
-Das in \ref{sec:grundlagen:kalman-filter} eingeführte Kalman-Filter soll verwendet werden um die Lage der Fahrbahnmarkierungen in konsekutiven Aufnahmen zu verfolgen. Final sollen Punkte aus den in Einzelbildern erkannten Verläufen der Straßenmarkierung entnommen, in die Weltkarte eingetragen und somit für den Regelungsalgorithmus verfügbar gemacht werden.
+Das in Abschnitt~\ref{sec:grundlagen:kalman-filter} eingeführte Kalman-Filter soll verwendet werden um die Lage der Fahrbahnmarkierungen in konsekutiven Aufnahmen zu verfolgen. Final sollen Punkte aus den in Einzelbildern erkannten Verläufen der Straßenmarkierung entnommen, in die Weltkarte eingetragen und somit für den Regelungsalgorithmus verfügbar gemacht werden.
 
 \subsection{Fahrspurmodell}
 Als Repräsentation der Fahrspur im Zustandsraum soll das in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} vorgeschlagene Modell, welches wiederum eine Vereinfachung von \autocite{risackRobustLaneRecognition} darstellt, verwendet werden.
-Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt, soll die Fahrspur als Polynom 3. Grades \begin{math} \gls{y}^{\gls{lat:LinienKOS}}(\gls{x}^{\gls{lat:LinienKOS}}) \end{math} approximiert werden. Um die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} zu vereinfachen und einen sehr anschaulichen \glsdesc{lat:statevector} \gls{lat:statevector} zu erhalten, wird für jenen die 0. bis 3. Ableitung des Polynoms an der Stelle \begin{math} \gls{x}^{\gls{lat:LinienKOS}}=0 \end{math} verwendet. 
+Wie in Passage~\ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt, soll die Fahrspur als Polynom 3. Grades \begin{math} \gls{y}^{\gls{lat:LinienKOS}}(\gls{x}^{\gls{lat:LinienKOS}}) \end{math} approximiert werden. Um die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} zu vereinfachen und einen sehr anschaulichen \glsdesc{lat:statevector} \gls{lat:statevector} zu erhalten, wird für jenen die 0. bis 3. Ableitung des Polynoms an der Stelle \begin{math} \gls{x}^{\gls{lat:LinienKOS}}=0 \end{math} verwendet. 
 \begin{equation}
 \label{eq:polylane}
 \fnf{\gls{x}^{\gls{lat:LinienKOS}}} = \gls{y}^{\gls{lat:LinienKOS}}(\gls{x}^{\gls{lat:LinienKOS}}) =
@@ -51,7 +51,7 @@ Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt, soll 
  
 \subsubsection{Initialisierung} 
 \label{sssec:fahrspurerkennung:kalman:fahrspurmodell:initialisierung}
- Die Initialisierung des Fahrspurmodells erfolgt durch das Finden der Mittellinie auf dem unmaskierten Bild wie in Abschnitt \ref{par:maskenbau:initial} oder mittels des Riverflow-Algorithmus für die mittlere Fahrbahnmarkierung, beschrieben in Passage \ref{ssec:fahrspurerkennung:riverflow:mittellinie}. Sind alle der Mittellinie zugehörigen Bildpunkte gefunden, kann eine Transformation derer ins Linienkoordinatensystem \gls{lat:LinienKOS} mit anschließender Regression zum Feststellen der Parameter des Polynoms 3. Grades stattfinden. Mittels \eqref{eq:statevectorlane} lässt sich das gefundene Polynom in den Systemzustand \gls{lat:statevector} überführen.
+ Die Initialisierung des Fahrspurmodells erfolgt durch das Finden der Mittellinie auf dem unmaskierten Bild wie in Abschnitt~\ref{par:maskenbau:initial} oder mittels des Riverflow-Algorithmus für die mittlere Fahrbahnmarkierung, beschrieben in Passage~\ref{ssec:fahrspurerkennung:riverflow:mittellinie}. Sind alle der Mittellinie zugehörigen Bildpunkte gefunden, kann eine Transformation derer ins Linienkoordinatensystem \gls{lat:LinienKOS} mit anschließender Regression zum Feststellen der Parameter des Polynoms 3. Grades stattfinden. Mittels \eqref{eq:statevectorlane} lässt sich das gefundene Polynom in den Systemzustand \gls{lat:statevector} überführen.
  
  \begin{figure}[htb]
  	\centering
@@ -61,8 +61,8 @@ Wie in \ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt, soll 
  \end{figure}
  
 \subsection{Messung} \label{ssec:fahrspurerkennung:kalman:messung}
-Um eine ausreichende Geschwindigkeit des Kalmanfilters zu gewährleisten, muss die Anzahl der Bildpunkte, welche zur Korrektur des prädizierten Zustands verwendet werden, im Gegensatz zu Abschnitt \ref{sec:maskenbau} vermindert werden. Es wird in Anlehnung an \autocite{risackRobustLaneRecognition} das Bild ab dem Vorverarbeitungsschritt nur in relevanten Bereichen betrachtet.
-Hierfür werden Geraden \glqq Scanlines\grqq{} senkrecht zum Polynom des Fahrspurmodells berechnet (gelbe Linien in Abb. \ref{fig:kalman:iteration_komplett}). Mathematisch lässt sich dies, basierend auf den Definitionsgleichungen \eqref{eq:polylane} und \eqref{eq:statevectorlane} des Polynoms \(\fnf{\gls{x}^{\gls{lat:LinienKOS}}}=\gls{y}^{\gls{lat:LinienKOS}}(\gls{x}^{\gls{lat:LinienKOS}})\) und Zustandsvektors sowie den Formeln \eqref{eq:derr_polynom3} und \eqref{eq:maske_verschiebungsvektor} zur Berechnung des zum Polynom senkrechten, normierten Vektors \gls{lat:dv}, wie folgt ausdrücken:
+Um eine ausreichende Geschwindigkeit des Kalmanfilters zu gewährleisten, muss die Anzahl der Bildpunkte, welche zur Korrektur des prädizierten Zustands verwendet werden, im Gegensatz zu Abschnitt~\ref{sec:maskenbau} vermindert werden. Es wird in Anlehnung an \autocite{risackRobustLaneRecognition} das Bild ab dem Vorverarbeitungsschritt nur in relevanten Bereichen betrachtet.
+Hierfür werden Geraden \glqq Scanlines\grqq{} senkrecht zum Polynom des Fahrspurmodells berechnet (gelbe Linien in Abb.~\ref{fig:kalman:iteration_komplett}). Mathematisch lässt sich dies, basierend auf den Definitionsgleichungen \eqref{eq:polylane} und \eqref{eq:statevectorlane} des Polynoms \(\fnf{\gls{x}^{\gls{lat:LinienKOS}}}=\gls{y}^{\gls{lat:LinienKOS}}(\gls{x}^{\gls{lat:LinienKOS}})\) und Zustandsvektors sowie den Formeln \eqref{eq:derr_polynom3} und \eqref{eq:maske_verschiebungsvektor} zur Berechnung des zum Polynom senkrechten, normierten Vektors \gls{lat:dv}, wie folgt ausdrücken:
 \begin{subequations}
 \begin{equation}
 \vct{m}(\gls{x}^{\gls{lat:LinienKOS}}) =
@@ -99,7 +99,7 @@ Die durch die Koordinatenserie adressierten Pixel des entzerrten Bildes können 
  \end{pmatrix}
  \end{equation}
  
-Nun wird \vct{l} mit dem aus Passage \ref{sec:bildvorverarbeitung:filterung} bekannten Kantendetektor gefiltert. Von der entstandenen Filterantwort \vct{f} wird das Maximum \mxm{\vct{f}} ermittelt. Ist \mxm{\vct{f}} größer als ein bestimmter Schwellwert, wird der Index \begin{math} i_{max} \end{math} des Maxima in \vct{f} vorgemerkt. Um eine Linie nicht wiederholt zu finden, muss die in \vct{f} verbleibende, durch dieselbe Markierung verursachte Filterantwort entfernt werden \eqref{eq:kalman:scanlines:deletefiltresponse}:
+Nun wird \vct{l} mit dem aus Passage~\ref{sec:bildvorverarbeitung:filterung} bekannten Kantendetektor gefiltert. Von der entstandenen Filterantwort \vct{f} wird das Maximum \mxm{\vct{f}} ermittelt. Ist \mxm{\vct{f}} größer als ein bestimmter Schwellwert, wird der Index \begin{math} i_{max} \end{math} des Maxima in \vct{f} vorgemerkt. Um eine Linie nicht wiederholt zu finden, muss die in \vct{f} verbleibende, durch dieselbe Markierung verursachte Filterantwort entfernt werden \eqref{eq:kalman:scanlines:deletefiltresponse}:
 \begin{equation}
 \label{eq:kalman:scanlines:deletefiltresponse}
 \scl{l_{i_{max}-\text{Linienbreite}/2}} \dots \scl{l_{i_{max}}} 
@@ -131,7 +131,7 @@ Der zurückgelegte Weg \begin{math} \scl{\Delta\gls{x}}_{\gls{lat:LinienKOS}} \e
 \end{pmatrix}
 \end{equation}
 
-In \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} wird beschrieben, dass sich aufgrund von Nichtlinearität aus \ref{eq:nextstatemapping} keine äquivalente Matrix A aufstellen lässt. Da diese Nichtlinearität jedoch nur in Bezug auf \scl{\Delta\gls{x}} und nicht den \glsdesc{lat:statevector} \gls{lat:statevector} besteht, ist dies trotz dessen möglich. Aus \eqref{eq:polylanestate}, \eqref{eq:nextstatemapping} und der Bewegung des Fahrzeugs entlang der x-Achse des Fahrspurkoordinatensystems \gls{lat:LinienKOS} um \scl{\Delta\gls{x}} folgt:
+In \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} wird beschrieben, dass sich aufgrund von Nichtlinearität aus \eqref{eq:nextstatemapping} keine äquivalente Matrix A aufstellen lässt. Da diese Nichtlinearität jedoch nur in Bezug auf \scl{\Delta\gls{x}} und nicht den \glsdesc{lat:statevector} \gls{lat:statevector} besteht, ist dies trotz dessen möglich. Aus \eqref{eq:polylanestate}, \eqref{eq:nextstatemapping} und der Bewegung des Fahrzeugs entlang der x-Achse des Fahrspurkoordinatensystems \gls{lat:LinienKOS} um \scl{\Delta\gls{x}} folgt:
 \begin{equation}
 \begin{split}
 \label{eq:nextstatemappingmatrix}
@@ -222,7 +222,7 @@ Die \glsdesc{lat:inputmatrix} \gls{lat:inputmatrix} modelliert äußere Einflüs
 
 \subsubsection{Ausgangsmatrix/Messmatrix} 
 \label{sssec:fahrspurerkennung:kalman-filter:zustandsraumbeschreibung:outputmatrix}
-Die \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} bildet den Systemzustand \gls{lat:statevector} auf eine Messung \gls{lat:outputvector} ab. In unserer Implementierung wird  \gls{lat:outputmatrix} passend zu den \gls{x}-Koordinaten der wie in \ref{ssec:fahrspurerkennung:kalman:messung} beschrieben gewonnenen Linienmittelpunkte in jeder Iteration des Kalmanfilters neu berechnet. Aus \ref{eq:polylanestate} ergibt sich:
+Die \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} bildet den Systemzustand \gls{lat:statevector} auf eine Messung \gls{lat:outputvector} ab. In unserer Implementierung wird  \gls{lat:outputmatrix} passend zu den \gls{x}-Koordinaten der wie in Abschnitt~\ref{ssec:fahrspurerkennung:kalman:messung} beschrieben gewonnenen Linienmittelpunkte in jeder Iteration des Kalmanfilters neu berechnet. Aus \eqref{eq:polylanestate} ergibt sich:
 \begin{equation}
 \begin{split}
 \gls{lat:outputvector} & =
@@ -274,13 +274,13 @@ Die \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} bildet den Systemzustand \
 Wie in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} und \autocite{risackRobustLaneRecognition} werden die Kovarianzmatrix des System-/Prozessrauschens \mtx{Q} und die Kovarianzmatrix des Messrauschens \mtx{R} als konstante Diagonalmatritzen gesetzt. Auf die Prädiktion der Kovarianzmatrix \mtx{P} wird somit verzichtet.
 
 \subsection{konkrete Implementierung des Kalman-Filters}
-Ist der \glsdesc{lat:statevector} \gls{lat:statevector} einmal wie in ~\ref{sssec:fahrspurerkennung:kalman:fahrspurmodell:initialisierung} beschrieben initialisiert, können die Gleichungen des Kalmanfilters bei Eintreffen eines neuen Bildes wie folgt berechnet werden:
+Ist der \glsdesc{lat:statevector} \gls{lat:statevector} einmal wie in Passage~\ref{sssec:fahrspurerkennung:kalman:fahrspurmodell:initialisierung} beschrieben initialisiert, können die Gleichungen des Kalmanfilters bei Eintreffen eines neuen Bildes wie folgt berechnet werden:
 \begin{enumerate}
 \item Bildung der \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} mittels der seit dem letzten Bild gefahrenen Distanz \scl{\Delta\gls{x}}
 \item Prädiktion des \glsdesc{lat:statevector} \gls{lat:statevector}, d.h. der Lage der Fahrspurmarkierungen im aktuellen Bild anhand von \eqref{eq:kalmanprediction}
-\item Messung der Lage der Fahrspur wie in \ref{ssec:fahrspurerkennung:kalman:messung}
+\item Messung der Lage der Fahrspur wie in Abschnitt~\ref{ssec:fahrspurerkennung:kalman:messung}
 erläutert
-\item Bildung der \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} passend zur Messung wie in \ref{sssec:fahrspurerkennung:kalman-filter:zustandsraumbeschreibung:outputmatrix} beschrieben
+\item Bildung der \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} passend zur Messung wie in Passage~\ref{sssec:fahrspurerkennung:kalman-filter:zustandsraumbeschreibung:outputmatrix} beschrieben
 \item Korrektur des \glsdesc{lat:statevector}s \gls{lat:statevector} unter Nutzung von \eqref{eq:kalmancorrection}
 \end{enumerate}
 
