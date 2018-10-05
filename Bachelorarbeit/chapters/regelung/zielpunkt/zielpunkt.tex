@@ -23,7 +23,7 @@ Zur Ermittlung des optimalen Kreises durch die gefragten Punkte wurde der Taubin
 Neben dem Mittelpunkt \gls{lat:mp} und Radius \gls{lat:rad} muss zur vollständigen Parameterisierung des Kreisbogens Start- und Endwinkel sowie die Drehrichtung des Bogens bekannt sein.
 
 \paragraph{Start- und Endwinkel}
-Zur Ermittlung des Startwinkels \( \varphi_s \) wird vom Mittelpunkt des Kreises \gls{lat:mp} zum Punkt \pnt{p_s} ein Vektor \vct{o_s} aufgespannt. \pnt{p_s} stellt den Punkt mit dem geringsten Abstand vom Koordinatenursprung des Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} aus der Koordinatenserie, welche zum Kreisfit genutzt wurde, dar. Der gesuchte Startwinkel ergibt sich als:
+Zur Ermittlung des Startwinkels \( \varphi_s \) wird vom Mittelpunkt des Kreises \gls{lat:mp} zum Punkt \pnt{p_s} ein Vektor \vct{o_s} aufgespannt. \pnt{p_s} stellt den Punkt mit dem geringsten Abstand vom Koordinatenursprung des Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} aus der Koordinatenserie, welche zum Kreisfit genutzt wurde, dar (s. Abb. \ref{fig:regelung:zielpunkt:betweenpoint}). Der gesuchte Startwinkel ergibt sich als:
 \begin{equation}
 \varphi_s =
 \atantwo{\scl{o_{sy}, o_{sx}}} = 
@@ -40,7 +40,7 @@ Zur Ermittlung des Endwinkels \( \varphi_e \) wird analog unter Nutzung des Punk
 
 \paragraph{Rotationsrichtung}
 Die Methode zur Ermittlung der Rotationsrichtung orientiert sich an \autocite{drauschkeEchtzeitfaehigeStartpunktalgorithmenFuer2016}. Es wird der Punkt \pnt{p_{b1}} \eqref{eq:regelung:betweenpoint} auf dem Radius des Kreises mit dem Winkel \(  \varphi_{b1} = (\varphi_s + \varphi_e)/2 \) errechnet.
-Desweiteren wird der Punkt \pnt{p_{b2}} \eqref{eq:regelung:betweenpoint}auf dem Radius des Kreises mit dem Winkel \(  \varphi_{b2} = (\varphi_s + \varphi_e)/2 + \pi \) bestimmt.
+Desweiteren wird der Punkt \pnt{p_{b2}} \eqref{eq:regelung:betweenpoint} auf dem Radius des Kreises mit dem Winkel \(  \varphi_{b2} = (\varphi_s + \varphi_e)/2 + \pi \) bestimmt (s. Abb. \ref{fig:regelung:zielpunkt:betweenpoint}).
 \begin{equation} \label{eq:regelung:betweenpoint}
 \pnt{p_{b1/2}} = \pnt{m} + 
 \begin{pmatrix}
@@ -68,13 +68,13 @@ Aus den Mittelwerten \( \mean{\nrm{\gls{lat:av}}}_{1/2} \) \eqref{eq:regelung:be
 \end{figure}
 
 \subsection{Verschiebung der Kreissegmente}
-Um die drei gefundenen Kreissegmente zur Gewinnung eines Zielpunktes nutzen zu können, müssen diese um die halbe bzw. anderthalbe Fahrspurbreite verschoben werden. Hierfür muss je nach Rotationsrichtung des Kreissegments und gewünschter Fahrbahn (links/rechts) der Radius des Kreissegments modifiziert werden. Zur genauen Aufschlüsselung dieser Logik sei der Leser auf den Quellcode verwiesen. REFERENZ
+Um die drei gefundenen Kreissegmente zur Gewinnung eines Zielpunktes nutzen zu können, müssen diese um die halbe bzw. anderthalbe Fahrspurbreite verschoben werden. Hierfür muss je nach Rotationsrichtung des Kreissegments und gewünschter Fahrbahn (links/rechts) der Radius des Kreissegments modifiziert werden. Zur genauen Aufschlüsselung dieser Logik sei der Leser auf den Quellcode verwiesen. REFERENZ Eine grafische Darstellung des soeben beschriebenen und der im folgenden erklärten Schritte zur Zielpunktfindung ist in Abb. \ref{fig:regelung:zielpunkt:zielpunktgewinnung} gegeben.
 
 \subsection{Bildung des Trajektorienkreissegments}
 Um aus den drei in die Fahrspur verschobenen Segmenten einen Kreisbogen zu erhalten, werden die in die Fahrspur verschobenen Kreissegmente nun gesampelt. Von jedem Kreissegment werden so viele Punkte abgetastet, wie zur Berechnung seiner Parameter genutzt wurden. Die so entstandene Koordinatenserie bildet die Basis für den Fit des Trajektoriekreisbogens. Hierfür wird dieselbe Prozedur wie in  \ref{regelung:zielpunkt:kreissegment-fit} verwendet.
 
 \subsection{Schnittpunktberechnung}
-Um eine möglichst gleichmäßige Regelung des Lenkwinkels zu ermöglichen, sollte der Zielpunkt \gls{lat:zp}  der \glqq Pure-Pursuit\grqq -Regelung in jeder Fahrsituation den gleichen Abstand vom Ursprung des Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} besitzen (die sogenannte Lookahead-Distance). \gls{lat:zp} muss sich also auf dem Kreis mit Mittelpunkt \(\pnt{\gls{lat:mp}_0}=(0,0)\) und Radius \(\gls{lat:rad}_0\) gleich der Lookahead-Distance befinden. Da \gls{lat:zp} ebenfalls  auf dem Trajektorienkreissegment mit Mittelpunkt \(\pnt{\gls{lat:mp}_t}\) und Radius \( \gls{lat:rad}_t\) liegt, reduziert sich die Zielpunktermittlung auf die Schnittpunktberechnung zweier Kreise \autocite{Schnittpunkt2018}:
+Um eine möglichst gleichmäßige Regelung des Lenkwinkels zu ermöglichen, sollte der Zielpunkt \gls{lat:zp}  der \glqq Pure-Pursuit\grqq -Regelung in jeder Fahrsituation den gleichen Abstand vom Ursprung des Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} besitzen (die sogenannte Lookahead-Distance). \gls{lat:zp} muss sich also auf dem Kreis mit Mittelpunkt \(\pnt{\gls{lat:mp}_0}=(0,0)\) und Radius \(\gls{lat:rad}_0\) gleich der Lookahead-Distance befinden. Da \gls{lat:zp} ebenfalls  auf dem Trajektorienkreissegment mit Mittelpunkt \(\pnt{\gls{lat:mp}_t}\) und Radius \( \gls{lat:rad}_t\) liegt, reduziert sich die Zielpunktermittlung auf die Schnittpunktberechnung zweier Kreise \autocite{wiki:Schnittpunkt}:
 \begin{subequations}
 \begin{equation}
 \pnt{\gls{lat:zp}_{1/2}}=\pnt{\gls{lat:mp}_0} + \vct{d_1} \pm l \cdot \vct{e_2}
@@ -95,5 +95,5 @@ Um eine möglichst gleichmäßige Regelung des Lenkwinkels zu ermöglichen, soll
 l = \sqrt[2]{\gls{lat:rad}_0^2-\nrm{\vct{d_0}}^2} = \sqrt[2]{\gls{lat:rad}_t^2-\nrm{\vct{d_t}}^2}
 \end{equation}
 \end{subequations}
-Da zwei sich schneidende Kreise zwei Schnittpunkte besitzen, muss nun geprüft werden,  welcher der Schnittpunkte auf dem gültigen Segment des Trajektorienkreises liegt. Dies kann anhand von Start- und Endwinkel sowie dessen Rotationsrichtung ermittelt werden und ist im Quelltext REFERENZ genauer nachzulesen.
+Da zwei sich schneidende Kreise zwei Schnittpunkte besitzen, muss nun geprüft werden,  welcher der Schnittpunkte auf dem gültigen Segment des Trajektorienkreises liegt. Dies kann anhand von Start- und Endwinkel sowie dessen Rotationsrichtung ermittelt werden und ist im Quelltext REFERENZ genauer nachzulesen. 
 

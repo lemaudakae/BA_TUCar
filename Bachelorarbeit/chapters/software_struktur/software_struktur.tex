@@ -61,3 +61,8 @@ Das Eintreffen eines solchen Datenpaketes in MATLAB führt zum Aufrufen der Odom
 \end{enumerate}
 \paragraph{Bild-Callback}
 Sobald ein neues Bild im zugehörigen Topic verfügbar ist, wird ein Algorithmus zur Extraktion von Punkten der Fahrbahnmarkierung gerufen. Dieser fügt die gefundenen Koordinatenserien in die Weltkarte ein und macht sie so für die Regelung abrufbar.
+
+\subsection{Multitasking}
+Da MATLAB ohne spezielle Toolboxen Prozesse nicht gleichzeitig ausführen kann, die Bearbeitungszeit eines Bild-Callbacks jedoch wesentlich länger ist als die angestrebte Periodendauer der Regelung (Häufigkeit des Aufrufs eines Odometrie-Callbacks), musste für eine Unterbrechbarkeit der Bildverarbeitung gesorgt werden. MATLAB reagiert bei der Ausführung eines Tasks nur während bestimmter Befehle auf weitere Ereignisse. Eine Möglichkeit die Regelung auch bei noch nicht vollständig ausgeführtem Bild-Callback zu ermöglichen, besteht im Einfügen kurzer Pausen zwischen Programmteilen zur Segmentierung dessen. Wählt man diese Abschnitte hinreichend kurz, kann der wartende Odometrie-Callback mit wenig Verzögerung ausgeführt und die Bildverarbeitung danach fortgesetzt werden.
+
+
