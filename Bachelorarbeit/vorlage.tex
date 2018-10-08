@@ -52,6 +52,7 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 
 % unterdrückt die Ausgabe der Unterkapitel im Anhang
 \usepackage{etoolbox}
+\usepackage{siunitx}
 \appto\appendix{\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}}
 % reinstate the correct level for list of tables and figures
 \appto\listoffigures{\addtocontents{lof}{\protect\setcounter{tocdepth}{1}}}
@@ -180,9 +181,9 @@ wurden ausdrücklich als solche gekennzeichnet.\bigskip\\
 \dcplace, \dcdate
 \bigskip\bigskip
 \flushleft
-\newlength\us
-\settowidth{\us}{-\dcfirstauthorfirstname~\dcfirstauthorlastname, \dcsecondauthorfirstname~\dcsecondauthorlastname-}
-\begin{tabular}{p{\us}}\hline
+\newlength\usnl
+\settowidth{\usnl}{-\dcfirstauthorfirstname~\dcfirstauthorlastname, \dcsecondauthorfirstname~\dcsecondauthorlastname-}
+\begin{tabular}{p{\usnl}}\hline
 \centering\footnotesize \dcfirstauthorfirstname~\dcfirstauthorlastname, \dcsecondauthorfirstname~\dcsecondauthorlastname
 \end{tabular}
 
