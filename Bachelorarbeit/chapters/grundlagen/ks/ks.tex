@@ -13,7 +13,7 @@ Alle Positionen von Objekten im Raum können mit Entfernungen relativ zu entspre
 
 Das Weltkoordinatensystem \gls{lat:WeltKOS} bildet die Basis und ist an einem beliebigen Punkt des Szenarios verankert. Es dient zur Beschreibung der Pose des mobilen Roboters und der Linienpunkte in der Weltkarte. 
 
-Die Pose bezeichnet den Zustandsvektor aus Position und Orientierung des Fahrzeugs in der Welt (siehe Gleichung~\ref{eq:regelung_prinzip_pose}). Deren Lage bezeichnet das Roboterkoordinatensystem \gls{lat:RoboterKOS}, welches in der Hinterachse des Autos festgelegt ist. 
+Die Pose bezeichnet den Zustandsvektor aus Position und Orientierung des Fahrzeugs in der Welt (siehe Gleichung~\eqref{eq:regelung_prinzip_pose}). Deren Lage bezeichnet das Roboterkoordinatensystem \gls{lat:RoboterKOS}, welches in der Hinterachse des Autos festgelegt ist. 
 
 Damit sich die Pixelkoordinaten des Bildes nicht von der Matrixindizierung unterscheiden, wird das Bildkoordinatensystem \gls{lat:BildKOS} in die linke obere Ecke des entzerrten Fotos gelegt. So zeigt die \( {\gls{x}}^{\gls{lat:BildKOS}} \)-Achse in Richtung der Zeilen und die Spalten laufen mit der \( {\gls{y}}^{\gls{lat:BildKOS}} \)-Koordinate. 
 
@@ -67,7 +67,7 @@ Eine Abbildung des Punktvektors \( \pnt{p}^{\gls{lat:RoboterKOS}} \) in das \gls
 %Die Matrix \gls{lat:Transformationsmatrix}, welche die Punkte \pnt{p} transformiert, sodass \gls{acr:zb}
 %\( \pnt{p}^{\gls{lat:WeltKOS}} = \gls{lat:Transformationsmatrix}^{\gls{lat:WeltKOS}\gls{lat:RoboterKOS}} \cdot  \pnt{p}^{\gls{lat:RoboterKOS}} \) gilt, heißt homogene Transformationsmatrix und wird folgendermaßen aufgestellt:
 
-Diese Kombination aus Rotation und Translation lässt sich ebenso in einer Matrix \gls{lat:Transformationsmatrix} zusammenfassen, sodass man anstatt Gleichung~\ref{eq:RotTrans} auch folgendes schreiben kann.
+Diese Kombination aus Rotation und Translation lässt sich ebenso in einer Matrix \gls{lat:Transformationsmatrix} zusammenfassen, sodass man anstatt Gleichung~\eqref{eq:RotTrans} auch folgendes schreiben kann.
 
 \begin{equation}
 \pnt{p}^{\gls{lat:WeltKOS}} = \gls{lat:Transformationsmatrix}^{\gls{lat:WeltKOS}\gls{lat:RoboterKOS}} 

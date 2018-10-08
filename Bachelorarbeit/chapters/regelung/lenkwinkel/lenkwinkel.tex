@@ -38,14 +38,14 @@ und für die Steigungen der Geraden gelten
  {\gls{lat:anstieg}}_h = \frac{\Delta \gls{y}}{\Delta \gls{x}} & = & \frac{{\gls{lat:zp}}_{\gls{x}}}{-{\gls{lat:zp}}_{\gls{y}}}
 \end{eqnarray}
 
-Die \( {\gls{y}}^{\gls{lat:RoboterKOS}} \)-Achse und die Gerade \( \mathrm{g_2} \) stehen jeweils senkrecht auf dem Kreisbogen und müssen sich demzufolge im Kreismittelpunkt \( {\gls{lat:mp}}_{\gls{lat:zp}} \) schneiden. Da \( {\gls{lat:mp}}_{\gls{lat:zp}} \) auf der \( {\gls{y}}^{\gls{lat:RoboterKOS}} \)-Achse liegt ist die \( {\gls{x}}^{\gls{lat:RoboterKOS}} \)-Koordinate mit \glqq 0\grqq{} bereits bekannt. Damit steht der gesuchte Radius \gls{lat:rad} in der \( {\gls{y}}^{\gls{lat:RoboterKOS}} \)-Komponente des Mittelpunktes, was wiederum bedeutet, dass auch \( \gls{lat:rad} = {\gls{lat:achsenabschnitt}}_h \) gilt. Setzt man mit diesem Wissen den Punkt \pnt{h} in die Geradengleichung von \( \mathrm{g_2} \) (\ref{eq:regelung_lenkwinkel_geradengleichung2}) ein, erhält man durch Umstellen die Formel~\ref{eq:regelung_lenkwinkel_radius} für den Radius \gls{lat:rad}.
+Die \( {\gls{y}}^{\gls{lat:RoboterKOS}} \)-Achse und die Gerade \( \mathrm{g_2} \) stehen jeweils senkrecht auf dem Kreisbogen und müssen sich demzufolge im Kreismittelpunkt \( {\gls{lat:mp}}_{\gls{lat:zp}} \) schneiden. Da \( {\gls{lat:mp}}_{\gls{lat:zp}} \) auf der \( {\gls{y}}^{\gls{lat:RoboterKOS}} \)-Achse liegt ist die \( {\gls{x}}^{\gls{lat:RoboterKOS}} \)-Koordinate mit \glqq 0\grqq{} bereits bekannt. Damit steht der gesuchte Radius \gls{lat:rad} in der \( {\gls{y}}^{\gls{lat:RoboterKOS}} \)-Komponente des Mittelpunktes, was wiederum bedeutet, dass auch \( \gls{lat:rad} = {\gls{lat:achsenabschnitt}}_h \) gilt. Setzt man mit diesem Wissen den Punkt \pnt{h} in die Geradengleichung von \( \mathrm{g_2} \) \eqref{eq:regelung_lenkwinkel_geradengleichung2} ein, erhält man durch Umstellen die Formel~\eqref{eq:regelung_lenkwinkel_radius} für den Radius \gls{lat:rad}.
 
 \begin{equation}
 \gls{lat:rad} = {\gls{lat:achsenabschnitt}}_h = h_y - {\gls{lat:anstieg}}_h \cdot h_x = 0,5 \cdot \left( {q}_{\gls{y}} + \frac{{q_{\gls{x}}}^2}{q_{\gls{y}}} \right)
 \label{eq:regelung_lenkwinkel_radius}
 \end{equation}
 
-Ausgehend von Gleichung~\ref{eq:regelung_lenkwinkel_lenkwinkeltan} lässt sich nun der gesuchte Lenkwinkel mit Hilfe der Arcustangensfunktion bestimmen.
+Ausgehend von Gleichung~\eqref{eq:regelung_lenkwinkel_lenkwinkeltan} lässt sich nun der gesuchte Lenkwinkel mit Hilfe der Arcustangensfunktion bestimmen.
 
 \begin{equation}
 \gls{gre:lenkwinkel} = \arctan \left( \frac{\gls{lat:radstand}}{\gls{lat:rad}} \right)

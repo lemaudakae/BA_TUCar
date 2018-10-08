@@ -48,7 +48,7 @@ Ein nicht zu vernachlässigendes Problem stellt allerdings noch die Initialisier
 	\label{fig:fahrspurerkennung_ransac_masken}
 \end{figure} 
 
-Die zwei initialen Masken für die Randlinien werden anschließend aus der approximierten Funktion dritten Grades der Mittellinie gebildet. Dies geschieht aus der gerichteten Verschiebung diskreter Punkte der Approximation. Gleichung~\ref{eq:polynom3} sei eine mathematische Beschreibung der Funktion, die den Linienverlauf approximiert, dann ist Gleichung~\ref{eq:derr_polynom3} die Ableitung, welche den Anstieg an den Stellen \gls{x} beschreibt. Der Verschiebungsvektor \gls{lat:dv} steht dann senkrecht auf \( \mathrm{f} \).
+Die zwei initialen Masken für die Randlinien werden anschließend aus der approximierten Funktion dritten Grades der Mittellinie gebildet. Dies geschieht aus der gerichteten Verschiebung diskreter Punkte der Approximation. Gleichung~\eqref{eq:polynom3} sei eine mathematische Beschreibung der Funktion, die den Linienverlauf approximiert, dann ist Gleichung~\eqref{eq:derr_polynom3} die Ableitung, welche den Anstieg an den Stellen \gls{x} beschreibt. Der Verschiebungsvektor \gls{lat:dv} steht dann senkrecht auf \( \mathrm{f} \).
 
 \begin{subequations}
 \begin{eqnarray}
@@ -74,7 +74,7 @@ Die zwei initialen Masken für die Randlinien werden anschließend aus der appro
 \end{eqnarray}
 \end{subequations}
 
-Die Normierung von \gls{lat:dv} multipliziert mit der bekannten Fahrspurbreite \( b_F \) addiert auf den Mittellinienpunkt \( (\gls{x},\gls{y}) \) ergibt einen Stützpunkt \( ({\gls{x}}_s,{\gls{y}}_s) \) der linken (\( + \)) bzw. der rechten (\( - \)) Randlinie (Gleichungen~\ref{eq:maske_verschiebungsvektor} und~\ref{eq:maske_randpunkte}).
+Die Normierung von \gls{lat:dv} multipliziert mit der bekannten Fahrspurbreite \( b_F \) addiert auf den Mittellinienpunkt \( (\gls{x},\gls{y}) \) ergibt einen Stützpunkt \( ({\gls{x}}_s,{\gls{y}}_s) \) der linken (\( + \)) bzw. der rechten (\( - \)) Randlinie (Gleichungen \eqref{eq:maske_verschiebungsvektor} und \eqref{eq:maske_randpunkte}).
 
 Durch die so verschobenen Stützpunkte der erwarteten Lage der Randlinien werden ein neuer Fit und eine anschließende Dilatation vorgenommen, um die initialen Randmasken zu erzeugen. Um auszuschließen, dass man zur mittleren Strichlinie zugehörige Bildpunkte einer Randlinie zuordnet, wird zusätzlich eine elementweise UND-Operation mit der negierten Mittellinienmaske durchgeführt. Die verhinderte Überschneidung der Masken ist auch in Abbildung~\ref{fig:fahrspurerkennung_ransac_masken} zu erkennen.
 
@@ -91,4 +91,4 @@ Durch die so verschobenen Stützpunkte der erwarteten Lage der Randlinien werden
 %\end{figure} 
 
 \paragraph{\gls{acr:ransac} und Weltkarte} 
-Wie in Abbildung~\ref{fig:fahrspurerkennung_ransac_masken} zu sehen, approximiert der \gls{acr:ransac}-Algorithmus den Verlauf der Fahrbahnlinien relativ gut. Die eingezeichnete grüne Funktion beschreibt das Ergebnis des Fits eines Polynoms dritten Grades durch die Inlier (siehe Abschnitt \ref{ssec:grunglagen:ransac:ablauf}). In einem bestimmten Abstand werden auf dem Polynom potentielle Kartenpunkte diskretisiert. Später tragen wir in die Karte nur die Punkte ein, welche sowohl auf der Funktion liegen als auch mit weißen Pixeln des maskierten Bildes übereinstimmen. So verhindern wir, Punkte an unpassenden Stellen in die Weltkarte einzutragen. 
+Wie in Abbildung~\ref{fig:fahrspurerkennung_ransac_masken} zu sehen, approximiert der \gls{acr:ransac}-Algorithmus den Verlauf der Fahrbahnlinien relativ gut. Die eingezeichnete grüne Funktion beschreibt das Ergebnis des Fits eines Polynoms dritten Grades durch die Inlier (siehe Abschnitt~\ref{ssec:grunglagen:ransac:ablauf}). In einem bestimmten Abstand werden auf dem Polynom potentielle Kartenpunkte diskretisiert. Später tragen wir in die Karte nur die Punkte ein, welche sowohl auf der Funktion liegen als auch mit weißen Pixeln des maskierten Bildes übereinstimmen. So verhindern wir, Punkte an unpassenden Stellen in die Weltkarte einzutragen. 

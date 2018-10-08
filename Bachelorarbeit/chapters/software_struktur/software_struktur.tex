@@ -8,7 +8,7 @@ Da der Austausch von Bilddaten und Ansteuerbefehlen zwischen Modellfahrzeug und 
 \end{quotation}
 
 \subsection{Nodes}
-Ein \gls{acr:ros}-System besteht aus mehreren Programmen \glqq Nodes\grqq, welche über bestimmte Kommunikationskanäle \glqq Topics\grqq\ Datenpakete \glqq Messages\grqq\ austauschen. Diese Applikationen können Information auf einem Topic zur Verfügung stellen, sie fungieren als sogenannte Publisher, oder nutzen, in diesem Fall man nennt sie Subscriber. Ein Schema zum Aufbau des konkreten \gls{acr:ros}-Systems findet sich in Abb. \ref{fig:software_struktur:ros}.
+Ein \gls{acr:ros}-System besteht aus mehreren Programmen \glqq Nodes\grqq, welche über bestimmte Kommunikationskanäle \glqq Topics\grqq\ Datenpakete \glqq Messages\grqq\ austauschen. Diese Applikationen können Information auf einem Topic zur Verfügung stellen, sie fungieren als sogenannte Publisher, oder nutzen, in diesem Fall man nennt sie Subscriber. Ein Schema zum Aufbau des konkreten \gls{acr:ros}-Systems findet sich in Abb.~\ref{fig:software_struktur:ros}.
 
 \begin{figure}[H]
 	\centering
@@ -32,7 +32,7 @@ und nimmt im Ansteuer-Topic die gewünschte Geschwindigkeit und den Lenkwinkel e
 Auf dem PC wird nur der von MATLAB automatisch initialisierte Node genutzt. Dieser abonniert das komprimierte Bilddaten-Topic und veröffentlicht auf das Ansteuer-Topic des Fahrzeugs.
 
 \section{MATLAB}
-Die im Hauptteil dieser Arbeit beschriebenen Algorithmen zur Fahrspurverfolgung wurden ausschließlich in MATLAB implementiert. \textbf{MAT}rix \textbf{LAB}oratory ist ein kommerzielles Programm und eine Programmiersprache für numerische Rechnungen und grafische Darstellungen, dessen Grundbausteine Matrizen sind. Diese Eigenschaften, weitreichende Debugging-Funktionalitäten und die einfache Erweiterbarkeit durch sogenannte Toolboxen machen es sehr attraktiv zum Einsatz im Rahmen der Bildverarbeitung\&Evaluation. Da die grundlegende Softwarestruktur in allen drei Lösungsansätzen zur Fahrspurverfolgung gleich ist, soll diese nun dargelegt werden. Eine schematische Darstellung ist in Abb. \ref{fig:software_struktur:matlab} gegeben.
+Die im Hauptteil dieser Arbeit beschriebenen Algorithmen zur Fahrspurverfolgung wurden ausschließlich in MATLAB implementiert. \textbf{MAT}rix \textbf{LAB}oratory ist ein kommerzielles Programm und eine Programmiersprache für numerische Rechnungen und grafische Darstellungen, dessen Grundbausteine Matrizen sind. Diese Eigenschaften, weitreichende Debugging-Funktionalitäten und die einfache Erweiterbarkeit durch sogenannte Toolboxen machen es sehr attraktiv zum Einsatz im Rahmen der Bildverarbeitung\&Evaluation. Da die grundlegende Softwarestruktur in allen drei Lösungsansätzen zur Fahrspurverfolgung gleich ist, soll diese nun dargelegt werden. Eine schematische Darstellung ist in Abb.~\ref{fig:software_struktur:matlab} gegeben.
 
 \begin{figure}[H]
 	\centering
@@ -61,3 +61,8 @@ Das Eintreffen eines solchen Datenpaketes in MATLAB führt zum Aufrufen der Odom
 \end{enumerate}
 \paragraph{Bild-Callback}
 Sobald ein neues Bild im zugehörigen Topic verfügbar ist, wird ein Algorithmus zur Extraktion von Punkten der Fahrbahnmarkierung gerufen. Dieser fügt die gefundenen Koordinatenserien in die Weltkarte ein und macht sie so für die Regelung abrufbar.
+
+\subsection{Multitasking}
+Da MATLAB ohne spezielle Toolboxen Prozesse nicht gleichzeitig ausführen kann, die Bearbeitungszeit eines Bild-Callbacks jedoch wesentlich länger ist als die angestrebte Periodendauer der Regelung (Häufigkeit des Aufrufs eines Odometrie-Callbacks), musste für eine Unterbrechbarkeit der Bildverarbeitung gesorgt werden. MATLAB reagiert bei der Ausführung eines Tasks nur während bestimmter Befehle auf weitere Ereignisse. Eine Möglichkeit die Regelung auch bei noch nicht vollständig ausgeführtem Bild-Callback zu ermöglichen, besteht im Einfügen kurzer Pausen zwischen Programmteilen zur Segmentierung dessen. Wählt man diese Abschnitte hinreichend kurz, kann der wartende Odometrie-Callback mit wenig Verzögerung ausgeführt und die Bildverarbeitung danach fortgesetzt werden.
+
+
