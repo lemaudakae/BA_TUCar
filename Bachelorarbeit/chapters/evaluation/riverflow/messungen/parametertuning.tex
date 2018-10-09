@@ -55,7 +55,8 @@ Im folgenden wurde die Bildfrequenz zuerst auf 4 (s.Abb. \ref{fig:evaluation:riv
 	\caption{Zeitbedarf aller Fahrspurverfolgungskomponenten bei \SI{3}{\hertz} Bildfrequenz; Mittelwert aller Messwerte einer Runde der Teststrecke}
 \end{figure}
 
-\paragraph{Dauer einzelner Komponenten der Bildverarbeitung}
+\paragraph{Dauer einzelner Komponenten der Fahrspurerkennung}
+Um in Zukunft Optimierungen an den implementierten Bildverarbeitungsalgorithmen durchführen zu können ist es unumgänglich nicht nur die gesamt benötigte Zeit, sondern auch die Dauer der einzelnen Module zu messen.
 
 \begin{figure}[ht] % [htb]
 	\centering
@@ -63,9 +64,32 @@ Im folgenden wurde die Bildfrequenz zuerst auf 4 (s.Abb. \ref{fig:evaluation:riv
 	\qquad
 	\subfloat[Boxplot ohne Startphase\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_boxplot_ros}]{\includegraphics[width=0.2\textwidth]{evaluation_riverflow_times_pic_3Hz_0_2m_s_boxplot_ros}}
 	\subfloat[Tortendiagramm; Median aller Messwerte einer Runde\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_no_ros}]{\includegraphics[width=0.45\textwidth]{evaluation_riverflow_times_pic_3Hz_0_2m_s_pie_no_ros}}
+	%Summe:18.5185ms
 	\qquad
 	\subfloat[Tortendiagramm; Median aller Messwerte einer Runde; mit Dekompression des Bildes\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_with_ros}]{\includegraphics[width=0.45\textwidth]{evaluation_riverflow_times_pic_3Hz_0_2m_s_pie_with_ros}}
 	\caption{Zeitbedarf aller Fahrspurerkennungskomponenten bei \SI{3}{\hertz} Bildfrequenz}
 \end{figure}
 
+Diese Untersuchungen führten zu interessanten Ergebnissen, welche die Echtzeitfähigkeit der MATLAB-\gls{acr:ros}-Schnittstelle in Frage stellen. Wie in Abbildung \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_with_ros} zu sehen, wird ein Großteil der Dauer eines Bild-Callbacks zum Umwandeln der \gls{acr:ros}-Message in eine von MATLAB prozessierbare Matrix benötigt. Eine genauere Untersuchung mit dem MATLAB-Profiler zeigte, dass in diesem Schritt eine Dekompression des im JPEG-Format übertragenen Bildes den wesentlichen Anteil dieses Zeitbedarfs verursacht. Eine unkomprimierte Übertragung würde jedoch ein vielfaches dieser Dauer in Anspruch nehmen.
+
+Der eigens entwickelte Anteil der Fahrspurerkennung benötigt im Median einer Runde lediglich \SI{18,5}{ms}, die genaue Aufteilung kann in Abb. \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_no_ros} sowie \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_boxplot} nachvollzogen werden. Die meiste Zeit wird für Bildvorverarbeitung und Mittellinienerkennung benötigt. Da diese Funktionen zum Großteil auf vorgegebenen, komplexen und bereits maschinennah implementierten MATLAB-Funktionen basieren, kann hier nur unter Nutzung anderer Software eine Optimierung stattfinden. Die zum Großteil aus elementaren Funktionen aufgebaute Erkennung\&Verifikation der Randlinie läuft schon erfreulich schnell ab, sodass hier trotz der vielen verwendeten, in MATLAB rechenzeitintensiven Schleifen keine zügigere Alternative gesucht werden muss.
+
+\subparagraph{Startpunktfindung}
+Wie in Abb. \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_no_ros} zu sehen, verstreicht im Normalfall bei der Feststellung der Startpunkte zur Erkennung der seitlichen Fahrbahnmarkierungen kaum Zeit. Wird jedoch kein Mittellinienelement nahe genug vor dem Fahrzeug gefunden, so gestaltet sich dieser Prozess aufwendiger (siehe Abschnitt \ref{sssec:fahrspurerkennung:riverflow:randlinie:startpunktgewinnung}). Abbildung \ref{fig:evaluation:riverflow:times_startpoints_3Hz_0_2m_s_boxplot} gibt ein besseres Bild der Messwerte wieder als Diagramm \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_no_ros} bzw. \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_boxplot}, da hier nicht nur der Median aller Messwerte gebildet, sondern vor der Erstellung des Boxplots die Daten nach Art der Methode zur Startpunktbestimmung sortiert werden. 
+\begin{figure}[ht] % [htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{evaluation_riverflow_times_startpoints_3Hz_0_2m_s_boxplot}
+	\label{fig:evaluation:riverflow:times_startpoints_3Hz_0_2m_s_boxplot}
+	\caption{Zeitbedarf der Startpunktfindungsalgorithmen für die Erkennung der seitlichen Fahrbahnmarkierungen bei \SI{3}{\hertz} Bildfrequenz}
+\end{figure}
+Die Erwartung, dass bei Nutzung der mittigen Fahrbahnmarkierung zu Startpunktgenerierung kaum Zeit vergeht, wurde durch den über diese Kategorie gebildeten Median von \SI{0,09}{ms} bestätigt. Jedoch ist auch die von der eindimensionalen Hough-Transformation benötigte Laufzeit von \SI{1,32}{ms} vertretbar. Die In Abbildung \ref{fig:evaluation:riverflow:times_startpoints_3Hz_0_2m_s_boxplot} sichtbaren Ausreißer entstehen durch das erstmalige ausführen der Funktion, welche nicht während der im Boxplot unberücksichtigten \glqq Warmlaufphase\grqq\ geschieht. Da nur einmal fix im Bildkoordinatensystem liegende Punkte genutzt werden mussten und dieser Fall nur nach Fehlschlag der eindimensionalen Hough-Transformation auftritt, wird dieser Messwert nur als Median ohne Box etc. in Abb. \ref{fig:evaluation:riverflow:times_startpoints_3Hz_0_2m_s_boxplot} dargestellt und bewegt sich mit \SI{2,17}{ms} im Bereich dieser Methode.
+
 \paragraph{Übertragungszeit}
+Die Übertragungszeit der Bilder von \SI{77,2}{ms} im Median stellt eine erhebliche Totzeit dar. Die Streuung dieser bis hin zu \SI{183}{ms} spiegelt die Probleme der Nutzung einer WLAN-Verbindung, welche gern zu unvorhersehbaren Latenzen neigt, wieder. Durch eine JPEG-Kompression mit einer Qualitätseinstellung von 20\% wurde der Bildtransfer schon signifikant beschleunigt.
+
+\begin{figure}[ht] % [htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{evaluation_riverflow_times_pictransfer_3Hz_0_2m_s_boxplot}
+	\label{fig:evaluation:riverflow:times_pictransfer_3Hz_0_2m_s_boxplot}
+	\caption{Übertragungszeit der Aufnahmen bei \SI{3}{\hertz} Bildfrequenz}
+\end{figure}
