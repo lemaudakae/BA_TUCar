@@ -10,7 +10,7 @@ Nachdem das Foto binarisiert wurde, stellen alle Pixel mit dem Wert \glqq 1\grqq
 Zur Gewinnung der entsprechenden \gls{acr:roi} werden eine bestimmte Anzahl der zuletzt eingetragenen Kartenpunkte gleichartiger Kategorie in das aktuelle Bild transformiert, welche folgend die Grundlage für eine Regression darstellen. Die daraus ermittelte Funktion bildet die Mitte der \gls{acr:roi}. Nach einer Dilatation des im Bildausschnitt liegenden Teils der Funktion um einen Parameterwert entsteht ein dickes Band aus Punkten, welche die \gls{acr:roi} beschreiben (siehe Abbildung~\ref{fig:fahrspurerkennung_ransac_masken}).
 
 % entzerrtes und binarisiertes Beispielbild und Filterergebnisse für Mittellinie nebeneinander (4 Bilder)
-\begin{figure}[H]
+\begin{figure}[ht]
   \centering
   \subfloat[][]{\includegraphics[width=0.4\textwidth]{fahrspurerkennung_ransac_imgUndist.png}}
   \qquad
