@@ -28,7 +28,7 @@ Das größte Problem, welches letztlich zum Ausschluss der \gls{acr:ransac}-Meth
 Das Polynom hat keine Chance, die Fahrbahnmarkierung richtig abzubilden, da dies der maskierte Bereich nicht zulässt. Jene fehlerhaften \glspl{acr:roi} entstehen durch veraltete oder zuvor falsch erkannte, in die Weltkarte eingetragene Punkte. Abbildung~\ref{evaluation_ransac_weltkarte} zeigt das Ergebnis eines Programmtests. Dieser wurde mit Hilfe einer Aufnahme (mittels rosbag\footnote{Rosbag ist eine Reihe von Tools zum Aufnehmen und Wiedergeben von ROS-Topics (wiki.ros.org/rosbag)}) durchgeführt, welche händisch durch manuelle Steuerung des Fahrzeugs entstanden ist. Im dargestellten Plot der Weltkarte ist die anfänglich relativ gute Funktionstüchtigkeit des Algorithmus zu erkennen, welche jedoch ab der ersten Kreuzung verloren geht.
 
 % Bild/Plot der eingetragenen Punkte in der Weltkarte nach ein paar Sekunden
-\begin{figure}[H] % [htb]
+\begin{figure}[htbp] % [htb]
 	\centering
 	\includegraphics[width=1\textwidth]{evaluation_ransac_worldMap.png}
 	\caption{Plot der Weltkarte nach einer Testrunde mittels manueller Steuerung}

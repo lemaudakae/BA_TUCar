@@ -7,7 +7,7 @@ Zur besseren Vergleichbarkeit der Messergebnisse wurden die Daten für je eine e
 
 Abbildung~\ref{fig:evaluation:riverflow:regelungspunkte} (a) zeigt exemplarisch für die Geschwindigkeit \( \gls{lat:velocity} = \SI{0,2}{\metre\per\second} \) den  Anteil jeweiliger Linienpunkttypen zur Zielpunktberechnung. Es fällt sogleich auf, dass die Mittellinie einen weniger starken Einfluss nimmt. Da pro Strich und Bild nur ein Punkt in der Weltkarte eingetragen wird, ist deren Punkteanzahl geringer. Wie unter \ref{item:regelung:zielpunkt:holen:regeln:xcoord} in Kapitel \ref{ssec:regelung:zielpunkt:holen} beschrieben, werden die Regelungspunkte unter anderem nach ihrer x-Koordinate ausgewählt. In einer Linkskurve fallen dadurch mehr Punkte der linken Randlinie in das Suchfenster. Da die Strecke in der befahrenen Richtung vorrangig Linkskurven aufweist, werden im Mittel mehr linke als rechte Randpunkte zur Zielpunktberechnung herangezogen.
 
-\begin{figure}[ht] % [htb]
+\begin{figure}[htbp] % [htb]
 	\centering
 	\subfloat[][]{\includegraphics[width=0.35\textwidth]{evaluation_riverflow_regelungspunkte_je_linie_0_2m_s_3Hz.pdf}}	
 	\quad
@@ -22,7 +22,7 @@ Betrachten wir die Gesamtzahl der zur Regelung verwendeten Punkte, ist wie in Ab
 
 Die mit unserer Implementierung erreichbare Höchstgeschwindigkeit sollte folglich dann erreicht sein, wenn der mobile Roboter fast ausschließlich nach den Informationen eines Bildes regelt oder sogar zwischenzeitlich keine Zielpunkte mangels Regelungspunkte bestimmen kann. Mit anderen Worten: Wenn sich das Auto zwischen zwei Fotoaufnahmen bis zum Sichtende des ersten Bildes bewegt, wie der Riverflow-Algorithmus Punkte erkennen konnte, ist die Maximalgeschwindigkeit beinahe erreicht. Ein Indiz dafür ist neben der visuellen Auffälligkeit des Fahrspurverlasses die starke Zunahme der nicht gefundenen Zielpunkte. 
 
-\begin{figure}[h] % [htb]
+\begin{figure}[htbp] % [htb]
 	\centering
 	\includegraphics[width=0.7\textwidth]{evaluation_riverflow_zielpunktfehler_je_geschw_3Hz.pdf}
 	\caption{Anzahl der zur Regelung verwendeten Kartenpunkte zu verschiedenen Geschwindigkeiten \\
