@@ -35,6 +35,7 @@ Die Verfahren \ref{item:solidline:startpoints:hough} oder \ref{item:solidline:st
 \end{figure}
 
 \subsubsection{zentraler Algorithmus}
+\label{sssec:fahrspurerkennung:riverflow:randlinie:zentraler_algorithmus}
 Die Idee zum im folgenden Abschnitt dargelegten Ansatz zur Verfolgung durchgängiger Fahrbahnmarkierungen entstand auf Basis von \autocite{drauschkeEchtzeitfaehigeStartpunktalgorithmenFuer2016} sowie \autocite{limRiverFlowLane2012}.
 Durch Nutzung der Eigenschaften \ref{item:riverflow:rule:solidline} und  \ref{item:riverflow:rule:curvature} kann ausgehend von der aktuellen Linienorientierung in einem bestimmten Kegel (graue Linien in Abb.~\ref{fig:riverflow:randlinie:prinzip}), dessen Öffnungswinkel durch die maximale Krümmung der Fahrspur definiert ist, der weitere Verlauf der Fahrbahnmarkierung angenommen werden.
 Algorithmisch genutzt wird dieses Wissen durch die Verwendung der aus Abschnitt~\ref{ssec:fahrspurerkennung:kalman:messung} bekannten Scanlines.

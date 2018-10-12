@@ -30,13 +30,13 @@ Mit einer Bildbearbeitungszeit \(t_{img}=\SI{128}{\milli\second}\) sowie dem Zei
 
 \begin{figure}[htbp] % [htb]
 \centering
-\subfloat[\SI{5}{\hertz}\label{fig:evaluation:riverflow:times_pic_5Hz_0_2m_s_over_piciter}]{\includegraphics[width=0.45\textwidth]{evaluation_riverflow_times_combined_5Hz_0_2m_s_over_piciter}}
-\qquad
-\subfloat[\SI{4}{\hertz}\label{fig:evaluation:riverflow:times_pic_4Hz_0_2m_s_over_piciter}]{\includegraphics[width=0.45\textwidth]{evaluation_riverflow_times_combined_4Hz_0_2m_s_over_piciter}}
-\qquad
-\subfloat[\SI{3}{\hertz}\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_over_piciter}]{\includegraphics[width=0.45\textwidth]{evaluation_riverflow_times_combined_3Hz_0_2m_s_over_piciter}}
-\qquad
-\subfloat[\SI{1}{\hertz}\label{fig:evaluation:riverflow:times_combined_1Hz_0_1m_s_over_piciter}]{\includegraphics[width=0.45\textwidth]{evaluation_riverflow_times_combined_1Hz_0_1m_s_over_piciter}}
+\subfloat[\SI{5}{\hertz}\label{fig:evaluation:riverflow:times_pic_5Hz_0_2m_s_over_piciter}]{\includegraphics[scale=\mtlstscale]{evaluation_riverflow_times_combined_5Hz_0_2m_s_over_piciter}}
+\hfill
+\subfloat[\SI{4}{\hertz}\label{fig:evaluation:riverflow:times_pic_4Hz_0_2m_s_over_piciter}]{\includegraphics[scale=\mtlstscale]{evaluation_riverflow_times_combined_4Hz_0_2m_s_over_piciter}}
+\hfill
+\subfloat[\SI{3}{\hertz}\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_over_piciter}]{\includegraphics[scale=\mtlstscale]{evaluation_riverflow_times_combined_3Hz_0_2m_s_over_piciter}}
+\hfill
+\subfloat[\SI{1}{\hertz}\label{fig:evaluation:riverflow:times_combined_1Hz_0_1m_s_over_piciter}]{\includegraphics[scale=\mtlstscale]{evaluation_riverflow_times_combined_1Hz_0_1m_s_over_piciter}}
 \caption{Zeitbedarf aller Fahrspurverfolgungskomponenten bei \SIlist{5;4;3;1}{\hertz} Bildfrequenz}
 \end{figure}
 
@@ -44,14 +44,14 @@ Im folgenden wurde die Bildfrequenz zuerst auf 4 (s.Abb. \ref{fig:evaluation:riv
 
 \begin{figure}[htbp] % [htb]
 	\centering
-	\includegraphics[width=0.7\textwidth]{evaluation_riverflow_times_combined_3Hz_0_2m_s_pie_median}
+	\includegraphics[scale=\mtlstscale]{evaluation_riverflow_times_combined_3Hz_0_2m_s_pie_median}
 	\label{fig:evaluation:riverflow:times_combined_3Hz_0_2m_s_pie_median}
 	\caption{Zeitbedarf aller Fahrspurverfolgungskomponenten bei \SI{3}{\hertz} Bildfrequenz; Median aller Messwerte einer Runde der Teststrecke}
 \end{figure}
 
 \begin{figure}[htbp] % [htb]
 	\centering
-	\includegraphics[width=0.7\textwidth]{evaluation_riverflow_times_combined_3Hz_0_2m_s_pie_mean}
+	\includegraphics[scale=\mtlstscale]{evaluation_riverflow_times_combined_3Hz_0_2m_s_pie_mean}
 	\label{fig:evaluation:riverflow:times_combined_3Hz_0_2m_s_pie_mean}
 	\caption{Zeitbedarf aller Fahrspurverfolgungskomponenten bei \SI{3}{\hertz} Bildfrequenz; Mittelwert aller Messwerte einer Runde der Teststrecke}
 \end{figure}
@@ -60,15 +60,16 @@ Im folgenden wurde die Bildfrequenz zuerst auf 4 (s.Abb. \ref{fig:evaluation:riv
 Um in Zukunft Optimierungen an den implementierten Bildverarbeitungsalgorithmen durchführen zu können ist es unumgänglich nicht nur die gesamt benötigte Zeit, sondern auch die Dauer der einzelnen Module zu messen.
 
 \begin{figure}[htbp] % [htb]
-	\centering
-	\subfloat[Boxplot ohne Startphase\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_boxplot}]{\includegraphics[width=0.7\textwidth]{evaluation_riverflow_times_pic_3Hz_0_2m_s_boxplot}}
-	\qquad
-	\subfloat[Boxplot ohne Startphase\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_boxplot_ros}]{\includegraphics[width=0.2\textwidth]{evaluation_riverflow_times_pic_3Hz_0_2m_s_boxplot_ros}}
-	\subfloat[Tortendiagramm; Median aller Messwerte einer Runde\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_no_ros}]{\includegraphics[width=0.45\textwidth]{evaluation_riverflow_times_pic_3Hz_0_2m_s_pie_no_ros}}
-	%Summe:18.5185ms
-	\qquad
-	\subfloat[Tortendiagramm; Median aller Messwerte einer Runde; mit Dekompression des Bildes\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_with_ros}]{\includegraphics[width=0.45\textwidth]{evaluation_riverflow_times_pic_3Hz_0_2m_s_pie_with_ros}}
-	\caption{Zeitbedarf aller Fahrspurerkennungskomponenten bei \SI{3}{\hertz} Bildfrequenz}
+\centering
+\subfloat[Boxplot ohne Startphase\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_boxplot}]{\includegraphics[scale=\mtlstscale]{evaluation_riverflow_times_pic_3Hz_0_2m_s_boxplot}}
+\hfill	
+\subfloat[Boxplot ohne Startphase\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_boxplot_ros}]{\includegraphics[scale=\mtlstscale]{evaluation_riverflow_times_pic_3Hz_0_2m_s_boxplot_ros}}
+\hfill
+\subfloat[Tortendiagramm; Median aller Messwerte einer Runde\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_no_ros}]{\includegraphics[scale=\mtlstscale]{evaluation_riverflow_times_pic_3Hz_0_2m_s_pie_no_ros}}
+\hfill
+%Summe:18.5185ms	
+\subfloat[Tortendiagramm; Median aller Messwerte einer Runde; mit Dekompression des Bildes\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_with_ros}]{\includegraphics[scale=\mtlstscale]{evaluation_riverflow_times_pic_3Hz_0_2m_s_pie_with_ros}}
+\caption{Zeitbedarf aller Fahrspurerkennungskomponenten bei \SI{3}{\hertz} Bildfrequenz}
 \end{figure}
 
 Diese Untersuchungen führten zu interessanten Ergebnissen, welche die Echtzeitfähigkeit der MATLAB-\gls{acr:ros}-Schnittstelle in Frage stellen. Wie in Abbildung \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_with_ros} zu sehen, wird ein Großteil der Dauer eines Bild-Callbacks zum Umwandeln der \gls{acr:ros}-Message in eine von MATLAB prozessierbare Matrix benötigt. Eine genauere Untersuchung mit dem MATLAB-Profiler zeigte, dass in diesem Schritt eine Dekompression des im JPEG-Format übertragenen Bildes den wesentlichen Anteil dieses Zeitbedarfs verursacht. Eine unkomprimierte Übertragung würde jedoch ein vielfaches dieser Dauer in Anspruch nehmen.
@@ -79,7 +80,7 @@ Der eigens entwickelte Anteil der Fahrspurerkennung benötigt im Median einer Ru
 Wie in Abb. \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_no_ros} zu sehen, verstreicht im Normalfall bei der Feststellung der Startpunkte zur Erkennung der seitlichen Fahrbahnmarkierungen kaum Zeit. Wird jedoch kein Mittellinienelement nahe genug vor dem Fahrzeug gefunden, so gestaltet sich dieser Prozess aufwendiger (siehe Abschnitt \ref{sssec:fahrspurerkennung:riverflow:randlinie:startpunktgewinnung}). Abbildung \ref{fig:evaluation:riverflow:times_startpoints_3Hz_0_2m_s_boxplot} gibt ein besseres Bild der Messwerte wieder als Diagramm \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_no_ros} bzw. \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_boxplot}, da hier nicht nur der Median aller Messwerte gebildet, sondern vor der Erstellung des Boxplots die Daten nach Art der Methode zur Startpunktbestimmung sortiert werden. 
 \begin{figure}[htbp] % [htb]
 	\centering
-	\includegraphics[width=0.7\textwidth]{evaluation_riverflow_times_startpoints_3Hz_0_2m_s_boxplot}
+	\includegraphics[scale=\mtlstscale]{evaluation_riverflow_times_startpoints_3Hz_0_2m_s_boxplot}
 	\label{fig:evaluation:riverflow:times_startpoints_3Hz_0_2m_s_boxplot}
 	\caption{Zeitbedarf der Startpunktfindungsalgorithmen für die Erkennung der seitlichen Fahrbahnmarkierungen bei \SI{3}{\hertz} Bildfrequenz}
 \end{figure}
@@ -91,7 +92,7 @@ Die angesprochene Totzeit schlägt sich jedoch nicht direkt auf das Fahrverhalte
 
 \begin{figure}[htbp] % [htb]
 	\centering
-	\includegraphics[width=0.7\textwidth]{evaluation_riverflow_times_pictransfer_3Hz_0_2m_s_boxplot}
+	\includegraphics[scale=\mtlstscale]{evaluation_riverflow_times_pictransfer_3Hz_0_2m_s_boxplot}
 	\label{fig:evaluation:riverflow:times_pictransfer_3Hz_0_2m_s_boxplot}
 	\caption{Übertragungszeit der Aufnahmen bei \SI{3}{\hertz} Bildfrequenz}
 \end{figure}
