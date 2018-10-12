@@ -12,23 +12,25 @@ Durch die implementierte Verifikation der erkannten Koordinatenserien kann eine 
 \paragraph{Regelung} 
 Die Güte der Regelung bzw. des Zusammenspiels aus Bildverarbeitung und Regelung könnte am exaktesten durch ein hinreichend genaues System zur Lokalisierung des Fahrzeugs im Testszenario ermittelt werden. Somit wäre es möglich die Abweichung der gefahrenen Strecke von einer vorgegebenen Ideallinie auszuwerten. Da die Inbetriebnahme des an der Professur vorhandenen zweidimensionalen Tracking-Systems viel Einarbeitungszeit benötigt, wird hier auf eine einfache Methode zurückgegriffen. Es wird lediglich vermerkt ob das Fahrzeug die Fahrspur völlig verlässt oder dem Straßenverlauf zufriedenstellend folgt.
 
-\include{parametertuning}
-\include{geschwindigkeit}
+\input{parametertuning}
+\input{geschwindigkeit}
+\input{objekte_hinzufuegen}
+\input{weniger_informationen}
 
-\subsubsection{Leistungsfähigkeit bei Veränderung der Umgebungsbedingungen - Störobjekte}
-Da geplant ist die Teststrecke in Zukunft realistischer zu gestalten, d.h. Objekte wie Straßenschilder, andere Fahrzeuge, Personen und Gebäude hinzuzufügen. Der Einfluss solcher \glqq Störobjekte\grqq\ auf den Fahrspurverfolgungsalgorithmus soll nun untersucht werden.
-
-\paragraph{Menge der Objekte in einem Bild}
-Zu Beginn soll lediglich die Menge der \glqq Störobjekte\grqq\, welche sich in einem Bild befinden, variiert werden. Da sich die Objekte hinreichend weit von der Fahrbahnmarkierung entfernt befinden, ist kein Einfluss die Bildverarbeitung zu erwarten.
-
-\paragraph{Entfernung der Objekte von den Fahrbahnmarkierungen}
-Verringert man die Distanz zwischen \glqq Störobjekten\grqq\ und der Straße, wird es wahrscheinlicher, dass Kanten dieser Gegenstände als Fahrbahnmarkierung erkannt werden.
-
-\paragraph{Kontrast der Objekte im Vergleich zum Testszenario}
-Ist der Helligkeitsunterschied zwischen Fahrbahn und \glqq Störobjekt\grqq\ bzw. der leeren Fläche neben der Fahrbahn und dem \glqq Störobjekt\grqq\ sehr gering, so sollte keine zusätzliche Kante im Bild gefunden und als Fahrbahnmarkierung identifiziert werden . Diese These soll im folgenden Test bestätigt betrachtet werden.
-
-\subsubsection{Leistungsfähigkeit bei Veränderung der Umgebungsbedingungen - fehlende Fahrbahnmarkierungen}
-Es soll gezeigt werden, dass auch bei fehlen bestimmter Fahrbahnmarkierungen eine Verfolgung des Straßenverlaufs möglich ist.
+%\subsubsection{Leistungsfähigkeit bei Veränderung der Umgebungsbedingungen - Störobjekte}
+%Da geplant ist die Teststrecke in Zukunft realistischer zu gestalten, d.h. Objekte wie Straßenschilder, andere Fahrzeuge, Personen und Gebäude hinzuzufügen. Der Einfluss solcher \glqq Störobjekte\grqq\ auf den Fahrspurverfolgungsalgorithmus soll nun untersucht werden.
+%
+%\paragraph{Menge der Objekte in einem Bild}
+%Zu Beginn soll lediglich die Menge der \glqq Störobjekte\grqq\, welche sich in einem Bild befinden, variiert werden. Da sich die Objekte hinreichend weit von der Fahrbahnmarkierung entfernt befinden, ist kein Einfluss die Bildverarbeitung zu erwarten.
+%
+%\paragraph{Entfernung der Objekte von den Fahrbahnmarkierungen}
+%Verringert man die Distanz zwischen \glqq Störobjekten\grqq\ und der Straße, wird es wahrscheinlicher, dass Kanten dieser Gegenstände als Fahrbahnmarkierung erkannt werden.
+%
+%\paragraph{Kontrast der Objekte im Vergleich zum Testszenario}
+%Ist der Helligkeitsunterschied zwischen Fahrbahn und \glqq Störobjekt\grqq\ bzw. der leeren Fläche neben der Fahrbahn und dem \glqq Störobjekt\grqq\ sehr gering, so sollte keine zusätzliche Kante im Bild gefunden und als Fahrbahnmarkierung identifiziert werden . Diese These soll im folgenden Test bestätigt betrachtet werden.
+%
+%\subsubsection{Leistungsfähigkeit bei Veränderung der Umgebungsbedingungen - fehlende Fahrbahnmarkierungen}
+%Es soll gezeigt werden, dass auch bei fehlen bestimmter Fahrbahnmarkierungen eine Verfolgung des Straßenverlaufs möglich ist.
 
 
 

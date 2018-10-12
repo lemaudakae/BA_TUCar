@@ -1,4 +1,4 @@
-\subsubsection{Parametertuning}
+\subsubsection{Parametertuning \dcsecondauthorshort}
 Dieser Paragraph beschäftigt sich mit der Ermittlung der maximal fahrbaren Geschwindigkeit bei Nutzung der entwickelten Bildverarbeitungs- und Regelungsstruktur. Durch die Auswertung verschiedener Messwerte soll der \glqq Flaschenhals\grqq\ gefunden und, wenn möglich, durch Parameteranpassung beseitigt werden.
 
 Wichtige, noch anzupassende Parameter stellen dar:
@@ -28,7 +28,7 @@ Mithilfe dieser Einstellung absolvierte das Fahrzeug erfolgreich eine Runde im T
 \end{subequations} 
 Mit einer Bildbearbeitungszeit \(t_{img}=\SI{128}{\milli\second}\) sowie dem Zeitbedarf des Odometrie-Callbacks von \(t_{odom-per-sec}=\SI{262}{\milli\second\per\second}\) ergibt sich eine in der Theorie nutzbare Framerate von über \SI{5}{\hertz}. Mit dieser Bildfrequenz wurde eine weitere Testfahrt absolviert, in Abb. \ref{fig:evaluation:riverflow:times_pic_5Hz_0_2m_s_over_piciter} wird die bessere Nutzung der zur Verfügung stehenden Rechenzeit deutlich. Abbildung \ref{fig:evaluation:riverflow:times_pic_5Hz_0_2m_s_over_piciter} zeigt jedoch, dass die Periodendauer der Bildverarbeitung zwischen 2 Punkten oszilliert. Der erwartete zeitliche Abstand zweier konsekutiver Aufnahmen von \SI{200}{ms} wird häufig nicht erreicht, stattdessen befindet sich ein Abstand von \(2 \cdot \SI{200}{ms} = \SI{400}{ms}\) zwischen aufeinander folgenden Bildern. Dies führt zu dem Schluss, dass durch nicht vorhandene Pufferung Aufnahmen ausgelassen wurden.
 
-\begin{figure}[ht] % [htb]
+\begin{figure}[htbp] % [htb]
 \centering
 \subfloat[\SI{5}{\hertz}\label{fig:evaluation:riverflow:times_pic_5Hz_0_2m_s_over_piciter}]{\includegraphics[width=0.45\textwidth]{evaluation_riverflow_times_combined_5Hz_0_2m_s_over_piciter}}
 \qquad
@@ -42,14 +42,14 @@ Mit einer Bildbearbeitungszeit \(t_{img}=\SI{128}{\milli\second}\) sowie dem Zei
 
 Im folgenden wurde die Bildfrequenz zuerst auf 4 (s.Abb. \ref{fig:evaluation:riverflow:times_pic_4Hz_0_2m_s_over_piciter}), später auf \SI{3}{\hertz} verringert (s.Abb. \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_over_piciter}). Erst jetzt konnte kein Springen der Periodendauer des Bild-Callbacks auf ein Vielfaches seines Erwartungswertes mehr festgestellt werden. Eine leichte Oszillation des zeitlichen Abstands zweier Aufnahmen ist auch in Abb. \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_over_piciter} zu erkennen, jedoch beträgt der Mittelwert fast exakt die erwarteten \SI{333}{ms}. Die verbleibenden Unregelmäßigkeiten sind auf den Kamera-Node, welcher die Bilder aufnimmt und im entsprechenden Topic veröffentlicht, hervorgerufen werden (s. Abschnitt \ref{ssec:software_struktur:ros:nodes}). Abbildung \ref{fig:evaluation:riverflow:times_combined_3Hz_0_2m_s_pie_median} bzw. \ref{fig:evaluation:riverflow:times_combined_3Hz_0_2m_s_pie_mean} stellt nocheinmal die pro Bild mit Regelung,Bildverarbeitung,sonstigem Overhead\& im Leerlauf verbrachte Zeit einer gefahrenen Runde dar.
 
-\begin{figure}[ht] % [htb]
+\begin{figure}[htbp] % [htb]
 	\centering
 	\includegraphics[width=0.7\textwidth]{evaluation_riverflow_times_combined_3Hz_0_2m_s_pie_median}
 	\label{fig:evaluation:riverflow:times_combined_3Hz_0_2m_s_pie_median}
 	\caption{Zeitbedarf aller Fahrspurverfolgungskomponenten bei \SI{3}{\hertz} Bildfrequenz; Median aller Messwerte einer Runde der Teststrecke}
 \end{figure}
 
-\begin{figure}[ht] % [htb]
+\begin{figure}[htbp] % [htb]
 	\centering
 	\includegraphics[width=0.7\textwidth]{evaluation_riverflow_times_combined_3Hz_0_2m_s_pie_mean}
 	\label{fig:evaluation:riverflow:times_combined_3Hz_0_2m_s_pie_mean}
@@ -59,7 +59,7 @@ Im folgenden wurde die Bildfrequenz zuerst auf 4 (s.Abb. \ref{fig:evaluation:riv
 \paragraph{Dauer einzelner Komponenten der Fahrspurerkennung}
 Um in Zukunft Optimierungen an den implementierten Bildverarbeitungsalgorithmen durchführen zu können ist es unumgänglich nicht nur die gesamt benötigte Zeit, sondern auch die Dauer der einzelnen Module zu messen.
 
-\begin{figure}[ht] % [htb]
+\begin{figure}[htbp] % [htb]
 	\centering
 	\subfloat[Boxplot ohne Startphase\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_boxplot}]{\includegraphics[width=0.7\textwidth]{evaluation_riverflow_times_pic_3Hz_0_2m_s_boxplot}}
 	\qquad
@@ -77,7 +77,7 @@ Der eigens entwickelte Anteil der Fahrspurerkennung benötigt im Median einer Ru
 
 \subparagraph{Startpunktfindung}
 Wie in Abb. \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_no_ros} zu sehen, verstreicht im Normalfall bei der Feststellung der Startpunkte zur Erkennung der seitlichen Fahrbahnmarkierungen kaum Zeit. Wird jedoch kein Mittellinienelement nahe genug vor dem Fahrzeug gefunden, so gestaltet sich dieser Prozess aufwendiger (siehe Abschnitt \ref{sssec:fahrspurerkennung:riverflow:randlinie:startpunktgewinnung}). Abbildung \ref{fig:evaluation:riverflow:times_startpoints_3Hz_0_2m_s_boxplot} gibt ein besseres Bild der Messwerte wieder als Diagramm \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_pie_no_ros} bzw. \ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_boxplot}, da hier nicht nur der Median aller Messwerte gebildet, sondern vor der Erstellung des Boxplots die Daten nach Art der Methode zur Startpunktbestimmung sortiert werden. 
-\begin{figure}[ht] % [htb]
+\begin{figure}[htbp] % [htb]
 	\centering
 	\includegraphics[width=0.7\textwidth]{evaluation_riverflow_times_startpoints_3Hz_0_2m_s_boxplot}
 	\label{fig:evaluation:riverflow:times_startpoints_3Hz_0_2m_s_boxplot}
@@ -89,7 +89,7 @@ Die Erwartung, dass bei Nutzung der mittigen Fahrbahnmarkierung zu Startpunktgen
 Durch JPEG-Kompression mit einer Qualitätseinstellung von 20\% wurde der Bildtransfer ohne großen Informationsverlust auf \SI{77,2}{ms} im Median beschleunigt (s. Abb. \ref{fig:evaluation:riverflow:times_pictransfer_3Hz_0_2m_s_boxplot}). Diese Übertragungszeit stellt immernoch eine erhebliche Totzeit dar, lässt sich aufgrund der hohen benötigten Rohdatenauflösung von 1080x1080 Pixeln ohne grundsätzliche Änderung des verwendeten Hardwareaufbaus und der Softwarestruktur jedoch nicht weiter verringern. Die Streuung der Messwerte bis hin zu \SI{183}{ms} spiegelt die Probleme der Nutzung einer WLAN-Verbindung, welche zu unvorhersehbaren Latenzen neigt, wieder.
 Die angesprochene Totzeit schlägt sich jedoch nicht direkt auf das Fahrverhalten des Modellautos nieder, da die Bildverarbeitung wie in Passage \ref{ssec:software_struktur:matlab:callbacks} beschrieben getrennt von der Regelung des Roboters abläuft.
 
-\begin{figure}[ht] % [htb]
+\begin{figure}[htbp] % [htb]
 	\centering
 	\includegraphics[width=0.7\textwidth]{evaluation_riverflow_times_pictransfer_3Hz_0_2m_s_boxplot}
 	\label{fig:evaluation:riverflow:times_pictransfer_3Hz_0_2m_s_boxplot}
