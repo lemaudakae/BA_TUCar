@@ -13,6 +13,7 @@ Eine kubische Funktion als mathematisches Modell der gesuchten Linie bietet eini
 \end{itemize}
 
 \subsection{Probleme}
+\label{ssec:evaluation:ransac:probleme}
 Trotz der vielen Vorzüge bringt gerade \gls{acr:ransac} das Problem mit sich, dass drei zu bestimmende, unabhängige Polynome in einem Bildausschnitt zu rechen- und damit zeitaufwendig wären. Daher müssen in einer Aufnahme drei sinnvoll gewählte Bereiche feststehen, in welchen je ein \gls{acr:ransac}-Algorithmus ausgeführt werden kann. 
 Das größte Problem, welches letztlich zum Ausschluss der \gls{acr:ransac}-Methode geführt hat, ist die zuverlässige Bestimmung dieser \gls{acr:roi}. Wie auch bereits in Abb.~\ref{fig:fahrspurerkennung_ransac_masken} zu sehen war, approximiert das Polynom den Linienverlauf ab mehr als 45\(^\circ\) Steigung deutlich schlechter. 
 

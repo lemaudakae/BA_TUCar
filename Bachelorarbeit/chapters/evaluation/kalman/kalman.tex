@@ -3,7 +3,7 @@
 %\subsection{Beweggründe zur Nutzung des Kalmanfilters}
 Der Kalmanfilter zur Fahrspurverfolgung wurde implementiert, um einige Schwächen des 1. Ansatzes zur Erkennung der Straßenmarkierungen zu beheben.
 \begin{itemize}
-\item Durch den prinzipbedingt als konstant angenommenen Abstand der rechten, mittleren und linken Linie sollte ein \glqq Ineinanderlaufen\grqq{} der \gls{acr:roi} zur Erkennung selbiger verhindert werden.
+\item Durch den prinzipbedingt als konstant angenommenen Abstand der rechten, mittleren und linken Linie sollte ein \glqq Ineinanderlaufen\grqq{} der \gls{acr:roi}\footnote{Die \gls{acr:roi} stellen in diesem Fall die senkrecht zum Polynom aufgestellten Scanlines dar.} zur Erkennung selbiger verhindert werden.
 \item Da nur kleine Teile des Bildes mit einem Kantendetektor bearbeitet werden und keine Binarisierung der Filterantwort stattfinden muss, sollte der Algorithmus schneller ablaufen können.
 \end{itemize}
 
@@ -33,4 +33,4 @@ Ein Einbinden des Lenkwinkels, der Winkelgeschwindigkeit oder Orientierung des F
 
 Eine weitere Möglichkeit zur Verbesserung der Performance des vorgeschlagenen Algorithmus stellt die Erhöhung der Bildrate dar. Hierdurch kann eine ungenaue Vorhersage durch häufige Korrektur ausgeglichen werden. Durch eine noch effizientere Implementierung, Parameteroptimierung sowie eine Verkleinerung der Auflösung und/oder des Bildausschnittes könnte dies erzielt werden. Da der in Passage~\ref{sec:fahrspurerkennung:riverflow} beschriebene Ansatz ohne jegliche Optimierung im jetzigen Testszenario weitaus bessere Ergebnisse lieferte, wurde jedoch keine weitere Verfeinerung dieser Methode vorgenommen.
 
-Einen weiteren signifikanten Nachteil stellt wie in REFERENZ die Modellierung der Fahrspur durch ein Polynom 3. Grades \(\gls{y}(\gls{x})\) dar, welches schon eine 90\(^\circ\)-Kurve sehr schlecht approximieren kann, da dessen Anstieg unendlich werden müsste. Die volle Sichtweite des Fahrzeugs kann somit nicht genutzt werden (siehe z.B. Abb.~\ref{fig:evaluation:kalman:weggezogen}).
+Einen weiteren signifikanten Nachteil stellt wie in Abschnitt \ref{ssec:evaluation:ransac:probleme} beschrieben die Modellierung der Fahrspur durch ein Polynom 3. Grades \(\gls{y}(\gls{x})\) dar, welches schon eine 90\(^\circ\)-Kurve sehr schlecht approximieren kann, da dessen Anstieg unendlich werden müsste. Die volle Sichtweite des Fahrzeugs kann somit nicht genutzt werden (siehe z.B. Abb.~\ref{fig:evaluation:kalman:weggezogen}).

@@ -1,5 +1,5 @@
 \subsubsection{Hinzufügen von Objekten zum Testszenario \dcsecondauthorshort}
-Im realen Straßenverkehr befinden sich in der Regel mehr Objekte im Sichtbereich des Fahrers bzw. der Kamera als die bis jetzt im Parcours alleinig vorhandenen Fahrbahnmarkierungen. Diese Gegenstände können für die Trajektorieplanung relevant sein (Hindernisse) oder in keinem Zusammenhang damit stehen (Objekte abseits der Straße). Da der bis jetzt implementierte Fahrspurverfolgungsalgorithmus keine Hinderniserkennung und -vermeidung besitzt, kann nur auf letztere eingegangen werden. In diesem Abschnitt sollen Untersuchungen stattfinden, ob die Erkennung des Straßenverlaufs auch bei Hinzufügen weiterer Gegenstände zum Testszenario noch zufriedenstellend abläuft.
+Im realen Straßenverkehr befinden sich in der Regel mehr Objekte im Sichtbereich des Fahrers bzw. der Kamera als die bis jetzt im Parcours alleinig vorhandenen Fahrbahnmarkierungen. Diese Gegenstände können für die Trajektorieplanung relevant sein (Hindernisse) oder in keinem Zusammenhang damit stehen (Objekte abseits der Straße). Da der bis jetzt implementierte Fahrspurverfolgungsalgorithmus keine Hinderniserkennung und -vermeidung besitzt, kann hier nur auf Gegenstände neben der Fahrspur eingegangen werden. In diesem Abschnitt sollen Untersuchungen stattfinden, ob die Erkennung des Straßenverlaufs auch bei Hinzufügen weiterer Gegenstände zum Testszenario noch zufriedenstellend abläuft.
 
 \paragraph{Betrachtungen zur Bildvorverarbeitung}
 \label{par:evaluation:riverflow:messungen:objekte_hinzufuegen}
@@ -74,7 +74,7 @@ Die in Abschnitt~\ref{ssec:evaluation:riverflow:diskussion_prinzip:nachteile} ve
 \begin{figure}[htbp] % [htb]
 \centering
 \includegraphics[width=0.5\textwidth]{evaluation_riverflow_hypos_times_04}
-\caption{Zusammenhang Anzahl verfolgter Hypothesen\&Dauer der Detektion seitlicher Fahrbahnmarkierungen; \SI{4}{cm} Abstand Quader zu Fahrspur}
+\caption{Zusammenhang Anzahl verfolgter Hypothesen \&\ Dauer der Detektion seitlicher Fahrbahnmarkierungen; \SI{4}{cm} Abstand Quader zu Fahrspur}
 \label{evaluation:riverflow:hypos:times_04}
 \end{figure}
 
