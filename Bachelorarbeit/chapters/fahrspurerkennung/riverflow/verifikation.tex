@@ -1,4 +1,7 @@
 \subsection{Verifikation der seitlichen Fahrbahnmarkierungen \dcsecondauthorshort}
+%Fensters
+%
+%\begin{figure}[htbp] % [htb]
 \label{ssec:fahrspurerkennung:riverflow:verifikation}
 Nachdem für Mittel- und Seitenlinie repräsentative Punkte aus dem Bild extrahiert wurden, gilt es deren Sinnhaftigkeit zu überprüfen. Somit können:
 \begin{enumerate}
@@ -8,9 +11,7 @@ Nachdem für Mittel- und Seitenlinie repräsentative Punkte aus dem Bild extrahi
 
 \subsubsection{Seitenlinienvergleich} 
 \label{sssec:fahrspurerkennung:riverflow:verifikation:seitenlinienvergleich}
-Zuerst wiFensters
-
-\begin{figure}[htbp] % [htb]rd der Abstand der äußeren Fahrbahnmarkierungen zueinander geprüft. Diese Validierung bedient sich ineinander verschachtelter Schleifen, um zu jedem Punkt das passende Gegenüber zu finden. Exemplarisch wird diese Schachtelung nun am Beispiel der Beurteilung der linken Fahrbahnmarkierungspunkte anhand der rechten Linie dargelegt. Es wird:
+Zuerst wird der Abstand der äußeren Fahrbahnmarkierungen zueinander geprüft. Diese Validierung bedient sich ineinander verschachtelter Schleifen, um zu jedem Punkt das passende Gegenüber zu finden. Exemplarisch wird diese Schachtelung nun am Beispiel der Beurteilung der linken Fahrbahnmarkierungspunkte anhand der rechten Linie dargelegt. Es wird:
 \begin{enumerate}
 \item 
 Eine Hypothese der linken Linie gewählt.
@@ -27,7 +28,7 @@ zu allen Punkten der gewählten rechten Fahrbahnmarkierungshypothese berechnet w
 \end{equation}
 Da der nächstgelegene Punkt der rechten Linienhypothese zum gewählten Punkt der linken Fahrbahnmarkierungshypothese gefragt ist, wird nur das kleinste Ergebnis dieser simultanen Berechnung weiter betrachtet.
 
-Die Koordinatenserie der linken Linienhypothese wird vom Anfgangspunkt des Riverflow-Algorithmus bis
+Die Koordinatenserie der linken Linienhypothese wird vom Anfangspunkt des Riverflow-Algorithmus bis
 \begin{itemize}
 \item der Endpunkt derselben erreicht ist 
 \item der Abstand zur gewählten rechten Fahrbahnmarkierungshypothese einmal überschritten wurde
