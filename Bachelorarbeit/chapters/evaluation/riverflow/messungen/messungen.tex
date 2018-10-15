@@ -5,18 +5,20 @@ In diesem Abschnitt sollen charakteristische Messwerte der Fahrspurerkennung, Re
 Für die Detektion von Fahrspuren auf Einzelbildern und die daraus resultierende Bewegung des Fahrzeugs existieren zum jetzigen Zeitpunkt keine Vergleichswerte. 
 
 \paragraph{Bildverarbeitung} 
-Für ein Benchmark der Fahrspurerkennung könnte ein Ground-Truth-Datensatz in Form von Bildern mit richtig eingetragen Fahrbahnmarkierungen die präziseste Bewertung hervorbringen. Da die Erstellung eines solchen jedoch sehr zeitaufwendig ist, wurde eine leichter automatisierbare Methode der Evaluation gewählt.
+Für ein Benchmark der Fahrspurerkennung könnte ein Ground-Truth-Datensatz in Form von Bildern mit richtig eingetragen Fahrbahnmarkierungen die präziseste Bewertung hervorbringen. Da die Erstellung eines solchen jedoch sehr zeitaufwendig ist, wurden größtenteils qualitative Methoden zur Evaluation gewählt.
 
-Durch die implementierte Verifikation der erkannten Koordinatenserien kann eine Fehlerkennung weitgehend ausgeschlossen werden. Den deutlichsten Indikator für ein falsch verarbeitetes Bild stellt also eine nicht oder nur auf einem sehr kurzen Abschnitt detektierte Fahrbahnmarkierung dar. Den Grenzwert der Länge für eine fehlerhaft erkannte Linie ist oft unkritisch, da der Detektionsalgorithmus in den meisten Fällen zufriedenstellend funktioniert oder schon bei kurzer Linienlänge fehlschlägt. Wir haben uns dafür entschieden etwa die halbe Sichtweite des Fahrzeugs (ab Stoßstange bis Bildrand) als Schwellwert anzusehen.
+%wurde eine leichter automatisierbare Methode der Evaluation gewählt.
+
+%Durch die implementierte Verifikation der erkannten Koordinatenserien kann eine Fehlerkennung weitgehend ausgeschlossen werden. Den deutlichsten Indikator für ein falsch verarbeitetes Bild stellt also eine nicht oder nur auf einem sehr kurzen Abschnitt detektierte Fahrbahnmarkierung dar. Den Grenzwert der Länge für eine fehlerhaft erkannte Linie ist oft unkritisch, da der Detektionsalgorithmus in den meisten Fällen zufriedenstellend funktioniert oder schon bei kurzer Linienlänge fehlschlägt. Wir haben uns dafür entschieden etwa die halbe Sichtweite des Fahrzeugs (ab Stoßstange bis Bildrand) als Schwellwert anzusehen.
 
 \paragraph{Regelung} 
 Die Güte der Regelung bzw. des Zusammenspiels aus Bildverarbeitung und Regelung könnte am exaktesten durch ein hinreichend genaues System zur Lokalisierung des Fahrzeugs im Testszenario ermittelt werden. Somit wäre es möglich die Abweichung der gefahrenen Strecke von einer vorgegebenen Ideallinie auszuwerten. Da die Inbetriebnahme des an der Professur vorhandenen zweidimensionalen Tracking-Systems viel Einarbeitungszeit benötigt, wird hier auf eine einfache Methode zurückgegriffen. Es wird lediglich vermerkt ob das Fahrzeug die Fahrspur völlig verlässt oder dem Straßenverlauf zufriedenstellend folgt.
 
 \subsubsection{Überlegungen zur Darstellung der Messwerte}
-Um möglichst viele Informationen kompakt abzubilden wurden unter anderem die Diagrammtypen Boxplot sowie Histogramm genutzt. Da kurz nach dem Start des Fahrzeugs 
+Um möglichst viele Informationen kompakt abzubilden, wurden unter anderem die Diagrammtypen Boxplot sowie Histogramm genutzt. Da kurz nach dem Start des Fahrzeugs 
 \begin{itemize}
 \item
-MATLAB viele Funktionen erst noch in den Hauptspeicher laden muss (\glqq Warmlaufphase\grqq\ )
+MATLAB viele Funktionen erst noch in den Hauptspeicher laden muss (\glqq Warmlaufphase\grqq)
 \item
 Das Fahrzeug vor vollendeter Verarbeitung des ersten Bildes schon ohne gültigen Zielpunkt losfährt
 \end{itemize}

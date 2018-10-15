@@ -1,5 +1,5 @@
 \subsubsection{Hinzufügen von Objekten zum Testszenario \dcsecondauthorshort}
-Im realen Straßenverkehr befinden sich in der Regel mehr Objekte im Sichtbereich des Fahrers bzw. der Kamera als die bis jetzt im Parcours alleinig vorhandenen Fahrbahnmarkierungen. Diese Gegenstände können für die Trajektorieplanung relevant sein (Hindernisse) oder in keinem Zusammenhang damit stehen (Objekte abseits der Straße). Da der bis jetzt implementierte Fahrspurverfolgungsalgorithmus keine Hinderniserkennung und -vermeidung besitzt kann nur auf letztere eingegangen werden. In diesem Abschnitt sollen Untersuchungen stattfinden, ob die Erkennung des Straßenverlaufs auch bei Hinzufügen weiterer Gegenstände zum Testszenario noch zufriedenstellend abläuft.
+Im realen Straßenverkehr befinden sich in der Regel mehr Objekte im Sichtbereich des Fahrers bzw. der Kamera als die bis jetzt im Parcours alleinig vorhandenen Fahrbahnmarkierungen. Diese Gegenstände können für die Trajektorieplanung relevant sein (Hindernisse) oder in keinem Zusammenhang damit stehen (Objekte abseits der Straße). Da der bis jetzt implementierte Fahrspurverfolgungsalgorithmus keine Hinderniserkennung und -vermeidung besitzt, kann nur auf letztere eingegangen werden. In diesem Abschnitt sollen Untersuchungen stattfinden, ob die Erkennung des Straßenverlaufs auch bei Hinzufügen weiterer Gegenstände zum Testszenario noch zufriedenstellend abläuft.
 
 \paragraph{Betrachtungen zur Bildvorverarbeitung}
 \label{par:evaluation:riverflow:messungen:objekte_hinzufuegen}
@@ -79,7 +79,7 @@ Die in Abschnitt~\ref{ssec:evaluation:riverflow:diskussion_prinzip:nachteile} ve
 \end{figure}
 
 \paragraph{Objekte in der Gegenspur}
-Da, bedingt durch die Verifikation, erkannte Fahrbahnmarkierungen nur in die Karte eingetragen werden, wenn sie zu mindestens einer weiteren erkannten Linie passen, muss für eine Fehlerkennung diese Bedingung auch durch die platzierten \glqq Störobjekte \grqq\ erfüllt werden. Da sich das Fahrzeug nur auf der rechten Straßenseite fortbewegt, wurde der Versuchsaufbau in Abb. \ref{fig:evaluation:riverflow:test_kontraste_versuchsaufbau_baustelle} gewählt, welcher diesem Kriterium nachkommt.
+Da, bedingt durch die Verifikation, erkannte Fahrbahnmarkierungen nur in die Karte eingetragen werden, wenn sie zu mindestens einer weiteren erkannten Linie passen, muss für eine Fehlerkennung diese Bedingung auch durch die platzierten \glqq Störobjekte\grqq\ erfüllt werden. Da sich das Fahrzeug nur auf der rechten Straßenseite fortbewegt, wurde der Versuchsaufbau in Abb. \ref{fig:evaluation:riverflow:test_kontraste_versuchsaufbau_baustelle} gewählt, welcher diesem Kriterium nachkommt.
 \begin{figure}[htbp] % [htb]
 \centering
 \includegraphics[width=0.5\textwidth]{evaluation_riverflow_test_kontraste_versuchsaufbau_baustelle}

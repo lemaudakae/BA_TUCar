@@ -1,18 +1,22 @@
 \section{Ransac mit Maskierung \dcfirstauthorshort}
 
-Aus einem Foto mittels \gls{acr:ransac} eine mathematische Approximation für eine Linie zu erhalten, war die von uns anfangs bevorzugte Herangehensweise. Durch den festen Entschluss, eine Weltkarte aufzubauen, ist der Gedanke naheliegend, deren Information für das nächste Bild zu nutzen. Voraussetzung dafür ist allerdings, dass die Informationen der Karte verlässlich sind.
+Aus einem Foto mittels \gls{acr:ransac} eine mathematische Approximation einer Fahrbahnmarkierung zu erhalten, war die von uns anfangs angestrebte Herangehensweise. Durch unser Paradigma, eine Weltkarte aufzubauen, ist der Gedanke naheliegend, deren Information zur Verarbeitung eines Bildes zu nutzen. Voraussetzung dafür ist allerdings, dass die Informationen der Karte hinreichend genau sind.
 
 \subsection{Vorteile}
-Ein mathematisches Modell hinter der Linienerkennung bietet einige Vorteile:
+Eine kubische Funktion als mathematisches Modell der gesuchten Linie bietet einige Vorteile:
 \begin{itemize}
-\item Im Gegensatz zu einer Geraden, einem Kreis oder einer quadratischen Funktion kann das gewählte Polynom dritten Grades zusätzlich dem Verlauf einer S-Kurve (Übergang einer Links- in eine Rechtskurve und umgekehrt) relativ gut folgen. \item Unter der Annahme einer guten Annäherung zur echten Markierung kann im Falle eines unbrauchbaren Fotos durch Extrapolation trotzdem weitergefahren werden. 
+\item Im Gegensatz zu einer Geraden, einem Kreis oder einer quadratischen Funktion kann das gewählte Polynom dritten Grades zusätzlich dem Verlauf einer S-Kurve (Übergang einer Links- in eine Rechtskurve und umgekehrt) relativ gut folgen. 
+%\item Unter der Annahme einer guten Annäherung zur echten Markierung kann im Falle eines unbrauchbaren Fotos durch Extrapolation trotzdem weitergefahren werden. 
+\item Unter der Annahme einer guten Annäherung zur echten Markierung kann durch Extrapolation eine wahrscheinliche Vorhersage des Linienverlaufs in einem später aufgenommenen Bild getroffen werden. 
 \item Die Stetigkeit der kubischen Funktion verhindert das plötzliche Abknicken des Linienverlaufs, sodass nahezu senkrecht auftreffende Querstraßenmarkierungen nicht als Kurve erkannt werden
-\item Durch die Anwendung von \gls{acr:ransac} haben Unterbrechungen oder kleine Störungen keinen negativen Einfluss. Als Outlier erkannte Pixel werden in der anschließenden Regression nicht berücksichtigt.
+\item Durch die Anwendung von \gls{acr:ransac} haben Unterbrechungen oder kleine Störungen keinen negativen Einfluss. Als Outlier erkannte Pixel werden in der anschließenden Regression nicht berücksichtigt (s. Kapitel~\ref{ssec:grunglagen:ransac:ablauf}).
 \end{itemize}
 
 \subsection{Probleme}
-Trotz der vielen Vorzüge bringt gerade \gls{acr:ransac} das Problem mit sich, dass in einem Bildausschnitt nur ein Markierungsverlauf gefunden wird. Daher müssen in einer Aufnahme drei sinnvoll gewählte Bereiche feststehen, in welchen je ein \gls{acr:ransac}-Algorithmus ausgeführt werden kann. 
-Das größte Problem, welches letztlich zum Ausschluss der \gls{acr:ransac}-Methode geführt hat, ist die zuverlässige Bestimmung dieser \gls{acr:roi}. Wie auch bereits in Abb.~\ref{fig:fahrspurerkennung_ransac_masken} zu sehen war, approximiert das Polynom den Linienverlauf am Bildrand deutlich schlechter. Entgegen der Erwartung sind die Extrapolationseigenschaften von Polynomen zum Maskenbau ungeeignet. Die Funktion steigt am Bildrand meist stärker als die zu erkennende Kurve. Dies führt zu falsch vorhergesagten \glspl{acr:roi}, welche beispielhaft in Abb.~\ref{fig:evaluation_ransac_ransac} dargestellt sind.
+Trotz der vielen Vorzüge bringt gerade \gls{acr:ransac} das Problem mit sich, dass drei zu bestimmende, unabhängige Polynome in einem Bildausschnitt zu rechen- und damit zeitaufwendig wären. Daher müssen in einer Aufnahme drei sinnvoll gewählte Bereiche feststehen, in welchen je ein \gls{acr:ransac}-Algorithmus ausgeführt werden kann. 
+Das größte Problem, welches letztlich zum Ausschluss der \gls{acr:ransac}-Methode geführt hat, ist die zuverlässige Bestimmung dieser \gls{acr:roi}. Wie auch bereits in Abb.~\ref{fig:fahrspurerkennung_ransac_masken} zu sehen war, approximiert das Polynom den Linienverlauf ab mehr als 45\(^\circ\) Steigung deutlich schlechter. 
+
+Entgegen der Erwartungen sind die Extrapolationseigenschaften von Polynomen zum Maskenbau ungeeignet. Da der Wertebereich von Polynomen stets gegen unendlich läuft, weicht die Funktion am Bildrand meist stärker von der zu erkennenden Kurve ab. Dies führt zu falsch vorhergesagten \glspl{acr:roi}, welche beispielhaft in Abb.~\ref{fig:evaluation_ransac_ransac} dargestellt sind.
 
 \begin{figure}[H]
 	\centering
@@ -25,7 +29,7 @@ Das größte Problem, welches letztlich zum Ausschluss der \gls{acr:ransac}-Meth
 	\label{fig:evaluation_ransac_ransac}
 \end{figure} 
 
-Das Polynom hat keine Chance, die Fahrbahnmarkierung richtig abzubilden, da dies der maskierte Bereich nicht zulässt. Jene fehlerhaften \glspl{acr:roi} entstehen durch veraltete oder zuvor falsch erkannte, in die Weltkarte eingetragene Punkte. Abbildung~\ref{evaluation_ransac_weltkarte} zeigt das Ergebnis eines Programmtests. Dieser wurde mit Hilfe einer Aufnahme (mittels rosbag\footnote{Rosbag ist eine Reihe von Tools zum Aufnehmen und Wiedergeben von ROS-Topics (wiki.ros.org/rosbag)}) durchgeführt, welche händisch durch manuelle Steuerung des Fahrzeugs entstanden ist. Im dargestellten Plot der Weltkarte ist die anfänglich relativ gute Funktionstüchtigkeit des Algorithmus zu erkennen, welche jedoch ab der ersten Kreuzung verloren geht.
+Das Polynom hat keine Chance, die Fahrbahnmarkierung richtig abzubilden, da sie nicht zu den Punkten des maskierten Bereichs gehört. Jene fehlerhaften \glspl{acr:roi} entstehen durch zuvor falsch erkannte, in die Weltkarte eingetragene Punkte. Abbildung~\ref{evaluation_ransac_weltkarte} zeigt das Ergebnis eines Testlaufs. Dieser wurde mit Hilfe einer Aufnahme (rosbag\footnote{Rosbag ist eine Reihe von Tools zum Aufnehmen und Wiedergeben von ROS-Topics (wiki.ros.org/rosbag)}) durchgeführt, welche während manueller Steuerung des Fahrzeugs entstanden ist. Im dargestellten Plot der Weltkarte ist die anfänglich zufriedenstellende Detektion der Fahrbahnmarkierungen zu erkennen, welche jedoch ab der ersten Kreuzung verloren geht.
 
 % Bild/Plot der eingetragenen Punkte in der Weltkarte nach ein paar Sekunden
 \begin{figure}[htbp] % [htb]
