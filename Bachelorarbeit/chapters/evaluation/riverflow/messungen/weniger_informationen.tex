@@ -1,13 +1,11 @@
 \subsubsection{Fahren mit weniger Informationen \dcfirstauthorshort}
 
-Unser Algorithmus besteht im wesentlichen aus den zwei fusionierten Linienerkennungskomponenten Mittelstrich- und Randlinienerkennung. Um zu zeigen, dass diese nicht nur theoretisch unabhängig voneinander funktionieren, wurden zum Test je einmal die Mittellinie und die beiden Randlinien mit weißem Papier verdeckt. 
+Unsere Linienerkennung besteht im wesentlichen aus den zwei fusionierten Komponenten Mittelstrich- und Randlinienerkennung, was die Robustheit unseres Algorithmus wesentlich erhöht. Um zu zeigen, dass diese nicht nur theoretisch unabhängig voneinander funktionieren, wurden zum Test je einmal die Mittellinie und die beiden Randlinien mit weißem Papier verdeckt. 
 
-Da unser Algorithmus im wesentlichen aus den zwei nahezu unabhängigen, fusionierten Komponenten für die Mittelstrich- und die Randlinienerkennung besteht, soll in diesem Abschnitt gezeigt werden, dass 
+%Da unser Algorithmus im wesentlichen aus den zwei nahezu unabhängigen, fusionierten Komponenten für die Mittelstrich- und die Randlinienerkennung besteht, soll in diesem Abschnitt gezeigt werden, dass 
 
-
-
-
-
+\paragraph{Fahren ohne Mittellinie}
+Da in diesem Test keine Mittellinienpunkte gefunden wurden, konnten die Startpunkte für den Riverflow-Algorithmus nur wie in Kapitel~\ref{sssec:fahrspurerkennung:riverflow:randlinie:startpunktgewinnung} beschrieben mittels der vereinfachten Hough-Transformation oder der Annahme fixer Punkte gefunden werden. Abbildung~\ref{fig:evaluation:riverflow:ohneMittellinie} zeigt den Versuchsaufbau und das Ergebnis der Karte nach einer erfolgreich gefahrenen Runde ohne Mittellinie.
 
 \begin{figure}[htbp] % [htb]
 	%\centering
@@ -19,7 +17,10 @@ Da unser Algorithmus im wesentlichen aus den zwei nahezu unabhängigen, fusionie
 	\caption{Testfahrt mit durch weißes Papier abgedeckte Mittelstriche}
 \end{figure}
 
+\subparagraph{Probleme}
+Damit die gesamte Runde ohne Mittellinie gemeistert werden konnte, wurden während des Versuchs bestimmte Parameter angepasst. Stand der Roboter beispielsweise zu schräg in der Fahrspur, geriet die Randlinie schnell aus dem Bereich, in dem die vereinfachte Hough-Transformation ausgeführt wird. Deshalb wurde die Breite dieses Bildausschnittes vergrößert, um sich aus höhere Abweichungen des Fahrzeugs von der Fahrspur wieder fangen zu können. Dies führt allerdings zu einem Nachteil, welcher der Grund für die anfangs schmalere Einstellung war und in Abbildung~\ref{fig:evaluation:riverflow:ohneMittellinie:problem} dargestellt ist. Da der Hough-Algorithmus nur nach den größten Maxima sucht (siehe Abschnitt~\ref{ssec:grundlagen:hough:vereinfachte}), erkennt er mitunter bei zu breiter Fenstereinstellung benachbarte Markierungen parallel verlaufender Straßen. Die in Kapitel~\ref{ssec:fahrspurerkennung:riverflow:verifikation} erläuterte Verifikation verhindert erfreulicherweise die Aufnahme der falschen Punkte in die Karte, jedoch wurden auch keine richtigen erkannt. Der Roboter bekommt in diesem Fall keine neuen Informationen. 
 
+Die Startpunktgewinnung mittels Mittellinie bietet darüber hinaus den großen Vorteil, dass die Richtung des Startpunktvektors bekannt ist. Da diese Information hier fehlt, zeigt der Verschiebungsvektor in x-Richtung des Roboterkoordinatensystems. In engen Kurven führt das in ungünstigen Fällen wie in Abbildung~\ref{fig:evaluation:riverflow:ohneMittellinie:problem} zum Abbruch, da die nächste Scanlinie die Fahrbahnmarkierung nicht mehr schneidet. Das ist der Grund für die große Lücke in der linken Linie der in Abbildung~\ref{fig:evaluation:riverflow:ohneMittellinie:Weltkarte} dargestellten Weltkarte. 
 
 \begin{figure}[htbp] % [htb]
 	\centering
@@ -28,17 +29,20 @@ Da unser Algorithmus im wesentlichen aus den zwei nahezu unabhängigen, fusionie
 	\caption{Ungünstige Position für die mit Hough initialisierte Randlinienerkennung}
 \end{figure}
 
+\paragraph{Fahren ohne Randlinien}
+Die bisher gute Qualität der binarisierten Bilder ermöglicht eine zuverlässige Mittellinienerkennung. Da diese von keinerlei Startpunkten oder Ähnlichem abhängt, stellen auch enge Kurven oder benachbarte Straßenabschnitte kein Problem dar. Der Versuchsaufbau und die zugehörig aufgenommene Weltkarte sind in Abbildung~\ref{fig:evaluation:riverflow:ohneRandlinie} dargestellt.
 
 \begin{figure}[htbp] % [htb]
 	%\centering
 	%\hfill
-	\subfloat[Versuchsaufbau ohne Randlinien \label{fig:evaluation:riverflow:ohneRandlinie:Versuchsaufbau}]{\includegraphics[width=0.49\textwidth]{evaluation_riverflow_ohne_randlinie_versuchsaufbau.jpg}}
+	\subfloat[Versuchsaufbau ohne Randlinien \label{fig:evaluation:riverflow:ohneRandlinie:Versuchsaufbau}]{\includegraphics[height=0.4\textheight]{evaluation_riverflow_ohne_randlinie_versuchsaufbau.jpg}}
 	\hfill
-	\subfloat[Weltkarte ohne Randlinien \label{fig:evaluation:riverflow:ohneRandlinie:Weltkarte}]{\includegraphics[width=0.49\textwidth]{evaluation_riverflow_ohne_randlinie_worldmap.pdf}}
+	\subfloat[Weltkarte ohne Randlinien \label{fig:evaluation:riverflow:ohneRandlinie:Weltkarte}]{\includegraphics[height=0.4\textheight]{evaluation_riverflow_ohne_randlinie_worldmap.pdf}}
 	\label{fig:evaluation:riverflow:ohneRandlinie}
 	\caption{Testfahrt mit durch weißes Papier abgedeckte Randlinien}
 \end{figure}
 
+Im Plot~\ref{fig:evaluation:riverflow:ohneRandlinie:Weltkarte} fällt auf, dass trotz Abdeckung scheinbar einige Randlinienpunkte erkannt wurden. Mithilfe des in Abbildung~\ref{fig:evaluation:riverflow:ohneMittellinie:bspPlot} dargestellten Beispielplots lässt sich die Erklärung finden.
 
 \begin{figure}[htbp] % [htb]
 	\centering
@@ -47,9 +51,14 @@ Da unser Algorithmus im wesentlichen aus den zwei nahezu unabhängigen, fusionie
 	\caption{Punkterkennung bei abgedeckten Randlinien}
 \end{figure}
 
+Ausgehend von der ersten mittleren Fahrbahnmarkierung werden die Startpunkte für die Randlinienerkennung bestimmt. Trotz fehlender Randlinienpunkte wurden die Startpunkte verifiziert und in die Karte aufgenommen. Da sie jedoch einzig den um die Fahrspurbreite verschobenen Mittellinienpunkt abbilden, stellen sie keinen informativen Mehrwert dar.
 
+\paragraph{Schlussfolgerungen}
 
+Wir haben demonstriert, dass die Rand-und Mittellinienerkennung einzeln funktioniert und sich gegenseitig absichert. Das \gls{glos:tucar} ist nicht auf permanentes Vorhandensein von Mittel-/Randlinien oder deren fehlerfreie Erkennung angewiesen.
+Die Zielpunktbestimmung als Voraussetzung für die Regelung ist somit gewährleistet, wenn mindestens die Mittellinie oder beide Randlinien erkannt wurden. Diese Sicherheit ist durch die Schwächen der jeweiligen Verfahren sinnvoll und notwendig. 
 
+An der großen Kreuzung existiert beispielsweise keine mittlere Fahrbahnmarkierung, was die Randlinienerkennung notwendig macht. Gleichzeitig besitzt der Riverflow-Algorithmus den Nachteil, an ausreichend großen Lücken im Markierungsverlauf abzubrechen. Dieser Fall ist demonstrativ in Abbildung~\ref{fig:evaluation:riverflow:Randlinie:unterbrochen:bsp} dargestellt. 
 
 \begin{figure}[htbp] % [htb]
 	%\centering
@@ -60,3 +69,8 @@ Da unser Algorithmus im wesentlichen aus den zwei nahezu unabhängigen, fusionie
 	\label{fig:evaluation:riverflow:Randlinie:unterbrochen}
 	\caption{Demonstration der Schwäche des Riverflow bei größeren Unterbrechungen in der Randlinie}
 \end{figure}
+
+Die durch ein A4-Blatt unterbrochene Randlinie wird im folgenden Verlauf nicht länger erkannt. Dass die Linie in den vorherigen Bilditerationen ebenfalls nur bis zu jener Unterbrechung detektiert wurde, zeigt der Plot in Abbildung \ref{fig:evaluation:riverflow:Randlinie:unterbrochen:linienlaenge} durch die mit jedem Index abnehmende Linienlänge. Die Fähigkeit mittels Randlinienerkennung vorauszuschauen ist somit bis zum Passieren dieser Unregelmäßigkeit nicht gegeben. Durch die möglich fehlerhafte Erkennung eines Mittellinienpunktes werden überdies ebenfalls alle nachfolgenden Mittellinienpunkte ignoriert, da auch hier die Verifikation des nächsten Punktes von der des aktuellen abhängt. 
+
+Das unveränderte Szenario lässt die hier beschriebenen Fehler äußerst selten bis gar nicht auftreten. Die jeweils souveräne Rand-und Mittellinienerkennung realisieren die Navigation des \gls{glos:tucar}s sehr robust und zuverlässig. 
+
