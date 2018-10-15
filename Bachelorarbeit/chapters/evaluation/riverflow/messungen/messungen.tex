@@ -12,6 +12,16 @@ Durch die implementierte Verifikation der erkannten Koordinatenserien kann eine 
 \paragraph{Regelung} 
 Die Güte der Regelung bzw. des Zusammenspiels aus Bildverarbeitung und Regelung könnte am exaktesten durch ein hinreichend genaues System zur Lokalisierung des Fahrzeugs im Testszenario ermittelt werden. Somit wäre es möglich die Abweichung der gefahrenen Strecke von einer vorgegebenen Ideallinie auszuwerten. Da die Inbetriebnahme des an der Professur vorhandenen zweidimensionalen Tracking-Systems viel Einarbeitungszeit benötigt, wird hier auf eine einfache Methode zurückgegriffen. Es wird lediglich vermerkt ob das Fahrzeug die Fahrspur völlig verlässt oder dem Straßenverlauf zufriedenstellend folgt.
 
+\subsubsection{Überlegungen zur Darstellung der Messwerte}
+Um möglichst viele Informationen kompakt abzubilden wurden unter anderem die Diagrammtypen Boxplot sowie Histogramm genutzt. Da kurz nach dem Start des Fahrzeugs 
+\begin{itemize}
+\item
+MATLAB viele Funktionen erst noch in den Hauptspeicher laden muss (\glqq Warmlaufphase\grqq\)
+\item
+Das Fahrzeug vor vollendeter Verarbeitung des ersten Bildes schon ohne gültigen Zielpunkt losfährt
+\end{itemize}
+wurden diese nicht-repräsentativen Phasen in den entsprechenden Grafiken ausgelassen, da sie die Aussagekraft der Messwerte beeinträchtigen würden.
+
 \input{parametertuning}
 \input{geschwindigkeit}
 \input{objekte_hinzufuegen}

@@ -1,0 +1,46 @@
+\documentclass[
+%	draft,			% Entwurfsmodus: Bilder als Rahmen,
+	11pt,			% KOMA default
+	a4paper,		% DIN A4
+	twoside,		% Zweiseitig (oneside für einseitiges Layout)
+	german,			%
+	titlepage		%
+]{scrartcl}			% siehe <http://www.komascript.de>
+
+\usepackage{selinput}		% Eingabecodierung automatisch ermitteln …
+\SelectInputMappings{		% … siehe <http://ctan.org/pkg/selinput>
+  adieresis={ä},
+  germandbls={ß},
+}
+\usepackage[ngerman]{babel}
+\usepackage[onehalfspacing]{setspace}		% 1.5-facher Zeilenabstand
+\usepackage[cache=false]{minted}
+
+\title{\Large
+	Bedienungsanleitung Fahrspurverfolgung TUCar
+}
+\author{Leopold Mauersberger}
+\date{\today}
+
+\begin{document}
+% Titel
+\maketitle
+
+\section{Gültigkeitsbereich\&Voraussetzungen}
+Diese Anleitung beschreibt den Start der im Rahmen der Bachelorarbeit \glqq Kamerabasierte Navigation eines Modellfahrzeugs in einem Straßenverkehrsszenario\grqq\ implementierten Fahrspurverfolgung. Für ein weiterführendes Verständnis der hier beschrieben Vorgehensweisen sei auf das ROS-Wiki \footnote{http://wiki.ros.org/} sowie die MATLAB-Dokumentation, speziell die Abschnitte der Robotics-System-Toolbox \footnote{https://de.mathworks.com/products/robotics.html}, verwiesen. Zudem wird die Fähigkeit mit einem Linux-Terminal zu arbeiten, vorausgesetzt.
+
+\section{Notwendige Verbindungen}
+Bevor die entsprechenden Applikationen gestarten werden können, muss der PC sich auf dem WLAN-Hotspot des Raspberry PI einloggen. Das benötigte Passwort liegt dem Fahrzeug bei oder ist beim Admin zu erfragen. Zudem empfiehlt es sich, kurz ein LAN-Kabel am Raspberry PI anzustecken, um die Zeit des Einplatinencomputers ohne Echtzeituhr einzustellen. Einige generierte Debugging-Daten besitzen andernfalls keine Aussagekraft.
+
+\section{Raspberry PI}
+Ist die Wlan-Verbindung zwischen PC und PI hergestellt, kann sich via
+\begin{minted}{shell}
+ssh lemau@10.0.0.1
+\end{minted}
+\mint{shell}{ssh lemau@10.0.0.1}
+auf diesem eingeloggt werden.
+Nun muss der Nodes des TUCars gesourced werden:
+\mint{shell}{source ~/tucar_ws/catkin/devel/setup.bash} 
+
+
+\end{document}
