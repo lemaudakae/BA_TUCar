@@ -102,13 +102,14 @@ Da in der 1. und 2. Iteration keine Punkte \pnt{p_{n-1}} und \pnt{p_n} vorhanden
 Wurde der Startpunkt wie in Methode~\ref{item:solidline:startpoints:dashedline} beschrieben durch ein Mittellinienelement bestimmt, kann dessen Orientierung als Richtung des Verschiebungsvektors genutzt werden.
 Bei den Verfahren \ref{item:solidline:startpoints:hough} und \ref{item:solidline:startpoints:fixed} wird eine konstante Verschiebung in Fahrtrichtung des Fahrzeugs genutzt.
 
-\subsubsection{Ende des Algorithmus} 
+\subsubsection{Ende des Algorithmus}
+\label{sssec:fahrspurerkennung:riverflow:randlinie:ende} 
 Der Algorithmus wird beendet, sobald:
 \begin{enumerate}
 \item  
 Der Mittelpunkt \begin{math} \vct{m}  \end{math} der nächsten Scanline außerhalb des Bildbereichs liegt
 \item \label{item:fahrspurerkennung:riverflow:randlinie:ende:keinpunkt}
-Auf der aktuellen Scanline keine Maxima größer als der Schwellwert \scl{s} gefunden wurden.
+Auf der aktuellen Scanline keine Maxima größer als der Schwellwert \scl{s} gefunden wurden. Vor dem endgültigem Abbruch der Verfolgung einer Fahrbahnmarkierung wird der Verschiebungsvektor \vct{\gls{lat:dv}} der ergebnislosen Scanline verlängert und die erneute Suche nach einer ausreichend großen Filterantwort durchgeführt, somit können auch kleine Unterbrechungen einer Linie überwunden werden.
 \item 
 Die betragsmäßige Orientierungsänderung \(\btr{\scl{\Delta \phi}} = \btr{\atantwo{\scl{r_{n+1 y}, r_{n+1 x}}} \linebreak - \atantwo{\scl{r_{n y}, r_{n x}}}}\) der zwei Vektoren \(\vct{r_{n+1}}=\vct{p_{n+1}}-\vct{p_{n}}\) sowie \(\vct{r_{n}}=\vct{p_{n}}-\vct{p_{n-1}}\) zwischen den letzten zwei gespeicherten und dem gerade gefundenen Punkt einen Grenzwert nicht überschreitet (s. Abb.~\ref{fig:riverflow:randlinie:prinzip}). Da der Straßenverlauf im gegebenen Szenario niemals abknickt, wäre dies ein sicheres Zeichen einer Fehlerkennung. Diese Abbruchbedingung ließe sich auch durch Die Länge der Scanlines einstellen, indem somit der Öffnungswinkel des Suchkegels (graue Linien in Abb.~\ref{fig:riverflow:randlinie:prinzip}) reduziert wird und Punkte, die zu einem Abknicken der erkannten Fahrbahnmarkierung führen, gar nicht erst erkannt werden. 
 Die Prüfung der Orientierungsänderung wird jedoch beim in Abschnitt~\ref{sssec:fahrspurerkennung:riverflow:randlinie:gestrichelt} beschriebenen Sonderfall der Extraktion des Punktes \vct{p_{n+1}} notwendig.

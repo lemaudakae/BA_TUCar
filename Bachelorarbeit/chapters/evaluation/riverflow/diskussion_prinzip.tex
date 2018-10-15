@@ -10,7 +10,7 @@ Dem Straßenverlauf wird kein mit wenigen Parametern beschreibbares Modell zugru
 \item \label{item:evaluation:riverflow:no_old_points_needed}
 Die Lage der Fahrbahnmarkierungen wird ohne Informationen aus vorherigen Bildern erkannt.
 \item \label{item:evaluation:riverflow:verification}
-Nach der initialen Erkennung wird eine Plausibilitätsprüfung der erkannten Linienverläufe vorgenommen. Der Abstand eines Punktes zu mindestens einer weiteren Fahrbahnmarkierung muss dem im Testszenario vorgegebenen gleichen. 
+Nach der initialen Erkennung wird eine Plausibilitätsprüfung der erkannten Linienverläufe vorgenommen. Der Abstand eines Punktes zu mindestens einer weiteren Fahrbahnmarkierung muss der bekannten, im Testszenario vorgegebenen Distanz gleichen. 
 \end{enumerate}
 Die beschriebenen fundamentalen Differenzen führen zu folgenden Vor- und Nachteilen:
 
@@ -20,14 +20,15 @@ Punkt \ref{item:evaluation:riverflow:no_model} macht es möglich, nahezu jeden S
 \item
 Kurven mit über \(90^{\circ}\) Richtungsänderung können nun erkannt werden. Dies führte mit dem Polynom \(\gls{y}(\gls{x})\) der vorhergehenden Herangehensweisen zu Problemen, da \(90^{\circ}\)-Kurven einen unendlichen Anstieg der gesuchten kubischen Funktion zur Folge hätten.
 \item
-Da die Strecke in guter Näherung aus Kreissegmenten und Geraden aufgebaut ist, kann das  Polynom \(\gls{y}(\gls{x})\) der ersten beiden Konzepte diesen Verlauf nur annähern. Die nun untersuchte Vorgehensweise hingegen findet Punkte die exakt mittig auf der Fahrbahnmarkierung liegen.
+Da die Strecke in guter Näherung aus Kreissegmenten und Geraden aufgebaut ist, kann das  Polynom \(\gls{y}(\gls{x})\) der ersten beiden Konzepte diesen Verlauf nur annähern. Die nun untersuchte Vorgehensweise hingegen findet Punkte, die exakt mittig auf der Fahrbahnmarkierung liegen.
 \end{itemize}
 Unterschied \ref{item:evaluation:riverflow:no_old_points_needed} verhindert, dass eine Fehlerkennung unmittelbare Auswirkungen auf die Detektion von Linienverläufen im nächsten Bild hat. Ein \glqq Weglaufen\grqq\ der Masken oder des Systemzustands \gls{lat:statevector} wird verhindert.
+
 Punkt \ref{item:evaluation:riverflow:verification} bietet zusätzliche Sicherheit, da nur in sich stimmige Straßenverläufe in die Weltkarte eingetragen werden. Außerdem wird bei Erkennung mehrerer Hypothesen für die seitlichen Fahrbahnmarkierungen die Auswahl der besten erkannten Koordinatenserie möglich.
 
 \subsubsection{Nachteile}
-Der in Unterschied \ref{item:evaluation:riverflow:no_model} beschriebene Verzicht auf ein kompaktes mathematisches Fahrspurmodell führt zum Abbruch des Algorithmus bei fehlen eines Stücks der gesuchten Linie im Kamerabild. Die genutzte iterative Methode, welche auf Basis der schon gefundenen Punkte die Lage der weiteren Fahrbahnmarkierung vorhersagt, geht von einem Ende der gesuchten Linie aus, sobald kein Punkt auf der nächsten Scanline gefunden wurde (siehe Punkt \ref{item:fahrspurerkennung:riverflow:randlinie:ende:keinpunkt}). Durch die gute Qualität der Aufnahmen im Testszenario ohne eingebrachte Störeinflüsse stellt dies jedoch kein  Problem dar.
+Der in Unterschied \ref{item:evaluation:riverflow:no_model} beschriebene Verzicht auf ein kompaktes mathematisches Fahrspurmodell führt zum Abbruch des Algorithmus beim zu schwachen Auftreten eines Stücks der gesuchten Linie im gefilterten Bild. Die genutzte iterative Methode, welche auf Basis der schon gefundenen Punkte die Lage der weiteren Fahrbahnmarkierung vorhersagt, geht von einem Ende der gesuchten Linie aus, sobald kein Punkt auf der nächsten Scanline gefunden wurde (siehe Punkt \ref{item:fahrspurerkennung:riverflow:randlinie:ende:keinpunkt} in Abschnitt \ref{sssec:fahrspurerkennung:riverflow:randlinie:ende}). Durch die gute Qualität der Aufnahmen im Testszenario ohne eingebrachte Störeinflüsse stellt dies jedoch kein  Problem dar.
 
-Punkt \ref{item:evaluation:riverflow:no_old_points_needed} bietet Platz für Optimierungsmöglichkeiten des Algorithmus. Es wäre möglich, in jedem Bild die Verarbeitung auf bisher unbekannte Bereiche der Aufnahme zu reduzieren. Startpunkte für die Algorithmen würden dann aus bereits in die Weltkarte eingetragenen Koordinaten ermittelt werden. Der erworbene Geschwindigkeitszuwachs eliminiert jedoch die Redundanz gefundener Punkte, was die Genauigkeit und Zuverlässigkeit des Algorithmus vermindert.
+Punkt \ref{item:evaluation:riverflow:no_old_points_needed} bietet Platz für Optimierungsmöglichkeiten des Algorithmus. Es wäre möglich, in jedem Bild die Verarbeitung auf bisher unbekannte Bereiche der Aufnahme zu reduzieren. Startpunkte für die Algorithmen könnten aus bereits in die Weltkarte eingetragenen Koordinaten ermittelt werden. Der erworbene Geschwindigkeitszuwachs eliminiert jedoch die Redundanz gefundener Punkte, was die Genauigkeit und Zuverlässigkeit des Algorithmus vermindert.
 
-Unterschied \ref{item:evaluation:riverflow:verification} und die dadurch ermöglichte Verfolgung mehrerer Hypothesen der seitlichen Fahrbahnmarkierungen erhöhen die Verarbeitungszeit eines Bildes nicht unwesentlich.
+Unterschied \ref{item:evaluation:riverflow:verification} und die dadurch ermöglichte Verfolgung mehrerer Hypothesen der seitlichen Fahrbahnmarkierungen können die Dauer dieses Verarbeitungsschrittes vervielfachen siehe Abb. \ref{evaluation:riverflow:hypos:times_04}.
