@@ -9,7 +9,7 @@ Im gewählten Fahrspurverfolgungskonzept läuft die Erkennung der Fahrbahnmarkie
 \item
 Der Zeitpunkt, an welchem die Punkte in die Weltkarte eingetragen wurden, muss aktuell genug sein.
 \item \label{item:regelung:zielpunkt:holen:regeln:abstand}
-Der Abstand (analog \eqref{eq:norm:distpoints}) der aktuellen Roboterpose zur Pose, an welcher die Punkte in die globale Karte eingetragen wurden, darf einen Grenzwert nicht überschreiten.
+Der Abstand der aktuellen Roboterpose zur Pose, an welcher die Punkte in die globale Karte eingetragen wurden, darf einen Grenzwert nicht überschreiten.
 \item \label{item:regelung:zielpunkt:holen:regeln:xcoord}
 Die x-Koordinate der in das Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} transformierten Punkte muss in einem bestimmten Intervall liegen.
 \end{enumerate}
@@ -19,7 +19,7 @@ Um die Punkte nach Kategorie \ref{item:regelung:zielpunkt:holen:regeln:xcoord} f
 Um später alle drei Fahrbahnmarkierungen zur Zielpunktgewinnung in die gewünschte Fahrspur verschieben zu können, muss eine mathematische Repräsentation der Mittellinie und Seitenlinien gefunden werden, welche dies erlaubt. Da in der Weltkarte aus mehreren Bildern erkannte Punkte vorhanden sind, soll ein zu allen diesen Frames möglichst gut passender Zielpunkt gefunden werden. Wählt man den Bereich der für die Zielpunktfindung relevanten Fahrbahnmarkierungen nicht zu groß, kann deren Verlauf gut durch Kreisbögen approximiert werden. 
 
 \subsubsection{Kreisfit} 
-Zur Ermittlung des optimalen Kreises durch die gefragten Punkte wurde der Taubin-Kreisfit \autocite{taubinEstimationPlanarCurves1991} in der Implementierung von \autocite{nikolaichernovMATLABCodesFitting} verwendet. 
+Zur Ermittlung des optimalen Kreises durch die gefragten Punkte wurde der Taubin-Kreisfit \autocite{taubinEstimationPlanarCurves1991} in der Implementierung von \autocite{nikolaichernovMATLABCodesFitting2012} verwendet. 
 
 \subsubsection{Ermittlung zusätzlicher Parameter}
 Neben dem Mittelpunkt \gls{lat:mp} und Radius \gls{lat:rad} muss zur vollständigen Parameterisierung des Kreisbogens Start- und Endwinkel sowie die Drehrichtung des Bogens bekannt sein.
@@ -51,7 +51,7 @@ Desweiteren wird der Punkt \pnt{p_{b2}} \eqref{eq:regelung:betweenpoint} auf dem
 \end{pmatrix}
 \cdot \gls{lat:rad}
 \end{equation}
-Aus den Mittelwerten \( \mean{\nrm{\gls{lat:av}}}_{1/2} \) \eqref{eq:regelung:betweenpointmeandistances} der Abstände \( \nrm{\gls{lat:av}}_{1/2i} = \nrm{\pnt{p_{b1/2}} - \pnt{p_{\text{fit}i}}} \) (analog \eqref{eq:norm:distpoints}) der \(n\) zum Kreisfit genutzten Punkte \(\pnt{p_{\text{fit}i}}\) zu den Punkten \(\pnt{p_{b1}}\) und \(\pnt{p_{b2}}\) kann nun die Rotationsrichtung bestimmt werden.
+Aus den Mittelwerten \( \mean{\nrm{\gls{lat:av}}}_{1/2} \) \eqref{eq:regelung:betweenpointmeandistances} der Abstände \( \nrm{\gls{lat:av}}_{1/2i} = \nrm{\pnt{p_{b1/2}} - \pnt{p_{\text{fit}i}}} \) der \(n\) zum Kreisfit genutzten Punkte \(\pnt{p_{\text{fit}i}}\) zu den Punkten \(\pnt{p_{b1}}\) und \(\pnt{p_{b2}}\) kann nun die Rotationsrichtung bestimmt werden.
 \begin{equation} \label{eq:regelung:betweenpointmeandistances}
 \mean{\nrm{\gls{lat:av}}}_{1/2} = \frac{\sum_{i=1}^n \nrm{\gls{lat:av}}_{1/2i}}{n} 
 \end{equation}

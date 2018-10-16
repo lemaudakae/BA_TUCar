@@ -14,15 +14,22 @@
 }
 \usepackage[ngerman]{babel}
 \usepackage[onehalfspacing]{setspace}		% 1.5-facher Zeilenabstand
-\usepackage[cache=false]{minted}
+\usepackage{minted} %[cache=false]
 
+\newcommand{\sh}[1]{\mint[xleftmargin=2em]{shell}{#1}}
+%\newmint[sh]{shell}{xleftmargin=2em}
+%\newmint{shell}{xleftmargin=2em}
+\newminted[she]{shell}{xleftmargin=2em}
+\newmintinline[shi]{shell}{}
 \title{\Large
 	Bedienungsanleitung Fahrspurverfolgung TUCar
 }
 \author{Leopold Mauersberger}
 \date{\today}
 
+
 \begin{document}
+
 % Titel
 \maketitle
 
@@ -30,17 +37,71 @@
 Diese Anleitung beschreibt den Start der im Rahmen der Bachelorarbeit \glqq Kamerabasierte Navigation eines Modellfahrzeugs in einem Straßenverkehrsszenario\grqq\ implementierten Fahrspurverfolgung. Für ein weiterführendes Verständnis der hier beschrieben Vorgehensweisen sei auf das ROS-Wiki \footnote{http://wiki.ros.org/} sowie die MATLAB-Dokumentation, speziell die Abschnitte der Robotics-System-Toolbox \footnote{https://de.mathworks.com/products/robotics.html}, verwiesen. Zudem wird die Fähigkeit mit einem Linux-Terminal zu arbeiten, vorausgesetzt.
 
 \section{Notwendige Verbindungen}
-Bevor die entsprechenden Applikationen gestarten werden können, muss der PC sich auf dem WLAN-Hotspot des Raspberry PI einloggen. Das benötigte Passwort liegt dem Fahrzeug bei oder ist beim Admin zu erfragen. Zudem empfiehlt es sich, kurz ein LAN-Kabel am Raspberry PI anzustecken, um die Zeit des Einplatinencomputers ohne Echtzeituhr einzustellen. Einige generierte Debugging-Daten besitzen andernfalls keine Aussagekraft.
+Bevor die entsprechenden Applikationen gestarten werden können, muss der PC sich auf dem vom Raspberry PI bereitgestellten WLAN-Hotspot einloggen. Das benötigte Passwort liegt dem Fahrzeug bei oder ist beim Admin zu erfragen. Zudem empfiehlt es sich, kurz ein LAN-Kabel am Raspberry PI anzustecken, um die Zeit des Einplatinencomputers ohne Echtzeituhr einzustellen. Einige generierte Debugging-Daten besitzen andernfalls keine Aussagekraft.
 
 \section{Raspberry PI}
-Ist die Wlan-Verbindung zwischen PC und PI hergestellt, kann sich via
-\begin{minted}{shell}
-ssh lemau@10.0.0.1
-\end{minted}
-\mint{shell}{ssh lemau@10.0.0.1}
-auf diesem eingeloggt werden.
-Nun muss der Nodes des TUCars gesourced werden:
-\mint{shell}{source ~/tucar_ws/catkin/devel/setup.bash} 
+Ist die Wlan-Verbindung zwischen PC und PI hergestellt, kann sich in einer neuen Konsole via
+\sh{ssh lemau@10.0.0.1}
+%\mint[xleftmargin=5em]{shell}{ssh lemau@10.0.0.1} 
+\noindent auf diesem eingeloggt werden. Das Passwort lautet \emph{tucar2018}.
+\noindent Nun kann das Launchfile zum Starten aller notwendigen Nodes aufgerufen werden:
+\sh{roslaunch tucar tucar_bringup.launch use_sensors:=true}
+\noindent Beendet werden diese durch die Tastenkombination \framebox{STRG} + \framebox{C}. Der PI kann mittels
+\sh{Poweroff} 
+\noindent heruntergefahren werden.
+
+\subsection{bashrc}
+Der Einfachheit halber wurden die Befehle
+\begin{she}
+export ROS_HOSTNAME=10.0.0.1
+source ~/tucar_ws/catkin/devel/setup.bash
+\end{she}
+ \noindent zum Festlegen IP-Adresse des Netzwerkinterface, welches ROS verwenden soll und zum Sourcen der Nodes des TUCars schon in die \emph{bashrc} des PI eingetragen.
+
+\section{PC}
+\subsection{Matlab}
+Am PC kann nun MATLAB gestartet werden. Hierbei ist es wichtig, dies aus dem Ordner \emph{Riverflow} zu tun, da sich hier das Skript \emph{startup.m} befindet, welches die benötigten Custom-Messages des TUCars lädt, so wie alle relevanten Unterordner dem Matlab-Pfad hinzufügt:
+\begin{she}
+cd .../Riverflow
+matlab&
+\end{she}
+
+Auch das von ROS am PC zu nutzende Netzwerk-Interface muss festgelegt werden. Dies geschieht beim Start des Matlab-Skriptes automatisch. Es kann jedoch notwendig sein, diese IP anzupassen:
+\sh{ifconfig} 
+\noindent in einem weiteren Terminal aufgerufen liefert Informationen zu allen vorhandenen Netzwerkadaptern, der WLAN-Stick sollte hier ausfindig zu machen sein.
+Die gefundene Adresse kann nun gegebenenfalls in der Datei \emph{function\_init\_parameters.m} im Ordner \emph{Initialisierungen} unter Punkt \emph{ROS-Parameter} bei \emph{params.RosIP} eingetragen werden.
+
+Zum Start der Fahrspurverfolgung muss lediglich die Datei main.m ausgeführt werden. Die Debuggingmöglichkeiten können von hier aus eingeschaltet werden, genaue Erläuterungen finden sich in den Kommentaren. Zum Auswerten dieser sind die Skripte im Ordner \emph{Debug} zu nutzen. Die Arbeitsweise des Quellcodes kann nach lesen der zugehörigen Bachelorarbeit anhand der Funktionsbeschreibungen durch rekursives abarbeiten dieser ergründet werden.
+
+\subsection{Konsole}
+Soll nicht nur via Matlab mit dem TUCar kommuniziert werden, so muss ein weiteres Terminal geöffnet werden, in dem die IP des ROS-Masters (PI) bekannt gemacht und die richtige Netzwerkschnittstelle eingestellt wird.
+\begin{she}
+export ROS_MASTER_URI=http://10.0.0.1:11311 # IP PI-Hotspot
+export ROS_IP=x.x.x.x # IP Wlan-Stick -> siehe ifconfig
+\end{she}
+\noindent Eine kleine Liste nützlicher Befehle ist:
+\begin{she}
+# verfügbare Topics anzeigen
+rostopic list
+# Topicdaten auf Konsole ausgeben
+rostopic echo topicname
+# Kamerabild anzeigen
+rqt_image_view
+\end{she}
+
+\section{Parameteranpassung TUCar}
+\subsection{Fahrplattform}
+Die Konfiguration der Fahrplattform kann mittels der Datei 
+\sh{tucar_controller.yaml} 
+\noindent im Ordner 
+\sh{~/tucar_ws/catkin/src/tucar/tucar/config/platform} 
+\noindent erfolgen. 
+\subsection{Kamera}
+\noindent Die Datei 
+\sh{camera.xml} 
+\noindent im Ordner 
+\sh{~/tucar_ws/catkin/src/tucar/tucar/launch/sensor_drivers} 
+\noindent ist für die Konfiguration der Kamera zuständig.
 
 
 \end{document}

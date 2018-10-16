@@ -53,10 +53,11 @@ Die zwei initialen Masken für die Randlinien werden anschließend aus der appro
 \begin{subequations}
 \begin{eqnarray}
 \mathrm{f}(\gls{x}) & = & a{\gls{x}}^3 + b{\gls{x}}^2 +c{\gls{x}} +d  \label{eq:polynom3} 	\\
-\mathrm{f}’(\gls{x}) & = & 3a{\gls{x}}^2 + 2b\gls{x} +c \label{eq:derr_polynom3} 							\\
-\gls{lat:dv} & = & \frac{1}{\sqrt{(-\mathrm{f}’(\gls{x}))^2 + 1}} \cdot
+%\mathrm{f}’(\gls{x}) & = & 3a{\gls{x}}^2 + 2b\gls{x} +c \label{eq:derr_polynom3} 							\\
+\der{\fnfop}(\gls{x}) & = & 3a{\gls{x}}^2 + 2b\gls{x} +c \label{eq:derr_polynom3} 							\\
+\gls{lat:dv} & = & \frac{1}{\sqrt{(-\der{\fnfop}(\gls{x}))^2 + 1}} \cdot
 \begin{pmatrix}
--\mathrm{f}’(\gls{x}) 	\\
+-\der{\fnfop}(\gls{x}) 	\\
 1 		\\
 \end{pmatrix}
 \label{eq:maske_verschiebungsvektor}									\\

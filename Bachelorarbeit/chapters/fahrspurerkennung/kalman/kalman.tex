@@ -6,7 +6,7 @@ Auch der folgende Ansatz zur Fahrspurerkennung approximiert den Verlauf der Fahr
 Das in Abschnitt~\ref{sec:grundlagen:kalman-filter} eingeführte Kalman-Filter soll verwendet werden um die Lage der Fahrbahnmarkierungen in konsekutiven Aufnahmen zu verfolgen. Final sollen Punkte aus den in Einzelbildern erkannten Verläufen der Straßenmarkierung entnommen, in die Weltkarte eingetragen und somit für den Regelungsalgorithmus verfügbar gemacht werden.
 
 \subsection{Fahrspurmodell}
-Als Repräsentation der Fahrspur im Zustandsraum soll das in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} vorgeschlagene Modell, welches wiederum eine Vereinfachung von \autocite{risackRobustLaneRecognition} darstellt, verwendet werden.
+Als Repräsentation der Fahrspur im Zustandsraum soll das in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} vorgeschlagene Modell, welches wiederum eine Vereinfachung von \autocite{risackRobustLaneRecognition1998} darstellt, verwendet werden.
 Wie in Passage~\ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündigt, soll die Fahrspur als Polynom 3. Grades \begin{math} \gls{y}^{\gls{lat:LinienKOS}}(\gls{x}^{\gls{lat:LinienKOS}}) \end{math} approximiert werden. Um die \glsdesc{lat:systemmatrix} \gls{lat:systemmatrix} zu vereinfachen und einen sehr anschaulichen \glsdesc{lat:statevector} \gls{lat:statevector} zu erhalten, wird für jenen die 0. bis 3. Ableitung des Polynoms an der Stelle \begin{math} \gls{x}^{\gls{lat:LinienKOS}}=0 \end{math} verwendet. 
 \begin{equation}
 \label{eq:polylane}
@@ -61,7 +61,7 @@ Wie in Passage~\ref{ssec:fahrspurerkennung:kalman-filter:ueberblick} angekündig
  \end{figure}
  
 \subsection{Messung} \label{ssec:fahrspurerkennung:kalman:messung}
-Um eine ausreichende Geschwindigkeit des Kalmanfilters zu gewährleisten, muss die Anzahl der Bildpunkte, welche zur Korrektur des prädizierten Zustands verwendet werden, im Gegensatz zu Abschnitt~\ref{sec:maskenbau} vermindert werden. Es wird in Anlehnung an \autocite{risackRobustLaneRecognition} das Bild ab dem Vorverarbeitungsschritt nur in relevanten Bereichen betrachtet.
+Um eine ausreichende Geschwindigkeit des Kalmanfilters zu gewährleisten, muss die Anzahl der Bildpunkte, welche zur Korrektur des prädizierten Zustands verwendet werden, im Gegensatz zu Abschnitt~\ref{sec:maskenbau} vermindert werden. Es wird in Anlehnung an \autocite{risackRobustLaneRecognition1998} das Bild ab dem Vorverarbeitungsschritt nur in relevanten Bereichen betrachtet.
 Hierfür werden Geraden \glqq Scanlines\grqq{} senkrecht zum Polynom des Fahrspurmodells berechnet (gelbe Linien in Abb.~\ref{fig:kalman:iteration_komplett}). Mathematisch lässt sich dies, basierend auf den Definitionsgleichungen \eqref{eq:polylane} und \eqref{eq:statevectorlane} des Polynoms \(\fnf{\gls{x}^{\gls{lat:LinienKOS}}}=\gls{y}^{\gls{lat:LinienKOS}}(\gls{x}^{\gls{lat:LinienKOS}})\) und Zustandsvektors sowie den Formeln \eqref{eq:derr_polynom3} und \eqref{eq:maske_verschiebungsvektor} zur Berechnung des zum Polynom senkrechten, normierten Vektors \gls{lat:dv}, wie folgt ausdrücken:
 \begin{subequations}
 \begin{equation}
@@ -271,7 +271,7 @@ Die \glsdesc{lat:outputmatrix} \gls{lat:outputmatrix} bildet den Systemzustand \
 \end{equation} 
 
 \subsection{Kovarianzmatritzen}
-Wie in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} und \autocite{risackRobustLaneRecognition} werden die Kovarianzmatrix des System-/Prozessrauschens \mtx{Q} und die Kovarianzmatrix des Messrauschens \mtx{R} als konstante Diagonalmatritzen gesetzt. Auf die Prädiktion der Kovarianzmatrix \mtx{P} wird somit verzichtet.
+Wie in \autocite{petersfalkoFPGAbasierteBildverarbeitungspipelineZur2009} und \autocite{risackRobustLaneRecognition1998} werden die Kovarianzmatrix des System-/Prozessrauschens \mtx{Q} und die Kovarianzmatrix des Messrauschens \mtx{R} als konstante Diagonalmatritzen gesetzt. Auf die Prädiktion der Kovarianzmatrix \mtx{P} wird somit verzichtet.
 
 \subsection{konkrete Implementierung des Kalman-Filters}
 Ist der \glsdesc{lat:statevector} \gls{lat:statevector} einmal wie in Passage~\ref{sssec:fahrspurerkennung:kalman:fahrspurmodell:initialisierung} beschrieben initialisiert, können die Gleichungen des Kalmanfilters bei Eintreffen eines neuen Bildes wie folgt berechnet werden:

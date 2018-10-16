@@ -39,20 +39,19 @@
 \usepackage{csquotes}
 \usepackage[backend=biber, style=authoryear]{biblatex}
 \usepackage[ngerman]{translator} % für glossaries 
-\usepackage[hypertexnames=false]{hyperref}
-\usepackage[
-nonumberlist, %keine Seitenzahlen anzeigen
-acronym,      %ein Abkürzungsverzeichnis erstellen
-toc,          %Einträge im Inhaltsverzeichnis
-% automake,
-section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
-]{glossaries}
+%\usepackage[hypertexnames=false]{hyperref}
+%\usepackage[
+%nonumberlist, %keine Seitenzahlen anzeigen
+%acronym,      %ein Abkürzungsverzeichnis erstellen
+%toc,          %Einträge im Inhaltsverzeichnis
+%% automake,
+%section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
+%]{glossaries}
 \usepackage{scrpage2}				% Kopf- und Fußzeilen flexibel gestalten
 \usepackage[onehalfspacing]{setspace}		% 1.5-facher Zeilenabstand
 
 % unterdrückt die Ausgabe der Unterkapitel im Anhang
 \usepackage{etoolbox}
-\usepackage{siunitx}
 \appto\appendix{\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}}
 % reinstate the correct level for list of tables and figures
 \appto\listoffigures{\addtocontents{lof}{\protect\setcounter{tocdepth}{1}}}
@@ -68,10 +67,20 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 \usepackage{wrapfig}
 \graphicspath{{img/}}	% Angabe der Pfade, wo die Grafiken liegen;
 \newcommand{\mtlstscale}{0.45} % Skalierungsfaktor für Matlab-SVGs mit Standardeinstellungen
+\pdfsuppresswarningpagegroup=1
 
 %======================================================================================================
 %	Sonstiges
 %======================================================================================================
+\usepackage[hypertexnames=false]{hyperref}
+\usepackage[
+nonumberlist, %keine Seitenzahlen anzeigen
+acronym,      %ein Abkürzungsverzeichnis erstellen
+toc,          %Einträge im Inhaltsverzeichnis
+% automake,
+section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
+]{glossaries}
+\usepackage{siunitx}
 \newcommand{\bs}[1]{\boldsymbol{#1}}
 
 %======================================================================================================
