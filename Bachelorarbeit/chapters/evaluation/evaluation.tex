@@ -1,10 +1,7 @@
 \chapter{Evaluation \dcfirstauthorshort}
 \label{cha:evaluation}
 
-In diesem Kapitel sollen die Algorithmen zur Fahrspurerkennung bewertet werden. Nicht ohne Grund haben wir nur einen der drei Ansätze bis zur Lauffähigkeit implementiert. Die Ursachen der Abkehr von \gls{acr:ransac}- und Kalmanfilter basierten Methoden werden in den ersten beiden Abschnitten dargelegt. 
+In diesem Kapitel wird das final zur Fahrspurverfolgung genutzte Vorgehen ausführlich bewertet. Zu Beginn wird auf prinzipielle Vor- und Nachteile eingegangen, um schließlich die Performance anhand einiger Tests zu demonstrieren. Da fortan das Straßenszenario vielseitiger genutzt werden soll, ist es denkbar, dass sich künftig zusätzliche Objekte im Sichtbereich des Roboters befinden. Daher wird neben einer zeitlichen Betrachtung die Robustheit des Riverflow-Algorithmus bezüglich Geschwindigkeit, Störobjekten und abgedeckten Bereichen in der Fahrspur getestet.
 
-Da in Zukunft das Straßenszenario vielseitiger genutzt werden soll, ist es denkbar, dass sich zukünftig zusätzliche Objekte im Sichtbereich des Roboters befinden. Im dritten Teil des Kapitels wird daher neben einer zeitlichen Betrachtung die Robustheit des Riverflow-Algorithmus bezüglich Geschwindigkeit, Störobjekten und abgedeckten Bereichen in der Fahrspur getestet.
-
-\subimport{ransac/}{ransac}
-\subimport{kalman/}{kalman}
-\subimport{riverflow/}{riverflow}
+\subimport{diskussion/}{diskussion_prinzip}
+\subimport{messungen/}{messungen}

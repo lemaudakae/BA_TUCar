@@ -1,4 +1,4 @@
-\subsection{Diskussion prinzipieller Gesichtspunkte} 
+\section{Diskussion prinzipieller Gesichtspunkte \dcsecondauthorshort} 
 Die Fahrbahnmarkierungserkennung mittels Riverflow-Algorithmus besitzt drei signifikante Unterschiede zu den vorhergehenden Konzepten:
 \begin{enumerate}
 \item \label{item:evaluation:riverflow:no_model}
@@ -14,7 +14,7 @@ Nach der initialen Erkennung wird eine Plausibilitätsprüfung der erkannten Lin
 \end{enumerate}
 Die beschriebenen fundamentalen Differenzen führen zu folgenden Vor- und Nachteilen:
 
-\subsubsection{Vorteile}
+\subsection{Vorteile}
 Punkt \ref{item:evaluation:riverflow:no_model} macht es möglich, nahezu jeden Straßenverlauf ausreichend präzise zu approximieren:
 \begin{itemize} 
 \item
@@ -26,7 +26,7 @@ Unterschied \ref{item:evaluation:riverflow:no_old_points_needed} verhindert, das
 
 Punkt \ref{item:evaluation:riverflow:verification} bietet zusätzliche Sicherheit, da nur in sich stimmige Straßenverläufe in die Weltkarte eingetragen werden. Außerdem wird bei Erkennung mehrerer Hypothesen für die seitlichen Fahrbahnmarkierungen die Auswahl der besten erkannten Koordinatenserie möglich.
 
-\subsubsection{Nachteile}
+\subsection{Nachteile}
 \label{ssec:evaluation:riverflow:diskussion_prinzip:nachteile}
 Der in Unterschied \ref{item:evaluation:riverflow:no_model} beschriebene Verzicht auf ein kompaktes mathematisches Fahrspurmodell führt zum Abbruch des Algorithmus beim zu schwachen Auftreten eines Stücks der gesuchten Linie im gefilterten Bild. Die genutzte iterative Methode, welche auf Basis der schon gefundenen Punkte die mögliche Lage der weiteren Fahrbahnmarkierung eingrenzt, geht von einem Ende der gesuchten Linie aus, sobald kein Punkt auf der nächsten Scanline gefunden wurde (siehe Punkt \ref{item:fahrspurerkennung:riverflow:randlinie:ende:keinpunkt} in Abschnitt \ref{sssec:fahrspurerkennung:riverflow:randlinie:ende}). Durch die gute Qualität der Aufnahmen im Testszenario ohne eingebrachte Störeinflüsse stellt dies jedoch kein  Problem dar.
 
