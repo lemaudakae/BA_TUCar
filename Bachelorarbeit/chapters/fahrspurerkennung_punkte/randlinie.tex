@@ -1,5 +1,5 @@
-\subsection{Randlinie \dcsecondauthorshort} \label{ssec:fahrspurerkennung:riverflow:randlinie}
-\subsubsection{Startpunktgewinnung}
+\section{Randlinie \dcsecondauthorshort} \label{ssec:fahrspurerkennung:riverflow:randlinie}
+\subsection{Startpunktgewinnung}
 \label{sssec:fahrspurerkennung:riverflow:randlinie:startpunktgewinnung}
 Um den eigentlichen Riverflow-Algorithmus ausführen zu können, wird die ungefähre Lage der seitlichen Fahrbahnmarkierungen in der Nähe des Fahrzeugs benötigt. Zur Ermittlung dieser gibt es 3 Möglichkeiten:
 \begin{enumerate}
@@ -34,7 +34,7 @@ Die Verfahren \ref{item:solidline:startpoints:hough} oder \ref{item:solidline:st
   \label{fig:riverflow:randlinie:prinzip}
 \end{figure}
 
-\subsubsection{zentraler Algorithmus}
+\subsection{zentraler Algorithmus}
 \label{sssec:fahrspurerkennung:riverflow:randlinie:zentraler_algorithmus}
 Die Idee zum im folgenden Abschnitt dargelegten Ansatz zur Verfolgung durchgängiger Fahrbahnmarkierungen entstand auf Basis von \autocite{drauschkeEchtzeitfaehigeStartpunktalgorithmenFuer2016} sowie \autocite{limRiverFlowLane2012}.
 Durch Nutzung der Eigenschaften \ref{item:riverflow:rule:solidline} und  \ref{item:riverflow:rule:curvature} kann ausgehend von der aktuellen Linienorientierung in einem bestimmten Kegel (graue Linien in Abb.~\ref{fig:riverflow:randlinie:prinzip}), dessen Öffnungswinkel durch die maximale Krümmung der Fahrspur definiert ist, der weitere Verlauf der Fahrbahnmarkierung angenommen werden.
@@ -97,12 +97,12 @@ Da die Filterantwort des Kantendetektors für das gesamte Bild bereits vorliegt,
 Sind mehrere auf der Scanline \vct{s_{n+1}} gefundene Punkte  \pnt{p_{n+1}} vorhanden, so werden ab diesem Zeitpunkt multiple Hypothesen einer seitlichen Fahrbahnmarkierung verfolgt.
 Jetzt kann die nächste Iteration des Riverflow-Algorithmus mit der Bildung des folgenden Verschiebungsvektors bzw. der folgenden Verschiebungsvektoren \vct{\gls{lat:dv}_{n+1}} starten.
 
-\subsubsection{Sonderfall 1. und 2. Iteration}
+\subsection{Sonderfall 1. und 2. Iteration}
 Da in der 1. und 2. Iteration keine Punkte \pnt{p_{n-1}} und \pnt{p_n} vorhanden sind, muss der Verschiebungsvektor \gls{lat:dv} anderweitig bestimmt werden. 
 Wurde der Startpunkt wie in Methode~\ref{item:solidline:startpoints:dashedline} beschrieben durch ein Mittellinienelement bestimmt, kann dessen Orientierung als Richtung des Verschiebungsvektors genutzt werden.
 Bei den Verfahren \ref{item:solidline:startpoints:hough} und \ref{item:solidline:startpoints:fixed} wird eine konstante Verschiebung in Fahrtrichtung des Fahrzeugs genutzt.
 
-\subsubsection{Ende des Algorithmus}
+\subsection{Ende des Algorithmus}
 \label{sssec:fahrspurerkennung:riverflow:randlinie:ende} 
 Der Algorithmus wird beendet, sobald:
 \begin{enumerate}
@@ -118,10 +118,6 @@ Die Prüfung der Orientierungsänderung wird jedoch beim in Abschnitt~\ref{sssec
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.75\textwidth]{riverflow_randlinien_komplett}
-  \caption{Plot einer eines Riverflow-Durchlaufs für die Randlinien}
+  \caption[Plot eines Riverflow-Durchlaufs für die Randlinien]{Plot eines Riverflow-Durchlaufs für die Randlinien: \par Die Farben Rot,Orange und Pink stellen die Hypothesen der rechten, Blau die einzige Hypothese der linken Fahrbahnmarkierung dar. Diese Hypothesen bestehen jeweils aus den * für gefundene Punkte, dünnen Linien für deren Verschiebungsvektoren zueinander, fettgedruckten Geraden zur Darstellung der Scanlines sowie Scanquadraten und deren Mittelpunkte (\(\cdot\)) im Bereich der unterbrochenen Markierung. Die grünen Punkte repräsentieren die bereits erkannten\&verifizierten Mittellinienpunkte. }
   \label{fig:riverflow:randlinien:plot_komplett}
 \end{figure}
-
-\subsubsection{Sonderfall gestrichelte Randlinien}
-\label{sssec:fahrspurerkennung:riverflow:randlinie:gestrichelt}
-Da das bis zu diesem Punkt diskutierte Verfahren zur Erkennung der seitlichen Fahrbahnmarkierungen nur zum Verfolgen durchgängiger Linien konzipiert ist, einmündende Straßen jedoch durch eine unterbrochene Markierung gekennzeichnet sind, findet für diesen Sonderfall eine modifizierte Version der in Passage~\ref{ssec:fahrspurerkennung:riverflow:mittellinie} beschriebenen Vorgehensweise Anwendung. Ist Abbruchbedingung \ref{item:fahrspurerkennung:riverflow:randlinie:ende:keinpunkt} des zentralen Algorithmus erreicht, wird ein Suchfenster (siehe Abb.~\ref{fig:riverflow:randlinien:plot_komplett}) festgelegt. Wurden in diesem Bereich durch die Matlab-Funktion \emph{regionprops} Elemente einer kurzen, unterbrochenen Linie gefunden, werden diese als nächste Punkte der seitlichen Fahrbahnmarkierung vermerkt. Die Bildung des Mittelpunkts \pnt{m} des nächsten Suchfensters läuft wie in \eqref{eq:riverflow:solidline:scanlinemidpoint} beschrieben ab. Analog kann bei Fehlen eines Linienelementes im Suchfenster durch Bilden einer Scanline ein Rücksprung zum Fall einer durchgängigen Randlinie vollzogen werden.

@@ -1,4 +1,4 @@
-\chapter{Ansätze zur Fahrspurerkennung \dcsecondauthorshort}
+\chapter{Polynombasierte Fahrspurerkennung \dcsecondauthorshort}
 \label{cha:fahrspurerkennung}
 Ein zentrales Ziel dieser Arbeit stellt die Erkennung von Fahrspuren in einem Kamerabild dar. Mithilfe der im vorherigen Kapitel beschriebenen Bildvorverarbeitung wurde bereits eine Extraktion der für die folgenden Algorithmen notwendigen Eingangsinformationen vorgenommen. Die grundsätzliche Aufgabe der Konzepte zur Fahrbahndetektion besteht in einer weiteren Reduktion und Sortierung dieser vorverarbeiteten Daten zu einem mathematischen Modell der Straße. Die Komplexität dieser Darstellung variiert in der Literatur sehr stark, in \autocite{naroteReviewRecentAdvances2018} wird ein Überblick zu möglichen Modellen gegeben. Einige simple Repräsentationen wurden von Beginn der Recherche an ausgeschlossen, da sie dem vorgegebenen Szenario nicht gerecht werden: 
 \begin{itemize}
@@ -10,4 +10,3 @@ Die ersten zwei im Folgenden beschriebenen Verfahren bedienen sich deshalb eines
 
 \subimport{ransac/}{ransac}
 \subimport{kalman/}{kalman}
-\subimport{riverflow/}{riverflow}

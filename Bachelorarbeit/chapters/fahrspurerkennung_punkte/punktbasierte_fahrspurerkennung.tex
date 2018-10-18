@@ -1,0 +1,20 @@
+\section{Punktbasierte Fahrspurerkennung \dcsecondauthorshort} 
+\label{sec:fahrspurerkennung:riverflow}
+
+Der dritte und final genutzte Ansatz zur Fahrspurerkennung nutzt im Gegensatz zu den vorherigen Varianten kein durch wenige Parameter (Polynomkoeffizienten etc.) beschreibbares Modell. Dem Objekt Fahrspur werden hingegen bestimmte Eigenschaften zugesprochen, welche zur Idee der punktbasierten Erkennung und angeschlossenen Verifikation geführt haben.
+\begin{enumerate}
+\item \label{item:riverflow:rule:solidline}
+Ist eine Fahrbahnmarkierung eine Randlinie, so ist dies eine nicht unterbrochene Markierung bestimmter Breite.
+\item \label{item:riverflow:rule:dashedline}
+Ist eine Fahrbahnmarkierung eine Mittellinie, so besteht diese aus Elementen deren Länge, Breite und Abstand voneinander konstant und bekannt sind.
+\item \label{item:riverflow:rule:curvature}
+Die Krümmung einer Fahrbahnmarkierung darf einen bestimmten Wert nicht überschreiten.
+\item \label{item:riverflow:rule:distance}
+Rechte-, Mittel- und Seitenlinie besitzen einen konstanten Abstand (Fahrspurbreite) zueinander.
+\end{enumerate}
+In den folgenden Abschnitten wird gezeigt, wie mittels der Eigenschaft \ref{item:riverflow:rule:dashedline} unter Nutzung der MATLAB-Funktion \emph{regionprops} mögliche Mittellinienelemente aus dem Binärbild extrahiert werden. Darauf folgt die Erläuterung einer iterativen Methode zur Extraktion für die seitliche Fahrbahnmarkierung repräsentativer Punkte \glqq Riverflow-Algorithmus\grqq\ auf Basis der Charakteristika \ref{item:riverflow:rule:solidline} und \ref{item:riverflow:rule:curvature}. Anschließend wird auf das Konzept zur Selektion der richtig erkannten und für die Fahrspurverfolgung relevanten Mittellinienelemente aus allen Ergebnissen der \emph{regionprops}-Funktion eingegangen, welche an das Verfahren zur Detektion der Randlinien angelehnt ist. Da bei der Erkennung einer Randlinie mehrere mögliche Verläufe dieser generiert werden, sowie eine Überprüfung der Plausibilität der erkannten Koordinatenserie(n) wünschenswert ist, erfolgt basierend auf dem in Spezifikum \ref{item:riverflow:rule:distance} erwähnten Modellwissen der Straße 
+
+\input{mittellinie}
+\input{randlinie}
+\input{verifikation}
+\input{unterbrochene_randlinie}
