@@ -1,5 +1,15 @@
 \section{Messungen}
 In diesem Abschnitt sollen charakteristische Messwerte der Fahrspurerkennung, Regelung, sowie dem Zusammenspiel beider Komponenten dargestellt und diskutiert werden. Dies soll unter Veränderung der Umgebungsbedingungen sowie mit unterschiedlichen Fortbewegungsgeschwindigkeiten des Modellfahrzeugs geschehen.
+
+\paragraph{Überlegungen zur Darstellung der Messwerte}
+Um möglichst viele Informationen kompakt abzubilden, wurden unter anderem die Diagrammtypen Boxplot sowie Histogramm genutzt. Da kurz nach dem Start des Fahrzeugs 
+\begin{itemize}
+	\item
+	MATLAB viele Funktionen erst noch in den Hauptspeicher laden muss (\glqq Warmlaufphase\grqq)
+	\item
+	Das Fahrzeug vor vollendeter Verarbeitung des ersten Bildes schon ohne gültigen Zielpunkt losfährt
+\end{itemize}
+wurden diese nicht-repräsentativen Phasen in den entsprechenden Grafiken ausgelassen, da sie die Aussagekraft der Messwerte beeinträchtigen würden.
   
 \subsection{Evaluation ohne Ground Truth}
 Für die Detektion von Fahrspuren auf Einzelbildern und die daraus resultierende Bewegung des Fahrzeugs existieren zum jetzigen Zeitpunkt keine Vergleichswerte. 
@@ -14,15 +24,34 @@ Für ein Benchmark der Fahrspurerkennung könnte ein Ground-Truth-Datensatz in F
 \paragraph{Regelung} 
 Die Güte der Regelung bzw. des Zusammenspiels aus Bildverarbeitung und Regelung könnte am exaktesten durch ein hinreichend genaues System zur Lokalisierung des Fahrzeugs im Testszenario ermittelt werden. Somit wäre es möglich die Abweichung der gefahrenen Strecke von einer vorgegebenen Ideallinie auszuwerten. Da die Inbetriebnahme des an der Professur vorhandenen zweidimensionalen Tracking-Systems viel Einarbeitungszeit benötigt, wird hier auf eine einfache Methode zurückgegriffen. Es wird vermerkt ob ein gültiger Zielpunkt für die Regelung ermittelt werden konnte (s. Abschnitt \ref{sec:regelung:zielpunktgewinnung}), sowie ob das Fahrzeug die Fahrspur völlig verlässt oder dem Straßenverlauf zufriedenstellend folgt.
 
-\subsection{Überlegungen zur Darstellung der Messwerte}
-Um möglichst viele Informationen kompakt abzubilden, wurden unter anderem die Diagrammtypen Boxplot sowie Histogramm genutzt. Da kurz nach dem Start des Fahrzeugs 
-\begin{itemize}
-\item
-MATLAB viele Funktionen erst noch in den Hauptspeicher laden muss (\glqq Warmlaufphase\grqq)
-\item
-Das Fahrzeug vor vollendeter Verarbeitung des ersten Bildes schon ohne gültigen Zielpunkt losfährt
-\end{itemize}
-wurden diese nicht-repräsentativen Phasen in den entsprechenden Grafiken ausgelassen, da sie die Aussagekraft der Messwerte beeinträchtigen würden.
+\subsection{Qualität der Weltkarte  \dcfirstauthorshort}
+Alle für die Regelung notwendigen Informationen über den Verlauf der Straßenmarkierungen stammen aus der parallel angelegten Karte. Damit eine stabile Navigation möglich ist, muss ihre Reliabilität vorausgesetzt sein. Die Authentizität der Kartenpunkte hängt wiederum von der Zuverlässigkeit der Pose ab. Da IMU und Encoder fehlerbehaftet sind, ist eine Abweichung der ermittelten zur realen Pose zu erwarten. 
+
+Um die tatsächliche Genauigkeit der Pose und Weltkarte anschaulich darzustellen, wurden in Abbildung~\ref{fig:evaluation:riverflow:weltkarte:qualitaet} die geplotteten Karten- und Posendaten maßstabsgerecht über die Entwurfszeichnung gelegt. Trotz sich theoretisch aufsummierender Fehler ist die Abweichung der End- zur Startpose nach einer Runde erstaunlich gering.
+
+\begin{figure}[htbp] % [htb]
+	\centering
+	
+	\subfloat[Kombination des Plots der durch Messungen entstandenen Weltkarte mit der realen Entwurfszeichnung in passender Größe als Qualitätsnachweis 
+	\label{fig:evaluation:riverflow:weltkarte:qualitaet}]{\includegraphics[height=0.31\textheight]{strassenszenario_kombi_weltkarte.pdf}}
+	\hfill
+	\subfloat[Plot der durch Messungen entstandenen Weltkarte nach einer gefahrenen Runde im Uhrzeigersinn
+	\label{fig:evaluation:riverflow:weltkarte:andere_Richtung}]{\includegraphics[height=0.31\textheight]{Weltkarte_schoen_andere_Richtung.pdf}}	
+%	\includegraphics[width=0.8\textwidth]{strassenszenario_kombi_weltkarte.pdf}
+	\caption{Darstellungen aufgenommener Karten des Szenarios zur Qualitätsuntersuchung}
+	
+\end{figure} 
+
+Durch die Kennzeichnung von rechter und linker Randlinie ist die Fahrtrichtung zu erkennen. In der Rechtskurve fällt auf, dass eine zu starke Krümmung der Linien erkannt wurde. Die Ursache dieses Fehlers liegt in der noch leider insuffizienten Bildentzerrung. Dies führt dazu, dass der Roboter die steileren Rechtskurven etwas schneidet. Nichts desto trotz gelingt die Fahrt auf dem Parcours auch in entgegengesetzter Richtung, wie Abbildung~\ref{fig:evaluation:riverflow:weltkarte:andere_Richtung} zeigt.
+
+%\begin{figure}[htbp] % [htb]
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{Weltkarte_schoen_andere_Richtung.pdf}
+%	\caption{Plot der durch Messungen entstandenen Weltkarte nach einer gefahrenen Runde im Uhrzeigersinn}
+%	\label{fig:evaluation:riverflow:weltkarte:andere_Richtung}
+%\end{figure} 
+
+
 
 \input{parametertuning}
 \input{geschwindigkeit}

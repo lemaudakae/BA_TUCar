@@ -19,8 +19,6 @@ Damit sich die Pixelkoordinaten des Bildes nicht von der Matrixindizierung unter
 
 Das Bild wird von der über dem Auto angebrachten Kamera aufgenommen. Die auf die Straßenebene projizierte Lage der Kamera wird als Kamerakoordinatensystem \gls{lat:CamKOS} festgelegt, welches die Verbindung zwischen Roboter- und Bildkoordinatensystem darstellt.
 
-% Zwischenzeitlich hatten wir zusätzlich ein Linienkoordinatensystem \gls{lat:LinienKOS} festgelegt, welches so in der Bildecke platziert war, dass dessen \( {\gls{x}}^{\gls{lat:LinienKOS}} \)-Achse parallel zu der erwarteten Fahrbahnmarkierung verläuft, wenn das Auto auf einem geraden Abschnitt fährt. Der Grund dafür war die anfängliche Beschreibung der Linie mit einem Polynom dritten Grades (siehe Gleichung~\ref{eq:polynom3}) und die zuerst anders angedachte Orientierung der angebrachten Kamera. Dafür war es wichtig, dass die Fahrspur im \gls{acr:ks} keine Parallele zur Ordinate darstellt, da sie in diesem Fall schlecht durch ein Polynom hätte approximiert werden können. In Abbildung~\ref{fig:fahrspurerkennung_ransac_binarisieren} ist beispielsweise eine alte Kameraeinstellung zu sehen, in welcher das Linienkoordinatensystem zur Anwendung gekommen ist. 
-
 Für die festgelegten \gls{acr:ks} gelten zwei zum Einsatz gekommene Einheiten. Punkte im Welt- und Roboterkoordinatensystem werden in Millimetern und im Kamera- und Bildkoordinatensystem in Pixeln beschrieben. Ein Pixel entspricht ungefähr 3,9 Millimetern.
 
 \section{Koordinatentransformationen}
