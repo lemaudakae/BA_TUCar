@@ -1,5 +1,37 @@
 \subsection{seitliche Fahrbahnmarkierungen \dcsecondauthorshort}
 
+\begin{algorithm}
+\SetKwFunction{Abstand}{Abstand}
+\SetKwFunction{Min}{Minimum}
+\SetKwFunction{Betrag}{Betrag}
+\SetKw{Break}{break}
+\KwIn{\(pl\)\{Hypothese\}(Punkt-Index): Punkte der linken Linie\\ \(pr\)\{Hypothese\}(Punkt-Index): Punkte der rechten Linie \\
+\(s\): Maximalabweichung des Punktabstands vom Sollwert \\ \(b\): Fahrspurbreite}
+\KwOut{\(plv\)(Punkt-Index): verifizierte Punkte der linken Linie}
+	\For{\(i=1\) \KwTo Anzahl Hypothesen der linken Linie}{
+		\For{\(j=1\) \KwTo Anzahl Hypothesen der rechten Linie}{
+			\For{\(k=1\) \KwTo Anzahl Punkte der linken Linienhypothese \(pl\)\{\(i\)\}}{
+				\tcc{simultane Berechnung des Abstands von Punkt \(pl\)\{\(i\)\}(\(k\)) zu allen Punkte der rechten Linienhypothese \(pr\)\{\(j\)\}; \(d\) ist Vektor!} 
+				\(d\) = \Abstand{\(pl\)\{\(i\)\}(\(k\)), \(pr\)\{\(j\)\}} \\
+				\tcc{Minimalen Abstand zwischen Punkt \(pl\)\{\(i\)\}(\(k\)) und der rechten Linienhypothese \(pr\)\{\(j\)\} betrachten}
+				 \(dmin\) = \Min{\(d\)} \\
+				 \tcc{Nach Abziehen der Fahrspurbreite Betrag des Fehlers auswerten}
+				 \(err\) = \Betrag{\(dmin - 2\cdot b\)} \\
+				 \If{\(err < s\)}{
+				 	\(plvTmp\)(k) = \(pl\)\{\(i\)\}(\(k\))
+				 }
+				 \Else{
+				 \tcc{Abbruch bei einmaliger Überschreitung des Fehlerschwellwertes, Punkte die im weiteren Verlauf des Riverflow-Algorithmus gefunden wurden, werden nicht betrachtet}
+				 	\Break
+				 }
+				 \If{Anzahl Punkte \(plv\) \(<\) Anzahl Punkte \(plvTmp\)}{
+				 \tcc{längste verifizierbare Koordinatenserie halten}	
+				 	\(plv\) = \(plvTmp\)
+				 }
+			} 
+		}
+	}
+\end{algorithm}
 \subsubsection{Seitenlinienvergleich} 
 \label{sssec:fahrspurerkennung:riverflow:verifikation:seitenlinienvergleich}
 Zuerst wird der Abstand der äußeren Fahrbahnmarkierungen zueinander geprüft. Diese Validierung bedient sich ineinander verschachtelter Schleifen, um zu jedem Punkt das passende Gegenüber zu finden. Exemplarisch wird diese Schachtelung nun am Beispiel der Beurteilung der linken Fahrbahnmarkierungspunkte anhand der rechten Linie dargelegt. Es wird:
