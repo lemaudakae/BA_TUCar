@@ -1,0 +1,8 @@
+\section{Implementierung \dcsecondauthorshort}
+
+Da die theoretischen Grundlagen zum Aufbau des \glqq Pure-Pursuit\grqq-Reglers eines Fahrzeugs mit Ackermannlenkung auf Basis einer Weltkarte nun bekannt sind, soll nun die Eingliederung dieser in das vorliegende System erläutert werden. Wie in Kapitel \ref{ssec:software_struktur:matlab:callbacks} bereits beschrieben, erfolgt die Regelung im Rahmen des sogenannten Odometrie-Callbacks. Diese Funktion wird gerufen, sobald der ROS-Node des Roboters neue Daten im entsprechenden Odometrie-Topic veröffentlicht, die Frequenz des Publizierens dieser Informationen bestimmt also die Regelfrequenz.
+
+Neben der in der empfangenen Message selbst enthaltenen Geschwindigkeit wird für die Aktualisierung der im Folgenden benötigten Pose noch die Orientierung des Fahrzeugs aus dem \gls{acr:imu}-Topic abgerufen. Auf Basis dieser Position\& Orientierung können nun wie in den Abschnitten \
+
+
+Die zur Regelung des Roboters genutzte Position\& Orientierung basiert also auf sehr aktuellen Daten, da das 

@@ -297,21 +297,25 @@ erläutert
 Durch den Einsatz der Scanlines anstatt einer Verwendung des \gls{acr:ransac}-Algorithmus im Zusammenhang mit Maskierung der entsprechenden Bildausschnitte läuft die Bildverarbeitung ca. um Faktor 5 schneller ab.
 
 \subsection{Probleme}
-Die Vorhersagen des Folgezustands durch das Zustandsraummodell \eqref{eq:nextstatemappingmatrix} sind oft so schlecht, dass Scanlines Punkte einer falschen Fahrbahnmarkierung erkennen. Somit \glqq wandert\grqq{} das im Zustandsvektor \gls{lat:statevector} repräsentierte Polynom durch die fehlerhafte Korrektur von der Mittellinie, welche es repräsentieren soll, zu einer der Randlinen und schließlich völlig abseits der Fahrbahn (siehe Abbildung~\ref{fig:evaluation:kalman:weggezogen}).
+Die Vorhersagen des Folgezustands durch das Zustandsraummodell \eqref{eq:nextstatemappingmatrix} sind oft so schlecht, dass Scanlines Punkte einer falschen Fahrbahnmarkierung erkennen. Somit \glqq wandert\grqq{} das im Zustandsvektor \gls{lat:statevector} repräsentierte Polynom durch die fehlerhafte Korrektur von der Mittellinie, welche es darstellen soll, zu einer der Randlinen und schließlich völlig abseits der Straße. Ein Beispiel stellt die ungenügende Vorhersage des Fahrspurpolynoms in Abb. \ref{fig:evaluation:kalman:weggezogen:3} dar, hier werden Punkte der linken Fahrbahnmarkierung als Mittellinie detektiert. Durch die daraus folgende fehlerhafte Korrektur und die somit noch schlechtere Vorhersage in der nächsten Iteration kommt es in \ref{fig:evaluation:kalman:weggezogen:4} sogar zu einer Detektion der linken Außenlinie als rechte Fahrbahnmarkierung.
 
 \begin{figure}[htbp] % [htb]
-	\centering
-	\subfloat[][]{\includegraphics[width=0.45\textwidth]{evaluation_kalman_weggezogen_1}}
-	\quad
-	\subfloat[][]{\includegraphics[width=0.45\textwidth]{evaluation_kalman_weggezogen_2}}
-	\quad
-	\subfloat[][]{\includegraphics[width=0.45\textwidth]{evaluation_kalman_weggezogen_3}}
-	\quad
-	\subfloat[][]{\includegraphics[width=0.45\textwidth]{evaluation_kalman_weggezogen_4}}
-	\quad
-	\subfloat[][]{\includegraphics[width=0.45\textwidth]{evaluation_kalman_weggezogen_legende}}
-	\caption{\glqq Weglaufen \grqq des Kalmanfilter-Zustands durch ungenügende Vorhersage}
-	\label{fig:evaluation:kalman:weggezogen}
+\centering
+\subfloat[Iteration n\label{fig:evaluation:kalman:weggezogen:1}]{\includegraphics[width=0.45\textwidth]{evaluation_kalman_weggezogen_1}}
+\hfill
+\subfloat[Iteration n+1\label{fig:evaluation:kalman:weggezogen:2}]{\includegraphics[width=0.45\textwidth]{evaluation_kalman_weggezogen_2}}
+\hfill
+\subfloat[Iteration n+2\label{fig:evaluation:kalman:weggezogen:3}]{\includegraphics[width=0.45\textwidth]{evaluation_kalman_weggezogen_3}}
+\hfill
+\subfloat[Iteration n+3\label{fig:evaluation:kalman:weggezogen:4}]{\includegraphics[width=0.45\textwidth]{evaluation_kalman_weggezogen_4}}
+\hfill
+\subfloat[Legende\label{fig:evaluation:kalman:weggezogen:legend}]{\includegraphics[width=0.3\textwidth]{evaluation_kalman_weggezogen_legende}}
+\caption[\glqq Weglaufen\grqq\ des Kalmanfilter-Zustands]{\glqq Weglaufen\grqq\ des Kalmanfilter-Zustands durch ungenügende Vorhersage \par 
+%\ref{fig:evaluation:kalman:weggezogen:1} bis \ref{fig:evaluation:kalman:weggezogen:4} zeigen aufeinanderfolgende Iterationen des Kalmanfilters. 
+Es werden aufeinanderfolgende Iterationen des Kalmanfilters (n bis n+3) gezeigt.
+%Der Legende \ref{fig:evaluation:kalman:weggezogen:legend} sind die Darstellung des vorhergesagten und korrigierten Fahrspurpolynoms (Zustand) sowie der erkannten Punkte der drei Linien zu entnehmen. Weiterhin wurden die zur Detektion dieser Punkte genutzten Scanlines als dünne Geraden derselben Farbgebung vermerkt.
+Neben den in der Legende vorhandenen Einträgen sind die zur Linienpunkt-Detektion genutzten Scanlines als dünne Geraden vermerkt.}
+\label{fig:evaluation:kalman:weggezogen}
 \end{figure}
 
 Eine Variante dieses Phänomen zu verhindern, wäre eine Verbesserung des Zustandsraummodells. 

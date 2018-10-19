@@ -1,5 +1,7 @@
-\section{Messungen}
-In diesem Abschnitt sollen charakteristische Messwerte der Fahrspurerkennung, Regelung, sowie dem Zusammenspiel beider Komponenten dargestellt und diskutiert werden. Dies soll unter Veränderung der Umgebungsbedingungen sowie mit unterschiedlichen Fortbewegungsgeschwindigkeiten des Modellfahrzeugs geschehen.
+\section{Messungen \dcsecondauthorshort}
+In diesem Abschnitt sollen charakteristische Messwerte der Fahrspurerkennung, Regelung, sowie dem Zusammenspiel beider Komponenten dargestellt und diskutiert werden. 
+%Dies soll unter Veränderung der Umgebungsbedingungen sowie mit unterschiedlichen Fortbewegungsgeschwindigkeiten des Modellfahrzeugs geschehen. 
+Abschnitt \ref{ssec:evaluation:messungen:ohnegt} beleuchtet die Schwierigkeiten ein entwickeltes System ohne Vergleichswerte oder Messysteme objektiv zu bewerten. In Paragraph \ref{ssec:evaluation:messungen:laufzeit} wird die Laufzeit der Fahrspurverfolgungskomponenten ermittelt und auf Basis dieser Messwerte die maximal verarbeitbare Bildfrequenz eingestellt. Passus \ref{ssec:evaluation:messungen:weltkarte} vergleicht die erzeugte Weltkarte mit der Zeichnung des Testszenarios um Rückschlüsse auf die Qualität der am Kartenaufbau beteiligten Messungen zu ziehen. In Passage \ref{ssec:evaluation:messungen:geschwindigkeit} soll das Verhalten des Modellautos bei unterschiedlichen Geschwindigkeiten evaluiert werden. Die folgenden Kapitel stellen eine größtenteils qualitative Evaluation des Fahrverhaltens bei Veränderung des Testszenarios dar. Abschnitt \ref{ssec:evaluation:messungen:objekte_hinzufuegen} untersucht die Reaktion der Fahrspurverfolgung auf das Hinzufügen von Objekten zur Modellwelt, während in Passage \ref{ssec:evaluation:messungen:weniger_infos} die Robustheit bei Reduktion der Kennzeichen einer Straße betrachtet wird.
 
 \paragraph{Überlegungen zur Darstellung der Messwerte}
 Um möglichst viele Informationen kompakt abzubilden, wurden unter anderem die Diagrammtypen Boxplot sowie Histogramm genutzt. Da kurz nach dem Start des Fahrzeugs 
@@ -9,9 +11,10 @@ Um möglichst viele Informationen kompakt abzubilden, wurden unter anderem die D
 	\item
 	Das Fahrzeug vor vollendeter Verarbeitung des ersten Bildes schon ohne gültigen Zielpunkt losfährt
 \end{itemize}
-wurden diese nicht-repräsentativen Phasen in den entsprechenden Grafiken ausgelassen, da sie die Aussagekraft der Messwerte beeinträchtigen würden.
+wurden diese nicht-repräsentativen Phasen in den entsprechenden Grafiken ausgelassen, da sie die Aussagekraft der Messwerte beeinträchtigen würden. In der Bildunterschrift wurde jeweils das Stichwort \glqq ohne Startphase \grqq\ eingefügt.
   
 \subsection{Evaluation ohne Ground Truth}
+\label{ssec:evaluation:messungen:ohnegt}
 Für die Detektion von Fahrspuren auf Einzelbildern und die daraus resultierende Bewegung des Fahrzeugs existieren zum jetzigen Zeitpunkt keine Vergleichswerte. 
 
 \paragraph{Bildverarbeitung} 
@@ -22,27 +25,7 @@ Für ein Benchmark der Fahrspurerkennung könnte ein Ground-Truth-Datensatz in F
 %Durch die implementierte Verifikation der erkannten Koordinatenserien kann eine Fehlerkennung weitgehend ausgeschlossen werden. Den deutlichsten Indikator für ein falsch verarbeitetes Bild stellt also eine nicht oder nur auf einem sehr kurzen Abschnitt detektierte Fahrbahnmarkierung dar. Den Grenzwert der Länge für eine fehlerhaft erkannte Linie ist oft unkritisch, da der Detektionsalgorithmus in den meisten Fällen zufriedenstellend funktioniert oder schon bei kurzer Linienlänge fehlschlägt. Wir haben uns dafür entschieden etwa die halbe Sichtweite des Fahrzeugs (ab Stoßstange bis Bildrand) als Schwellwert anzusehen.
 
 \paragraph{Regelung} 
-Die Güte der Regelung bzw. des Zusammenspiels aus Bildverarbeitung und Regelung könnte am exaktesten durch ein hinreichend genaues System zur Lokalisierung des Fahrzeugs im Testszenario ermittelt werden. Somit wäre es möglich die Abweichung der gefahrenen Strecke von einer vorgegebenen Ideallinie auszuwerten. Da die Inbetriebnahme des an der Professur vorhandenen zweidimensionalen Tracking-Systems viel Einarbeitungszeit benötigt, wird hier auf eine einfache Methode zurückgegriffen. Es wird vermerkt ob ein gültiger Zielpunkt für die Regelung ermittelt werden konnte (s. Abschnitt \ref{sec:regelung:zielpunktgewinnung}), sowie ob das Fahrzeug die Fahrspur völlig verlässt oder dem Straßenverlauf zufriedenstellend folgt.
-
-\subsection{Qualität der Weltkarte  \dcfirstauthorshort}
-Alle für die Regelung notwendigen Informationen über den Verlauf der Straßenmarkierungen stammen aus der parallel angelegten Karte. Damit eine stabile Navigation möglich ist, muss ihre Reliabilität vorausgesetzt sein. Die Authentizität der Kartenpunkte hängt wiederum von der Zuverlässigkeit der Pose ab. Da IMU und Encoder fehlerbehaftet sind, ist eine Abweichung der ermittelten zur realen Pose zu erwarten. 
-
-Um die tatsächliche Genauigkeit der Pose und Weltkarte anschaulich darzustellen, wurden in Abbildung~\ref{fig:evaluation:riverflow:weltkarte:qualitaet} die geplotteten Karten- und Posendaten maßstabsgerecht über die Entwurfszeichnung gelegt. Trotz sich theoretisch aufsummierender Fehler ist die Abweichung der End- zur Startpose nach einer Runde erstaunlich gering.
-
-\begin{figure}[htbp] % [htb]
-	\centering
-	
-	\subfloat[Kombination des Plots der durch Messungen entstandenen Weltkarte mit der realen Entwurfszeichnung in passender Größe als Qualitätsnachweis 
-	\label{fig:evaluation:riverflow:weltkarte:qualitaet}]{\includegraphics[height=0.31\textheight]{strassenszenario_kombi_weltkarte.pdf}}
-	\hfill
-	\subfloat[Plot der durch Messungen entstandenen Weltkarte nach einer gefahrenen Runde im Uhrzeigersinn
-	\label{fig:evaluation:riverflow:weltkarte:andere_Richtung}]{\includegraphics[height=0.31\textheight]{Weltkarte_schoen_andere_Richtung.pdf}}	
-%	\includegraphics[width=0.8\textwidth]{strassenszenario_kombi_weltkarte.pdf}
-	\caption{Darstellungen aufgenommener Karten des Szenarios zur Qualitätsuntersuchung}
-	
-\end{figure} 
-
-Durch die Kennzeichnung von rechter und linker Randlinie ist die Fahrtrichtung zu erkennen. In der Rechtskurve fällt auf, dass eine zu starke Krümmung der Linien erkannt wurde. Die Ursache dieses Fehlers liegt in der noch leider insuffizienten Bildentzerrung. Dies führt dazu, dass der Roboter die steileren Rechtskurven etwas schneidet. Nichts desto trotz gelingt die Fahrt auf dem Parcours auch in entgegengesetzter Richtung, wie Abbildung~\ref{fig:evaluation:riverflow:weltkarte:andere_Richtung} zeigt.
+Die Güte der Regelung bzw. des Zusammenspiels aus Bildverarbeitung und Regelung könnte quantitativ exakt durch ein hinreichend genaues System zur Lokalisierung des Fahrzeugs im Testszenario ermittelt werden. Somit wäre es möglich die Abweichung der gefahrenen Strecke von einer vorgegebenen Ideallinie auszuwerten. Da die Inbetriebnahme des an der Professur vorhandenen zweidimensionalen Tracking-Systems viel Einarbeitungszeit benötigt, wird hier auf eine einfache Methode zurückgegriffen. Es wird vermerkt ob ein gültiger Zielpunkt für die Regelung ermittelt werden konnte (s. Abschnitt \ref{sec:regelung:zielpunktgewinnung}), sowie ob das Fahrzeug die Fahrspur völlig verlässt oder dem Straßenverlauf zufriedenstellend folgt.
 
 %\begin{figure}[htbp] % [htb]
 %	\centering
@@ -54,6 +37,7 @@ Durch die Kennzeichnung von rechter und linker Randlinie ist die Fahrtrichtung z
 
 
 \input{parametertuning}
+\input{weltkarte}
 \input{geschwindigkeit}
 \input{objekte_hinzufuegen}
 \input{weniger_informationen}

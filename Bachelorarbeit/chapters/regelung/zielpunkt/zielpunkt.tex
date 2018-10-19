@@ -1,6 +1,6 @@
 \section{Zielpunktgewinnung \dcsecondauthorshort}
 \label{sec:regelung:zielpunktgewinnung}
-Um den Zielpunkt für den implementierten \glqq Pure-Pursuit\grqq -Regler zu erhalten, müssen die nachfolgend beschriebenen Schritte ausgeführt werden.
+Um den Zielpunkt für den implementierten \glqq Pure-Pursuit\grqq -Regler zu erhalten, müssen die nachfolgend beschriebenen Schritte ausgeführt werden. Abschnitt \ref{ssec:regelung:zielpunkt:holen} beleuchtet Kriterien, nach denen aus allen in der Weltkarte vorhandenen Punkten für die Regelung notwendige selektiert werden. Passage \ref{regelung:zielpunkt:kreissegment-fit} beschäftigt sich mit der Vorgehensweise, die gewählten Punkte \emph{einer} Fahrbahnmarkierung in ein kompakt parametrierbares mathematisches Modell (Kreissegment) zu überführen, um diese weiter verarbeiten zu können. Die Kapitel \ref{regelung:zielpunkt:verschiebung_kreissegmente} sowie  \ref{regelung:zielpunkt:bildung_trajektoriekreissegment} klären die Frage, wie diese drei Kreissegmente zu einer Trajektorie zusammengeführt werden. Final wird in Passus \ref{regelung:zielpunkt:schnittpunktberechnung} erläutert, wie aus dieser der Zielpunkt extrahiert wird. 
 
 \subsection{Holen der benötigten Punkte aus der Weltkarte}
 \label{ssec:regelung:zielpunkt:holen}
@@ -36,7 +36,7 @@ Zur Ermittlung des Endwinkels \( \varphi_e \) wird analog unter Nutzung des Punk
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.75\textwidth]{regelung_zielpunkt_betweenpoint}
-  \caption{Ermittlung der Rotationsrichtung}
+  \caption{Ermittlung der Rotationsrichtung eines Kreissegmentes}
   \label{fig:regelung:zielpunkt:betweenpoint}
 \end{figure}
 
@@ -65,18 +65,21 @@ Aus den Mittelwerten \( \mean{\nrm{\gls{lat:av}}}_{1/2} \) \eqref{eq:regelung:be
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.75\textwidth]{regelung_zielpunkt_prinzip}
-  \caption{Zielpunktgewinnung}
+  \caption[Zielpunktgewinnung]{Vorgehensweise der Zielpunktgewinnung \par Kreissegment-Fit über Punkte der einzelnen Fahrbahnmarkierungen \(\Rightarrow\) Verschiebung der Kreissegmente in Fahrspur \(\Rightarrow\) Sampeln der Kreissegmente in Fahrspur \(\Rightarrow\) Fit des Trajektoriekreissegments \(\Rightarrow\) Schnittpunktberechnung mit Kreis um Roboter-\gls{acr:ks}-Ursprung}
   \label{fig:regelung:zielpunkt:zielpunktgewinnung}
 \end{figure}
 
 \subsection{Verschiebung der Kreissegmente}
-Um die drei gefundenen Kreissegmente zur Gewinnung eines Zielpunktes nutzen zu können, müssen diese um die halbe bzw. anderthalbe Fahrspurbreite verschoben werden. Hierfür muss je nach Rotationsrichtung des Kreissegments und gewünschter Fahrbahn (links/rechts) der Radius des Kreissegments modifiziert werden. Zur genauen Aufschlüsselung dieser Logik sei der Leser auf den Quellcode verwiesen. REFERENZ Eine grafische Darstellung des soeben beschriebenen und der im folgenden erklärten Schritte zur Zielpunktfindung ist in Abb.~\ref{fig:regelung:zielpunkt:zielpunktgewinnung} gegeben.
+\label{regelung:zielpunkt:verschiebung_kreissegmente}
+Um die drei gefundenen Kreissegmente (in Abb.~\ref{fig:regelung:zielpunkt:zielpunktgewinnung} als blaue, rote und grüne Strickpunktlinien inklusive umliegender x derselben Farbe zur Verkörperung der zum Fit genutzten Punkte dargestellt) zur Gewinnung eines Zielpunktes nutzen zu können, müssen diese in die Mitte der gewünschten Fahrbahn (links/rechts) verschoben werden. Hierfür muss je nach Rotationsrichtung des Kreissegments lediglich der Radius dessen um die halbe bzw. anderthalbe Fahrspurbreite modifiziert werden, es entstehen die sich schneidenden/übereinanderliegenden roten, blauen und grünen Kreissegmente in Abbildung~\ref{fig:regelung:zielpunkt:zielpunktgewinnung}. Zur genauen Aufschlüsselung der Logik zur Radiusänderung sei der Leser auf den Quellcode verwiesen. REFERENZ %Eine grafische Darstellung des soeben beschriebenen und der im folgenden erklärten Schritte zur Zielpunktfindung ist in Abb.~\ref{fig:regelung:zielpunkt:zielpunktgewinnung} gegeben.
 
 \subsection{Bildung des Trajektorienkreissegments}
-Um aus den drei in die Fahrspur verschobenen Segmenten einen Kreisbogen zu erhalten, werden die in die Fahrspur verschobenen Kreissegmente nun gesampelt. Von jedem Kreissegment werden so viele Punkte abgetastet, wie zur Berechnung seiner Parameter genutzt wurden. Die so entstandene Koordinatenserie bildet die Basis für den Fit des Trajektoriekreisbogens. Hierfür wird dieselbe Prozedur wie in  Abschnitt~\ref{regelung:zielpunkt:kreissegment-fit} verwendet.
+\label{regelung:zielpunkt:bildung_trajektoriekreissegment}
+Um aus den drei in die Fahrspur verschobenen Segmenten einen Kreisbogen zu erhalten, werden die in die Fahrspur verschobenen Kreissegmente nun gesampelt. Von jedem Kreissegment werden so viele Punkte abgetastet, wie zur Berechnung seiner Parameter genutzt wurden. Die so entstandene Koordinatenserie bildet die Basis für den Fit des Trajektoriekreisbogens (in Abb.~\ref{fig:regelung:zielpunkt:zielpunktgewinnung} als lilane  Punktlinie dargestellt). Hierfür wird dieselbe Prozedur wie in  Abschnitt~\ref{regelung:zielpunkt:kreissegment-fit} verwendet.
 
 \subsection{Schnittpunktberechnung}
-Um eine möglichst gleichmäßige Regelung des Lenkwinkels zu ermöglichen, sollte der Zielpunkt \gls{lat:zp}  der \glqq Pure-Pursuit\grqq -Regelung in jeder Fahrsituation den gleichen Abstand vom Ursprung des Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} besitzen (die sogenannte Lookahead-Distance). \gls{lat:zp} muss sich also auf dem Kreis mit Mittelpunkt \(\pnt{\gls{lat:mp}_0}=(0,0)\) und Radius \(\gls{lat:rad}_0\) gleich der Lookahead-Distance befinden. Da \gls{lat:zp} ebenfalls  auf dem Trajektorienkreissegment mit Mittelpunkt \(\pnt{\gls{lat:mp}_t}\) und Radius \( \gls{lat:rad}_t\) liegt, reduziert sich die Zielpunktermittlung auf die Schnittpunktberechnung zweier Kreise \autocite{wiki:Schnittpunkt}:
+\label{regelung:zielpunkt:schnittpunktberechnung}
+Um eine möglichst gleichmäßige Regelung des Lenkwinkels zu ermöglichen, sollte der Zielpunkt \gls{lat:zp}  der \glqq Pure-Pursuit\grqq -Regelung in jeder Fahrsituation den gleichen Abstand vom Ursprung des Roboter-\gls{acr:ks} \gls{lat:RoboterKOS} besitzen (die sogenannte Lookahead-Distance). \gls{lat:zp} muss sich also auf dem Kreis mit Mittelpunkt \(\pnt{\gls{lat:mp}_0}=(0,0)\) und Radius \(\gls{lat:rad}_0\) gleich der Lookahead-Distance befinden (schwarz in Abb.~\ref{fig:regelung:zielpunkt:zielpunktgewinnung} dargestellt). Da \gls{lat:zp} ebenfalls  auf dem Trajektorienkreissegment mit Mittelpunkt \(\pnt{\gls{lat:mp}_t}\) und Radius \( \gls{lat:rad}_t\) (lila in Abb.~\ref{fig:regelung:zielpunkt:zielpunktgewinnung} verzeichnet) liegt, reduziert sich die Zielpunktermittlung auf die Schnittpunktberechnung zweier Kreise \autocite{wiki:Schnittpunkt}:
 \begin{subequations}
 \begin{equation}
 \pnt{\gls{lat:zp}_{1/2}}=\pnt{\gls{lat:mp}_0} + \vct{d_1} \pm l \cdot \vct{e_2}
