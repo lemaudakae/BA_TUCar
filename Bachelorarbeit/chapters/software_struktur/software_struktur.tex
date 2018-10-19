@@ -62,7 +62,7 @@ Das Eintreffen eines solchen Datenpaketes in MATLAB führt zum Aufrufen der Odom
 \item Auf Basis der neuen Pose kann mithilfe aller in der Weltkarte vorhandenen Punkte ein neuer Lenkwinkel bestimmt werden.
 \end{enumerate}
 \paragraph{Bild-Callback}
-Sobald ein neues Bild im zugehörigen Topic verfügbar ist, wird ein Algorithmus zur Extraktion von Punkten der Fahrbahnmarkierung gerufen. Dieser fügt die gefundenen Koordinatenserien anhand der am besten zum Aufnahmezeitpunkt des Bildes passenden Pose in die Weltkarte ein und macht sie so für die Regelung abrufbar.
+Sobald ein neues Bild im zugehörigen Topic verfügbar ist, wird ein Algorithmus zur Extraktion von Punkten der Fahrbahnmarkierung gerufen. Dieser fügt die gefundenen Koordinatenserien anhand der am besten zum Aufnahmezeitpunkt des Bildes passenden Pose nach Linientyp sortiert (\glqq linke\grqq , \glqq mittlere\grqq{} oder \glqq rechte\grqq{} Linie) in die Weltkarte ein und macht sie so für die Regelung abrufbar.
 
 Eine ausführlichere Erläuterung zur Wirkungsweise und zu Vorteilen einer Aufteilung von Bildverarbeitung und Regelung in mehrere Callback-Funktionen ist in Abschnitt \ref{sec:regelung:implementierung} gegeben.
 \subsection{Multitasking}
