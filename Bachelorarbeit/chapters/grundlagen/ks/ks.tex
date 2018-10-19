@@ -90,7 +90,7 @@ Die Matrix \gls{lat:Transformationsmatrix} heißt homogene Transformationsmatrix
 \end{pmatrix}
 \end{equation}
 
-So lassen sich jegliche Transformationen zwischen aufeinanderfolgenden \gls{acr:ks} realisieren, wenn die Parameter Rotationswinkel \(\delta\), Translationsvektor \gls{lat:Translationsvektor} und die Skalierungsfaktoren bekannt sind. Für uniforme Skalierungen gilt \( \lambda_x = \lambda_y \). Dabei ist eine Hierarchie\footnote{Unsere Koordinatensystemhierarchie: \(\gls{lat:WeltKOS} \rightarrow \gls{lat:RoboterKOS} \rightarrow \gls{lat:CamKOS} \rightarrow \gls{lat:BildKOS} \)} der \gls{acr:ks} sinnvoll, da sich z.B. die unbekannte Transformationsmatrix \(\gls{lat:Transformationsmatrix}^{\gls{lat:WeltKOS} \gls{lat:BildKOS}}\), welche Bildkoordinaten in Weltkoordinaten transformiert, durch Multiplikation bereits bekannter Matrizen ermitteln lässt. Es gilt: 
+So lassen sich jegliche Transformationen zwischen aufeinanderfolgenden \gls{acr:ks} realisieren, wenn die Parameter Rotationswinkel \(\delta\), Translationsvektor \gls{lat:Translationsvektor} und die Skalierungsfaktoren bekannt sind. Für uniforme Skalierungen gilt \( \lambda_x = \lambda_y \). Dabei ist eine Hierarchie\footnote{Die Koordinatensystemhierarchie besitzt folgende Reihenfolge: \(\gls{lat:WeltKOS} \rightarrow \gls{lat:RoboterKOS} \rightarrow \gls{lat:CamKOS} \rightarrow \gls{lat:BildKOS} \)} der \gls{acr:ks} sinnvoll, da sich z.B. die unbekannte Transformationsmatrix \(\gls{lat:Transformationsmatrix}^{\gls{lat:WeltKOS} \gls{lat:BildKOS}}\), welche Bildkoordinaten in Weltkoordinaten transformiert, durch Multiplikation bereits bekannter Matrizen ermitteln lässt. Es gilt: 
 
 % Formel für die Hintereinanderausführung der Transformation
 \begin{equation}
