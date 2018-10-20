@@ -2,7 +2,7 @@
 \label{cha:bildvorverarbeitung}
 
 % Überblick
-\begin{figure}[ht] % [htb]
+\begin{figure}[htbp] % [htb]
 	\centering
 	\includegraphics[width=1\textwidth]{bildvorverarbeitung_ueberblick.pdf}
 	\caption{Schritte in der Bildvorverarbeitung}
@@ -16,7 +16,7 @@ Ein Bild ist eine Matrix aus Punkten, denen ein Farbwert zugeordnet wird. In der
 Der große Vorteil des Fischaugenobjektivs ist es, Bereiche in größerer Entfernung aller Richtungen wahrnehmen zu können. Andererseits ist das Bild aufgrund des enormen Weitwinkels stark verzerrt. Zur Erstellung einer Weltkarte ist es daher sinnvoll, dessen Verzerrung zu rektifizieren. Dazu wurde sich in MATLAB wie in Kapitel~\ref{sec:kameramodell} beschrieben der \gls{acr:ocamcalib}-Toolbox bedient. Da die Farbinformationen der Rohdaten keine Anwendung finden und sowohl die Toolbox als auch die Faltungsfilter lediglich auf Graustufenbildern arbeiten können, erfolgt vor der Entzerrung eine Umwandlung in ein Grauwertbild.
 
 % Das ver- und entzerrte Bild nebeneinander
-\begin{figure}[ht] % [htb]
+\begin{figure}[htbp] % [htb]
   \centering
   \subfloat[][]{\includegraphics[width=0.45\textwidth]{bildvorverarbeitung_fischauge.png}}
   \qquad
@@ -45,7 +45,7 @@ Um wertvolle Rechenzeit während der aufwändigen Filterung einzusparen, werden 
 
 
 % Das gefilterte und binarisierte Bild nebeneinander
-\begin{figure}[hb] % [htb]
+\begin{figure}[hbtp] % [htb]
   \centering
   \subfloat[][]{\includegraphics[width=0.45\textwidth]{bildvorverarbeitung_gefiltert.png}}
   \qquad

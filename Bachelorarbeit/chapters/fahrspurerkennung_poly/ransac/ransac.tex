@@ -16,7 +16,7 @@ Ausgangspunkt für die Ermittlung einer passenden Funktion ist das binarisierte 
 	\subfloat[][]{\includegraphics[width=0.32\textwidth]{fahrspurerkennung_ransac_imgMaskMiddle.png}}
 	\hfill
 	\subfloat[][]{\includegraphics[width=0.32\textwidth]{fahrspurerkennung_ransac_imgMaskRight.png}}
-	\caption{Approximation der linken (a), mittleren (b) und rechten (c) Fahrbahnmarkierung durch ein Polynom dritten Grades mithilfe jeweiliger \glspl{acr:roi} und der Anwendung von \gls{acr:ransac}}
+	\caption{Approximation der linken (a), mittleren (b) und rechten (c) Fahrbahnmarkierung durch ein Polynom dritten Grades mithilfe jeweiliger RoIs und der Anwendung von RANSAC}
 	\label{fig:fahrspurerkennung_ransac_masken}
 \end{figure} 
 
@@ -56,7 +56,7 @@ Die gestrichelte Mittellinie besitzt im gesamten, binarisierten Bild Alleinstell
 	\subfloat[][]{\includegraphics[width=0.47\textwidth]{fahrspurerkennung_ransac_imgMidFiltered.png}}
 	\hfill
 	\subfloat[][]{\includegraphics[width=0.47\textwidth]{fahrspurerkennung_ransac_imgBinarizedAndNotImgMidFiltered.png}}
-	\caption{entzerrtes (a) und binarisiertes Bild (b) einer Testaufnahme auf der Strecke in alten Kameraeinstellungen; Filterergebnis des ''Ringfilters'' (c) und Durchschnitt dessen Negation mit dem binarisierten Bild (d)}
+	\caption{entzerrtes (a) und binarisiertes Bild (b) einer Testaufnahme auf der Strecke in alten Kameraeinstellungen; Filterergebnis des \glqq Ringfilters\grqq{} (c) und Durchschnitt dessen Negation mit dem binarisierten Bild (d)}
 	\label{fig:fahrspurerkennung_ransac_binarisieren}
 \end{figure} 
 

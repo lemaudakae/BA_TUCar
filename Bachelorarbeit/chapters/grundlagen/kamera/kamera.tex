@@ -5,7 +5,7 @@ Die \glsfirst{acr:ocamcalib}-Toolbox behandelt das Kamerasystem als Einheit, d.h
 
 Wie üblich, werden zu Beginn das Sensorkoordinatensystem \gls{lat:OSKOS} im zweidimensionalen Raum und das Kamerakoordinatensystem \gls{lat:CamKOS} in der dreidimensionalen Welt definiert. Das Modell hat das Ziel, den Zusammenhang zwischen einem Punkt auf dem Bildsensor \pnt{s^{\gls{lat:OSKOS}}} mit Koordinaten \((\scl{u}, \scl{v})\) und einem vom optischen Zentrum des Objektivs ausgehenden Vektor nicht festgelegter Länge \vct{p^{\gls{lat:CamKOS}}} mit Koordinaten \((\scl{p^{\gls{lat:CamKOS}}_{\gls{x}}}, \scl{p^{\gls{lat:CamKOS}}_{\gls{y}}}, \scl{p^{\gls{lat:CamKOS}}_{\gls{z}}})\) zu finden (s.~\eqref{eq:ocamcalibuv} und Abb.~\ref{fig:kameramodell}).
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=0.5\textwidth]{OCamCalib_Kameramodell}
   \caption{Das Kameramodell der \gls{acr:ocamcalib}-Toolbox}
@@ -83,7 +83,7 @@ Da ein Darlegen des Prozesses zur Ermittlung der Parameter \(\scl{a_0} \dots \sc
 
 \subsection{Entzerrung}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=0.75\textwidth]{OCamCalib_Kameramodell_Ebene}
   \caption{Entzerrung mit dem Kameramodell der \gls{acr:ocamcalib}-Toolbox}
@@ -112,7 +112,7 @@ Da Annahme~\ref{item:ocamcalibassm2} in der Realität nie exakt zutrifft und bei
 \vct{\gls{lat:Translationsvektor}^{\gls{lat:OSKOS}}_{\gls{lat:OSKOSR}}}
 %\end{pmatrix}
 \end{equation}
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \subfloat[][]{\includegraphics[width=0.45\textwidth]{OCamCalib_Kamera_KS_real}}
 \qquad

@@ -11,7 +11,7 @@ Da der Austausch von Bilddaten und Ansteuerbefehlen zwischen Modellfahrzeug und 
 \label{ssec:software_struktur:ros:nodes}
 Ein \gls{acr:ros}-System besteht aus mehreren Programmen \glqq Nodes\grqq, welche über bestimmte Kommunikationskanäle \glqq Topics\grqq\ Datenpakete \glqq Messages\grqq\ austauschen. Diese Applikationen können Information auf einem Topic zur Verfügung stellen, sie fungieren als sogenannte Publisher, oder nutzen, in diesem Fall man nennt sie Subscriber. Ein Schema zum Aufbau des konkreten \gls{acr:ros}-Systems findet sich in Abb.~\ref{fig:software_struktur:ros}.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Software_Struktur_ROS}
 	\caption{Struktur des \gls{acr:ros}-Systems}
@@ -35,7 +35,7 @@ Auf dem PC wird nur der von MATLAB automatisch initialisierte Node genutzt. Dies
 \section{MATLAB}
 Die im Hauptteil dieser Arbeit beschriebenen Algorithmen zur Fahrspurverfolgung wurden ausschließlich in MATLAB implementiert. \textbf{MAT}rix \textbf{LAB}oratory ist ein kommerzielles Programm und eine Programmiersprache für numerische Rechnungen und grafische Darstellungen, dessen Grundbausteine Matrizen sind. Diese Eigenschaften, weitreichende Debugging-Funktionalitäten und die einfache Erweiterbarkeit durch sogenannte Toolboxen machen es sehr attraktiv zum Einsatz im Rahmen der Bildverarbeitung\&Evaluation. Da die grundlegende Softwarestruktur in allen drei Lösungsansätzen zur Fahrspurverfolgung gleich ist, soll diese nun dargelegt werden. Eine schematische Darstellung ist in Abb.~\ref{fig:software_struktur:matlab} gegeben.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Software_Struktur_Matlab}
 	\caption{Struktur des MATLAB-Softwareteils}

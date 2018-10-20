@@ -13,21 +13,21 @@ Annahme einer festen Position vor dem Fahrzeug/im Kamerabild.
 
 Die Verfahren \ref{item:solidline:startpoints:hough} oder \ref{item:solidline:startpoints:fixed} werden nur genutzt, wenn die Herangehensweisen \ref{item:solidline:startpoints:dashedline} bzw. \ref{item:solidline:startpoints:dashedline} und \ref{item:solidline:startpoints:hough} kein Ergebnis lieferten.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.75\textwidth]{fahrspurerkennung_riverflow_startpunkte_normal}
 	\caption{Startpunktdefinition des Riverflow-Algorithmus für die Randlinien anhand der mittleren Fahrbahnmarkierung}
 	\label{fig:riverflow:randlinien:startpoints:dashedline}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.75\textwidth]{fahrspurerkennung_riverflow_startpunkte_hough}
 	\caption{Startpunktdefinition des Riverflow-Algorithmus für die Randlinien durch eindimensionale Hough-Transformation}
 	\label{fig:riverflow:randlinien:startpoints:hough}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=0.5\textwidth]{riverflow_randlinie_prinzip}
   \caption{Funktionsweise des Riverflow-Algorithmus}
@@ -115,9 +115,9 @@ Die betragsmäßige Orientierungsänderung \(\btr{\scl{\Delta \phi}} = \btr{\ata
 Die Prüfung der Orientierungsänderung wird jedoch beim in Abschnitt~\ref{sssec:fahrspurerkennung:riverflow:randlinie:gestrichelt} beschriebenen Sonderfall der Extraktion des Punktes \vct{p_{n+1}} notwendig.
 \end{enumerate}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=0.75\textwidth]{riverflow_randlinien_komplett}
-  \caption[Plot eines Riverflow-Durchlaufs für die Randlinien]{Plot eines Riverflow-Durchlaufs für die Randlinien: \par Die Farben Rot,Orange und Pink stellen die Hypothesen der rechten, Blau die einzige Hypothese der linken Fahrbahnmarkierung dar. Diese Hypothesen bestehen jeweils aus den * für gefundene Punkte, dünnen Linien für deren Verschiebungsvektoren zueinander, fettgedruckten Geraden zur Darstellung der Scanlines sowie Scanquadraten und deren Mittelpunkte (\(\cdot\)) im Bereich der unterbrochenen Markierung. Die grünen Punkte repräsentieren die bereits erkannten\&verifizierten Mittellinienpunkte. }
+  \caption[Plot eines Riverflow-Durchlaufs für die Randlinien]{Plot eines Riverflow-Durchlaufs für die Randlinien: \par Die Farben Rot, Orange und Pink stellen die Hypothesen der rechten, Blau die einzige Hypothese der linken Fahrbahnmarkierung dar. Diese Hypothesen bestehen jeweils aus den * für gefundene Punkte, dünnen Linien für deren Verschiebungsvektoren zueinander, fettgedruckten Geraden zur Darstellung der Scanlines sowie Scanquadraten und deren Mittelpunkte (\(\cdot\)) im Bereich der unterbrochenen Markierung. Die grünen Punkte repräsentieren die bereits erkannten \& verifizierten Mittellinienpunkte. }
   \label{fig:riverflow:randlinien:plot_komplett}
 \end{figure}
