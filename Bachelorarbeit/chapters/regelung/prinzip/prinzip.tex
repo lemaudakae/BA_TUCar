@@ -1,6 +1,7 @@
-%\section{Prinzip \dcfirstauthorshort}
+\section{Prinzip und Fahrzeugmodell \dcfirstauthorshort}
+\label{sec:regelung:prinzip}
 
-Die Navigation des Modellfahrzeugs im Straßenverkehrsszenario basiert auf einer Weltkarte, in der alle bereits erkannten Punkte, die zu einer Fahrbahnmarkierung gehören, eingetragen werden. Zu Anfang wurde im Kapitel~\ref{sec:ks} beschrieben, dass die Lage des Roboterkoordinatensystems \gls{lat:RoboterKOS} im Vergleich zum Weltkoordinatensystem \gls{lat:WeltKOS} die Pose des Autos darstellt. Die Pose ist der Zustandsvektor \gls{lat:statevector} aus Position \( (\gls{x},\gls{y}) \) und Orientierung \gls{gre:orientierung}.
+Die Navigation des Modellfahrzeugs im Straßenverkehrsszenario basiert auf einer Weltkarte, in der alle bereits erkannten Punkte, die zu einer Fahrbahnmarkierung gehören, eingetragen wurden. Um das Auto anhand jener Punkte steuern zu können, muss dessen Standort in der Welt bekannt sein. Zu Anfang wurde im Kapitel~\ref{sec:ks} beschrieben, dass die Lage des Roboterkoordinatensystems \gls{lat:RoboterKOS} im Vergleich zum Weltkoordinatensystem \gls{lat:WeltKOS} die Pose des Autos darstellt. Diese Pose ist der Zustandsvektor \gls{lat:statevector} aus Position \( (\gls{x},\gls{y}) \) und Orientierung \gls{gre:orientierung}.
 
 % Formel für Pose (Zustandsvektor)
 \begin{equation}
@@ -13,7 +14,7 @@ Die Navigation des Modellfahrzeugs im Straßenverkehrsszenario basiert auf einer
 \label{eq:regelung_prinzip_pose}
 \end{equation} 
 
- Aus den Informationen der Weltkarte und der aktuellen räumlichen Lage des Roboters ist es möglich, eine Trajektorie zu planen, um das Fahrzeug in der Fahrspur zu halten. Daher ist es wichtig, den Zustandsvektor für jeden Regelschritt neu zu bestimmen. Zur Berechnung der neuen Position stehen uns die Wegmessungen \(s\) des Encoders und der Zeitunterschied \(\gls{lat:time}-{\gls{lat:time}}_0\) in Bezug auf die alte Pose zur Verfügung, woraus die Geschwindigkeit \gls{lat:velocity} ermittelt wird. Die Orientierung, gemessen von der eingebauten \gls{acr:imu}, wird direkt in die neue Pose eingetragen. Somit ist unser Eingangsvektor \gls{lat:inputvector}
+ Aus den Informationen der Weltkarte und der aktuellen räumlichen Lage des Roboters ist es möglich, eine Trajektorie zu planen, um das Fahrzeug in der Fahrspur zu halten. Daher ist es wichtig, den Zustandsvektor für jeden Regelschritt neu zu bestimmen. Zur Berechnung der neuen Position stehen uns die Geschwindigkeit \gls{lat:velocity} und die alte Orientierung zur Verfügung. Die Geschwindigkeit \gls{lat:velocity} wird intern auf dem Raspberry-PI über die Wegmessungen \(s\) des Encoders und den Zeitunterschied \(\gls{lat:time}-{\gls{lat:time}}_0\) in Bezug auf die vorherige Regelungsiteration ermittelt. Gemessen von der eingebauten \gls{acr:imu} wird die Orientierung direkt in die neue Pose eingetragen. Somit ist unser Eingangsvektor \gls{lat:inputvector}
  
  % Formel für Eingangsvektor
 \begin{equation}
@@ -26,7 +27,7 @@ Die Navigation des Modellfahrzeugs im Straßenverkehrsszenario basiert auf einer
 \gls{lat:velocity}(\gls{lat:time}) = \frac{s}{\gls{lat:time}-{\gls{lat:time}}_0}
 \end{equation} 
  
-Das Besondere an einer Ackermann-Lenkung ist, dass in einer Kurvenfahrt das innen liegende Vorderrad stärker einlenkt als das Äußere, sodass sich ein gemeinsamer Schnittpunkt mit allen vier Radachsen ergibt (siehe Abb.~\ref{fig:regelung_prinzip_modell}). Dieser Punkt wird auch als \gls{acr:icr} bezeichnet und beschreibt den Mittelpunkt der gefahrenen Kreisbahn. 
+Das \gls{glos:tucar} ist mit Differenzialantrieb und einer Ackermann-Lenkung ausgestattet. Das Besondere an dieser Lenkung ist, dass in einer Kurvenfahrt das innen liegende Vorderrad stärker einlenkt als das Äußere, sodass sich ein gemeinsamer Schnittpunkt mit allen vier Radachsen ergibt (siehe Abb.~\ref{fig:regelung_prinzip_modell}). Dieser Punkt wird auch als \gls{acr:icr} bezeichnet und beschreibt den Mittelpunkt der gefahrenen Kreisbahn. 
 
 % Bild Ackermann-Lenkung
 \begin{figure}[htbp] % [htb]
@@ -36,7 +37,7 @@ Das Besondere an einer Ackermann-Lenkung ist, dass in einer Kurvenfahrt das inne
   \label{fig:regelung_prinzip_modell}
 \end{figure}
 
-Zur leichteren mathematischen Beschreibung des Fahrzeugs mit Ackermannlenkung wird das Modell üblicherweise auf das eines Zweirades reduziert (\emph{Bicycle-Modell}). Der Kreisradius ist dann der Abstand vom \gls{acr:icr} zum Ursprung des Roboterkoordinatensystems. Außerdem lässt sich \gls{gre:lenkwinkel} wie in Abbildung~\ref{fig:regelung_prinzip_modell} gezeigt im Winkel der beiden Radachsen zueinander wiederfinden. Nachfolgende Formel~\eqref{eq:regelung_prinzip_fahrzeugmodell} zum vereinfachten Fahrzeugmodell in Weltkoordinaten \gls{lat:WeltKOS} ist aus \autocite{corkeRoboticsVisionControl2017} entnommen. Unser Eingangsvektor besteht neben der Geschwindigkeit \gls{lat:velocity}(\gls{lat:time}) allerdings nicht aus dem Lenkwinkel \gls{gre:lenkwinkel}, sondern aus der Orientierung \gls{gre:orientierung}, weshalb bei uns die Berechnung von \gls{gre:orientierung} aus \gls{gre:lenkwinkel} nicht zum Einsatz kommt. 
+Zur leichteren mathematischen Beschreibung des Fahrzeugs wird das Modell üblicherweise auf das eines Zweirades reduziert (\emph{Bicycle-Modell}). Der Kreisradius ist dann der Abstand vom \gls{acr:icr} zum Ursprung des Roboterkoordinatensystems. Außerdem lässt sich \gls{gre:lenkwinkel} wie in Abbildung~\ref{fig:regelung_prinzip_modell} gezeigt im Winkel der beiden Radachsen zueinander wiederfinden. Nachfolgende Formel~\eqref{eq:regelung_prinzip_fahrzeugmodell} zum vereinfachten Fahrzeugmodell in Weltkoordinaten \gls{lat:WeltKOS} ist aus \autocite{corkeRoboticsVisionControl2017} entnommen. Der Eingangsvektor besteht neben der Geschwindigkeit \gls{lat:velocity}(\gls{lat:time}) allerdings nicht aus dem Lenkwinkel \gls{gre:lenkwinkel}, sondern aus der Orientierung \gls{gre:orientierung}, weshalb bei uns die Berechnung von \gls{gre:orientierung} aus \gls{gre:lenkwinkel} nicht zum Einsatz kommt. 
 
 % Formel Fahrzeugmodell
 \begin{equation}
@@ -55,4 +56,4 @@ Zur leichteren mathematischen Beschreibung des Fahrzeugs mit Ackermannlenkung wi
 \label{eq:regelung_prinzip_fahrzeugmodell}
 \end{equation} 
 
-Das Modellfahrzeug wird nach dem \glqq Pure-Pursuit\grqq-Regler gesteuert. In einem bestimmten Abstand vor dem Auto wird ein Zielpunkt gesetzt, zu welchem bis zur Erstellung eines neuen Zielpunktes navigiert werden soll. Da wir den Schlupf der Räder vernachlässigt haben, ist das Erreichen des Zielpunktes völlig unabhängig von der Geschwindigkeit und nur noch an den Lenkwinkel gebunden. Dieser wird so eingestellt, dass die sich dadurch einstellende Kreisbahn durch den Zielpunkt verläuft. Wie der Zielpunkt und der dazu passende Lenkwinkel \gls{gre:lenkwinkel} ermittelt werden, beschreiben die nun folgenden zwei Abschnitte.
+Das Modellfahrzeug wird nach dem \glqq Pure-Pursuit\grqq-Regler gesteuert. In einem bestimmten Abstand vor dem Auto wird ein Zielpunkt gesetzt, zu welchem bis zur Erstellung eines neuen Zielpunktes navigiert werden soll. Da wir den Schlupf der Räder vernachlässigt haben, ist das Erreichen des Zielpunktes völlig unabhängig von der Geschwindigkeit und nur noch an den Lenkwinkel gebunden. Dieser wird so eingestellt, dass die dadurch gefahrene Kreisbahn durch den Zielpunkt verläuft. Wie der Zielpunkt und der dazu passende Lenkwinkel \gls{gre:lenkwinkel} ermittelt werden, beschreiben die nun folgenden zwei Abschnitte.
