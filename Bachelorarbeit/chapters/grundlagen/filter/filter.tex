@@ -6,6 +6,7 @@ Um bestimmte Eigenschaften zu ändern oder Informationen in einem Bild hervorzuh
 
 Objekte, wie zum Beispiel eine Straßenmarkierung, zeichnen sich meist dadurch aus, dass sich Pixel in Merkmalen von ihren Nachbarpixeln unterscheiden. Bei den Nachbarschaftsoperationen berechnen sich die Werte der Pixel des neuen Bildes aus den Bildpunkten einer kleinen Umgebung um die Punkte. Weil durch eine Nutzung des Nachbarschaftsoperators das Bild verändert wird und Informationen generell verloren gehen, spricht man auch von einem \emph{Filter}. 
 
+\paragraph{Faltungsfilter}
 Das von uns verwendete und sehr verbreitete Faltungsfilter verrechnet zur Ergebnisbildung die Helligkeitswerte über einen Filterkern miteinander. Der Filterkern ist hierbei eine quadratische, symmetrische Matrix, die mit der Pixelmatrix des Bildes gefaltet wird. Die Faltung zweier Funktionen beschreibt den durch eine andere Funktion gewichteten Mittelwert einer Funktion. Unter dem Faltungsprodukt \( \mathrm{f_1}(\gls{lat:time}) \ast \mathrm{f_2}(\gls{lat:time}) \) zweier Originalfunktionen \(\mathrm{f_1}(\gls{lat:time}) \) und \(\mathrm{f_2}(\gls{lat:time}) \) versteht man allgemein das Integral \autocite[S.~584]{papulaMathematikFuerIngenieure2012}
 
 % allgemeine Faltungsformel
@@ -23,7 +24,8 @@ Das von uns verwendete und sehr verbreitete Faltungsfilter verrechnet zur Ergebn
 Ein Faltungsfilter berechnet also den Wert des neuen Pixels aus dem gewichteten Mittelwert der umliegenden Pixel innerhalb des Filterkerns. Je nachdem, nach welcher Funktion gewichtet wird, ergibt sich der Name des Filters und was er in dem Bild verändert. 
 %In dieser Arbeit wurden das Gauß-Filter zum Glätten und das Laplace-Filter zur Kanten- und letztlich Liniendetektion genutzt.
 
-Um Rechenzeit mit einem zweidimensionalen Filter einzusparen, existiert die Möglichkeit, ihn so in zwei eindimensionale Operatoren zu zerlegen, dass deren Matrixmultiplikation wieder den ursprünglichen 2D-Filter ergibt (\eqref{eq:grundlagen_filter_separierbarkeit}, aus \autocite[S.~123]{jaehneDigitaleBildverarbeitungMit2005}). 
+\paragraph{Separierbarkeit}
+Um Rechenzeit mit einem zweidimensionalen Filter einzusparen, existiert die Möglichkeit, ihn so in zwei eindimensionale Operatoren zu zerlegen, dass deren Matrixmultiplikation wieder das ursprüngliche 2D-Filter ergibt (\eqref{eq:grundlagen_filter_separierbarkeit}, aus \autocite[S.~123]{jaehneDigitaleBildverarbeitungMit2005}). 
 
 \begin{equation}
 \begin{pmatrix}
@@ -70,16 +72,23 @@ Dieses Filter ist ein Tiefpassfilter und wird zur Glättung und zum Weichzeichne
 
 Mit dem Zusammenspiel von der Filterkerngröße und der Standartabweichung \gls{gre:standartabweichung} lässt sich einstellen, wie stark das Bild verwischt. Je größer der Kern und \gls{gre:standartabweichung} sind, desto verschwommener ist das Resultat. In Abbildung~\ref{fig:grundlagen_gaussfilter} ist beispielhaft ein \( 15\times15\) - Filterkern mit \( \gls{gre:standartabweichung} = 3\) dargestellt.
 
-\begin{figure}[htbp] % [htb]
-  \centering
-  \includegraphics[width=0.9\textwidth]{grundlagen_gaussfilter.png}
-  \caption{3D-Plot der Matrix eines \( 15\times15\) - Gauß-Filters}
-  \label{fig:grundlagen_gaussfilter}
-\end{figure}  
+%	\begin{figure}[htbp] % [htb]
+%	  \centering
+%	  \includegraphics[width=0.9\textwidth]{grundlagen_gaussfilter.png}
+%	  \caption{3D-Plot der Matrix eines \( 15\times15\) - Gauß-Filters}
+%	  \label{fig:grundlagen_gaussfilter}
+%	\end{figure} 
+
+\begin{figure}[htbp]
+	\centering
+	\subfloat[3D-Plot der Matrix eines \( 15\times15\) - Gauß-Filters \label{fig:grundlagen_gaussfilter}]{\includegraphics[width=0.48\textwidth]{grundlagen_gaussfilter.png}}
+	\hfill
+	\subfloat[3D-Plot der Matrix eines \( 23\times23\) - LoG-Filters \label{fig:grundlagen_logfilter}]{\includegraphics[width=0.48\textwidth]{grundlagen_logfilter.png}}
+	\caption{Dreidimensionale Visualisierung von Faltungsfilterkernen}
+%	\label{fig:grundlagen_faltungsfilter}
+\end{figure} 
 
 \subsection{Laplace-Filter} \label{ssec:laplaceFilter}
-% welcher starke Veränderungen in den Helligkeitsunterschieden zu benachbarten Pixeln hervorhebt.
-%In der zweiten Ableitung sind Kanten die Nulldurchgänge 
 
 Möchte man in einem Bild Kanten detektieren, basiert die Lösung des Problems meist auf Ableitungen verschiedenen Grades \autocite[S.~360ff]{jaehneDigitaleBildverarbeitungMit2005}. (In der ersten Ableitung sind Kanten z.B. die Extremstellen.) Ein Filter zur Kantendetektion sollte Diskontinuitäten in den Grauwerten hervorheben und konstante Grauwerte unterdrücken. Der Laplace-Filter, bzw. diskrete Laplace-Operator, nutzt dafür die Summe der partiellen zweiten Ableitungen in alle Richtungen. \autocite[S.~90]{papulaMathematikFuerIngenieure2016}
 
@@ -93,10 +102,10 @@ Die Nulldurchgänge, vor und nach denen es unmittelbar Signalspitzen gibt, sind 
 
 Eine spezielle Form eines diskreten Laplace-Filters ist der \gls{acr:log}, welcher in dieser Arbeit zur Liniendetektion genutzt wurde. Der in Abbildung~\ref{fig:grundlagen_logfilter} beispielhaft dargestellte Filterkern wird durch die Anwendung des Laplace-Operators auf eine Gaußfunktion erstellt. Dieses Filter bewirkt neben der Kantendetektion eine gaußsche Glättung und mindert so das störende Rauschen.
 
-\begin{figure}[htbp] % [htb]
-  \centering
-  \includegraphics[width=0.9\textwidth]{grundlagen_logfilter.png}
-  \caption{3D-Plot der Matrix eines \( 23\times23\) - \gls{acr:log}-Filters}
-  \label{fig:grundlagen_logfilter}
-\end{figure}  
+%	\begin{figure}[htbp] % [htb]
+%	  \centering
+%	  \includegraphics[width=0.9\textwidth]{grundlagen_logfilter.png}
+%	  \caption{3D-Plot der Matrix eines \( 23\times23\) - \gls{acr:log}-Filters}
+%	  \label{fig:grundlagen_logfilter}
+%	\end{figure}  
 

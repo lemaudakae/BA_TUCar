@@ -1,7 +1,7 @@
 \chapter{Regelung \dcfirstauthorshort}
 \label{cha:regelung}
 
-Dieses Kapitel beschäftigt sich mit der Bestimmung des richtigen Lenkwinkels \gls{gre:lenkwinkel}, sodass die Fahrspur nicht verlassen wird. In der im Kapitel~\ref{ssec:software_struktur:matlab:callbacks} beschriebenen Odometrie-Callback-Funktion finden die Berechnungen zur Regelung statt. In jedem Aufruf wird die Pose des \gls{glos:tucar} aktualisiert und der neue Lenkwinkel ermittelt, welcher als Ansteuerwert zum Auto zurückgeschickt wird. Im Folgenden werden das zugrunde liegende Fahrzeugmodell und die Schritte zur Regelung näher beschrieben. 
+Dieses Kapitel beschäftigt sich mit der Bestimmung des richtigen Lenkwinkels \gls{gre:lenkwinkel}, welcher in jeder neuen Regelungsiteration neu kalkuliert wird. Eine Iteration charakterisiert die im Kapitel~\ref{ssec:software_struktur:matlab:callbacks} beschriebene Odometrie-Callback-Funktion, in welcher alle Berechnungen zur Regelung stattfinden. In jedem Aufruf wird ebenfalls die Pose des \gls{glos:tucar} aktualisiert und der neue Lenkwinkel neben der Geschwindigkeit als Ansteuerwert zum Auto zurückgeschickt. Im Folgenden werden das zugrunde liegende Fahrzeugmodell und die Schritte zur Regelung näher beschrieben. 
 
 \subimport{prinzip/}{prinzip}
 \subimport{zielpunkt/}{zielpunkt}

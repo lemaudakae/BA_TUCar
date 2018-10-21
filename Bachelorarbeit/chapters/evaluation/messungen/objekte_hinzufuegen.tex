@@ -1,4 +1,4 @@
-\subsection{Hinzufügen von Objekten zum Testszenario \dcsecondauthorshort}
+\section{Hinzufügen von Objekten zum Testszenario \dcsecondauthorshort}
 \label{ssec:evaluation:messungen:objekte_hinzufuegen}
 Im realen Straßenverkehr befinden sich in der Regel mehr Objekte im Sichtbereich des Fahrers bzw. der Kamera als die bis jetzt im Parcours alleinig vorhandenen Fahrbahnmarkierungen. Diese Gegenstände können für die Trajektorieplanung relevant sein (Hindernisse) oder in keinem Zusammenhang damit stehen (Objekte abseits der Straße). Da der bis jetzt implementierte Fahrspurverfolgungsalgorithmus keine Hinderniserkennung und -vermeidung besitzt, kann hier nur auf Gegenstände neben der Fahrspur eingegangen werden. In diesem Abschnitt sollen Untersuchungen stattfinden, ob die Erkennung des Straßenverlaufs auch bei Hinzufügen weiterer Gegenstände zum Testszenario noch zufriedenstellend abläuft.
 
@@ -70,7 +70,7 @@ Abbildung \ref{fig:evaluation:riverflow:hypos_hists} bestätigt diese Vermutung,
 
 Ein weiterer Grund für die Detektion mehrerer möglicher Verläufe der Randlinie stellt, wie in Abbildung \ref{fig:evaluation:riverflow:hypos_riverflow_plot_4} zu sehen, die Erkennung schon immer im Testszenario vorhandener, bis jetzt nicht weiter berücksichtigter Kanten dar. Die Ränder der PVC-Plane, auf welche die Strecke gedruckt wurde oder die zum Beschweren dieser genutzten Alu-Profile sind häufig die Ursache solcher Fehldetektionen.
 
-Die in Abschnitt~\ref{ssec:evaluation:riverflow:diskussion_prinzip:nachteile} vermutete Verlängerung der Bearbeitungszeit konnte bestätigt werden, Abb. \ref{evaluation:riverflow:hypos:times_04} stellt den Zusammenhang zwischen der Anzahl verfolgter Hypothesen und der damit verbundenen Dauer der Detektion seitlicher Fahrbahnmarkierungen dar.
+Die unter Nachteile in Abschnitt~\ref{sec:evaluation:riverflow:diskussion_prinzip} vermutete Verlängerung der Bearbeitungszeit konnte bestätigt werden, Abb. \ref{evaluation:riverflow:hypos:times_04} stellt den Zusammenhang zwischen der Anzahl verfolgter Hypothesen und der damit verbundenen Dauer der Detektion seitlicher Fahrbahnmarkierungen dar.
 
 \begin{figure}[htbp] % [htb]
 \centering

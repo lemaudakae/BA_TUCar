@@ -1,19 +1,6 @@
-\section{Messungen \dcsecondauthorshort}
-In diesem Abschnitt sollen charakteristische Messwerte der Fahrspurerkennung, Regelung, sowie dem Zusammenspiel beider Komponenten dargestellt und diskutiert werden. 
-%Dies soll unter Veränderung der Umgebungsbedingungen sowie mit unterschiedlichen Fortbewegungsgeschwindigkeiten des Modellfahrzeugs geschehen. 
-Abschnitt \ref{ssec:evaluation:messungen:ohnegt} beleuchtet die Schwierigkeiten ein entwickeltes System ohne Vergleichswerte oder Messysteme objektiv zu bewerten. In Paragraph \ref{ssec:evaluation:messungen:laufzeit} wird die Laufzeit der Fahrspurverfolgungskomponenten ermittelt und auf Basis dieser Messwerte die maximal verarbeitbare Bildfrequenz eingestellt. Passus \ref{ssec:evaluation:messungen:weltkarte} vergleicht die erzeugte Weltkarte mit der Zeichnung des Testszenarios um Rückschlüsse auf die Qualität der am Kartenaufbau beteiligten Messungen zu ziehen. In Passage \ref{ssec:evaluation:messungen:geschwindigkeit} soll das Verhalten des Modellautos bei unterschiedlichen Geschwindigkeiten evaluiert werden. Die folgenden Kapitel stellen eine größtenteils qualitative Evaluation des Fahrverhaltens bei Veränderung des Testszenarios dar. Abschnitt \ref{ssec:evaluation:messungen:objekte_hinzufuegen} untersucht die Reaktion der Fahrspurverfolgung auf das Hinzufügen von Objekten zur Modellwelt, während in Passage \ref{ssec:evaluation:messungen:weniger_infos} die Robustheit bei Reduktion der Kennzeichen einer Straße betrachtet wird.
-
-\paragraph{Überlegungen zur Darstellung der Messwerte}
-Um möglichst viele Informationen kompakt abzubilden, wurden unter anderem die Diagrammtypen Boxplot sowie Histogramm genutzt. Da kurz nach dem Start des Fahrzeugs 
-\begin{itemize}
-	\item
-	MATLAB viele Funktionen erst noch in den Hauptspeicher laden muss (\glqq Warmlaufphase\grqq)
-	\item
-	Das Fahrzeug vor vollendeter Verarbeitung des ersten Bildes schon ohne gültigen Zielpunkt losfährt
-\end{itemize}
-wurden diese nicht-repräsentativen Phasen in den entsprechenden Grafiken ausgelassen, da sie die Aussagekraft der Messwerte beeinträchtigen würden. In der Bildunterschrift wurde jeweils das Stichwort \glqq ohne Startphase \grqq\ eingefügt.
+%\section{Messungen \dcsecondauthorshort}
   
-\subsection{Evaluation ohne Ground Truth}
+\section{Evaluation ohne Ground Truth}
 \label{ssec:evaluation:messungen:ohnegt}
 Für die Detektion von Fahrspuren auf Einzelbildern und die daraus resultierende Bewegung des Fahrzeugs existieren zum jetzigen Zeitpunkt keine Vergleichswerte. 
 
@@ -27,38 +14,12 @@ Für ein Benchmark der Fahrspurerkennung könnte ein Ground-Truth-Datensatz in F
 \paragraph{Regelung} 
 Die Güte der Regelung bzw. des Zusammenspiels aus Bildverarbeitung und Regelung könnte quantitativ exakt durch ein hinreichend genaues System zur Lokalisierung des Fahrzeugs im Testszenario ermittelt werden. Somit wäre es möglich die Abweichung der gefahrenen Strecke von einer vorgegebenen Ideallinie auszuwerten. Da die Inbetriebnahme des an der Professur vorhandenen zweidimensionalen Tracking-Systems viel Einarbeitungszeit benötigt, wird hier auf eine einfache Methode zurückgegriffen. Es wird vermerkt ob ein gültiger Zielpunkt für die Regelung ermittelt werden konnte (s. Abschnitt \ref{sec:regelung:zielpunktgewinnung}), sowie ob das Fahrzeug die Fahrspur völlig verlässt oder dem Straßenverlauf zufriedenstellend folgt.
 
-%\begin{figure}[htbp] % [htb]
-%	\centering
-%	\includegraphics[width=0.8\textwidth]{Weltkarte_schoen_andere_Richtung.pdf}
-%	\caption{Plot der durch Messungen entstandenen Weltkarte nach einer gefahrenen Runde im Uhrzeigersinn}
-%	\label{fig:evaluation:riverflow:weltkarte:andere_Richtung}
-%\end{figure} 
-
-
-
 \input{parametertuning}
 \input{weltkarte}
 \input{geschwindigkeit}
 \input{objekte_hinzufuegen}
 \input{weniger_informationen}
 
-%\subsubsection{Leistungsfähigkeit bei Veränderung der Umgebungsbedingungen - Störobjekte}
-%Da geplant ist die Teststrecke in Zukunft realistischer zu gestalten, d.h. Objekte wie Straßenschilder, andere Fahrzeuge, Personen und Gebäude hinzuzufügen. Der Einfluss solcher \glqq Störobjekte\grqq\ auf den Fahrspurverfolgungsalgorithmus soll nun untersucht werden.
-%
-%\paragraph{Menge der Objekte in einem Bild}
-%Zu Beginn soll lediglich die Menge der \glqq Störobjekte\grqq\, welche sich in einem Bild befinden, variiert werden. Da sich die Objekte hinreichend weit von der Fahrbahnmarkierung entfernt befinden, ist kein Einfluss die Bildverarbeitung zu erwarten.
-%
-%\paragraph{Entfernung der Objekte von den Fahrbahnmarkierungen}
-%Verringert man die Distanz zwischen \glqq Störobjekten\grqq\ und der Straße, wird es wahrscheinlicher, dass Kanten dieser Gegenstände als Fahrbahnmarkierung erkannt werden.
-%
-%\paragraph{Kontrast der Objekte im Vergleich zum Testszenario}
-%Ist der Helligkeitsunterschied zwischen Fahrbahn und \glqq Störobjekt\grqq\ bzw. der leeren Fläche neben der Fahrbahn und dem \glqq Störobjekt\grqq\ sehr gering, so sollte keine zusätzliche Kante im Bild gefunden und als Fahrbahnmarkierung identifiziert werden . Diese These soll im folgenden Test bestätigt betrachtet werden.
-%
-%\subsubsection{Leistungsfähigkeit bei Veränderung der Umgebungsbedingungen - fehlende Fahrbahnmarkierungen}
-%Es soll gezeigt werden, dass auch bei fehlen bestimmter Fahrbahnmarkierungen eine Verfolgung des Straßenverlaufs möglich ist.
-
-
-
-
-
+\section{Fazit}
+Dank der schon oft erwähnten hohen Bildqualität und dem starken Kontrast zwischen Markierungen und Hintergrund funktioniert die Fahrspurerkennung zufriedenstellend gut. Das unveränderte Szenario lässt die hier beschriebenen Fehler äußerst selten bis überhaupt nicht auftreten. Die jeweils souveräne Rand-und Mittellinienerkennung realisieren die Navigation des \gls{glos:tucar}s sehr robust und zuverlässig. Der die Geschwindigkeit begrenzende Flaschenhals ist vorrangig in der Übertragungszeit der Daten per W-LAN, anderen Latenzen und der dadurch begrenzten Bildverarbeitungsfrequenz zu finden. 
 

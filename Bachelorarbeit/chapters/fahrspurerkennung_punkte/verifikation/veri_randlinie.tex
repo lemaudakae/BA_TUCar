@@ -1,4 +1,5 @@
-\subsection{seitliche Fahrbahnmarkierungen \dcsecondauthorshort}
+\subsection{seitliche Fahrbahnmarkierungen}
+Zur Verifikation ermittelter Randlinienpunkte werden deren Abstände zu den jeweils anderen Fahrbahnmarkierungen gegeneinander untersucht und mit den real bekannten Werten verglichen. Damit eine Randlinie als verifiziert gilt, muss ihr Abstand zu mindestens einer anderen Fahrbahnmarkierung in etwa dem Erwartungswert entsprechen.
 
 \begin{algorithm}
 \SetKwFunction{Abstand}{Abstand}
@@ -32,7 +33,7 @@
 		}
 	}
 \end{algorithm}
-\subsubsection{Seitenlinienvergleich} 
+\subsubsection{Seitenlinienvergleich \dcsecondauthorshort} 
 \label{sssec:fahrspurerkennung:riverflow:verifikation:seitenlinienvergleich}
 Zuerst wird der Abstand der äußeren Fahrbahnmarkierungen zueinander geprüft. Diese Validierung bedient sich ineinander verschachtelter Schleifen, um zu jedem Punkt das passende Gegenüber zu finden. Exemplarisch wird diese Schachtelung nun am Beispiel der Beurteilung der linken Fahrbahnmarkierungspunkte anhand der rechten Linie dargelegt. Es wird:
 \begin{enumerate}

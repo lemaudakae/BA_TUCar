@@ -1,4 +1,4 @@
-\subsection{Fahren mit weniger Informationen \dcfirstauthorshort}
+\section{Fahren mit weniger Informationen \dcfirstauthorshort}
 \label{ssec:evaluation:messungen:weniger_infos}
 Unsere Linienerkennung besteht im wesentlichen aus den zwei fusionierten Komponenten Mittelstrich- und Randlinienerkennung, was die Robustheit unseres Algorithmus wesentlich erhöht. Um zu zeigen, dass diese nicht nur theoretisch unabhängig voneinander funktionieren, wurden zum Test je einmal die Mittellinie und die beiden Randlinien mit weißem Papier verdeckt. 
 
@@ -72,6 +72,3 @@ An der großen Kreuzung existiert beispielsweise keine mittlere Fahrbahnmarkieru
 \end{figure}
 
 Die durch ein A4-Blatt unterbrochene Randlinie wird im folgenden Verlauf nicht länger erkannt. Dass die Linie in den vorherigen Bilditerationen ebenfalls nur bis zu jener Unterbrechung detektiert wurde, zeigt der Plot in Abbildung \ref{fig:evaluation:riverflow:Randlinie:unterbrochen:linienlaenge} durch die mit jedem Bildindex abnehmende Linienlänge. Die Fähigkeit, mittels Randlinienerkennung vorauszuschauen, ist somit bis zum Passieren dieser Unregelmäßigkeit nicht gegeben. Durch die möglich fehlerhafte Erkennung eines Mittellinienpunktes werden überdies ebenfalls alle nachfolgenden Mittellinienpunkte ignoriert, da auch hier die Verifikation des nächsten Punktes von der des aktuellen abhängt. 
-
-Das unveränderte Szenario lässt die hier beschriebenen Fehler äußerst selten bis überhaupt nicht auftreten. Die jeweils souveräne Rand-und Mittellinienerkennung realisieren die Navigation des \gls{glos:tucar}s sehr robust und zuverlässig. 
-
