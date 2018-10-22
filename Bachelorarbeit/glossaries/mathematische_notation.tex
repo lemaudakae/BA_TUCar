@@ -97,7 +97,7 @@ sort=math_1s_mittelwert, type=mathlist
 \newglossaryentry{math:norm}{
 name=\nrm{\vct{x}},
 description={Euklidische Norm des Vektors \({\vct{x}=\begin{pmatrix} x_x \\ x_y \end{pmatrix}}\): \(\nrm{\vct{x}} = \sqrt[2]{x_x^2 + x_y^2}\)},
-sort=math_2v_norm, type=mathlist
+sort=math_2v_enorm, type=mathlist
 }
 \newcommand{\btr}[1]{\ensuremath{|#1|}}
 \newglossaryentry{math:btr}{
@@ -123,5 +123,11 @@ sort=math_2v_norm, type=mathlist
 	name=\(\pnt{x}^{\gls{lat:WeltKOS}}\),
 	description={Hochgestellte kalligrafische Großbuchstaben bezeichnen das Koordinatensystem, auf welches sich der Vektor bezieht},
 	sort=math_2v_kspunkt, type=mathlist
+}
+
+\newglossaryentry{math:KStrans}{
+	name=\(\pnt{x}^{\gls{lat:WeltKOS}}_{\gls{lat:RoboterKOS}}\),
+	description={Ursprungspunkt des indizierten Koordinatensystems in hochgestellten Bezugskoordinaten},
+	sort=math_2v_kstranspunkt, type=mathlist
 }
 
