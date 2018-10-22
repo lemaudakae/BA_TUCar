@@ -71,7 +71,7 @@ Auch das von ROS am PC zu nutzende Netzwerk-Interface muss festgelegt werden. Di
 \noindent in einem weiteren Terminal aufgerufen liefert Informationen zu allen vorhandenen Netzwerkadaptern, der WLAN-Stick sollte hier ausfindig zu machen sein.
 Die gefundene Adresse kann nun gegebenenfalls in der Datei \emph{function\_init\_parameters.m} im Ordner \emph{Initialisierungen} unter Punkt \emph{ROS-Parameter} bei \emph{params.RosIP} eingetragen werden.
 
-Zum Start der Fahrspurverfolgung muss lediglich die Datei main.m ausgeführt werden. Die Debuggingmöglichkeiten können von hier aus eingeschaltet werden, genaue Erläuterungen finden sich in den Kommentaren. Zum Auswerten dieser sind die Skripte im Ordner \emph{Debug} zu nutzen. Die Arbeitsweise des Quellcodes kann nach lesen der zugehörigen Bachelorarbeit anhand der Funktionsbeschreibungen durch rekursives abarbeiten dieser ergründet werden.
+Zum Start der Fahrspurverfolgung muss lediglich die Datei main.m ausgeführt werden. Die Debuggingmöglichkeiten können von hier aus eingeschaltet werden, genaue Erläuterungen finden sich in den Kommentaren. Zum Auswerten dieser sind die Skripte im Ordner \emph{Debug} zu nutzen. Die Arbeitsweise des Quellcodes kann nach dem Lesen der zugehörigen Bachelorarbeit anhand der Funktionsbeschreibungen durch rekursives Abarbeiten dieser ergründet werden.
 
 \subsection{Konsole}
 Soll nicht nur via Matlab mit dem TUCar kommuniziert werden, so muss ein weiteres Terminal geöffnet werden, in dem die IP des ROS-Masters (PI) bekannt gemacht und die richtige Netzwerkschnittstelle eingestellt wird.
@@ -98,7 +98,7 @@ roscore
 rosbag play -l <Dateiname>.bag
 # Kamerabild anzeigen
 rqt_image_view
-# Throttle-Node zum senken der Bildfrequenz starten
+# Throttle-Node zum Senken der Bildfrequenz starten
 rosrun topic_tools throttle messages /tucar/omnicam/full/compressed_throttle <Bildfrequenz>
 \end{she}
 
