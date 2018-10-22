@@ -7,7 +7,7 @@ Wie üblich, werden zu Beginn das Sensorkoordinatensystem \gls{lat:OSKOS} im zwe
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.5\textwidth]{OCamCalib_Kameramodell}
+  \includegraphics[width=0.3\textwidth]{OCamCalib_Kameramodell}
   \caption{Das Kameramodell der \gls{acr:ocamcalib}-Toolbox}
   \label{fig:kameramodell}
 \end{figure}
@@ -93,7 +93,7 @@ Da ein Darlegen des Prozesses zur Ermittlung der Parameter \(\scl{a_0} \dots \sc
 Mithilfe der gewonnenen Informationen kann die Entzerrung des Bildes nun stattfinden. Zuerst wird eine Ebene parallel zur \(\scl{p^{\gls{lat:CamKOS}}_{\gls{x}}}\scl{p^{\gls{lat:CamKOS}}_{\gls{y}}}\)-Ebene des Kamerakoordinatensystems \gls{lat:CamKOS} erstellt. Die \(\scl{p^{\gls{lat:CamKOS}}_{\gls{z}}}\)-Koordinate ist hierbei wählbar. Diese Ebene wird nun in eine Menge von Punkten diskretisiert. Im entstandenen zweidimensionalen Feld kann jedem Element ein Vektor \((\scl{p^{\gls{lat:CamKOS}}_{\gls{x}}}, \scl{p^{\gls{lat:CamKOS}}_{\gls{y}}}, \scl{p^{\gls{lat:CamKOS}}_{\gls{z}}})\) zugeordnet werden  (z.B. Punkt \pnt{i^{\gls{lat:CamKOS}}} in Abb.~\ref{fig:kameramodell:entzerrung}). Durch Gleichung \eqref{eq:ocamcalibfin} lassen sich diesem Vektor Koordinaten \((\scl{u}, \scl{v})\) auf dem Kamerasensor zuordnen (s. Abb.~\ref{fig:kameramodell:entzerrung}). Das Pixel mit dem geringsten Abstand zu den gewünschten Koordinaten \((\scl{u}, \scl{v})\) liefert nun den Farbwert für jeden Punkt der Ebene, welche das entzerrte Bild darstellt.
 
 \subsection{Affine Transformation}
-Da Annahme~\ref{item:ocamcalibassm2} in der Realität nie exakt zutrifft und bei der Digitalisierung des Bildes durch den Kamerasensor mit nichtquadratischen Pixeln zu rechnen ist, muss vor der Nutzung des hergeleiteten Modells eine affine Transformation der realen Koordinaten \((\scl{u'}, \scl{v'})\) in die idealen Koorinaten \((\scl{u}, \scl{v})\) stattfinden (siehe Abb. \ref{fig:kameramodell:affin}).
+Da Annahme~\ref{item:ocamcalibassm2} (Achse Bildsensor und Objektiv identisch) in der Realität nie exakt zutrifft und bei der Digitalisierung des Bildes durch den Kamerasensor mit nichtquadratischen Pixeln zu rechnen ist, muss vor der Nutzung des hergeleiteten Modells eine affine Transformation der realen Koordinaten \((\scl{u'}, \scl{v'})\) in die idealen Koorinaten \((\scl{u}, \scl{v})\) stattfinden (siehe Abb. \ref{fig:kameramodell:affin}).
 \begin{equation}
 \begin{pmatrix}
 \scl{u'} \\ \scl{v'}
@@ -109,17 +109,17 @@ Da Annahme~\ref{item:ocamcalibassm2} in der Realität nie exakt zutrifft und bei
 \end{pmatrix}
 +
 %\begin{pmatrix}
-\vct{\gls{lat:Translationsvektor}^{\gls{lat:OSKOS}}_{\gls{lat:OSKOSR}}}
+\vct{\gls{lat:Translationsvektor}^{\gls{lat:OSKOSR}}_{\gls{lat:OSKOS}}}
 %\end{pmatrix}
 \end{equation}
 \begin{figure}[htbp]
 \centering
-\subfloat[][]{\includegraphics[width=0.45\textwidth]{OCamCalib_Kamera_KS_real}}
+\subfloat[reales KS \gls{lat:OSKOSR}]{\includegraphics[width=0.45\textwidth]{OCamCalib_Kamera_KS_real}}
 \qquad
-\subfloat[][]{\includegraphics[width=0.45\textwidth]{OCamCalib_Kamera_KS_ideal}}
+\subfloat[ideales KS \gls{lat:OSKOS}]{\includegraphics[width=0.45\textwidth]{OCamCalib_Kamera_KS_ideal}}
 \caption{Reales und Ideales Bildsensorkoorinatensystem \gls{lat:OSKOSR} bzw. \gls{lat:OSKOS}}
 \label{fig:kameramodell:affin}
 \end{figure}
- Die Verschiebung des Bildmittelpunktes (Koordinatenursprungs) von \gls{lat:OSKOS} zu \gls{lat:OSKOSR} \vct{\gls{lat:Translationsvektor}^{\gls{lat:OSKOS}}_{\gls{lat:OSKOSR}}} sowie die Parameter \scl{c},\scl{d},\scl{e} werden im Kalibrationsprozess durch die Toolbox ermittelt.
+ Die Verschiebung des Bildmittelpunktes (Koordinatenursprungs) von \gls{lat:OSKOS} zu \gls{lat:OSKOSR} \vct{\gls{lat:Translationsvektor}^{\gls{lat:OSKOSR}}_{\gls{lat:OSKOS}}} sowie die Parameter \scl{c},\scl{d},\scl{e} werden im Kalibrationsprozess durch die Toolbox ermittelt.
 
 

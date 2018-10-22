@@ -11,7 +11,7 @@ Da der Austausch von Bilddaten und Ansteuerbefehlen zwischen Modellfahrzeug und 
 %\subsection{Nodes}
 \label{ssec:software_struktur:ros:nodes}
 \ \\
-Ein \gls{acr:ros}-System besteht aus mehreren Programmen (\glqq Nodes\grqq ), welche über bestimmte Kommunikationskanäle (\glqq Topics\grqq ) Datenpakete (\glqq Messages\grqq ) austauschen. Diese Applikationen können als sogenannte Publisher Informationen auf einem Topic zur Verfügung stellen. Im anderen Fall man nennt sie Subscriber, wenn sie stattdessen Informationen nutzen. Ein Schema zum Aufbau des konkreten \gls{acr:ros}-Systems findet sich in Abb.~\ref{fig:software_struktur:ros}.
+Ein \gls{acr:ros}-System besteht aus mehreren Programmen (\glqq Nodes\grqq ), welche über bestimmte Kommunikationskanäle (\glqq Topics\grqq ) Datenpakete (\glqq Messages\grqq ) austauschen. Diese Applikationen können Informationen auf einem Topic zur Verfügung stellen (\glqq Publisher\grqq ) oder Messages eines Kommunikationskanals nutzen (\glqq Subscriber\grqq ). Ein Schema zum Aufbau des konkreten \gls{acr:ros}-Systems findet sich in Abb.~\ref{fig:software_struktur:ros}.
 
 \begin{figure}[htbp]
 	\centering

@@ -14,8 +14,8 @@
    viewBox="0 0 344.42855 280.14288"
    id="svg13906"
    version="1.1"
-   inkscape:version="0.91 r13725"
-   sodipodi:docname="Kamera_KS_real.svg">
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="OCamCalib_Kamera_KS_real.svg">
   <defs
      id="defs13908">
     <marker
@@ -56,16 +56,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="152.54509"
-     inkscape:cy="-54.526243"
+     inkscape:zoom="1.4"
+     inkscape:cx="166.57171"
+     inkscape:cy="99.910966"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
-     inkscape:window-width="1215"
-     inkscape:window-height="1000"
-     inkscape:window-x="1345"
-     inkscape:window-y="24"
+     inkscape:window-width="1213"
+     inkscape:window-height="745"
+     inkscape:window-x="67"
+     inkscape:window-y="27"
      inkscape:window-maximized="1"
      fit-margin-left="0"
      fit-margin-top="0"
@@ -85,7 +85,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -116,7 +116,7 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot15709"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        transform="translate(0,-15.714286)"><flowRegion
          id="flowRegion15711"><rect
            id="rect15713"
@@ -124,10 +124,11 @@
            height="60"
            x="400"
            y="432.36221" /></flowRegion><flowPara
-         id="flowPara15717">v'</flowPara></flowRoot>    <flowRoot
+         id="flowPara15717"
+         style="font-size:40px;line-height:1.25">v'</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot15721"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        transform="translate(-207.14286,-30)"><flowRegion
          id="flowRegion15723"><rect
            id="rect15725"
@@ -135,5 +136,18 @@
            height="80"
            x="560"
            y="492.36221" /></flowRegion><flowPara
-         id="flowPara16196">u'</flowPara></flowRoot>  </g>
+         id="flowPara16196"
+         style="font-size:40px;line-height:1.25">u'</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot840"
+       style="font-style:normal;font-weight:normal;font-size:30px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="matrix(0.93750003,0,0,0.93750003,183.90179,295.14793)"><flowRegion
+         id="flowRegion842"><rect
+           id="rect844"
+           width="60"
+           height="90"
+           x="143.12381"
+           y="100.55233" /></flowRegion><flowPara
+         id="flowPara846"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.66666794px;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus'">S'</flowPara></flowRoot>  </g>
 </svg>
