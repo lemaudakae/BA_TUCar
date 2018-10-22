@@ -1,6 +1,6 @@
 \section{Hardware \dcsecondauthorshort}
 %\subsection{Fahrzeug}
-Das in dieser Arbeit genutzte Modellfahrzeug wurde von Mitarbeitern der Professur für unsere Untersuchungen und folgende Projekte aufgebaut. Es handelt sich um ein autoähnliches Allrad-Chassis im Maßstab 1:18, an welchem für diese Arbeit notwendige Umbauten ausgeführt wurden (s. Abb. \ref{fig:tucar_foto}).
+Das genutzte Modellfahrzeug wurde von Mitarbeitern der Professur für diese Arbeit und folgende Projekte aufgebaut. Es handelt sich um ein autoähnliches Allrad-Chassis im Maßstab 1:18, an welchem für die Navigation notwendige Umbauten ausgeführt wurden (s. Abb. \ref{fig:tucar_foto}).
 \begin{figure}[htbp] % [htb]
 	\centering
 	\includegraphics[width=0.8\textwidth]{tucar_foto.jpg}
@@ -12,6 +12,6 @@ Der originale Elektromotor wurde gegen ein Modell mit Encoder ersetzt, da Odomet
 \paragraph{\gls{acr:imu}}
 Um eine genauere Bestimmung der Pose zu ermöglichen, ist eine \gls{acr:imu} zur Ermittlung der axialen sowie radialen Geschwindigkeiten und Beschleunigungen am Fahrzeugs angebracht. Auch die durch numerische Integration erhaltene Orientierung kann direkt von diesem Modul abgefragt werden. 
 \paragraph{Kamera}
-Neben der Odometrie stellt eine in Vogelperspektive angebrachte Kamera mit Fisheye-Objektiv die einzige Sensorik des Fahrzeugs dar.
+Neben der Odometrie und \gls{acr:imu} stellt eine in Vogelperspektive angebrachte Kamera mit Fisheye-Objektiv die einzige Sensorik des Fahrzeugs dar.
 \paragraph{Rechentechnik}
 Zur Ansteuerung der Kamera und zum Entgegennehmen der Fahrbefehle ist ein Raspberry-PI Einplatinenrechner montiert, dessen WLAN-Schnittstelle zum Informationsaustausch mit dem Fahrzeug dient.
