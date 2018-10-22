@@ -85,6 +85,10 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 \usepackage{siunitx}
 \newcommand{\bs}[1]{\boldsymbol{#1}}
 
+\makeatletter
+\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3.2em}}
+\makeatother
+
 %======================================================================================================
 %	Einstellungen
 %======================================================================================================
@@ -138,8 +142,8 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 \listoffigures
 
 %------- Tabellenverzeichnis --------------------------------------------------------------------------
-\markboth{Tabellenverzeichnis}{Tabellenverzeichnis}
-\listoftables
+%\markboth{Tabellenverzeichnis}{Tabellenverzeichnis}
+%\listoftables
 
 %------- Abkürzungen, Symbole --------------------------------------------------------------------
 \deftranslation[to=German]{Acronyms}{Abkürzungsverzeichnis}
@@ -148,9 +152,10 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 \printglossary[type=\acronymtype,style=long] % Abkürzung und Langform
 \printglossary[type=symbolslist,style=long]
 \printglossary[type=mathlist,style=long]
+\newpage
 \printglossary[type=latlist,style=long]
 \printglossary[type=grelist,style=long]
-\printglossary[type=idzlist,style=long]
+%\printglossary[type=idzlist,style=long]
 
 
 %------- Fließtext, Kapitel etc -----------------------------------------------------------------------

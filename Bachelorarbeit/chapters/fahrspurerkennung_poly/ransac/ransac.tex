@@ -49,19 +49,18 @@ Die gestrichelte Mittellinie besitzt im gesamten, binarisierten Bild Alleinstell
 % entzerrtes und binarisiertes Beispielbild und Filterergebnisse für Mittellinie nebeneinander (4 Bilder)
 \begin{figure}[htbp]
 	\centering
-	\subfloat[][]{\includegraphics[width=0.47\textwidth]{fahrspurerkennung_ransac_imgUndist.png}}
+	\subfloat[entzerrtes Bild]{\includegraphics[width=0.47\textwidth]{fahrspurerkennung_ransac_imgUndist.png}}
 	\hfill
-	\subfloat[][]{\includegraphics[width=0.47\textwidth]{fahrspurerkennung_ransac_imgBinarized.png}}
+	\subfloat[binarisiertes Bild]{\includegraphics[width=0.47\textwidth]{fahrspurerkennung_ransac_imgBinarized.png}}
 	\hfill
-	\subfloat[][]{\includegraphics[width=0.47\textwidth]{fahrspurerkennung_ransac_imgMidFiltered.png}}
+	\subfloat[Filterergebnis des \glqq Ringfilters\grqq]{\includegraphics[width=0.47\textwidth]{fahrspurerkennung_ransac_imgMidFiltered.png}}
 	\hfill
-	\subfloat[][]{\includegraphics[width=0.47\textwidth]{fahrspurerkennung_ransac_imgBinarizedAndNotImgMidFiltered.png}}
-	\caption{entzerrtes (a) und binarisiertes Bild (b) einer Testaufnahme auf der Strecke in alten Kameraeinstellungen; Filterergebnis des \glqq Ringfilters\grqq{} (c) und Durchschnitt dessen Negation mit dem binarisierten Bild (d)}
+	\subfloat[Durchschnitt des negierten Filterergebnisses mit dem binarisierten Bild 	\label{fig:fahrspurerkennung_ransac_ringfilter_ergebnis}]{\includegraphics[width=0.47\textwidth]{fahrspurerkennung_ransac_imgBinarizedAndNotImgMidFiltered.png}}
+	\caption{Bildverarbeitungsschritte zur Detektion der Mittellinie zum initialen Maskenbau mittels \glqq Ringfilter\grqq}
 	\label{fig:fahrspurerkennung_ransac_binarisieren}
 \end{figure} 
 
-Die Negation des Filterergebnisses als Maske auf das binarisierte Bild gelegt erzeugt eine Grafik, die allein Pixel aus Punktgruppen enthält, die dem \glqq Ringfilter\grqq{} entsprechend festgelegte Maximallängen und Mindestabstände zu anderen Punkten besitzen. Darauf kann nun der \gls{acr:ransac}-Algorithmus angewendet werden. 
-%Dass hier der Einsatz von \gls{acr:ransac} sinnvoll und notwendig ist, erkennt man in (d) der Abbildung~\ref{fig:fahrspurerkennung_ransac_binarisieren} im unteren Teil des Bildes an der hellen Pixelgruppe, welche nicht zur mittleren Fahrbahnmarkierung gehört.
+Die Negation des Filterergebnisses als Maske auf das binarisierte Bild gelegt erzeugt eine Grafik, die allein Pixel aus Punktgruppen enthält, die dem \glqq Ringfilter\grqq{} entsprechend festgelegte Maximallängen und Mindestabstände zu anderen Punkten besitzen. Diese ist in Abbildung~\ref{fig:fahrspurerkennung_ransac_ringfilter_ergebnis} dargestellt. Darauf kann nun der \gls{acr:ransac}-Algorithmus angewendet werden. 
 
 \paragraph{Randlinienmasken}
 

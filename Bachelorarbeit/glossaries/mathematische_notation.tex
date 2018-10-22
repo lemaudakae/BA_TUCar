@@ -1,9 +1,12 @@
+% Methodik der Sortierung: 
+% sort = math_{1s - Skalar; 2v - Vektor; 3m - Matrix; 4f-Funktion; 5x - Sonstiges}_{Name/Symbol_selbst}
+
 %\newcommand{\scl}[1]{\ensuremath{\expandafter\MakeLowercase\expandafter{#1}}}
 \newcommand{\scl}[1]{\ensuremath{#1}}
 \newglossaryentry{math:scalar}{
 	name=\scl{x},
-	description={Kleinbuchstaben bezeichnen einen Skalar},
-	sort=mathscalar, type=mathlist
+	description={Kleinbuchstaben bezeichnen ein Skalar},
+	sort=math_1s_anfang_skalar, type=mathlist
 }
 %\newcommand{\pnt}[1]{\ensuremath{\boldsymbol{\expandafter\MakeLowercase\expandafter{#1}}}}
 \newcommand{\pnt}[1]{\ensuremath{\boldsymbol{#1}}}
@@ -22,14 +25,14 @@
 \newglossaryentry{math:vectorandpoint}{
 name=\vct{x},
 description={Fettgedruckte Kleinbuchstaben bezeichnen einen Punkt oder Vektor},
-sort=mathvectorandpoint, type=mathlist
+sort=math_2v_anfang_punkt_vektor, type=mathlist
 }
 %\newcommand{\mtx}[1]{\ensuremath{\boldsymbol{\expandafter\MakeUppercase\expandafter{#1}}}}
 \newcommand{\mtx}[1]{\ensuremath{\boldsymbol{#1}}}
 \newglossaryentry{math:matrix}{
 name=\mtx{X},
 description={Fettgedruckte Großbuchstaben bezeichnen eine Matrix},
-sort=mathmatrix, type=mathlist
+sort=math_3m_anfang_matrix, type=mathlist
 }
 %\DeclareMathOperator{\fnfop}{f}
 \newcommand{\fnfop}{\ensuremath{\mathrm{f}}}
@@ -37,37 +40,37 @@ sort=mathmatrix, type=mathlist
 \newglossaryentry{math:functionf}{
 	name=\fnf{\scl{x}},
 	description={allgemeine Funktion in Abhängigkeit der Variable \scl{x}},
-	sort=mathfnf, type=mathlist
+	sort=math_4f_anfang_funktion, type=mathlist
 }
 \newcommand{\dt}[1]{\ensuremath{\dot{#1}}}
 \newglossaryentry{math:dt}{
 name=\dt{\fnfop},
 description={Ableitung der Funktion \ensuremath{f} nach der Zeit},
-sort=mathdt, type=mathlist
+sort=math_4f_funktion_dt, type=mathlist
 }
 \newcommand{\prd}[1]{\ensuremath{\hat{#1}}}
 \newglossaryentry{math:predicted}{
 name=\prd{x},
 description={Ein Circumflex über einer Variablen symbolisiert eine prädizierte Größe},
-sort=mathpredicted, type=mathlist
+sort=math_1s_prediktion, type=mathlist
 }
 \newcommand{\crd}[1]{\ensuremath{\tilde{#1}}}
 \newglossaryentry{math:corrected}{
 name=\crd{x},
 description={Eine Tilde über einer Variablen symbolisiert eine korrigierte Größe},
-sort=mathcorrected, type=mathlist
+sort=math_1s_korrektur, type=mathlist
 }
 \newcommand{\trp}[1]{\ensuremath{{#1}^T}}
 \newglossaryentry{math:trans}{
 name=\trp{\mtx{X}},
 description={Transponierte der Matrix \mtx{X}},
-sort=mathtrans, type=mathlist
+sort=math_3m_transponiert, type=mathlist
 }
 \newcommand{\ivt}[1]{\ensuremath{{#1}^{-1}}}
 \newglossaryentry{math:inv}{
 name=\ivt{\mtx{X}},
 description={Inverse der Matrix \mtx{X}},
-sort=mathinv, type=mathlist
+sort=math_3m_inverse, type=mathlist
 }
 \newcommand{\der}[1]{\ensuremath{#1^{\prime}}}
 \newcommand{\derII}[1]{\ensuremath{#1^{\prime\prime}}}
@@ -75,43 +78,43 @@ sort=mathinv, type=mathlist
 \newglossaryentry{math:derivative}{
 name=\der{\fnfop},
 description={Ableitung der Funktion \fnfop},
-sort=mathderivative, type=mathlist
+sort=math_4f_derivative, type=mathlist
 }
 \DeclareMathOperator{\maxop}{max}
 \newcommand{\mxm}[1]{\ensuremath{\maxop(#1)}}
 \newglossaryentry{math:max}{
 name=\mxm{\vct{x}},
 description={Maxima von \vct{x}},
-sort=mathmax, type=mathlist
+sort=math_2v_maximum, type=mathlist
 }
 \newcommand{\mean}[1]{\ensuremath{\bar{#1}}}
 \newglossaryentry{math:mean}{
 name=\mean{x},
 description={Mittelwert der Variable \(x\)},
-sort=mathmean, type=mathlist
+sort=math_1s_mittelwert, type=mathlist
 }
 \newcommand{\nrm}[1]{\ensuremath{\|#1\|}}
 \newglossaryentry{math:norm}{
 name=\nrm{\vct{x}},
 description={Euklidische Norm des Vektors \({\vct{x}=\begin{pmatrix} x_x \\ x_y \end{pmatrix}}\): \(\nrm{\vct{x}} = \sqrt[2]{x_x^2 + x_y^2}\)},
-sort=mathnorm, type=mathlist
+sort=math_2v_norm, type=mathlist
 }
 \newcommand{\btr}[1]{\ensuremath{|#1|}}
 \newglossaryentry{math:btr}{
 	name=\btr{\scl{x}},
 	description={Betrag von \scl{x}},
-	sort=mathbtr, type=mathlist
+	sort=math_1s_betrag, type=mathlist
 }
 \newcommand{\derat}[2]{\ensuremath{{#1}^{\prime} |_{#2}}}
 \newglossaryentry{math:derivativeat}{
 	name=\derat{\fnfop}{\gls{x}},
 	description={Ableitung der Funktion \( \fnfop \) an der Stelle \gls{x}},
-	sort=mathderivativeat, type=mathlist
+	sort=math_4f_derivative_at_x, type=mathlist
 }
 \DeclareMathOperator{\atantwoop}{atan2}
 \newcommand{\atantwo}[1]{\ensuremath{\atantwoop(#1)}}
 \newglossaryentry{math:atan2}{
 	name=\atantwo{\gls{y},\gls{x}},
 	description={erweiterte Umkehrfunktion des Tangens \(\tan(\alpha)=\frac{\gls{y}}{\gls{x}} \rightarrow \atantwo{\gls{y},\gls{x}} = \alpha\)   mit Wertebereich \(\alpha = 0 \dots 360^{\circ}\)},
-	sort=mathatantwo, type=mathlist
+	sort=math_5x_atantwo, type=mathlist
 }

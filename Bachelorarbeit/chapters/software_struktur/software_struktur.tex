@@ -1,24 +1,25 @@
 \chapter{Struktur der Software \dcsecondauthorshort}
 \label{cha:software_struktur}
 
-\section{ROS}
+\section{ROS \dcsecondauthorshort}
 Da der Austausch von Bilddaten und Ansteuerbefehlen zwischen Modellfahrzeug und PC via \gls{acr:ros}\footnote{http://www.ros.org/} abläuft, soll kurz darauf eingegangen werden. 
 \begin{quotation}
 \gls{acr:ros} ist eine Sammlung von Werkzeugen, Bibliotheken und Konventionen zur Vereinfachung der Entwicklung komplexen und robusten Roboterverhaltens für eine Vielzahl an Roboterplattformen.\footnote{Übernommen aus dem Englischen von http://www.ros.org/about-ros/ am 11. September 2018}
 \end{quotation}
 
-\subsection{Nodes}
+%\subsection{Nodes}
 \label{ssec:software_struktur:ros:nodes}
-Ein \gls{acr:ros}-System besteht aus mehreren Programmen \glqq Nodes\grqq, welche über bestimmte Kommunikationskanäle \glqq Topics\grqq\ Datenpakete \glqq Messages\grqq\ austauschen. Diese Applikationen können Information auf einem Topic zur Verfügung stellen, sie fungieren als sogenannte Publisher, oder nutzen, in diesem Fall man nennt sie Subscriber. Ein Schema zum Aufbau des konkreten \gls{acr:ros}-Systems findet sich in Abb.~\ref{fig:software_struktur:ros}.
+\ \\
+Ein \gls{acr:ros}-System besteht aus mehreren Programmen (\glqq Nodes\grqq ), welche über bestimmte Kommunikationskanäle (\glqq Topics\grqq ) Datenpakete (\glqq Messages\grqq ) austauschen. Diese Applikationen können als sogenannte Publisher Informationen auf einem Topic zur Verfügung stellen. Im anderen Fall man nennt sie Subscriber, wenn sie stattdessen Informationen nutzen. Ein Schema zum Aufbau des konkreten \gls{acr:ros}-Systems findet sich in Abb.~\ref{fig:software_struktur:ros}.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Software_Struktur_ROS}
-	\caption{Struktur des \gls{acr:ros}-Systems}
+	\caption{Struktur des ROS-Systems}
 	\label{fig:software_struktur:ros}
 \end{figure}
 
-\subsubsection{Fahrzeug}
+%\subsubsection{Fahrzeug}
 \paragraph{Kamera-Node}
 Der Kamera-Node veröffentlicht die Bilder als Rohdaten-Topic sowie in komprimierter Form.
 \paragraph{Fahrzeug-Node}
@@ -29,10 +30,10 @@ Der Fahrzeug-Node veröffentlicht:
 \item sonstige Informationen zum Fahrzeug (z.B. Akkuspannung)
 \end{itemize}
 und nimmt im Ansteuer-Topic die gewünschte Geschwindigkeit und den Lenkwinkel entgegen.
-\subsubsection{PC}
+\paragraph{PC}
 Auf dem PC wird nur der von MATLAB automatisch initialisierte Node genutzt. Dieser abonniert das komprimierte Bilddaten-Topic und veröffentlicht auf das Ansteuer-Topic des Fahrzeugs.
 
-\section{MATLAB}
+\section{MATLAB \dcsecondauthorshort}
 Die im Hauptteil dieser Arbeit beschriebenen Algorithmen zur Fahrspurverfolgung wurden ausschließlich in MATLAB implementiert. \textbf{MAT}rix \textbf{LAB}oratory ist ein kommerzielles Programm und eine Programmiersprache für numerische Rechnungen und grafische Darstellungen, dessen Grundbausteine Matrizen sind. Diese Eigenschaften, weitreichende Debugging-Funktionalitäten und die einfache Erweiterbarkeit durch sogenannte Toolboxen machen es sehr attraktiv zum Einsatz im Rahmen der Bildverarbeitung \& Evaluation. Da die grundlegende Softwarestruktur in allen drei Lösungsansätzen zur Fahrspurverfolgung gleich ist, soll diese nun dargelegt werden. Eine schematische Darstellung ist in Abb.~\ref{fig:software_struktur:matlab} gegeben.
 
 \begin{figure}[htbp]
