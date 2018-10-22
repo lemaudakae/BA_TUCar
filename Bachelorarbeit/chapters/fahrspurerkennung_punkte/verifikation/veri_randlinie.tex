@@ -1,66 +1,79 @@
 \subsection{seitliche Fahrbahnmarkierungen}
-Zur Verifikation ermittelter Randlinienpunkte werden deren Abstände zu den jeweils anderen Fahrbahnmarkierungen gegeneinander untersucht und mit den real bekannten Werten verglichen. Damit eine Randlinie als verifiziert gilt, muss ihr Abstand zu mindestens einer anderen Fahrbahnmarkierung in etwa dem Erwartungswert entsprechen.
+Zur Verifikation ermittelter Randlinienpunkte werden deren Abstände zu den übrigen Fahrbahnmarkierungen untersucht und mit den im Testszenario bekannten Werten verglichen. Damit eine Randlinie als verifiziert gilt, muss ihr Abstand zu mindestens einer anderen Fahrbahnmarkierung in etwa dem Erwartungswert entsprechen.
 
 \begin{algorithm}
 \SetKwFunction{Abstand}{Abstand}
 \SetKwFunction{Min}{Minimum}
 \SetKwFunction{Betrag}{Betrag}
+\SetKwFunction{Laenge}{Laenge}
 \SetKw{Break}{break}
-\KwIn{\(pl\)\{Hypothese\}(Punkt-Index): Punkte der linken Linie\\ \(pr\)\{Hypothese\}(Punkt-Index): Punkte der rechten Linie \\
-\(s\): Maximalabweichung des Punktabstands vom Sollwert \\ \(b\): Fahrspurbreite}
-\KwOut{\(plv\)(Punkt-Index): verifizierte Punkte der linken Linie}
-	\For{\(i=1\) \KwTo Anzahl Hypothesen der linken Linie}{
-		\For{\(j=1\) \KwTo Anzahl Hypothesen der rechten Linie}{
-			\For{\(k=1\) \KwTo Anzahl Punkte der linken Linienhypothese \(pl\)\{\(i\)\}}{
-				\tcc{simultane Berechnung des Abstands von Punkt \(pl\)\{\(i\)\}(\(k\)) zu allen Punkte der rechten Linienhypothese \(pr\)\{\(j\)\}; \(d\) ist Vektor!} 
-				\(d\) = \Abstand{\(pl\)\{\(i\)\}(\(k\)), \(pr\)\{\(j\)\}} \\
-				\tcc{Minimalen Abstand zwischen Punkt \(pl\)\{\(i\)\}(\(k\)) und der rechten Linienhypothese \(pr\)\{\(j\)\} betrachten}
-				 \(dmin\) = \Min{\(d\)} \\
-				 \tcc{Nach Abziehen der Fahrspurbreite Betrag des Fehlers auswerten}
-				 \(err\) = \Betrag{\(dmin - 2\cdot b\)} \\
-				 \If{\(err < s\)}{
-				 	\(plvTmp\)(k) = \(pl\)\{\(i\)\}(\(k\))
-				 }
-				 \Else{
-				 \tcc{Abbruch bei einmaliger Überschreitung des Fehlerschwellwertes, Punkte die im weiteren Verlauf des Riverflow-Algorithmus gefunden wurden, werden nicht betrachtet}
-				 	\Break
-				 }
-				 \If{Anzahl Punkte \(plv\) \(<\) Anzahl Punkte \(plvTmp\)}{
-				 \tcc{längste verifizierbare Koordinatenserie halten}	
-				 	\(plv\) = \(plvTmp\)
-				 }
-			} 
-		}
+\SetKw{And}{and}
+\KwIn{linienL(Hypothese).punkte(Punkt-Index): Punkte der linken Linie\\ linienR(Hypothese).punkte(Punkt-Index): Punkte der rechten Linie \\
+errMax: Maximalabweichung des Linienabstands vom Sollwert \\ bFsp: Fahrspurbreite}
+\KwOut{linieVeriL(Punkt-Index): verifizierte Punkte der linken Linie}
+\tcc{Alle Hypothesenkombinationen von linker/rechter Linie testen}
+\For{i=1 \KwTo \Laenge{linienL}}{
+\tcc{Laenge = Anzahl der Elemente der entsprechenden Variable}
+	\For{j=1 \KwTo \Laenge{linienR}}{
+		\tcc{Punkte der gewählten linken Linienhypothese ihrer Erkennungsreihenfolge nach an gewählter rechter Linienhypothese verifizieren -> Abbruch bei Überschreitung d. maximalen Abstandsabweichung}
+		k=0 \\
+		errOK=1 \\
+		\While{errOK \And k+1 \(<=\) \Laenge{linienL(i).punkte}}{
+			\tcc{Berechnung der Abstände von Punkt linienL(i).punkte(k+1) zu allen Punkten der rechten Linienhypothese linienR(j).punkte; d ist Vektor!} 
+			d = \Abstand{linienL(i).punkte(k+1), linienR(j).punkte} \\
+			\tcc{Abstand Punkt - gegenüberliegende Linie \(\approx\) Abstand Punkt - nächstgelegener Punkt der gegenüberliegenden Linie}
+			 dMin = \Min{d} \\
+			 \tcc{Nach Abziehen der Fahrspurbreite Betrag des Fehlers auswerten}
+			 err = \Betrag{dMin - 2*\text{bFsp}} \\
+			 errOK = err \(<=\) errMax \\
+			 \lIf{errOK}{k=k+1}
+		}	
+		\If{\Laenge{linieVeriL} \(<\) k}{
+		\tcc{längste verifizierbare Koordinatenserie halten}	
+			linieVeriL = linienL(i).punkte(1 \KwTo k)
+		} 
 	}
+}
+\caption{Verifikation Seitenlinie-Seitenlinie}
+\label{alg:verifikation_rand}
 \end{algorithm}
 \subsubsection{Seitenlinienvergleich \dcsecondauthorshort} 
 \label{sssec:fahrspurerkennung:riverflow:verifikation:seitenlinienvergleich}
-Zuerst wird der Abstand der äußeren Fahrbahnmarkierungen zueinander geprüft. Diese Validierung bedient sich ineinander verschachtelter Schleifen, um zu jedem Punkt das passende Gegenüber zu finden. Exemplarisch wird diese Schachtelung nun am Beispiel der Beurteilung der linken Fahrbahnmarkierungspunkte anhand der rechten Linie dargelegt. Es wird:
-\begin{enumerate}
-\item 
-Eine Hypothese der linken Linie gewählt.
-\item \label{item:riverflow:verification:l_r:loops:right_hypo}
-Eine Hypothese der rechten Fahrbahnmarkierung selektiert.
-\item \label{item:riverflow:verification:l_r:loops:point}
-Ein Punkt der gewählten linken Linienhypothese ausgesucht.
-\end{enumerate}
-Nun kann simultan der Abstand \nrm{\gls{lat:av}} \eqref{eq:norm:distpoints} 
-zu allen Punkten der gewählten rechten Fahrbahnmarkierungshypothese berechnet werden. 
-\begin{equation}
-\label{eq:norm:distpoints} 
-\nrm{\gls{lat:av}} = \nrm{\pnt{p_{\text{links}}} - \pnt{p_{\text{rechts}}}} 
-\end{equation}
-Da der nächstgelegene Punkt der rechten Linienhypothese zum gewählten Punkt der linken Fahrbahnmarkierungshypothese gefragt ist, wird nur das kleinste Ergebnis dieser simultanen Berechnung weiter betrachtet.
 
-Die Koordinatenserie der linken Linienhypothese wird vom Anfangspunkt des Riverflow-Algorithmus bis
-\begin{itemize}
-\item der Endpunkt derselben erreicht ist 
-\item der Abstand zur gewählten rechten Fahrbahnmarkierungshypothese einmal überschritten wurde
-\end{itemize}
-nacheinander bearbeitet (siehe Schleife~\ref{item:riverflow:verification:l_r:loops:point}). Die so anhand einer selektierten rechten Linienhypothese verifizierte linke Koordinatenserie wird zwischengespeichert. 
-Nach Validieren mittels aller rechten Fahrbahnmarkierungshypothesen (siehe Schleife~\ref{item:riverflow:verification:l_r:loops:right_hypo}) kann nun die längste verifizierte Koordinatenserie der gewählten linken Linienhypothese ermittelt werden.
+Bei der Validierung der äußeren Fahrbahnmarkierungen aneinander wird versucht, jede gefundene Hypothese am passendsten Gegenüber zu verifizieren. 
+%In diesem Fall stellt den besten oppositiven Verlauf die Hypothese dar, zu welcher die meisten Punkte des zu validierenden Verlaufs einen maximalen Abstandsfehler nicht überschreiten. 
+Das Ergebnis der Bearbeitung einer zu prüfenden Fahrbahnmarkierung stellt den verifizierten Teil der Hypothese mit der größten validierten Punkteanzahl dar.
+Algorithmus \ref{alg:verifikation_rand} zeigt das Vorgehen beispielhaft für die Prüfung der linken anhand der rechten Randlinie. 
+%Bei der Verifizierung einer solchen Koordinatenserie wird iterativ von in der Reihenfolge der Erkennung der Punkte vorgegangen, ist der Riverflow-Algorithmus also einmal zu weit von der Linie abgekommen, bricht die Verifikation hier ohne Beachtung weiterer Punkte ab.
 
-Der beschriebene Prozess wird nun für alle linken Fahrbahnmarkierungshypothesen ausgeführt. Die linke Linienhypothese mit der größten Anzahl Punkte wird als mithilfe der rechten Fahrbahnmarkierung validierte linke Linie betrachtet. Der prinzipiell gleiche Algorithmus wird für die Verifikation der rechten Fahrbahnmarkierung anhand der linken Linie genutzt.
+
+ 
+%Zuerst wird der Abstand der äußeren Fahrbahnmarkierungen zueinander geprüft. Diese Validierung bedient sich ineinander verschachtelter Schleifen, um zu jedem Punkt das passende Gegenüber zu finden. Exemplarisch wird diese Schachtelung nun am Beispiel der Beurteilung der linken Fahrbahnmarkierungspunkte anhand der rechten Linie dargelegt. Es wird:
+%\begin{enumerate}
+%\item 
+%Eine Hypothese der linken Linie gewählt.
+%\item \label{item:riverflow:verification:l_r:loops:right_hypo}
+%Eine Hypothese der rechten Fahrbahnmarkierung selektiert.
+%\item \label{item:riverflow:verification:l_r:loops:point}
+%Ein Punkt der gewählten linken Linienhypothese ausgesucht.
+%\end{enumerate}
+%Nun kann simultan der Abstand \nrm{\gls{lat:av}} \eqref{eq:norm:distpoints} 
+%zu allen Punkten der gewählten rechten Fahrbahnmarkierungshypothese berechnet werden. 
+%\begin{equation}
+%\label{eq:norm:distpoints} 
+%\nrm{\gls{lat:av}} = \nrm{\pnt{p_{\text{links}}} - \pnt{p_{\text{rechts}}}} 
+%\end{equation}
+%Da der nächstgelegene Punkt der rechten Linienhypothese zum gewählten Punkt der linken Fahrbahnmarkierungshypothese gefragt ist, wird nur das kleinste Ergebnis dieser simultanen Berechnung weiter betrachtet.
+%
+%Die Koordinatenserie der linken Linienhypothese wird vom Anfangspunkt des Riverflow-Algorithmus bis
+%\begin{itemize}
+%\item der Endpunkt derselben erreicht ist 
+%\item der Abstand zur gewählten rechten Fahrbahnmarkierungshypothese einmal überschritten wurde
+%\end{itemize}
+%nacheinander bearbeitet (siehe Schleife~\ref{item:riverflow:verification:l_r:loops:point}). Die so anhand einer selektierten rechten Linienhypothese verifizierte linke Koordinatenserie wird zwischengespeichert. 
+%Nach Validieren mittels aller rechten Fahrbahnmarkierungshypothesen (siehe Schleife~\ref{item:riverflow:verification:l_r:loops:right_hypo}) kann nun die längste verifizierte Koordinatenserie der gewählten linken Linienhypothese ermittelt werden.
+%
+%Der beschriebene Prozess wird nun für alle linken Fahrbahnmarkierungshypothesen ausgeführt. Die linke Linienhypothese mit der größten Anzahl Punkte wird als mithilfe der rechten Fahrbahnmarkierung validierte linke Linie betrachtet. Der prinzipiell gleiche Algorithmus wird für die Verifikation der rechten Fahrbahnmarkierung anhand der linken Linie genutzt.
 
 \subsubsection{Beurteilung der Seitenlinien anhand der mittleren Fahrbahnmarkierung}
 \paragraph{lineare Interpolation}

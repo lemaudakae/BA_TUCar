@@ -89,6 +89,19 @@ rostopic echo topicname
 rqt_image_view
 \end{she}
 
+\subsubsection{Sondereinstellungen Polynombasierte Fahrspurerkennung}
+Zum Nutzen des Rosbags sind folgende Befehle auszuführen (jeweils in seperatem Terminal):
+\begin{she}
+# roscore starten
+roscore
+# Topicdaten auf Konsole ausgeben
+rosbag play -l <Dateiname>.bag
+# Kamerabild anzeigen
+rqt_image_view
+# Throttle-Node zum senken der Bildfrequenz starten
+rosrun topic_tools throttle messages /tucar/omnicam/full/compressed_throttle <Bildfrequenz>
+\end{she}
+
 \section{Parameteranpassung TUCar}
 \subsection{Fahrplattform}
 Die Konfiguration der Fahrplattform kann mittels der Datei 
