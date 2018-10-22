@@ -3,7 +3,7 @@
 
 Leicht parametrierbare geometrische Objekte in einem Binärbild (z.B. nach einer Kantenerkennung) lassen sich mit dem robusten Verfahren der Hough-Transformation finden. Dessen häufigste Anwendung besteht in der Geradenerkennung, weshalb das Prinzip im Folgenden an diesem einfachen Fall erklärt werden soll. Analog lässt sich die Vorgehensweise auf andere parametrische Figuren übertragen, wie zum Beispiel Kreise.
 
-Um gerade Linien mittels Hough-Transformation in einem Bild finden zu können, ist ein Modell der Gerade, also die mathematische Beschreibung des zu findenden Objektes, notwendig. Alle Punkte (\gls{x},\gls{y}), die auf einer Geraden mit den Parametern \gls{lat:anstieg} und \gls{lat:achsenabschnitt} liegen, lassen sich nach folgender Gleichung beschreiben \autocite{jaehneDigitaleBildverarbeitungMit2005}:
+Um gerade Linien mittels Hough-Transformation in einem Bild finden zu können, ist ein Modell der Gerade, also die mathematische Beschreibung des zu findenden Objektes, notwendig. Alle Punkte (\gls{x},\gls{y}), die auf einer Geraden mit den Parametern \gls{lat:anstieg} und \gls{lat:achsenabschnitt} liegen, lassen sich in Anlehnung an \autocite[S.~481f]{jaehneDigitaleBildverarbeitungMit2005} nach folgender Gleichung beschreiben:
 
 % Formel für allgemeine Geradengleichung
 \begin{equation}
@@ -24,10 +24,10 @@ Damit wird ein zweiter sogenannter Modellraum aufgespannt, indem \gls{lat:achsen
 % Bild (Diagramme) zur Hough-Trafo
 \begin{figure}[htbp] % [htb]
   \centering  
-  \subfloat[][]{\includegraphics[width=0.45\textwidth]{grundlagen_hough_datenraum.png}}
-  \qquad
-  \subfloat[][]{\includegraphics[width=0.45\textwidth]{grundlagen_hough_modellraum.png}}  
-  \caption{Houghtransformation von Geraden: Punkte aus dem Datenraum (a) werden auf den Modellraum (b) abgebildet.}
+  \subfloat[Datenraum]{\includegraphics[width=0.48\textwidth]{grundlagen_hough_datenraum.png}}
+  \hfill
+  \subfloat[Modellraum]{\includegraphics[width=0.48\textwidth]{grundlagen_hough_modellraum.png}}  
+  \caption{Houghtransformation von Geraden gemäß \autocite[S.~482]{jaehneDigitaleBildverarbeitungMit2005}: Punkte aus dem Datenraum werden auf den Modellraum abgebildet.}
 %  \label{fig:grundlagen_hough}
 \end{figure} 
 
@@ -36,6 +36,6 @@ Praktischerweise wird als Modell für die Gerade die hessesche Normalform (Steig
 \subsection{Vereinfachte Hough-Transformation}
 \label{ssec:grundlagen:hough:vereinfachte}
 % Hier fehlt der Verweis auf BA_Marcel_Unger
-Wir haben in unserer Arbeit in Anlehnung an \autocite{alyRealTimeDetection2008} eine sehr vereinfachte Form der Hough-Transformation zur Anwendung gebracht, welche lediglich zur Findung vertikaler Linien taugt. Dazu wird ein Histogramm über die Spaltensummen der Pixelmatrix gebildet. Nach der Glättung mittels Gauß-Filter geben die Lage der Maxima über einem bestimmten Schwellwert anschließend Auskunft über die Position einer näherungsweise vertikal erkannten Gerade.
+In dieser Arbeit wurde wie in \autocite{alyRealTimeDetection2008} eine sehr vereinfachte Form der Hough-Transformation zur Anwendung gebracht, welche lediglich zur Findung vertikaler Linien dient. Dazu wird ein Histogramm über die Spaltensummen der Bildmatrix gebildet. Nach der Glättung mittels Gauß-Filter geben die Lage der Maxima über einem bestimmten Schwellwert anschließend Auskunft über die Position einer näherungsweise vertikal erkannten Gerade.
 
 % einer alternativen Initialisierung eines Startpunktes zum Einsatz kommt.
