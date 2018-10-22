@@ -2,7 +2,7 @@
 
 %Um ein Modellauto steuern zu können, werden unter anderem die Informationen über den aktuellen Standort und den Zielpunkt, den das Fahrzeug ansteuern soll, benötigt. Die Trajektorie ist wiederum davon abhängig, an welcher Stelle sich die Fahrbahnmarkierungen befinden. 
 
-Alle Positionen von Objekten im Raum können mit Entfernungen relativ zu entsprechenden \gls{acr:ks} beschrieben werden. Für die Beschreibung unseres \gls{glos:tucar}s auf dem Parcours und die Lage der Straßenlinien wurden vier kartesische, hierarchisch angeordnete \gls{acr:ks} festgelegt, welche in Abbildung~\ref{fig:grundlagen_kos} verdeutlicht werden. Auch wenn sich der Roboter natürlich im dreidimensionalen aufhält, reicht eine 2D-Beschreibung für unsere Anwendung aus. Die Testumgebung beinhaltet keinerlei Höhenunterschiede. So lassen sich alle zu beschreibenden Punkte im Raum auf die Straßenebene projizieren. 
+Alle Positionen von Objekten im Raum können mit Entfernungen relativ zu entsprechenden \gls{acr:ks} beschrieben werden. Für die Beschreibung unseres \gls{glos:tucar}s auf dem Parcours und die Lage der Straßenlinien wurden vier kartesische, hierarchisch angeordnete \gls{acr:ks} festgelegt, welche in Abbildung~\ref{fig:grundlagen_kos} verdeutlicht werden. Auch wenn sich der Roboter natürlich im dreidimensionalen Raum aufhält, reicht eine 2D-Beschreibung für unsere Anwendung aus. Die Testumgebung beinhaltet keinerlei Höhenunterschiede. So lassen sich alle zu beschreibenden Punkte auf die Straßenebene projizieren. 
 
 \begin{figure}[htbp] % [htb]
   \centering
@@ -26,7 +26,7 @@ Für die festgelegten \gls{acr:ks} gelten zwei zum Einsatz gekommene Einheiten. 
 Die eben eingeführten Koordinatensysteme dienen der Darstellung jeweils dazu passender Objekte. Oft ist dagegen auch deren Beschreibung in anderen \gls{acr:ks} gefragt. Um beispielsweise in Roboterkoordinaten erkannten Hindernissen deren Position in der Weltkarte zuschreiben zu können, bedarf es einer Umrechnung. 
 
 Für die Transformation von Punkten in ein anderes \gls{acr:ks} wird eine Verschiebung (Translation) in Richtung eines Translationsvektors \gls{lat:Translationsvektor}, eine Drehung mittels einer Rotationsmatrix \gls{lat:Rotationsmatrix} (Rotation) und gegebenenfalls eine Skalierung durchgeführt.
-Mathematisch lassen sich \gls{lat:Translationsvektor}, \gls{lat:Rotationsmatrix} und die Skalierungsmatrix \gls{lat:Skalierungsmatrix} wie folgt darstellen \autocite[S.~26f]{corkeRoboticsVisionControl2017}, \autocite[S.~133]{nischwitzComputergrafik2011}.
+Mathematisch lassen sich \gls{lat:Translationsvektor}, \gls{lat:Rotationsmatrix} und die Skalierungsmatrix \gls{lat:Skalierungsmatrix} nach \autocite[S.~26f]{corkeRoboticsVisionControl2017} und \autocite[S.~133]{nischwitzComputergrafik2011} wie folgt darstellen.
 
 % Formel für den Translationsvektor t
 \begin{equation}
@@ -50,7 +50,7 @@ Mathematisch lassen sich \gls{lat:Translationsvektor}, \gls{lat:Rotationsmatrix}
 \end{pmatrix}
 \end{equation} 
 
-Da sich unser Roboter in der Darstellung nur im zweidimensionalen Raum bewegt, können Punkte lediglich in dieser Ebene rotiert werden (sprich: um die nicht vorhandene \gls{z}-Achse gedreht werden). 
+Da sich das \gls{glos:tucar} in seiner Darstellung nur im zweidimensionalen Raum bewegt, können Punkte lediglich in dieser Ebene rotiert werden (sprich: um die nicht vorhandene \gls{z}-Achse gedreht werden). 
 Sind beispielsweise die Weltkoordinaten von Punkten im Roboterkoordinatensystem gesucht, so stellen \gls{lat:Translationsvektor} die Position und \( \scl{\delta} = \gls{gre:orientierung} \) die Orientierung des Modellfahrzeugs dar.
 Eine Abbildung des Punktvektors \( \pnt{p}^{\gls{lat:RoboterKOS}} \) in das \gls{lat:WeltKOS}-\gls{acr:ks} könnte dann wie folgt aussehen:
 
