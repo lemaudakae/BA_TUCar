@@ -14,25 +14,33 @@ Den Ausganspunkt für die folgenden Optimierungen bildet eine Geschwindigkeit vo
 \SI{0.1}{\metre\per\second}. Die Frequenz \scl{f_{img}}, mit welcher die Bilder verarbeitet werden, wurde auf \SI{1}{\hertz} festgelegt, da die Extraktion der Linienpunkte eines Testbildes ca. \SI{0.5}{\second} benötigt. Die Frequenz der Regelung \scl{f_{odom}} wurde initial auf \SI{20}{\hertz} festgelegt, da der Rechenaufwand für einen Regelungszyklus sehr gering ist. Eine noch höhere Regelfrequenz verspricht keinen Performancegewinn und läge schon nahe der maximalen Ansteuerfrequenz des Lenkservos sowie der Abtastrate der \gls{acr:imu} (jeweils \SI{50}{\hertz}).
 
 Mithilfe dieser Einstellung absolvierte das Fahrzeug erfolgreich eine Runde im Testparcours. Wie in Abb.~\ref{fig:evaluation:riverflow:times_combined_1Hz_0_1m_s_over_piciter} zu sehen, benötigt ein Bild-Callback im Echtzeitbetrieb, d.h. bei mehrmaliger Ausführung erheblich weniger Zeit als bei einmaliger Messung anhand eines Testbildes. Die Verringerung der Bearbeitungsdauer \scl{t_{img}} von ca. \SI{500}{\milli\second} auf \SI{128}{\milli\second} (Median der in Abb.~\ref{fig:evaluation:riverflow:times_combined_1Hz_0_1m_s_over_piciter} dargestellten Daten) lässt sich unter anderem durch die Fahigkeit MATLABs, Funktionen bei wiederholter Ausführung im Hauptspeicher zu halten und somit schneller ausführen zu können, erklären. Eine signifikante Erhöhung der Bildfrequenz \scl{f_{img}} ist also möglich. Nimmt man die von der Regelung und Posenaktualisierung, d.h. dem Odometrie-Callback benötigte Zeit als konstant an, lässt sich die theoretisch mögliche Bildfrequenz wie folgt berechnen:
+%\begin{subequations}
+%\begin{equation}
+%	T_{img} = t_{img}+t_{odom-per-sec}\cdot T_{img}
+%\end{equation}
+%%\begin{equation}
+%%	T_{img}\cdot(1-t_{odom-per-sec}) = t_{img}
+%%\end{equation}
+%\begin{equation}
+%	T_{img} = \frac{t_{img}}{1-t_{odom-per-sec}}
+%\end{equation}
+%\begin{equation}	
+%	f_{img} = \frac{1}{T_{img}}
+%\end{equation}
+%\end{subequations} 
 \begin{subequations}
 \begin{equation}
-	T_{img} = t_{img}+t_{odom-per-sec}\cdot T_{img}
+	\SI{1}{s} = f_{img} \cdot t_{img} + f_{odom} \cdot t_{odom}
 \end{equation}
-%\begin{equation}
-%	T_{img}\cdot(1-t_{odom-per-sec}) = t_{img}
-%\end{equation}
 \begin{equation}
-	T_{img} = \frac{t_{img}}{1-t_{odom-per-sec}}
-\end{equation}
-\begin{equation}	
-	f_{img} = \frac{1}{T_{img}}
+	f_{img} = \frac{\SI{1}{s}-f_{odom} \cdot t_{odom}}{t_{img}}
 \end{equation}
 \end{subequations} 
-Die vom Odometrie-Callback pro Sekunde in Anspruch genommene Zeit \scl{t_{odom-per-sec}} wurde direkt als Median der in Abb.~\ref{fig:evaluation:riverflow:times_combined_1Hz_0_1m_s_over_piciter} dargestellten Messwerte errechnet, könnte aber bei einer von \SI{1}{\hertz} abweichenden initialen Bildfrequenz auch auf Basis der Dauer eines Odometrie-Callbacks \(t_{odom}\) bestimmt werden: 
-\begin{equation}
-t_{odom-per-sec} = t_{odom} \cdot f_{odom}
-\end{equation}
-Mit einer Bildbearbeitungszeit von \(t_{img}=\SI{128}{\milli\second}\) sowie dem Zeitbedarf des Odometrie-Callbacks von \(t_{odom-per-sec}=\SI{262}{\milli\second\per\second}\), ergibt sich eine in der Theorie nutzbare Framerate von über \SI{5}{\hertz}. Mit dieser Bildfrequenz wurde eine weitere Testfahrt absolviert, in Abb. \ref{fig:evaluation:riverflow:times_pic_5Hz_0_2m_s_over_piciter} wird die bessere Nutzung der zur Verfügung stehenden Rechenzeit deutlich. Abbildung \ref{fig:evaluation:riverflow:times_pic_5Hz_0_2m_s_over_piciter} zeigt jedoch auch, dass die Periodendauer der Bildverarbeitung zwischen 2 Punkten oszilliert. Der erwartete zeitliche Abstand zweier konsekutiver Aufnahmen von \SI{200}{ms} wird häufig nicht erreicht, stattdessen befindet sich ein Abstand von \(2 \cdot \SI{200}{ms} = \SI{400}{ms}\) zwischen aufeinander folgenden Bildern. Dies führt zu dem Schluss, dass durch nicht vorhandene, da kontraproduktive Pufferung Aufnahmen ausgelassen wurden.
+%Die vom Odometrie-Callback pro Sekunde in Anspruch genommene Zeit \scl{t_{odom-per-sec}} wurde direkt als Median der in Abb.~\ref{fig:evaluation:riverflow:times_combined_1Hz_0_1m_s_over_piciter} dargestellten Messwerte errechnet, könnte aber bei einer von \SI{1}{\hertz} abweichenden initialen Bildfrequenz auch auf Basis der Dauer eines Odometrie-Callbacks \(t_{odom}\) bestimmt werden: 
+%\begin{equation}
+%t_{odom-per-sec} = t_{odom} \cdot f_{odom}
+%\end{equation}
+Mit einer Bildbearbeitungszeit von \(t_{img}=\SI{128}{\milli\second}\) sowie dem Zeitbedarf des Odometrie-Callbacks von \(t_{odom}=\SI{13}{\milli\second}\) (jeweils Median) ergibt sich eine in der Theorie nutzbare Framerate von über \SI{5}{\hertz}. Mit dieser Bildfrequenz wurde eine weitere Testfahrt absolviert, in Abb. \ref{fig:evaluation:riverflow:times_pic_5Hz_0_2m_s_over_piciter} wird die bessere Nutzung der zur Verfügung stehenden Rechenzeit deutlich. Abbildung \ref{fig:evaluation:riverflow:times_pic_5Hz_0_2m_s_over_piciter} zeigt jedoch auch, dass die Periodendauer der Bildverarbeitung zwischen 2 Punkten oszilliert. Der erwartete zeitliche Abstand zweier konsekutiver Aufnahmen von \SI{200}{ms} wird häufig nicht erreicht, stattdessen befindet sich ein Abstand von \(2 \cdot \SI{200}{ms} = \SI{400}{ms}\) zwischen aufeinander folgenden Bildern. Dies führt zu dem Schluss, dass durch nicht vorhandene, da kontraproduktive Pufferung, Aufnahmen ausgelassen wurden.
 
 \begin{figure}[htbp] % [htb]
 \centering
@@ -43,7 +51,7 @@ Mit einer Bildbearbeitungszeit von \(t_{img}=\SI{128}{\milli\second}\) sowie dem
 \subfloat[\SI{3}{\hertz}\label{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_over_piciter}]{\includegraphics[scale=\mtlstscale]{evaluation_riverflow_times_combined_3Hz_0_2m_s_over_piciter}}
 \hfill
 \subfloat[\SI{1}{\hertz}\label{fig:evaluation:riverflow:times_combined_1Hz_0_1m_s_over_piciter}]{\includegraphics[scale=\mtlstscale]{evaluation_riverflow_times_combined_1Hz_0_1m_s_over_piciter}}
-\caption{Zeitbedarf aller Fahrspurverfolgungskomponenten bei \SIlist{5;4;3;1}{\hertz} Bildfrequenz}
+\caption[Zeitbedarf aller Fahrspurverfolgungskomponenten bei \SIlist{5;4;3;1}{\hertz} Bildfrequenz]{Zeitbedarf aller Fahrspurverfolgungskomponenten bei \SIlist{5;4;3;1}{\hertz} Bildfrequenz; Zeiten des Odometriecallbacks pro Bild aufsummiert}
 \end{figure}
 
 Im Folgenden wurde die Bildfrequenz zuerst auf 4 (s.~Abb.~\ref{fig:evaluation:riverflow:times_pic_4Hz_0_2m_s_over_piciter}), später auf \SI{3}{\hertz} verringert (s.~Abb.~\ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_over_piciter}). Erst jetzt konnte kein Springen der Periodendauer des Bild-Callbacks auf ein Vielfaches seines Erwartungswertes mehr festgestellt werden. Eine leichte Oszillation des zeitlichen Abstands zweier Aufnahmen ist auch in Abb.~\ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_over_piciter} zu erkennen, jedoch beträgt der Mittelwert fast exakt die erwarteten \SI{333}{ms}. Die verbleibenden Unregelmäßigkeiten sind auf den Kamera-Node, welcher die Bilder aufnimmt und im entsprechenden Topic veröffentlicht, zurückzuführen (s. Abb.~\ref{fig:evaluation:riverflow:times_pic_3Hz_0_2m_s_since_matlab_ros} und Abschnitt \ref{ssec:software_struktur:ros:nodes}). Abbildung \ref{fig:evaluation:riverflow:times_combined_3Hz_0_2m_s_pie_median} 
