@@ -20,9 +20,9 @@ Das Straßenverkehrsszenario ist unter folgenden Maßgaben entworfen worden:
 	
 	\item Die Parameter Straßenbreite und Parkplatzgrößen sollten natürlich dem Auto angepasst sein. 
 	
-	\item Damit das Modellfahrzeug ordnungsgemäß durch das Verkehrssystem navigiert werden kann, darf der Radius der Kurven nicht zu klein sein, da das Auto einen maximalen Lenkwinkel von circa 30\(^\circ\) besitzt. 
+	\item Damit das Modellfahrzeug ordnungsgemäß durch das Verkehrssystem navigiert werden kann, darf der Radius der Kurven nicht zu klein sein, da das Auto einen maximalen Einlenkwinkel von circa 30\(^\circ\) besitzt. 
 	
-	\item Auf dieser Strecke sollen zukünftig neben einer normalen Fahrspurverfolgung auch Überholen, Abbiegen, Vorfahrt gewähren, Erkennen einer Einbahnstraße und Einparken in Parktaschen verschiedener Ausführung implementiert werden können. Auch wenn bei weitem nicht alles Ziel unserer Arbeit ist, kann man sich diese Operationen als mögliche Aufgaben für den späteren Praktikumsaufbau vorstellen. Somit steht fest, dass sowohl breite Straßen mit Mittellinienstrichen als auch schmale Einbahnstraßen, Kreuzungen und Längs- und Querparkplätze vorgesehen sind.
+	\item Auf dieser Strecke sollen zukünftig neben einer normalen Fahrspurverfolgung auch Überholen, Abbiegen, Vorfahrt gewähren, Erkennen einer Einbahnstraße und Einparken in Parktaschen verschiedener Ausführung implementiert werden können. Auch wenn bei weitem nicht alles Ziel dieser Arbeit ist, könnten diese Operationen als mögliche Aufgaben für den späteren Praktikumsaufbau gefordert sein. Somit steht fest, dass sowohl breite Straßen mit Mittellinienstrichen als auch schmale Einbahnstraßen, Kreuzungen und Längs- und Querparkplätze vorgesehen sind.
 	
 	\item Der einzige Umfeld-Sensor des Autos ist dessen Kamera. Daher ist ein starker Kontrast der Fahrbahnmarkierungen zum Hintergrund erwünscht
 \end{itemize}
@@ -31,9 +31,9 @@ Gegenüber eines einfachen Rundkurses soll hier durch Zusätze wie Querstraßen,
 
 \subsection{Gestaltung}
 
-Da der Platz sehr begrenzt ist, wurde darauf geachtet, möglichst viel der zur Verfügung gestellten Fläche mit Straße zu versehen. Zur optischen Hervorhebung der Fahrbahn und der für das Auge visuellen Ansprechbarkeit ist der Untergrund mit einem hellen Grün bedruckt. Die aus den zuvor genannten Bedingungen entstandene Gestaltung der Teststrecke ist in Abbildung~\ref{fig:strassenszenario} gezeigt. Das Straßenverkehrsszenario ist auf zwei \(4 \times 2\) Meter große, robuste PVC-Werbeplanen gedruckt worden. Diese Planen können jederzeit aufgerollt und aneinandergelegt werden.
+Da der Platz sehr begrenzt ist, wurde darauf geachtet, möglichst viel der zur Verfügung gestellten Fläche mit Straße zu füllen. Zur optischen Hervorhebung der Fahrbahn und der für das Auge visuellen Ansprechbarkeit ist der Untergrund mit einem hellen Grün versehen. Die aus den zuvor genannten Bedingungen entstandene Gestaltung der Teststrecke ist in Abbildung~\ref{fig:strassenszenario} gezeigt. Das Straßenverkehrsszenario ist auf zwei \(4 \times 2\) Meter große, robuste PVC-Werbeplanen gedruckt worden. Diese Planen können jederzeit aufgerollt und aneinandergelegt werden.
 
 Die Breite einer Fahrbahn wurde anhand des Modellfahrzeugs auf 20 cm festgelegt. Auch die Parkplätze sind auf speziell dieses Auto angepasst und verfügen im Maßstab über straßenverkehrsähnliche Dimensionen.
 
-Der relativ stark beschränkte Lenkwinkel und der Umstand des Platzmangels im Labor ließen nicht übermäßig viele Möglichkeiten in der Kurvenkrümmung offen. Daher besitzen alle Kurven nahezu gleiche Radien. Zur Bestimmung des minimalen Radius ließen wir testweise das Fahrzeug seine engst mögliche Kurve fahren und legten deren doppelten Radius als Grenzwert für die Teststrecke fest. Diese Deklaration ist notwendig, damit der Roboter auch in der engsten Kurve zur Korrektur noch stärker einlenken kann.
+Der relativ stark beschränkte Lenkwinkel und der Umstand des Platzmangels im Labor ließen nicht übermäßig viele Möglichkeiten in der Kurvenkrümmung offen. Daher besitzen alle Kurven nahezu gleiche Radien. Zur Bestimmung des minimalen Radius wurde das Fahrzeug testweise in seine engst mögliche Kurve gesteuert und deren doppelter Radius als Grenzwert für die Teststrecke festgelegt. Diese Deklaration ist notwendig, damit der Roboter auch in der engsten Kurve zur Korrektur noch stärker einlenken kann.
 
