@@ -184,7 +184,7 @@ section     %im Inhaltsverzeichnis auf section-Ebene erscheinen
 \input{anhang}
 
 %------- Selbstständigkeitserklärung --------------------------------------------------------------------
-\chapter*{Selbstständigkeitserklärung}
+\chapter*{Selbstständigkeitserklärung \dcfirstauthorshort}
 Hiermit erkläre ich, dass ich die vorliegende Arbeit
 selbstständig angefertigt, nicht anderweitig zu Prüfungszwecken vorgelegt und
 keine anderen als die angegebenen Hilfsmittel verwendet habe. Sämtliche 
@@ -196,7 +196,21 @@ wurden ausdrücklich als solche gekennzeichnet.\bigskip\\
 \newlength\usnl
 \settowidth{\usnl}{-\dcfirstauthorfirstname~\dcfirstauthorlastname, \dcsecondauthorfirstname~\dcsecondauthorlastname-}
 \begin{tabular}{p{\usnl}}\hline
-\centering\footnotesize \dcfirstauthorfirstname~\dcfirstauthorlastname, \dcsecondauthorfirstname~\dcsecondauthorlastname
+\centering\footnotesize \dcfirstauthorfirstname~\dcfirstauthorlastname
+\end{tabular}
+
+\chapter*{Selbstständigkeitserklärung \dcsecondauthorshort}
+Hiermit erkläre ich, dass ich die vorliegende Arbeit
+selbstständig angefertigt, nicht anderweitig zu Prüfungszwecken vorgelegt und
+keine anderen als die angegebenen Hilfsmittel verwendet habe. Sämtliche 
+wissentlich verwendete Textausschnitte, Zitate oder Inhalte anderer Verfasser 
+wurden ausdrücklich als solche gekennzeichnet.\bigskip\\
+\dcplace, \dcdate
+\bigskip\bigskip
+\flushleft
+\settowidth{\usnl}{-\dcfirstauthorfirstname~\dcfirstauthorlastname, \dcsecondauthorfirstname~\dcsecondauthorlastname-}
+\begin{tabular}{p{\usnl}}\hline
+\centering\footnotesize \dcsecondauthorfirstname~\dcsecondauthorlastname
 \end{tabular}
 
 \end{document}
