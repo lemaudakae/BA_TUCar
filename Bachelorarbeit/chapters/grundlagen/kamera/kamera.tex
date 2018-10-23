@@ -32,9 +32,9 @@ Da die Objektivachse und die Achse des Bildsensors in erster Näherung gleich si
 \scl{u} \\ \scl{v}
 \end{pmatrix}
 \qquad
-\scl{\lambda} \in \mathbb{R}^+
+\scl{\lambda} \in \mathbb{R}_+
 \end{equation}
-Richtungs-Vektor \vct{p^{\gls{lat:CamKOS}}} ergibt sich wie folgt: 
+Der Richtungs-Vektor \vct{p^{\gls{lat:CamKOS}}} ergibt sich wie folgt: 
 \begin{equation}
 \vct{p^{\gls{lat:CamKOS}}} =
 \begin{pmatrix}
@@ -57,7 +57,7 @@ Der Faktor  \scl{\lambda} kann in die Funktion \fnf{\scl{u},\scl{v}} integriert 
 \scl{u} \\ \scl{v} \\ \fnf{\scl{u},\scl{v}}
 \end{pmatrix}
 \end{equation}
-Da das Objektiv rotationssymetrisch ist, kann \fnf{\scl{u},\scl{v}} nur vom Abstand eines Punktes zum Mittelpunkt des Bildsensors abhängig gemacht werden:
+Da das Objektiv rotationssymmetrisch ist, kann \fnf{\scl{u},\scl{v}} nur vom Abstand \gls{gre:distsensorcenter} eines Punktes zum Mittelpunkt des Bildsensors abhängig gemacht werden:
 \begin{equation}
 \label{eq:ocamcalibdist}
 \gls{gre:distsensorcenter}=\sqrt{(\scl{u})^2+(\scl{v})^2}
@@ -120,6 +120,6 @@ Da Annahme~\ref{item:ocamcalibassm2} (Achse Bildsensor und Objektiv identisch) i
 \caption{Reales und Ideales Bildsensorkoorinatensystem \gls{lat:OSKOSR} bzw. \gls{lat:OSKOS}}
 \label{fig:kameramodell:affin}
 \end{figure}
- Die Verschiebung des Bildmittelpunktes (Koordinatenursprungs) von \gls{lat:OSKOSR} zu \gls{lat:OSKOS} \vct{\gls{lat:Translationsvektor}^{\gls{lat:OSKOSR}}_{\gls{lat:OSKOS}}} sowie die Parameter \scl{c},\scl{d},\scl{e} werden im Kalibrationsprozess durch die Toolbox ermittelt.
+ Die Verschiebung \vct{\gls{lat:Translationsvektor}^{\gls{lat:OSKOSR}}_{\gls{lat:OSKOS}}} des Bildmittelpunktes (Koordinatenursprungs) von \gls{lat:OSKOSR} zu \gls{lat:OSKOS} sowie die Parameter \scl{c},\scl{d},\scl{e} werden im Kalibrationsprozess durch die Toolbox ermittelt.
 
 

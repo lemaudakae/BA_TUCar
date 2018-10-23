@@ -45,7 +45,7 @@ Die im Hauptteil dieser Arbeit beschriebenen Algorithmen zur Fahrspurverfolgung 
 \end{figure}
 
 \subsection{Initialisierung}
-Ist das Fahrzeug betriebsbereit, d.h. werden alle Nodes des Fahrzeugs ausgeführt, so kann in MATLAB das Programm zur Fahrspurverfolgung aufgerufen werden. Hierfür wird die Initialisierungsroutine gestartet welche:
+Ist das Fahrzeug betriebsbereit, d.h. werden alle Nodes des Fahrzeugs ausgeführt, so kann in MATLAB das Programm zur Fahrspurverfolgung aufgerufen werden. Hierfür wird die Initialisierungsroutine gestartet, welche:
 \begin{itemize}
 \item die globalen Parameter lädt
 \item die Weltkarte und die Pose initialisiert
@@ -56,20 +56,20 @@ Ist das Fahrzeug betriebsbereit, d.h. werden alle Nodes des Fahrzeugs ausgeführ
 
 \subsection{Callbacks}
 \label{ssec:software_struktur:matlab:callbacks}
-Sind alle Startroutinen abgeschlossen, so werden Programmteile nur noch eventbasiert in sogenannten Callback-Funktionen ausgeführt.
+Sind alle Startroutinen abgeschlossen, so werden Programmteile nur noch ereignisbasiert in sogenannten Callback-Funktionen ausgeführt.
  
 \paragraph{Odometrie-Callback}
 Das Fahrzeug veröffentlicht in konfigurierbaren Abständen seine aktuellen Odometriedaten.
-Das Eintreffen eines solchen Datenpaketes in MATLAB führt zum Aufrufen der Odometrie-Callback-Funktion. Die Hauptaufgabe dieses Programmteils besteht in der Regelung des Fahrzeugs, deren Ablauf im folgenden kurz erläutert wird.
+Das Eintreffen eines solchen Datenpaketes in MATLAB führt zum Aufrufen der Odometrie-Callback-Funktion. Die Hauptaufgabe dieses Programmteils besteht in der Regelung des Fahrzeugs, deren Ablauf im Folgenden kurz erläutert wird.
 \begin{enumerate}
 \item Mithilfe der empfangenen, seit der letzten Odometrie-Message verstrichenen Zeit, der in dieser Spanne ermittelten Durchschnittsgeschwindigkeit und der durch die \gls{acr:imu} erhaltenen Orientierung kann die Pose aktualisiert werden. Vorherige Posen werden inklusive des Zeitstempels der sie generierenden Odometrie-Daten für den im Folgenden erläuterten Bild-Callback abgespeichert.
-\item Auf Basis der neuen Pose kann mithilfe aller in der Weltkarte vorhandenen Punkte ein neuer Lenkwinkel bestimmt werden.
+\item Auf Basis der neuen Pose kann mithilfe ausgewählter in der Weltkarte vorhandenen Punkte ein neuer Lenkwinkel bestimmt werden.
 \end{enumerate}
 \paragraph{Bild-Callback}
 Sobald ein neues Bild im zugehörigen Topic verfügbar ist, wird ein Algorithmus zur Extraktion von Punkten der Fahrbahnmarkierung gerufen. Dieser fügt die gefundenen Koordinatenserien anhand der am besten zum Aufnahmezeitpunkt des Bildes passenden Pose nach Linientyp sortiert (\glqq linke\grqq , \glqq mittlere\grqq{} oder \glqq rechte\grqq{} Linie) in die Weltkarte ein und macht sie so für die Regelung abrufbar.
 
 Eine ausführlichere Erläuterung zur Wirkungsweise und zu Vorteilen einer Aufteilung von Bildverarbeitung und Regelung in mehrere Callback-Funktionen ist in Abschnitt \ref{sec:regelung:implementierung} gegeben.
 \subsection{Multitasking}
-Da MATLAB ohne spezielle Toolboxen Prozesse nicht gleichzeitig ausführen kann, die Bearbeitungszeit eines Bild-Callbacks jedoch wesentlich länger ist als die angestrebte Periodendauer der Regelung (Häufigkeit des Aufrufs eines Odometrie-Callbacks), musste für eine Unterbrechbarkeit der Bildverarbeitung gesorgt werden. MATLAB reagiert bei der Ausführung eines Tasks nur während bestimmter Befehle auf weitere Ereignisse. Eine Möglichkeit die Regelung auch bei noch nicht vollständig ausgeführtem Bild-Callback zu ermöglichen, besteht im Einfügen kurzer Pausen zwischen Programmteilen zur Segmentierung dessen. Wählt man diese Abschnitte hinreichend kurz, kann der wartende Odometrie-Callback mit wenig Verzögerung ausgeführt und die Bildverarbeitung danach fortgesetzt werden.
+Da MATLAB ohne spezielle Toolboxen Prozesse nicht gleichzeitig ausführen kann, jedoch die Bearbeitungszeit eines Bild-Callbacks wesentlich länger ist als die angestrebte Periodendauer der Regelung (Häufigkeit des Aufrufs eines Odometrie-Callbacks), musste für eine Unterbrechbarkeit der Bildverarbeitung gesorgt werden. MATLAB reagiert bei der Ausführung eines Tasks nur während bestimmter Befehle auf weitere Ereignisse. Eine Möglichkeit, die Regelung auch bei noch nicht vollständig ausgeführtem Bild-Callback zu realisieren, besteht im Einfügen kurzer Pausen zwischen Programmteilen zur Segmentierung dessen. Wählt man diese Abschnitte hinreichend kurz, kann der wartende Odometrie-Callback mit wenig Verzögerung ausgeführt und die Bildverarbeitung danach fortgesetzt werden.
 
 
