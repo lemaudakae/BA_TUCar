@@ -25,14 +25,14 @@ Wie in Abbildung~\ref{fig:fahrspurerkennung_ransac_masken} zu sehen, folgt die A
 
 \subsection{Bestimmung der \glqq Regions of Interest\grqq{}}
 
-Um die zu einer Linie zugehörigen Pixel an der erwarteten Stelle suchen zu können, wird für jede der drei Fahrbahnmarkierungen eine passende Maske erstellt, welche den Bildausschnitt für \gls{acr:ransac} markiert. Diese \glspl{acr:roi} werden mittels der bereits eingetragenen Kartenpunkte und der Pose zum Zeitpunkt der Bildaufnahme gebildet.  
+Um die zu einer Linie zugehörigen Pixel an der erwarteten Stelle suchen zu können, wird für jede der drei Fahrbahnmarkierungen eine passende Maske erstellt, welche den von \gls{acr:ransac} zu bearbeitenden Bildausschnitt festlegt. Diese \glspl{acr:roi} werden mittels der bereits eingetragenen Kartenpunkte und der Pose zum Zeitpunkt der Bildaufnahme generiert.  
 %Die Weltkarte ist ein Struktur-Feld, in dem unter anderem die Koordinaten der eingetragenen Linienpunkte gespeichert sind, jedoch nicht deren approximierte Funktion. 
 Dazu werden eine bestimmte Anzahl der zuletzt eingetragenen Kartenpunkte gleichartiger Kategorie in das aktuelle Bild transformiert, welche folgend die Grundlage für eine Regression darstellen. Die daraus ermittelte Funktion bildet die Mitte der \gls{acr:roi}. Nach einer Dilatation des im Bildausschnitt liegenden Teils der Funktion um einen Parameterwert entsteht ein dickes Band aus Punkten, welche die \gls{acr:roi} beschreiben (siehe Abbildung~\ref{fig:fahrspurerkennung_ransac_masken}).
 
 \subsection{Initialer Maskenbau} 
 \label{par:maskenbau:initial}
 
-Ein nicht zu vernachlässigendes Problem stellt allerdings die Initialisierung dar. Wie gewinnt man die Masken, wenn bisher keine Linienpunkte in die Karte eingetragen worden sind? Die einfachste und am Anfang auch implementierte Möglichkeit bietet die aus Parameterwerten vorgeschriebene Maske einer Gerade, in der Annahme, das Auto starte immer auf einem geraden Abschnitt. Da so aber die Robustheit der Linienerkennung schlecht gewährleistet wäre, wurde dies schnell verworfen und eine bessere Möglichkeit gefunden. 
+Ein nicht zu vernachlässigendes Problem stellt allerdings die Initialisierung dar. Wie gewinnt man die Masken, wenn bisher keine Linienpunkte in die Karte eingetragen worden sind? Die einfachste und am Anfang auch implementierte Möglichkeit bietet die aus Parameterwerten vorgeschriebene Maske einer Gerade, in der Annahme, das Auto starte immer auf einem geraden Abschnitt. Da so aber die Robustheit der Linienerkennung unzureichend wäre, wurde dies schnell verworfen und eine bessere Möglichkeit gefunden. 
 
 \paragraph{\gls{acr:roi} für die Mittellinie}
 
@@ -55,12 +55,12 @@ Die gestrichelte Mittellinie besitzt im gesamten, binarisierten Bild Alleinstell
 	\hfill
 	\subfloat[Filterergebnis des \glqq Ringfilters\grqq]{\includegraphics[width=0.47\textwidth]{fahrspurerkennung_ransac_imgMidFiltered.png}}
 	\hfill
-	\subfloat[Durchschnitt des negierten Filterergebnisses mit dem binarisierten Bild 	\label{fig:fahrspurerkennung_ransac_ringfilter_ergebnis}]{\includegraphics[width=0.47\textwidth]{fahrspurerkennung_ransac_imgBinarizedAndNotImgMidFiltered.png}}
+	\subfloat[Und-Verknüpfung des negierten Filterergebnisses mit dem binarisierten Bild 	\label{fig:fahrspurerkennung_ransac_ringfilter_ergebnis}]{\includegraphics[width=0.47\textwidth]{fahrspurerkennung_ransac_imgBinarizedAndNotImgMidFiltered.png}}
 	\caption{Bildverarbeitungsschritte zur Detektion der Mittellinie zum initialen Maskenbau mittels \glqq Ringfilter\grqq}
 	\label{fig:fahrspurerkennung_ransac_binarisieren}
 \end{figure} 
 
-Die Negation des Filterergebnisses als Maske auf das binarisierte Bild gelegt erzeugt eine Grafik, die allein Pixel aus Punktgruppen enthält, die dem \glqq Ringfilter\grqq{} entsprechend festgelegte Maximallängen und Mindestabstände zu anderen Punkten besitzen. Diese ist in Abbildung~\ref{fig:fahrspurerkennung_ransac_ringfilter_ergebnis} dargestellt. Darauf kann nun der \gls{acr:ransac}-Algorithmus angewendet werden. 
+Die Negation des Filterergebnisses als Maske auf das binarisierte Bild gelegt erzeugt eine Grafik (Abbildung~\ref{fig:fahrspurerkennung_ransac_ringfilter_ergebnis}), die allein Pixel aus Punktgruppen enthält, die dem \glqq Ringfilter\grqq{} entsprechend festgelegte Maximallängen und Mindestabstände zu anderen Punkten besitzen. Auf das entstandene Binärbild kann nun der \gls{acr:ransac}-Algorithmus angewendet werden. 
 
 \paragraph{Randlinienmasken}
 
@@ -93,7 +93,7 @@ Die zwei initialen \glspl{acr:roi} für die Randlinien werden anschließend aus 
 
 Die Normierung von \gls{lat:dv} multipliziert mit der bekannten Fahrspurbreite \( b_F \) addiert auf den Mittellinienpunkt \( (\gls{x},\gls{y}) \) ergibt einen Stützpunkt \( ({\gls{x}}_s,{\gls{y}}_s) \) der linken (\( + \)) bzw. der rechten (\( - \)) Randlinie (Gleichungen \eqref{eq:maske_verschiebungsvektor} und \eqref{eq:maske_randpunkte}).
 
-Durch die so verschobenen Stützpunkte der erwarteten Lage der Randlinien werden ein neuer Fit und eine anschließende Dilatation vorgenommen, um die initialen Randmasken zu erzeugen. Um auszuschließen, dass man zur mittleren Strichlinie zugehörige Bildpunkte einer Randlinie zuordnet, wird zusätzlich eine elementweise UND-Operation mit der negierten Mittellinienmaske durchgeführt. Die verhinderte Überschneidung der Masken ist auch in Abbildung~\ref{fig:fahrspurerkennung_ransac_masken} zu erkennen.
+Durch die so verschobenen Stützpunkte der erwarteten Lage der Randlinien werden ein neuer Polynom-Fit und eine anschließende Dilatation vorgenommen, um die initialen Randmasken zu erzeugen. Um auszuschließen, dass man zur mittleren Strichlinie zugehörige Bildpunkte einer Randlinie zuordnet, wird zusätzlich eine elementweise UND-Operation mit der negierten Mittellinienmaske durchgeführt. Die verhinderte Überschneidung der Masken ist auch in Abbildung~\ref{fig:fahrspurerkennung_ransac_masken} zu erkennen.
 
 %––––––––––––––––––––––––––––––––––––––––––––––––––––––
 % \section{Ransac mit Maskierung \dcfirstauthorshort}
