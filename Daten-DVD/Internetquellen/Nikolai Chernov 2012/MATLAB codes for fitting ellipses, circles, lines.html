@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="Author" content="Nikolai Chernov">
+<meta name="description" content="MATLAB code. Fitting lines. Fitting circles.
+Fitting ellipses. Errors-in-variables regression. EIV."> <meta name="robots" content="index,follow">
+
+<title>MATLAB codes for fitting ellipses, circles, lines</title> </head>
+
+<body vlink="#6F174D" text="#000000" link="#631B8D" bgcolor="#E9D8BA" alink="#FF0000">
+<a href="http://people.cas.uab.edu/~mosya/cl/index.html">
+&lt;&lt; Back to main page</a>
+<center><h1>MATLAB code for circle fitting algorithms</h1>
+<i>Created and tested with MATLAB version 7.
+&nbsp;&nbsp;&nbsp;E-mail your questions and comments to <a href="mailto:chernov@math.uab.edu">Nikolai Chernov</a></i>
+<hr>
+
+<br><table width="100%" border="0">
+<tbody><tr>
+<td colspan="3" width="50%" align="center">
+<font size="+1" color="#0F4D28"><b>Geometric circle fits</b></font><br><br>
+</td>
+<td rowspan="2" width="1" bgcolor="#bbbbbb"><spacer type="block" width="1"></spacer></td>
+<td colspan="3" width="50%" align="center">
+<font size="+1" color="#0F4D28"><b>Algebraic circle fits</b></font><br><br>
+</td>
+</tr><tr>
+<td width="3%"></td>
+<td width="44%" valign="top" align="left">
+<font size="+1"><a href="http://people.cas.uab.edu/~mosya/cl/LM.m">Levenberg-Marquardt fit in the "full" (a,b,R) space</a>
+<br></font>&nbsp;&nbsp;&nbsp; (perhaps the best geometric circle fit)<font size="+1">
+<br><br><a href="http://people.cas.uab.edu/~mosya/cl/LMreduced.m">Levenberg-Marquardt fit in the "reduced" (a,b) space</a>
+<br></font>&nbsp;&nbsp;&nbsp; (may be a little faster than above in favorable cases)<font size="+1">
+<br><br><a href="http://people.cas.uab.edu/~mosya/cl/TR.m">Trust region fit in the "full" (a,b,R) space</a>
+<br></font>&nbsp;&nbsp;&nbsp; (a little more reliable but slower)<font size="+1">
+<br><br><a href="http://people.cas.uab.edu/~mosya/cl/Spath.m">Spath fit</a>
+</font>&nbsp;&nbsp;&nbsp; (reliable but quite slow; not recommended)<font size="+1">
+<br><br><a href="http://people.cas.uab.edu/~mosya/cl/Landau.m">Landau fit</a>
+</font>&nbsp;&nbsp;&nbsp; (heuristic and very slow; not recommended)<font size="+1">
+<br><br><a href="http://people.cas.uab.edu/~mosya/cl/LMA.m">Chernov-Lesort fit</a>
+</font>&nbsp;&nbsp;&nbsp; (the only fit that converges from
+<br>&nbsp;&nbsp;&nbsp; any initial guess, but slower that the Levenberg-Marquardt)
+<br><br> Note: every geometric fit must be supplied with an initial guess.
+<br>Use an algebraic fit for this purpose. We recommend Taubin fit.
+</td><td width="3%"></td>
+<td width="3%"></td>
+<td width="44%" valign="top" align="left">
+<font size="+1"><a href="http://people.cas.uab.edu/~mosya/cl/Kasa.m">Kasa fit</a>
+</font>&nbsp;&nbsp;&nbsp; (the simplest and fastest fit, but biased
+<br>&nbsp;&nbsp;&nbsp; toward small circles when an incomplete arc is observed)<font size="+1">
+<br><br>Pratt fit:&nbsp;&nbsp; <a href="http://people.cas.uab.edu/~mosya/cl/PrattSVD.m">SVD-based</a>
+</font>&nbsp;&nbsp;&nbsp; (optimized for stability)<font size="+1">
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://people.cas.uab.edu/~mosya/cl/PrattNTN.m">Newton-based</a>
+</font>&nbsp;&nbsp;&nbsp; (optimized for speed)<font size="+1">
+<br><br>Taubin fit:&nbsp;&nbsp; <a href="http://people.cas.uab.edu/~mosya/cl/TaubinSVD.m">SVD-based</a>
+</font>&nbsp;&nbsp;&nbsp; (optimized for stability)<font size="+1">
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://people.cas.uab.edu/~mosya/cl/TaubinNTN.m">Newton-based</a>
+</font>&nbsp;&nbsp;&nbsp; (optimized for speed)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(perhaps the best algebraic circle fit)<font size="+1">
+<br><br>Hyper fit:&nbsp;&nbsp; <a href="http://people.cas.uab.edu/~mosya/cl/HyperSVD.m">SVD-based</a>
+</font>&nbsp;&nbsp;&nbsp; (optimized for stability)<font size="+1">
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://people.cas.uab.edu/~mosya/cl/Hyper.m">simple</a>
+</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(optimized for speed)<font size="+1">
+<br><br><a href="http://people.cas.uab.edu/~mosya/cl/Nievergelt.m">Nievergelt fit</a>
+</font>&nbsp;&nbsp;&nbsp; (poor, not recommended)<font size="+1">
+<br><br><a href="http://people.cas.uab.edu/~mosya/cl/GGS.m">Gander-Golub-Strebel fit</a>
+</font>&nbsp;&nbsp;&nbsp; (poor, not recommended)
+</td><td width="3%"></td>
+</tr></tbody></table>
+
+<br><hr><br>
+
+<br><table width="100%" border="0">
+<tbody><tr>
+<td colspan="3" width="50%" align="center">
+<font size="+1" color="#0F4D28"><b>Specialized ("exotic") circle fits</b></font><br><br>
+</td>
+<td rowspan="2" width="1" bgcolor="#bbbbbb"><spacer type="block" width="1"></spacer></td>
+<td colspan="3" width="50%" align="center">
+<font size="+1" color="#0F4D28"><b>Consistent circle fits</b></font><br><br>
+</td>
+</tr><tr>
+<td width="3%"></td>
+<td width="44%" valign="top" align="left">
+<font size="+1">Riemann fit</font><br>
+&nbsp;&nbsp;(by Strandlie, Wroldsen, Fruhwirth, and Lillekjendlie)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://people.cas.uab.edu/~mosya/cl/RiemannSWFL.m">Original version</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://people.cas.uab.edu/~mosya/cl/RiemannSWFLa.m">Equivalent version using algebraic parameters</a>
+<br>(pretty accurate in most cases, but not fully tested in all cases)
+
+<br><br>
+<font size="+1">Inversion-based fit</font><br>
+&nbsp;&nbsp;(by Rusu, Tico, Kuosmanen, and Delp)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://people.cas.uab.edu/~mosya/cl/RTKD.m">Non-iterative version</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://people.cas.uab.edu/~mosya/cl/RTKDiter.m">Iterative version</a>
+<br>Non-iterative version works only for circles passing near (0,0).
+<br> Iterative version is more stable, but sometimes diverges.
+
+<br><br>
+<font size="+1">Karimaki fit</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://people.cas.uab.edu/~mosya/cl/KarimakiOrig.m">Original version (without corrective step)</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://people.cas.uab.edu/~mosya/cl/KarimakiOrigCorr.m">Original version (with corrective step)</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://people.cas.uab.edu/~mosya/cl/KarimakiAlg.m">Equivalent version using algebraic parameters</a>
+<br>Without corrective step, less accurate than any algebraic fit.
+<br>With corrective step, similar to the Pratt fit, but slightly less precise.
+<br><br>Note: Inversion-based fits and Karimaki fits must be supplied
+<br> with a pole (a point near which the circle presumably passes).
+<br>You can use any data point for that purpose.
+</td><td width="3%"></td>
+<td width="3%"></td>
+<td width="44%" valign="top" align="left">
+These fits return estimates that converge to the true values of
+<br>parameter as &nbsp;<i>n</i> &#8594; &#8734;. They work better for larger samples.
+<br><br><font size="+1"><a href="http://people.cas.uab.edu/~mosya/cl/KMvH.m">Kukush-Markovsky-van Huffel fit</a>
+</font><font size="+1">
+<br><br><a href="http://people.cas.uab.edu/~mosya/cl/KMvD.m">Consistent version of Kasa fit</a>
+</font></td><td width="3%"></td>
+</tr></tbody></table>
+
+ 
+</center></body></html>
