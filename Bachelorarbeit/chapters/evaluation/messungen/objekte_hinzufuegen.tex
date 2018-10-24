@@ -2,7 +2,7 @@
 \label{ssec:evaluation:messungen:objekte_hinzufuegen}
 Im realen Straßenverkehr befinden sich in der Regel mehr Objekte im Sichtbereich des Fahrers bzw. der Kamera als die bis jetzt im Parcours alleinig vorhandenen Fahrbahnmarkierungen. Diese Gegenstände können für die Trajektorieplanung relevant sein (Hindernisse) oder in keinem Zusammenhang damit stehen (Objekte abseits der Straße). Da der bis jetzt implementierte Fahrspurverfolgungsalgorithmus keine Hinderniserkennung und -vermeidung besitzt, kann hier nur auf Gegenstände neben der Fahrspur eingegangen werden. In diesem Abschnitt sollen Untersuchungen stattfinden, ob die Erkennung des Straßenverlaufs auch bei Hinzufügen weiterer Gegenstände zum Testszenario noch zufriedenstellend abläuft.
 
-\paragraph{Betrachtungen zur Bildvorverarbeitung}
+\subsection{Betrachtungen zur Bildvorverarbeitung}
 \label{par:evaluation:riverflow:messungen:objekte_hinzufuegen}
 Vor der Durchführung von Testfahrten muss die Frage gestellt werden, wann dem Parcours hinzugefügte Elemente einen Einfluss auf die Fahrspurerkennung haben können. Da die Filterung und anschließende Binarisierung des entzerrten Graustufenbildes den Ausgangspunkt für darauffolgende Programmkomponenten darstellen, muss das Objekt die \glqq Hürde\grqq\ dieser Informationsreduktion überwinden können. Konkret bedeutet dies, dass sein Kontrast im Vergleich zum umliegenden Szenario groß genug sein muss, um als schwellwertüberschreitende Filterantwort des Kantendetektors im Binärbild aufzutreten oder als relevantes Maxima auf einer Scanline gefunden zu werden (s. Abschnitt \ref{sec:bildvorverarbeitung:binarisierung} bzw. \ref{ssec:fahrspurerkennung:kalman:messung}).
 Als Vorversuch wurden farbige Blätter (Abb. \ref{fig:evaluation:riverflow:test_kontraste_roh}) verschiedener Helligkeit (Abb. \ref{fig:evaluation:riverflow:test_kontraste_entzerrt}) im Testszenario platziert. Abbildung \ref{fig:evaluation:riverflow:test_kontraste_gefiltert} zeigt wie erwartet, dass nur sehr dunkle Farben eine ausreichend große Filterantwort hervorrufen, welche im Binärbild (Abb. \ref{fig:evaluation:riverflow:test_kontraste_binarisiert}) als Kante vermerkt wird. Auffällig ist auch, dass die Eckpunkte der Blätter eine besonders große Filterantwort bewirken, die eigentlichen Kanten aber nur beim roten (teilweise) und schwarzen Blatt erkannt werden.
@@ -22,7 +22,7 @@ Als Vorversuch wurden farbige Blätter (Abb. \ref{fig:evaluation:riverflow:test_
 \caption{Vorversuch Kontraste zusätzlicher Objekte im Testszenario}
 \end{figure}
 
-\paragraph{Objekte neben der Fahrspur}
+\subsection{Objekte neben der Fahrspur}
 Es wurden einige Quader, in den Farben des in Abschnitt \ref{par:evaluation:riverflow:messungen:objekte_hinzufuegen} untersuchten Papiers, im Parcours positioniert (s. Abb. \ref{fig:evaluation:riverflow:test_kontraste_versuchsaufbau_haeuser}). Hierbei wurde bei 3 Fahrten der Abstand zur seitlichen Fahrbahnmarkierung von \SI{16}{cm} (größer der Länge einer Scanline) über \SI{4}{cm} (kleiner der Länge einer Scanline) hin zu \SI{0}{cm} verändert.
 
 Können die Scanlines die Kanten eines solchen Objektes nicht erreichen, so ist kein Einfluss auf die Erkennung der Randlinien zu erwarten. Ist der Kontrast eines Quaders zur hellgrünen Grundfarbe des Testszenarios zu gering, so ist eine Fehldetektion aufgrund dessen ebenfalls ausgeschlossen. Eventuelle Beeinträchtigungen des Riverflow-Algorithmus sind somit nur bei den Versuchen mit \SI{4}{cm} und \SI{0}{cm} Abstand bei dunklen Farben der \glqq Störobjekte \grqq\ zu erwarten.
@@ -79,7 +79,7 @@ Die unter Nachteile in Abschnitt~\ref{sec:evaluation:riverflow:diskussion_prinzi
 \label{evaluation:riverflow:hypos:times_04}
 \end{figure}
 
-\paragraph{Objekte in der Gegenspur}
+\subsection{Objekte in der Gegenspur}
 Da, bedingt durch die Verifikation, erkannte Fahrbahnmarkierungen nur in die Karte eingetragen werden, wenn sie zu mindestens einer weiteren erkannten Linie passen, muss für eine Fehlerkennung diese Bedingung auch durch die platzierten \glqq Störobjekte\grqq\ erfüllt werden. Da sich das Fahrzeug nur auf der rechten Straßenseite fortbewegt, wurde der Versuchsaufbau in Abb. \ref{fig:evaluation:riverflow:test_kontraste_versuchsaufbau_baustelle} gewählt, welcher diesem Kriterium nachkommt.
 \begin{figure}[htbp] % [htb]
 \centering
