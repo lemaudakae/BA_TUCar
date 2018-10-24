@@ -2,7 +2,7 @@
 %	draft,			% Entwurfsmodus: Bilder als Rahmen,
 	11pt,			% KOMA default
 	a4paper,		% DIN A4
-	twoside,		% Zweiseitig (oneside für einseitiges Layout)
+	oneside,		% Zweiseitig (oneside für einseitiges Layout)
 	german,			%
 	titlepage		%
 ]{scrartcl}			% siehe <http://www.komascript.de>
@@ -41,9 +41,29 @@ Bevor die entsprechenden Applikationen gestarten werden können, muss der PC sic
 
 \section{Raspberry PI}
 Ist die Wlan-Verbindung zwischen PC und PI hergestellt, kann sich in einer neuen Konsole via
-\sh{ssh lemau@10.0.0.1}
+\sh{ssh 10.0.0.1}
 %\mint[xleftmargin=5em]{shell}{ssh lemau@10.0.0.1} 
-\noindent auf diesem eingeloggt werden. Das Passwort lautet \emph{tucar2018}.
+\noindent auf diesem eingeloggt werden.
+\noindent Bei erstmaligem Start installieren die folgenden Befehle die notwendigen Nodes auf dem Raspi.
+\begin{she}
+# ROS-Befehle verfügbar machen
+. /opt/ros/kinetic/setup.bash
+# Ordner für Nodes anlegen
+mkdir tucar_ws
+cd tucar_ws
+# Installationsskript holen & ausführen
+svn checkout 
+https://borstel.etit.tu-chemnitz.de/svn/praktikum/TUCar/trunk/ROS/rosinstall
+cd rosinstall
+./install.sh
+# Nodes bauen
+cd ../catkin
+catkin_make
+\end{she}
+Jetzt (auch bei jedem späteren Start) müssen die gebauten Nodes bekannt gemacht (gesourced) werden.
+\sh{source ~/tucar_ws/catkin/devel/setup.bash}
+\noindent Danach sollte die IP-Adresse des Netzwerkinterface, welches ROS verwenden soll, festgelegt werden.
+\sh{export ROS_HOSTNAME=10.0.0.1}
 \noindent Nun kann das Launchfile zum Starten aller notwendigen Nodes aufgerufen werden:
 \sh{roslaunch tucar tucar_bringup.launch use_sensors:=true}
 \noindent Beendet werden diese durch die Tastenkombination \framebox{STRG} + \framebox{C}. Der PI kann mittels
@@ -51,34 +71,57 @@ Ist die Wlan-Verbindung zwischen PC und PI hergestellt, kann sich in einer neuen
 \noindent heruntergefahren werden.
 
 \subsection{bashrc}
-Der Einfachheit halber wurden die Befehle
+Der Einfachheit können die Befehle
 \begin{she}
-export ROS_HOSTNAME=10.0.0.1
+. /opt/ros/kinetic/setup.bash
 source ~/tucar_ws/catkin/devel/setup.bash
+export ROS_HOSTNAME=10.0.0.1
 \end{she}
- \noindent zum Festlegen IP-Adresse des Netzwerkinterface, welches ROS verwenden soll und zum Sourcen der Nodes des TUCars schon in die \emph{bashrc} des PI eingetragen.
+\noindent in die \emph{bashrc} des PI eingetragen werden um die Ausführung bei jedem Start automatisch zu veranlassen.
 
 \section{PC}
 \subsection{Matlab}
-Am PC kann nun MATLAB gestartet werden. Hierbei ist es wichtig, dies aus dem Ordner \emph{Riverflow} zu tun, da sich hier das Skript \emph{startup.m} befindet, welches die benötigten Custom-Messages des TUCars lädt, so wie alle relevanten Unterordner dem Matlab-Pfad hinzufügt:
+\label{ssec:pc:matlab}
+Am PC kann nun MATLAB gestartet werden. Hierbei ist es wichtig, dies aus dem Ordner \emph{Punktbasierte Fahrspurerkennung} zu tun, da sich hier das Skript \emph{startup.m} befindet, welches die benötigten Custom-Messages des TUCars lädt, so wie alle relevanten Unterordner dem Matlab-Pfad hinzufügt:
 \begin{she}
-cd .../Riverflow
+cd /Pfad/zur/DVD/Punktbasierte Fahrspurerkennung
 matlab&
 \end{she}
+Der auftauchenden Anweisung eine Textzeile in eine bestimmte (meist noch zu erstellende) Matlab-Config-Datei einzufügen, ist Folge zu leisten. 
 
-Auch das von ROS am PC zu nutzende Netzwerk-Interface muss festgelegt werden. Dies geschieht beim Start des Matlab-Skriptes automatisch. Es kann jedoch notwendig sein, diese IP anzupassen:
+Jetzt muss auch das von ROS am PC zu nutzende Netzwerk-Interface festgelegt werden. Dies geschieht beim Start des Matlab-Skriptes automatisch. Es kann jedoch notwendig sein, diese IP anzupassen:
 \sh{ifconfig} 
 \noindent in einem weiteren Terminal aufgerufen liefert Informationen zu allen vorhandenen Netzwerkadaptern, der WLAN-Stick sollte hier ausfindig zu machen sein.
 Die gefundene Adresse kann nun gegebenenfalls in der Datei \emph{function\_init\_parameters.m} im Ordner \emph{Initialisierungen} unter Punkt \emph{ROS-Parameter} bei \emph{params.RosIP} eingetragen werden.
 
-Zum Start der Fahrspurverfolgung muss lediglich die Datei main.m ausgeführt werden. Die Debuggingmöglichkeiten können von hier aus eingeschaltet werden, genaue Erläuterungen finden sich in den Kommentaren. Zum Auswerten dieser sind die Skripte im Ordner \emph{Debug} zu nutzen. Die Arbeitsweise des Quellcodes kann nach dem Lesen der zugehörigen Bachelorarbeit anhand der Funktionsbeschreibungen durch rekursives Abarbeiten dieser ergründet werden.
+Zum Start der Fahrspurverfolgung muss lediglich die Datei \emph{main.m} ausgeführt werden. Die Debuggingmöglichkeiten können von hier aus eingeschaltet werden, genaue Erläuterungen finden sich in den Kommentaren. Zum Auswerten dieser sind die Skripte im Ordner \emph{Debug} zu nutzen. Die Arbeitsweise des Quellcodes kann nach dem Lesen der zugehörigen Bachelorarbeit anhand der Funktionsbeschreibungen durch rekursives Abarbeiten dieser ergründet werden. Beendet wird die Fahrspurverfolgung durch einen Klick in die geöffnete, leere Figure.
 
 \subsection{Konsole}
-Soll nicht nur via Matlab mit dem TUCar kommuniziert werden, so muss ein weiteres Terminal geöffnet werden, in dem die IP des ROS-Masters (PI) bekannt gemacht und die richtige Netzwerkschnittstelle eingestellt wird.
+Soll nicht nur via Matlab mit dem TUCar kommuniziert werden, so muss ein weiteres Terminal geöffnet werden, in dem zum Nutzen der Custom-Messages ebenfalls der TUCar-Node installiert und gesourced werden muss.
+\begin{she}
+# ROS-Befehle verfügbar machen
+. /opt/ros/kinetic/setup.bash
+# Ordner für Nodes anlegen
+mkdir tucar_ws
+cd tucar_ws
+# Installationsskript holen & ausführen
+svn checkout 
+https://borstel.etit.tu-chemnitz.de/svn/praktikum/TUCar/trunk/ROS/rosinstall
+cd rosinstall
+./install.sh
+# Nodes bauen
+cd ../catkin
+catkin_make
+# Nodes sourcen
+source ~/tucar_ws/catkin/devel/setup.bash
+\end{she}
+
+\noindent Desweiteren sollte die IP des ROS-Masters (PI) bekannt gemacht und die richtige Netzwerkschnittstelle eingestellt werden.
 \begin{she}
 export ROS_MASTER_URI=http://10.0.0.1:11311 # IP PI-Hotspot
 export ROS_IP=x.x.x.x # IP Wlan-Stick -> siehe ifconfig
 \end{she}
+
 \noindent Eine kleine Liste nützlicher Befehle ist:
 \begin{she}
 # verfügbare Topics anzeigen
@@ -102,19 +145,20 @@ rqt_image_view
 rosrun topic_tools throttle messages /tucar/omnicam/full/compressed_throttle <Bildfrequenz>
 \end{she}
 
+In Matlab muss neben der in Abschnitt \ref{ssec:pc:matlab} beschriebenen Änderung der IP des zu nutzenden Netzwerkinterfaces auch die IP des ROS-Masters auf die LAN-Schnittstelle des Rechners festgelegt werden. Der anzupassende Parameter lautet \emph{params.RosMasterUri}.
+
 \section{Parameteranpassung TUCar}
 \subsection{Fahrplattform}
 Die Konfiguration der Fahrplattform kann mittels der Datei 
 \sh{tucar_controller.yaml} 
 \noindent im Ordner 
 \sh{~/tucar_ws/catkin/src/tucar/tucar/config/platform} 
-\noindent erfolgen. 
+\noindent erfolgen. Hier kann z.B. die Frequenz der Odometrie- und IMU-Datenpakete reguliert werden. 
 \subsection{Kamera}
 \noindent Die Datei 
 \sh{camera.xml} 
 \noindent im Ordner 
 \sh{~/tucar_ws/catkin/src/tucar/tucar/launch/sensor_drivers} 
-\noindent ist für die Konfiguration der Kamera zuständig.
-
+\noindent ist für die Konfiguration der Kamera zuständig. Hier kann z.B. Auflösung und Framerate eingestellt werden.
 
 \end{document}
