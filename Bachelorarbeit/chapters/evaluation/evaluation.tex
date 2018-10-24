@@ -1,7 +1,7 @@
 \chapter{Evaluation \dcfirstauthorshort}
 \label{cha:evaluation}
 
-In diesem Kapitel wird das final zur Fahrspurverfolgung genutzte Vorgehen ausführlich bewertet. Zu Beginn wird auf prinzipielle Vor- und Nachteile eingegangen, um schließlich die Performance anhand einiger Tests zu demonstrieren. Neben einer zeitlichen Betrachtung wird die Robustheit des Riverflow-Algorithmus bezüglich Geschwindigkeit, Störobjekten und abgedeckten Bereichen in der Fahrspur getestet.
+In diesem Kapitel wird das final zur Fahrspurverfolgung genutzte Vorgehen ausführlich bewertet. Zu Beginn wird auf prinzipielle Vor- und Nachteile eingegangen, um schließlich die Performanz anhand einiger Tests zu demonstrieren. Neben einer zeitlichen Betrachtung wird die Robustheit des Riverflow-Algorithmus bezüglich Geschwindigkeit, Störobjekten und abgedeckten Bereichen in der Fahrspur getestet.
 
 Abschnitt \ref{ssec:evaluation:messungen:ohnegt} beleuchtet die Schwierigkeiten, ein entwickeltes System ohne Vergleichswerte oder Messsysteme objektiv zu bewerten. Anschließend sollen charakteristische Messwerte der Fahrspurerkennung, Regelung, sowie dem Zusammenspiel beider Komponenten dargestellt und diskutiert werden. In Paragraph \ref{ssec:evaluation:messungen:laufzeit} wird die Laufzeit der Fahrspurverfolgungskomponenten ermittelt und auf Basis dieser Messwerte die maximal verarbeitbare Bildfrequenz eingestellt. Passus \ref{ssec:evaluation:messungen:weltkarte} vergleicht die erzeugte Weltkarte mit der Zeichnung des Testszenarios um Rückschlüsse auf die Qualität der am Kartenaufbau beteiligten Messungen zu ziehen. In Passage \ref{ssec:evaluation:messungen:geschwindigkeit} soll das Verhalten des Modellautos bei unterschiedlichen Geschwindigkeiten evaluiert werden. 
 
@@ -15,7 +15,8 @@ Um möglichst viele Informationen kompakt abzubilden, wurden unter anderem die D
 	\item
 	Das Fahrzeug vor vollendeter Verarbeitung des ersten Bildes schon ohne gültigen Zielpunkt losfährt
 \end{itemize}
-wurden diese nicht-repräsentativen Phasen in den entsprechenden Grafiken ausgelassen, da sie die Aussagekraft der Messwerte beeinträchtigen würden. In der Bildunterschrift wurde jeweils das Stichwort \glqq ohne Startphase\grqq\ eingefügt.
+wurden diese nicht-repräsentativen Phasen in entsprechenden Grafiken ausgelassen, da sie die Aussagekraft der Messwerte beeinträchtigen würden. 
+%In der Bildunterschrift wurde jeweils das Stichwort \glqq ohne Startphase\grqq\ eingefügt.
 
 \subimport{diskussion/}{diskussion_prinzip}
 \subimport{messungen/}{messungen}
