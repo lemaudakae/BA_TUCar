@@ -21,8 +21,8 @@
 %\newmint{shell}{xleftmargin=2em}
 \newminted[she]{shell}{xleftmargin=2em}
 \newmintinline[shi]{shell}{}
-\title{\Large
-	Bedienungsanleitung Fahrspurverfolgung TUCar
+\title{\Huge
+	Bedienungsanleitung\\ \LARGE Fahrspurverfolgung TUCar \\   
 }
 \author{Leopold Mauersberger}
 \date{\today}
@@ -33,7 +33,7 @@
 % Titel
 \maketitle
 
-\section{Gültigkeitsbereich\&Voraussetzungen}
+\section{Gültigkeitsbereich \& Voraussetzungen}
 Diese Anleitung beschreibt den Start der im Rahmen der Bachelorarbeit \glqq Kamerabasierte Navigation eines Modellfahrzeugs in einem Straßenverkehrsszenario\grqq\ implementierten Fahrspurverfolgung. Für ein weiterführendes Verständnis der hier beschrieben Vorgehensweisen sei auf das ROS-Wiki \footnote{http://wiki.ros.org/} sowie die MATLAB-Dokumentation, speziell die Abschnitte der Robotics-System-Toolbox \footnote{https://de.mathworks.com/products/robotics.html}, verwiesen. Zudem wird die Fähigkeit mit einem Linux-Terminal zu arbeiten, vorausgesetzt.
 
 \section{Notwendige Verbindungen}
@@ -62,7 +62,7 @@ catkin_make
 \end{she}
 Jetzt (auch bei jedem späteren Start) müssen die gebauten Nodes bekannt gemacht (gesourced) werden.
 \sh{source ~/tucar_ws/catkin/devel/setup.bash}
-\noindent Danach sollte die IP-Adresse des Netzwerkinterface, welches ROS verwenden soll, festgelegt werden.
+\noindent Danach sollte die IP-Adresse des Netzwerkinterfaces, welches ROS verwenden soll, festgelegt werden.
 \sh{export ROS_HOSTNAME=10.0.0.1}
 \noindent Nun kann das Launchfile zum Starten aller notwendigen Nodes aufgerufen werden:
 \sh{roslaunch tucar tucar_bringup.launch use_sensors:=true}
@@ -77,7 +77,7 @@ Der Einfachheit können die Befehle
 source ~/tucar_ws/catkin/devel/setup.bash
 export ROS_HOSTNAME=10.0.0.1
 \end{she}
-\noindent in die \emph{bashrc} des PI eingetragen werden um die Ausführung bei jedem Start automatisch zu veranlassen.
+\noindent in die \emph{bashrc} des PI eingetragen werden, um die Ausführung bei jedem Start automatisch zu veranlassen.
 
 \section{PC}
 \subsection{Matlab}
@@ -87,14 +87,14 @@ Am PC kann nun MATLAB gestartet werden. Hierbei ist es wichtig, dies aus dem Ord
 cd /Pfad/zur/DVD/Punktbasierte Fahrspurerkennung
 matlab&
 \end{she}
-Der auftauchenden Anweisung eine Textzeile in eine bestimmte (meist noch zu erstellende) Matlab-Config-Datei einzufügen, ist Folge zu leisten. 
+Bei erstmaligem Test des TUCars muss eine Textzeile (Pfadangabe) in eine bestimmte (meist noch zu erstellende) Matlab-Config-Datei eingefügt werden. Die Anweisung dazu taucht in der Kommandozeile Matlabs auf. 
 
 Jetzt muss auch das von ROS am PC zu nutzende Netzwerk-Interface festgelegt werden. Dies geschieht beim Start des Matlab-Skriptes automatisch. Es kann jedoch notwendig sein, diese IP anzupassen:
 \sh{ifconfig} 
 \noindent in einem weiteren Terminal aufgerufen liefert Informationen zu allen vorhandenen Netzwerkadaptern, der WLAN-Stick sollte hier ausfindig zu machen sein.
 Die gefundene Adresse kann nun gegebenenfalls in der Datei \emph{function\_init\_parameters.m} im Ordner \emph{Initialisierungen} unter Punkt \emph{ROS-Parameter} bei \emph{params.RosIP} eingetragen werden.
 
-Zum Start der Fahrspurverfolgung muss lediglich die Datei \emph{main.m} ausgeführt werden. Die Debuggingmöglichkeiten können von hier aus eingeschaltet werden, genaue Erläuterungen finden sich in den Kommentaren. Zum Auswerten dieser sind die Skripte im Ordner \emph{Debug} zu nutzen. Die Arbeitsweise des Quellcodes kann nach dem Lesen der zugehörigen Bachelorarbeit anhand der Funktionsbeschreibungen durch rekursives Abarbeiten dieser ergründet werden. Beendet wird die Fahrspurverfolgung durch einen Klick in die geöffnete, leere Figure.
+Zum Start der Fahrspurverfolgung muss lediglich die Datei \emph{main.m} ausgeführt werden. Die Debuggingmöglichkeiten können von hier aus eingeschaltet werden, genaue Erläuterungen finden sich in den Kommentaren. Zum Auswerten dieser sind die Skripte im Ordner \emph{Debug} zu nutzen. Die Arbeitsweise des Quellcodes kann nach dem Lesen der zugehörigen Bachelorarbeit anhand der Funktionsbeschreibungen durch rekursives Abarbeiten dieser ergründet werden. Beendet wird die Fahrspurverfolgung durch einen Klick in die geöffnete, leere Figure oder das Drücken einer beliebigen Taste.
 
 \subsection{Konsole}
 Soll nicht nur via Matlab mit dem TUCar kommuniziert werden, so muss ein weiteres Terminal geöffnet werden, in dem zum Nutzen der Custom-Messages ebenfalls der TUCar-Node installiert und gesourced werden muss.
